@@ -1,0 +1,78 @@
+Model loaded successfully.
+
+--- Running: H2 + O2 ---
+Nodes defined in configuration: 4
+Nodes in x_vals: 4
+Predicted existence probabilities: ['1.0000', '1.0000', '1.0000', '1.0000']
+Predicted bond orders: ['0.9932', '0.9932', '0.0022', '0.0022', '0.0014', '0.0014', '0.0014', '0.0014', '0.0022', '0.0022', '2.1840', '2.1840']
+Ignoring fixed x limits to fulfill fixed data aspect with adjustable data limits.
+
+--- Running: H2O + O ---
+Nodes defined in configuration: 4
+Nodes in x_vals: 4
+Predicted existence probabilities: ['1.0000', '1.0000', '1.0000', '0.0000']
+Predicted bond orders: ['0.2683', '0.2683', '1.0198', '1.0198', '0.0001', '0.0001', '1.0198', '1.0198', '0.0001', '0.0001', '0.0028', '0.0028']
+Ignoring fixed x limits to fulfill fixed data aspect with adjustable data limits.
+
+--- Running: OH + OH ---
+Nodes defined in configuration: 4
+Nodes in x_vals: 4
+Predicted existence probabilities: ['1.0000', '1.0000', '1.0000', '1.0000']
+Predicted bond orders: ['1.0045', '1.0045', '0.0014', '0.0014', '0.0022', '0.0022', '0.0022', '0.0022', '0.0002', '0.0002', '1.0045', '1.0045']
+Ignoring fixed x limits to fulfill fixed data aspect with adjustable data limits.
+
+--- Running: H2O2 ---
+Nodes defined in configuration: 4
+Nodes in x_vals: 4
+Predicted existence probabilities: ['1.0000', '1.0000', '1.0000', '1.0000']
+Predicted bond orders: ['1.0522', '1.0522', '0.0287', '0.0287', '0.0014', '0.0014', '0.6861', '0.6861', '0.0287', '0.0287', '1.0522', '1.0522']
+Ignoring fixed x limits to fulfill fixed data aspect with adjustable data limits.
+
+--- Running: HO2 + H ---
+Nodes defined in configuration: 4
+Nodes in x_vals: 4
+Predicted existence probabilities: ['1.0000', '1.0000', '1.0000', '0.0000']
+Predicted bond orders: ['1.0507', '1.0507', '0.0188', '0.0188', '0.0002', '0.0002', '1.4271', '1.4271', '0.0006', '0.0006', '0.0007', '0.0007']
+Ignoring fixed x limits to fulfill fixed data aspect with adjustable data limits.
+
+--- Running: H2 + O + O ---
+Nodes defined in configuration: 4
+Nodes in x_vals: 4
+Predicted existence probabilities: ['1.0000', '1.0000', '0.0000', '0.0000']
+Predicted bond orders: ['0.9557', '0.9557', '0.0054', '0.0054', '0.0023', '0.0023', '0.0023', '0.0023', '0.0054', '0.0054', '0.0035', '0.0035']
+Ignoring fixed x limits to fulfill fixed data aspect with adjustable data limits.
+
+--- Running: O2 + H + H ---
+Nodes defined in configuration: 4
+Nodes in x_vals: 4
+Predicted existence probabilities: ['1.0000', '1.0000', '0.0000', '0.0000']
+Predicted bond orders: ['2.1884', '2.1884', '0.0023', '0.0023', '0.0005', '0.0005', '0.0005', '0.0005', '0.0023', '0.0023', '0.0036', '0.0036']
+Ignoring fixed x limits to fulfill fixed data aspect with adjustable data limits.
+
+--- Running: OH + O + H ---
+Nodes defined in configuration: 4
+Nodes in x_vals: 4
+Predicted existence probabilities: ['1.0000', '1.0000', '0.0000', '0.0000']
+Predicted bond orders: ['1.0104', '1.0104', '0.0032', '0.0032', '0.0001', '0.0001', '0.0081', '0.0081', '0.0034', '0.0034', '0.0007', '0.0007']
+Ignoring fixed x limits to fulfill fixed data aspect with adjustable data limits.
+
+--- Running: H + H + O + O ---
+Nodes defined in configuration: 4
+Nodes in x_vals: 4
+Predicted existence probabilities: ['0.0000', '0.0000', '0.0000', '0.0000']
+Predicted bond orders: ['0.0004', '0.0004', '0.0004', '0.0004', '0.0000', '0.0000', '0.0000', '0.0000', '0.0004', '0.0004', '0.0004', '0.0004']
+Ignoring fixed x limits to fulfill fixed data aspect with adjustable data limits.
+
+--- Running: O2 (stretched) + H + H ---
+Nodes defined in configuration: 4
+Nodes in x_vals: 4
+Predicted existence probabilities: ['0.2585', '0.2585', '0.0000', '0.0000']
+Predicted bond orders: ['0.4268', '0.4268', '0.0093', '0.0093', '0.0007', '0.0007', '0.0007', '0.0007', '0.0093', '0.0093', '0.0004', '0.0004']
+Ignoring fixed x limits to fulfill fixed data aspect with adjustable data limits.
+
+--- Running: H2O (TS) + O ---
+Nodes defined in configuration: 4
+Nodes in x_vals: 4
+Predicted existence probabilities: ['1.0000', '1.0000', '1.0000', '0.0000']
+Predicted bond orders: ['0.0387', '0.0387', '0.5354', '0.5354', '0.0026', '0.0026', '0.5354', '0.5354', '0.0026', '0.0026', '0.0025', '0.0025']
+Ignoring fixed x limits to fulfill fixed data aspect with adjustable data limits.

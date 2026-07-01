@@ -1,0 +1,82 @@
+Starting training loop...
+Epoch: 001 | Total loss: 1.0530 | Bond loss: 0.4135 | Existence loss: 0.6395
+Epoch: 010 | Total loss: 0.4588 | Bond loss: 0.0575 | Existence loss: 0.4014
+Epoch: 020 | Total loss: 0.1098 | Bond loss: 0.0394 | Existence loss: 0.0704
+Epoch: 030 | Total loss: 0.0482 | Bond loss: 0.0259 | Existence loss: 0.0223
+Epoch: 040 | Total loss: 0.0265 | Bond loss: 0.0153 | Existence loss: 0.0111
+Epoch: 050 | Total loss: 0.0195 | Bond loss: 0.0136 | Existence loss: 0.0059
+Epoch: 060 | Total loss: 0.0174 | Bond loss: 0.0136 | Existence loss: 0.0038
+Epoch: 070 | Total loss: 0.0089 | Bond loss: 0.0066 | Existence loss: 0.0022
+Epoch: 080 | Total loss: 0.0071 | Bond loss: 0.0056 | Existence loss: 0.0016
+Epoch: 090 | Total loss: 0.0064 | Bond loss: 0.0050 | Existence loss: 0.0014
+Epoch: 100 | Total loss: 0.0054 | Bond loss: 0.0045 | Existence loss: 0.0009
+Epoch: 110 | Total loss: 0.0049 | Bond loss: 0.0042 | Existence loss: 0.0007
+Epoch: 120 | Total loss: 0.0041 | Bond loss: 0.0036 | Existence loss: 0.0005
+Epoch: 130 | Total loss: 0.0051 | Bond loss: 0.0047 | Existence loss: 0.0004
+Epoch: 140 | Total loss: 0.0033 | Bond loss: 0.0030 | Existence loss: 0.0003
+Epoch: 150 | Total loss: 0.0025 | Bond loss: 0.0021 | Existence loss: 0.0004
+Epoch: 160 | Total loss: 0.0026 | Bond loss: 0.0024 | Existence loss: 0.0002
+Epoch: 170 | Total loss: 0.0023 | Bond loss: 0.0021 | Existence loss: 0.0002
+Epoch: 180 | Total loss: 0.0026 | Bond loss: 0.0025 | Existence loss: 0.0001
+Epoch: 190 | Total loss: 0.0022 | Bond loss: 0.0021 | Existence loss: 0.0001
+Epoch: 200 | Total loss: 0.0016 | Bond loss: 0.0015 | Existence loss: 0.0001
+
+Training complete. Model is now ready for testing!
+
+--- Test Cases ---
+
+H2 + O2
+Node features: [0, 0, 1, 1]
+Predicted existence probabilities: ['1.0000', '1.0000', '1.0000', '1.0000']
+Predicted bond orders: ['0.9770', '0.9770', '0.0003', '0.0003', '0.0003', '0.0003', '0.0003', '0.0003', '0.0003', '0.0003', '2.1415', '2.1415']
+
+H2O + O
+Node features: [0, 0, 1, 1]
+Predicted existence probabilities: ['1.0000', '1.0000', '1.0000', '0.0000']
+Predicted bond orders: ['0.5560', '0.5560', '0.9512', '0.9512', '0.0003', '0.0003', '0.9512', '0.9512', '0.0003', '0.0003', '0.0007', '0.0007']
+
+OH + OH
+Node features: [0, 1, 0, 1]
+Predicted existence probabilities: ['1.0000', '1.0000', '1.0000', '1.0000']
+Predicted bond orders: ['0.9598', '0.9598', '0.0009', '0.0009', '0.0004', '0.0004', '0.0004', '0.0004', '0.0002', '0.0002', '0.9598', '0.9598']
+
+H2O2
+Node features: [0, 1, 1, 0]
+Predicted existence probabilities: ['1.0000', '1.0000', '1.0000', '1.0000']
+Predicted bond orders: ['1.0076', '1.0076', '0.0932', '0.0932', '0.0126', '0.0126', '0.6224', '0.6224', '0.0932', '0.0932', '1.0076', '1.0076']
+
+HO2 + H
+Node features: [0, 1, 1, 0]
+Predicted existence probabilities: ['1.0000', '1.0000', '1.0000', '0.0000']
+Predicted bond orders: ['0.9627', '0.9627', '0.0492', '0.0492', '0.0003', '0.0003', '1.4536', '1.4536', '0.0003', '0.0003', '0.0004', '0.0004']
+
+H2 + O + O
+Node features: [0, 0, 1, 1]
+Predicted existence probabilities: ['1.0000', '1.0000', '0.0000', '0.0000']
+Predicted bond orders: ['0.9770', '0.9770', '0.0006', '0.0006', '0.0006', '0.0006', '0.0006', '0.0006', '0.0006', '0.0006', '0.0013', '0.0013']
+
+O2 + H + H
+Node features: [1, 1, 0, 0]
+Predicted existence probabilities: ['1.0000', '1.0000', '0.0000', '0.0000']
+Predicted bond orders: ['2.1415', '2.1415', '0.0004', '0.0004', '0.0004', '0.0004', '0.0004', '0.0004', '0.0004', '0.0004', '0.0013', '0.0013']
+
+OH + O + H
+Node features: [0, 1, 1, 0]
+Predicted existence probabilities: ['1.0000', '1.0000', '0.0000', '0.0000']
+Predicted bond orders: ['0.9598', '0.9598', '0.0003', '0.0003', '0.0003', '0.0003', '0.0009', '0.0009', '0.0008', '0.0008', '0.0013', '0.0013']
+
+H + H + O + O
+Node features: [0, 0, 1, 1]
+Predicted existence probabilities: ['0.0000', '0.0000', '0.0000', '0.0000']
+Predicted bond orders: ['0.0013', '0.0013', '0.0013', '0.0013', '0.0013', '0.0013', '0.0013', '0.0013', '0.0013', '0.0013', '0.0013', '0.0013']
+
+O2 (stretched) + H + H
+Node features: [1, 1, 0, 0]
+Predicted existence probabilities: ['0.0800', '0.0800', '0.0000', '0.0000']
+Predicted bond orders: ['0.4799', '0.4799', '0.0009', '0.0009', '0.0009', '0.0009', '0.0009', '0.0009', '0.0009', '0.0009', '0.0013', '0.0013']
+
+H2O (TS) + O
+Node features: [0, 0, 1, 1]
+Predicted existence probabilities: ['1.0000', '0.1225', '1.0000', '0.0000']
+Predicted bond orders: ['0.0297', '0.0297', '1.1010', '1.1010', '0.0003', '0.0003', '0.0521', '0.0521', '0.0009', '0.0009', '0.0007', '0.0007']
+Model weights saved to ex_bo_4node.pth
