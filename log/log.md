@@ -47,7 +47,17 @@ A sample_type template has been given as a list that contains ``2 H + 2 O``. The
 * Exciting discovery on Spatial Reduction papers [Link](../../../SpatialReduction/literature/adaptive_chemistry_spatial_treatment_literature.md) (in total 27 papers)
 
 ## July. 1st, 2026
-### Read GNN-RL [CodeLink](../gnn_combustion/Xu_training/RL/grow_train_animation)     [README_gpt](../gnn_combustion/Xu_training/RL/README_gpt.md)
+
+#### Discussing Points
+1. GNN Literature
+	1. Literature: [ConnorBIll2019](../literature/ConnorBill2019/ConnorBill2019.pdf)
+	2. Encoding atomic number, formal charge, degree of connectivity, explicit and implicit valence, and aromaticity to nodal information.
+	3. Weisfeiler-Lehman Network, Candidate Ranking via W-L Difference Network, and Attention Mechanism (WL: 1 neighbour? (bond information) multiple neighbours (bond information does not change)?)
+	4. Maximum 5 bond forming/breaking (collision frequency? T? P?)
+2. GNN Xu-RL Code
+	1. (as shown below,) potential improvement on encoding valence rule with a scale (instead of 1 for getting bond, 0 for not getting bond) & similar for connection logit.
+	2. Might be a good idea to incorporate energy (represented by bond order)
+### Read GNN-RL [CodeLink](../gnn_combustion/Xu_training/RL/grow_train_animation.py)     [README_gpt](../gnn_combustion/Xu_training/RL/README_gpt.md)
 #### class AdvanceMoleculeEnv
 * *def get_pyg_data*: <span style="color:blue">Encode info</span>
 	* nodal encoding: one hot feature (H:[1,0]; O:[0,1])
