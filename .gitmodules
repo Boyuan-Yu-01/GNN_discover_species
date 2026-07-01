@@ -1,0 +1,3 @@
+[submodule "literature/ConnorBill2019/rexgen_direct"]
+	path = literature/ConnorBill2019/rexgen_direct
+	url = https://github.com/connorcoley/rexgen_direct.git
