@@ -1,0 +1,208 @@
+Simulating 50 Training Runs with Dynamic Structural Layout Scaling...
+DEBUG: Created single bond between 3 and 1
+DEBUG: Created single bond between 3 and 2
+DEBUG: Created double bond between 1 and 3
+DEBUG: Created double bond between 5 and 0
+DEBUG: Created double bond between 4 and 2
+DEBUG: Invalid structure found: HO3 (H=1, O=3)
+Epoch 01/50 | System Output: H2                     | Training Loss: -0.18234
+DEBUG: Created single bond between 2 and 3
+DEBUG: Created double bond between 1 and 0
+DEBUG: Created double bond between 4 and 3
+DEBUG: Created double bond between 4 and 2
+DEBUG: Created double bond between 1 and 0
+DEBUG: Invalid structure found: O3 (H=0, O=3)
+Epoch 02/50 | System Output: H2                     | Training Loss: -0.53129
+DEBUG: Created double bond between 3 and 1
+DEBUG: Created double bond between 3 and 0
+DEBUG: Created double bond between 1 and 3
+DEBUG: Created double bond between 2 and 4
+Epoch 03/50 | System Output: H2O + OH               | Training Loss: 1.68752
+DEBUG: Created single bond between 2 and 3
+DEBUG: Created single bond between 3 and 1
+DEBUG: Created double bond between 6 and 4
+DEBUG: Created double bond between 5 and 2
+DEBUG: Created double bond between 1 and 3
+DEBUG: Invalid structure found: HO3 (H=1, O=3)
+Epoch 04/50 | System Output: H2O                    | Training Loss: -0.47250
+DEBUG: Created double bond between 3 and 1
+DEBUG: Created double bond between 3 and 2
+DEBUG: Created double bond between 0 and 4
+DEBUG: Created double bond between 1 and 3
+DEBUG: Created double bond between 2 and 5
+DEBUG: Invalid structure found: HO3 (H=1, O=3)
+Epoch 05/50 | System Output: H2                     | Training Loss: -0.27771
+DEBUG: Created single bond between 3 and 1
+DEBUG: Created double bond between 3 and 4
+DEBUG: Created single bond between 0 and 2
+DEBUG: Created double bond between 0 and 2
+Epoch 06/50 | System Output: H2O + H2O              | Training Loss: 1.81433
+DEBUG: Created single bond between 0 and 1
+DEBUG: Created double bond between 3 and 4
+DEBUG: Created double bond between 6 and 5
+DEBUG: Created double bond between 0 and 1
+DEBUG: Invalid structure found: H2O4 (H=2, O=4)
+Epoch 07/50 | System Output: H2                     | Training Loss: -0.45797
+DEBUG: Created single bond between 2 and 1
+DEBUG: Created double bond between 4 and 3
+DEBUG: Created double bond between 2 and 5
+DEBUG: Created double bond between 4 and 3
+DEBUG: Invalid structure found: H2O3 (H=2, O=3)
+Epoch 08/50 | System Output: H2O                    | Training Loss: -0.36316
+DEBUG: Created double bond between 2 and 1
+DEBUG: Created single bond between 0 and 3
+DEBUG: Created double bond between 0 and 3
+DEBUG: Created double bond between 2 and 1
+Epoch 09/50 | System Output: H2O + H2O              | Training Loss: 1.81146
+DEBUG: Created single bond between 1 and 3
+DEBUG: Created double bond between 0 and 4
+DEBUG: Created double bond between 1 and 3
+DEBUG: Created double bond between 5 and 2
+Epoch 10/50 | System Output: H2 + H2O + OH          | Training Loss: 1.79912
+DEBUG: Created double bond between 3 and 0
+DEBUG: Created single bond between 1 and 2
+DEBUG: Created double bond between 2 and 1
+DEBUG: Created double bond between 0 and 3
+DEBUG: Created double bond between 5 and 6
+Epoch 11/50 | System Output: H2O2 + H2O             | Training Loss: 1.66014
+DEBUG: Created double bond between 3 and 1
+DEBUG: Created double bond between 3 and 2
+DEBUG: Created double bond between 2 and 3
+DEBUG: Created double bond between 5 and 0
+Epoch 12/50 | System Output: H2 + H2O2              | Training Loss: 1.76265
+DEBUG: Created single bond between 1 and 0
+DEBUG: Created double bond between 5 and 2
+DEBUG: Created double bond between 1 and 0
+DEBUG: Created double bond between 3 and 7
+Epoch 13/50 | System Output: H2 + H2O + H2O         | Training Loss: 1.65584
+DEBUG: Created double bond between 5 and 1
+DEBUG: Created single bond between 0 and 3
+DEBUG: Created double bond between 3 and 0
+DEBUG: Created double bond between 6 and 2
+Epoch 14/50 | System Output: H2O + OH + H2O         | Training Loss: 1.76280
+DEBUG: Created single bond between 3 and 1
+DEBUG: Created double bond between 6 and 2
+DEBUG: Created double bond between 0 and 5
+DEBUG: Created double bond between 1 and 3
+Epoch 15/50 | System Output: H2 + H2O + OH          | Training Loss: 1.72243
+DEBUG: Created double bond between 0 and 1
+DEBUG: Created double bond between 2 and 3
+DEBUG: Created double bond between 3 and 2
+DEBUG: Created double bond between 0 and 1
+Epoch 16/50 | System Output: H2 + H2O2              | Training Loss: 1.60633
+DEBUG: Created double bond between 0 and 2
+DEBUG: Created double bond between 0 and 2
+DEBUG: Created double bond between 3 and 1
+DEBUG: Created double bond between 1 and 3
+Epoch 17/50 | System Output: H2O + H2O              | Training Loss: 1.70168
+DEBUG: Created single bond between 1 and 0
+DEBUG: Created double bond between 3 and 6
+DEBUG: Created double bond between 4 and 2
+DEBUG: Created double bond between 0 and 1
+Epoch 18/50 | System Output: H2 + H2O + H2O         | Training Loss: 1.50521
+DEBUG: Created double bond between 3 and 1
+DEBUG: Created double bond between 2 and 6
+DEBUG: Created double bond between 7 and 5
+DEBUG: Created double bond between 3 and 1
+Epoch 19/50 | System Output: H2O + OH + H2O         | Training Loss: 1.57806
+DEBUG: Created single bond between 1 and 3
+DEBUG: Created double bond between 3 and 1
+DEBUG: Created double bond between 2 and 4
+DEBUG: Created double bond between 7 and 0
+Epoch 20/50 | System Output: H2 + H2O + H2O         | Training Loss: 1.40303
+DEBUG: Created double bond between 2 and 0
+DEBUG: Created double bond between 1 and 3
+DEBUG: Created double bond between 0 and 2
+DEBUG: Created double bond between 4 and 3
+Epoch 21/50 | System Output: H2O + H2O              | Training Loss: 1.60099
+DEBUG: Created single bond between 3 and 0
+DEBUG: Created double bond between 5 and 2
+DEBUG: Created double bond between 3 and 0
+DEBUG: Created double bond between 1 and 6
+Epoch 22/50 | System Output: H2O + H2 + OH          | Training Loss: 1.45268
+DEBUG: Created double bond between 0 and 1
+DEBUG: Created double bond between 2 and 6
+DEBUG: Created double bond between 5 and 3
+DEBUG: Created double bond between 0 and 1
+Epoch 23/50 | System Output: H2 + H2O + H2O         | Training Loss: 1.33883
+DEBUG: Created double bond between 5 and 2
+DEBUG: Created double bond between 3 and 4
+DEBUG: Created single bond between 1 and 0
+DEBUG: Created double bond between 1 and 0
+Epoch 24/50 | System Output: H2 + OH + OH           | Training Loss: 1.40911
+DEBUG: Created single bond between 1 and 3
+DEBUG: Created double bond between 2 and 6
+DEBUG: Created double bond between 0 and 7
+DEBUG: Created double bond between 5 and 3
+Epoch 25/50 | System Output: H2 + H2O + H2O         | Training Loss: 1.29968
+DEBUG: Created single bond between 1 and 2
+DEBUG: Created double bond between 3 and 4
+DEBUG: Created double bond between 2 and 5
+DEBUG: Created double bond between 0 and 7
+Epoch 26/50 | System Output: H2 + H2O + H2O         | Training Loss: 1.19433
+DEBUG: Created single bond between 1 and 0
+DEBUG: Created double bond between 0 and 1
+DEBUG: Created double bond between 3 and 4
+DEBUG: Created double bond between 2 and 5
+Epoch 27/50 | System Output: H2 + H2O + H2O         | Training Loss: 1.25424
+DEBUG: Created single bond between 0 and 2
+DEBUG: Created double bond between 3 and 5
+DEBUG: Created double bond between 2 and 0
+DEBUG: Created double bond between 1 and 6
+Epoch 28/50 | System Output: H2O + H2O + OH         | Training Loss: 1.15111
+DEBUG: Created single bond between 1 and 0
+DEBUG: Created double bond between 4 and 3
+DEBUG: Created double bond between 1 and 0
+DEBUG: Created double bond between 5 and 2
+Epoch 29/50 | System Output: H2 + H2O + H2O         | Training Loss: 1.09851
+DEBUG: Created single bond between 1 and 2
+DEBUG: Created double bond between 1 and 2
+DEBUG: Created double bond between 7 and 0
+DEBUG: Created double bond between 6 and 3
+Epoch 30/50 | System Output: H2 + H2O + H2O         | Training Loss: 1.02093
+DEBUG: Created single bond between 1 and 2
+DEBUG: Created double bond between 5 and 3
+DEBUG: Created double bond between 4 and 2
+DEBUG: Created double bond between 0 and 7
+Epoch 31/50 | System Output: H2 + H2O + H2O         | Training Loss: 0.87194
+DEBUG: Created single bond between 1 and 0
+DEBUG: Created double bond between 3 and 5
+DEBUG: Created double bond between 1 and 0
+DEBUG: Created double bond between 2 and 4
+Epoch 32/50 | System Output: H2 + H2O + H2O         | Training Loss: 0.87156
+DEBUG: Created single bond between 1 and 3
+DEBUG: Created double bond between 3 and 5
+DEBUG: Created double bond between 2 and 6
+DEBUG: Created double bond between 0 and 7
+Epoch 33/50 | System Output: H2 + H2O + H2O         | Training Loss: 0.73617
+DEBUG: Created single bond between 1 and 0
+DEBUG: Created double bond between 3 and 6
+DEBUG: Created double bond between 4 and 2
+DEBUG: Created double bond between 0 and 1
+Epoch 34/50 | System Output: H2 + H2O + H2O         | Training Loss: 0.68256
+DEBUG: Created single bond between 1 and 0
+DEBUG: Created double bond between 0 and 1
+DEBUG: Created double bond between 3 and 7
+DEBUG: Created double bond between 4 and 2
+Epoch 35/50 | System Output: H2 + H2O + H2O         | Training Loss: 0.70486
+Epoch 36/50 | System Output: H + H + OH + OH        | Training Loss: 0.27209
+Epoch 37/50 | System Output: H + H + O + O          | Training Loss: 0.09602
+Epoch 38/50 | System Output: H + H + O + O          | Training Loss: 0.06358
+Epoch 39/50 | System Output: H + H + O + O          | Training Loss: 0.03986
+Epoch 40/50 | System Output: H + H + O + O          | Training Loss: 0.02409
+Epoch 41/50 | System Output: H + H + O + O          | Training Loss: 0.01426
+Epoch 42/50 | System Output: H + H + O + O          | Training Loss: 0.00838
+Epoch 43/50 | System Output: H + H + O + O          | Training Loss: 0.00493
+Epoch 44/50 | System Output: H + H + O + O          | Training Loss: 0.00294
+Epoch 45/50 | System Output: H + H + O + O          | Training Loss: 0.00178
+Epoch 46/50 | System Output: H + H + O + O          | Training Loss: 0.00110
+Epoch 47/50 | System Output: H + H + O + O          | Training Loss: 0.00069
+Epoch 48/50 | System Output: H + H + O + O          | Training Loss: 0.00045
+Epoch 49/50 | System Output: H + H + O + O          | Training Loss: 0.00030
+Epoch 50/50 | System Output: H + H + O + O          | Training Loss: 0.00020
+
+Saving standalone image files for each epoch layout...
+
+Compiling full-grid composite plot map...
+Saving single-plot grid animation sequence: relaxed_8species_growth.gif ...
+Everything processed successfully!

@@ -1,0 +1,96 @@
+Simulating 50 Training Runs with Dynamic Structural Layout Scaling...
+DEBUG: Attempting double bond between 1 and 2
+DEBUG: Attempting double bond between 3 and 0
+Epoch 01/50 | System Output: OH + OH                | Training Loss: 1.78841
+DEBUG: Attempting double bond between 2 and 3
+DEBUG: Attempting double bond between 4 and 1
+Epoch 02/50 | System Output: H2O + O2               | Training Loss: 1.66093
+DEBUG: Attempting double bond between 0 and 3
+DEBUG: Attempting double bond between 2 and 1
+Epoch 03/50 | System Output: OH + OH                | Training Loss: 1.65759
+DEBUG: Attempting double bond between 3 and 2
+DEBUG: Attempting double bond between 4 and 0
+DEBUG: Attempting double bond between 5 and 1
+Epoch 04/50 | System Output: H2 + OH + O2           | Training Loss: 1.22044
+DEBUG: Attempting double bond between 2 and 1
+DEBUG: Attempting single bond between 0 and 4
+DEBUG: Attempting double bond between 6 and 5
+DEBUG: Attempting double bond between 4 and 0
+DEBUG: Invalid structure found: H2O3 (H=2, O=3)
+Epoch 05/50 | System Output: OH                     | Training Loss: 0.02582
+DEBUG: Attempting double bond between 0 and 3
+DEBUG: Attempting double bond between 1 and 2
+DEBUG: Attempting double bond between 4 and 5
+Epoch 06/50 | System Output: OH + H2O2              | Training Loss: 1.42540
+DEBUG: Attempting double bond between 1 and 3
+DEBUG: Attempting double bond between 0 and 2
+Epoch 07/50 | System Output: OH + OH                | Training Loss: 1.43240
+DEBUG: Attempting double bond between 2 and 1
+DEBUG: Attempting double bond between 3 and 0
+Epoch 08/50 | System Output: OH + OH                | Training Loss: 1.46447
+DEBUG: Attempting double bond between 3 and 0
+DEBUG: Attempting double bond between 1 and 2
+Epoch 09/50 | System Output: OH + OH                | Training Loss: 1.36230
+DEBUG: Attempting double bond between 1 and 2
+DEBUG: Attempting double bond between 3 and 0
+Epoch 10/50 | System Output: OH + OH                | Training Loss: 1.30410
+DEBUG: Attempting double bond between 3 and 2
+DEBUG: Attempting double bond between 0 and 1
+Epoch 11/50 | System Output: H2 + O2                | Training Loss: 1.18682
+DEBUG: Attempting double bond between 3 and 2
+DEBUG: Attempting double bond between 1 and 0
+Epoch 12/50 | System Output: H2 + O2                | Training Loss: 1.10946
+DEBUG: Attempting double bond between 3 and 2
+DEBUG: Attempting double bond between 0 and 1
+Epoch 13/50 | System Output: H2 + O2                | Training Loss: 1.02853
+DEBUG: Attempting double bond between 3 and 2
+DEBUG: Attempting double bond between 0 and 1
+Epoch 14/50 | System Output: H2 + O2                | Training Loss: 0.94695
+DEBUG: Attempting double bond between 3 and 2
+DEBUG: Attempting double bond between 0 and 1
+Epoch 15/50 | System Output: H2 + O2                | Training Loss: 0.86638
+DEBUG: Attempting double bond between 2 and 3
+DEBUG: Attempting double bond between 1 and 0
+Epoch 16/50 | System Output: H2 + O2                | Training Loss: 0.78861
+DEBUG: Attempting double bond between 3 and 2
+DEBUG: Attempting double bond between 1 and 0
+Epoch 17/50 | System Output: H2 + O2                | Training Loss: 0.71525
+Epoch 18/50 | System Output: H + H + O + O          | Training Loss: 0.08461
+Epoch 19/50 | System Output: H + H + O + O          | Training Loss: 0.05985
+Epoch 20/50 | System Output: H + H + O + O          | Training Loss: 0.04124
+Epoch 21/50 | System Output: H + H + O + O          | Training Loss: 0.02781
+Epoch 22/50 | System Output: H + H + O + O          | Training Loss: 0.01845
+Epoch 23/50 | System Output: H + H + O + O          | Training Loss: 0.01213
+Epoch 24/50 | System Output: H + H + O + O          | Training Loss: 0.00795
+Epoch 25/50 | System Output: H + H + O + O          | Training Loss: 0.00523
+Epoch 26/50 | System Output: H + H + O + O          | Training Loss: 0.00346
+Epoch 27/50 | System Output: H + H + O + O          | Training Loss: 0.00231
+Epoch 28/50 | System Output: H + H + O + O          | Training Loss: 0.00156
+Epoch 29/50 | System Output: H + H + O + O          | Training Loss: 0.00107
+Epoch 30/50 | System Output: H + H + O + O          | Training Loss: 0.00075
+Epoch 31/50 | System Output: H + H + O + O          | Training Loss: 0.00053
+Epoch 32/50 | System Output: H + H + O + O          | Training Loss: 0.00038
+Epoch 33/50 | System Output: H + H + O + O          | Training Loss: 0.00028
+Epoch 34/50 | System Output: H + H + O + O          | Training Loss: 0.00021
+Epoch 35/50 | System Output: H + H + O + O          | Training Loss: 0.00016
+Epoch 36/50 | System Output: H + H + O + O          | Training Loss: 0.00013
+Epoch 37/50 | System Output: H + H + O + O          | Training Loss: 0.00010
+Epoch 38/50 | System Output: H + H + O + O          | Training Loss: 0.00008
+Epoch 39/50 | System Output: H + H + O + O          | Training Loss: 0.00007
+Epoch 40/50 | System Output: H + H + O + O          | Training Loss: 0.00006
+Epoch 41/50 | System Output: H + H + O + O          | Training Loss: 0.00005
+Epoch 42/50 | System Output: H + H + O + O          | Training Loss: 0.00004
+Epoch 43/50 | System Output: H + H + O + O          | Training Loss: 0.00004
+Epoch 44/50 | System Output: H + H + O + O          | Training Loss: 0.00003
+Epoch 45/50 | System Output: H + H + O + O          | Training Loss: 0.00003
+Epoch 46/50 | System Output: H + H + O + O          | Training Loss: 0.00002
+Epoch 47/50 | System Output: H + H + O + O          | Training Loss: 0.00002
+Epoch 48/50 | System Output: H + H + O + O          | Training Loss: 0.00002
+Epoch 49/50 | System Output: H + H + O + O          | Training Loss: 0.00002
+Epoch 50/50 | System Output: H + H + O + O          | Training Loss: 0.00002
+
+Saving standalone image files for each epoch layout...
+
+Compiling full-grid composite plot map...
+Saving single-plot grid animation sequence: relaxed_8species_growth.gif ...
+Everything processed successfully!

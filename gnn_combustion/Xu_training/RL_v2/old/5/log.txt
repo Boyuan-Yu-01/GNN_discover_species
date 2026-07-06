@@ -1,0 +1,672 @@
+Simulating 50 Training Runs with Dynamic Structural Layout Scaling...
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 3 and 0
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 0 and 3
+DEBUG: Successfully added 1 bond(s) between 0 and 3. Current order: 1
+DEBUG: Was attempting single bond between 0 and 3
+DEBUG: Successfully added 1 bond(s) between 2 and 3. Current order: 1
+DEBUG: Was attempting single bond between 2 and 3
+DEBUG: Was attempting double bond between 2 and 3
+DEBUG: Was attempting double bond between 3 and 2
+DEBUG: Was attempting double bond between 3 and 2
+DEBUG: Was attempting double bond between 3 and 2
+Epoch 01/50 | System Output: HO2 + H                | Training Loss: 1.97906
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 4 and 7
+DEBUG: Successfully added 1 bond(s) between 6 and 5. Current order: 1
+DEBUG: Was attempting single bond between 6 and 5
+DEBUG: Growth action added atom 8 and bond to 4
+DEBUG: Growth action added atom 9 and bond to 6
+DEBUG: Growth action added atom 10 and bond to 8
+DEBUG: Was attempting double bond between 8 and 4
+DEBUG: Was attempting double bond between 6 and 5
+DEBUG: Was attempting double bond between 4 and 8
+DEBUG: Invalid structure found: HO3 (H=1, O=3)
+Epoch 02/50 | System Output: H2O | Invalid: HO3     | Training Loss: -0.43675
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 12 and 13
+DEBUG: Successfully added 1 bond(s) between 12 and 13. Current order: 1
+DEBUG: Was attempting single bond between 12 and 13
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 13 and 11
+DEBUG: Was attempting double bond between 13 and 12
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 13 and 14
+DEBUG: Growth action added atom 15 and bond to 11
+DEBUG: Was attempting double bond between 15 and 11
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 14 and 13
+DEBUG: Invalid structure found: H3O2 (H=3, O=2)
+Epoch 03/50 | System Output:  | Invalid: H3O2       | Training Loss: -0.52285
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 16 and 18
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 19 and 16
+DEBUG: Growth action added atom 20 and bond to 16
+DEBUG: Growth action added atom 21 and bond to 17
+DEBUG: Successfully added 2 bond(s) between 18 and 19. Current order: 2
+DEBUG: Was attempting double bond between 18 and 19
+DEBUG: Was attempting double bond between 16 and 20
+DEBUG: Was attempting double bond between 20 and 16
+DEBUG: Was attempting double bond between 17 and 21
+Epoch 04/50 | System Output: H2O2 + H2              | Training Loss: 1.69937
+DEBUG: Successfully added 2 bond(s) between 24 and 25. Current order: 2
+DEBUG: Was attempting double bond between 24 and 25
+DEBUG: Growth action added atom 26 and bond to 23
+DEBUG: Was attempting double bond between 26 and 23
+DEBUG: Growth action added atom 27 and bond to 22
+DEBUG: Was attempting double bond between 27 and 22
+DEBUG: Was attempting double bond between 27 and 22
+DEBUG: Was attempting double bond between 26 and 23
+DEBUG: Was attempting double bond between 23 and 26
+Epoch 05/50 | System Output: H2 + H2 + O2           | Training Loss: 1.39419
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 31 and 28
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 30 and 29
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 30 and 29
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 31 and 29
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 31 and 28
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 30 and 28
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 30 and 29
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 31 and 29
+Epoch 06/50 | System Output: H2O2                   | Training Loss: 2.13771
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 33 and 34
+DEBUG: Growth action added atom 36 and bond to 33
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 34 and 36
+DEBUG: Successfully added 1 bond(s) between 36 and 34. Current order: 1
+DEBUG: Was attempting single bond between 36 and 34
+DEBUG: Was attempting double bond between 36 and 33
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 35 and 34
+DEBUG: Growth action added atom 37 and bond to 32
+DEBUG: Growth action added atom 38 and bond to 37
+DEBUG: Invalid structure found: HO3 (H=1, O=3)
+Epoch 07/50 | System Output: H2O | Invalid: HO3     | Training Loss: -0.55415
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 42 and 40
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 42 and 40
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 41 and 40
+DEBUG: Successfully added 2 bond(s) between 41 and 42. Current order: 2
+DEBUG: Was attempting double bond between 41 and 42
+DEBUG: Growth action added atom 43 and bond to 39
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 43 and 40
+DEBUG: Growth action added atom 44 and bond to 40
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 44 and 43
+DEBUG: Invalid structure found: H2O4 (H=2, O=4)
+Epoch 08/50 | System Output:  | Invalid: H2O4       | Training Loss: -0.39066
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 47 and 45
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 48 and 46
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 47 and 46
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 45 and 48
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 48 and 46
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 48 and 45
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 48 and 45
+DEBUG: Successfully added 1 bond(s) between 48 and 47. Current order: 1
+DEBUG: Was attempting single bond between 48 and 47
+Epoch 09/50 | System Output: H2O2                   | Training Loss: 2.13589
+DEBUG: Successfully added 1 bond(s) between 50 and 52. Current order: 1
+DEBUG: Was attempting single bond between 50 and 52
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 51 and 52
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 51 and 49
+DEBUG: Growth action added atom 53 and bond to 52
+DEBUG: Was attempting double bond between 53 and 52
+DEBUG: Successfully added 1 bond(s) between 51 and 49. Current order: 1
+DEBUG: Was attempting single bond between 51 and 49
+DEBUG: Was attempting double bond between 51 and 49
+DEBUG: Was attempting double bond between 52 and 53
+DEBUG: Invalid structure found: H3O2 (H=3, O=2)
+Epoch 10/50 | System Output:  | Invalid: H3O2       | Training Loss: -0.39528
+DEBUG: Growth action added atom 58 and bond to 57
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 55 and 56
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 56 and 57
+DEBUG: Was attempting double bond between 57 and 58
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 56 and 55
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 56 and 55
+DEBUG: Was attempting double bond between 57 and 58
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 56 and 54
+DEBUG: Invalid structure found: H3O2 (H=3, O=2)
+Epoch 11/50 | System Output:  | Invalid: H3O2       | Training Loss: -0.71823
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 61 and 59
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 62 and 59
+DEBUG: Growth action added atom 63 and bond to 59
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 62 and 63
+DEBUG: Growth action added atom 64 and bond to 63
+DEBUG: Successfully added 1 bond(s) between 61 and 60. Current order: 1
+DEBUG: Was attempting single bond between 61 and 60
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 61 and 62
+DEBUG: Growth action added atom 65 and bond to 61
+DEBUG: Invalid structure found: H3O4 (H=3, O=4)
+Epoch 12/50 | System Output:  | Invalid: H3O4       | Training Loss: -0.51505
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 66 and 67
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 69 and 66
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 67 and 68
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 69 and 67
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 69 and 66
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 66 and 67
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 69 and 67
+DEBUG: Successfully added 2 bond(s) between 69 and 68. Current order: 2
+DEBUG: Was attempting double bond between 69 and 68
+Epoch 13/50 | System Output: H2O2                   | Training Loss: 2.14091
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 73 and 71
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 72 and 71
+DEBUG: Growth action added atom 74 and bond to 73
+DEBUG: Growth action added atom 75 and bond to 71
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 72 and 73
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 73 and 70
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 73 and 70
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 72 and 70
+DEBUG: Invalid structure found: H4O2 (H=4, O=2)
+Epoch 14/50 | System Output:  | Invalid: H4O2       | Training Loss: -0.52807
+DEBUG: Growth action added atom 80 and bond to 76
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 78 and 77
+DEBUG: Growth action added atom 81 and bond to 78
+DEBUG: Growth action added atom 82 and bond to 77
+DEBUG: Was attempting double bond between 82 and 77
+DEBUG: Was attempting double bond between 81 and 78
+DEBUG: Growth action added atom 83 and bond to 78
+DEBUG: Was attempting double bond between 76 and 80
+DEBUG: Invalid structure found: H2O3 (H=2, O=3)
+Epoch 15/50 | System Output: H2 + O | Invalid: H2O3 | Training Loss: -0.45443
+DEBUG: Growth action added atom 88 and bond to 86
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 88 and 85
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 86 and 84
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 86 and 84
+DEBUG: Was attempting double bond between 88 and 86
+DEBUG: Growth action added atom 89 and bond to 86
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 88 and 85
+DEBUG: Growth action added atom 90 and bond to 87
+DEBUG: Invalid structure found: H3O2 (H=3, O=2)
+Epoch 16/50 | System Output: O2 | Invalid: H3O2     | Training Loss: -0.73906
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 93 and 92
+DEBUG: Successfully added 2 bond(s) between 94 and 93. Current order: 2
+DEBUG: Was attempting double bond between 94 and 93
+DEBUG: Growth action added atom 95 and bond to 92
+DEBUG: Was attempting double bond between 92 and 95
+DEBUG: Was attempting double bond between 95 and 92
+DEBUG: Was attempting double bond between 95 and 92
+DEBUG: Was attempting double bond between 92 and 95
+DEBUG: Was attempting double bond between 92 and 95
+Epoch 17/50 | System Output: H + H2O2               | Training Loss: 1.35996
+DEBUG: Successfully added 2 bond(s) between 99 and 98. Current order: 2
+DEBUG: Was attempting double bond between 99 and 98
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 96 and 97
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 97 and 96
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 96 and 97
+DEBUG: Successfully added 1 bond(s) between 96 and 97. Current order: 1
+DEBUG: Was attempting single bond between 96 and 97
+DEBUG: Was attempting double bond between 97 and 96
+DEBUG: Was attempting double bond between 96 and 97
+DEBUG: Was attempting double bond between 96 and 97
+Epoch 18/50 | System Output: H2 + O2                | Training Loss: 1.35225
+DEBUG: Successfully added 1 bond(s) between 100 and 102. Current order: 1
+DEBUG: Was attempting single bond between 100 and 102
+DEBUG: Was attempting double bond between 102 and 100
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 103 and 101
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 103 and 102
+DEBUG: Successfully added 1 bond(s) between 101 and 103. Current order: 1
+DEBUG: Was attempting single bond between 101 and 103
+DEBUG: Growth action added atom 104 and bond to 103
+DEBUG: Was attempting double bond between 103 and 104
+DEBUG: Was attempting double bond between 103 and 101
+DEBUG: Invalid structure found: H2O3 (H=2, O=3)
+Epoch 19/50 | System Output:  | Invalid: H2O3       | Training Loss: -0.54132
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 105 and 107
+DEBUG: Growth action added atom 109 and bond to 108
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 108 and 106
+DEBUG: Was attempting double bond between 108 and 109
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 106 and 108
+DEBUG: Growth action added atom 110 and bond to 106
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 109 and 107
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 107 and 109
+DEBUG: Invalid structure found: H3O3 (H=3, O=3)
+Epoch 20/50 | System Output:  | Invalid: H3O3       | Training Loss: -0.83363
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 111 and 114
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 112 and 113
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 113 and 111
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 112 and 111
+DEBUG: Successfully added 2 bond(s) between 113 and 114. Current order: 2
+DEBUG: Was attempting double bond between 113 and 114
+DEBUG: Growth action added atom 115 and bond to 111
+DEBUG: Was attempting double bond between 111 and 115
+DEBUG: Growth action added atom 116 and bond to 112
+DEBUG: Invalid structure found: H4O2 (H=4, O=2)
+Epoch 21/50 | System Output:  | Invalid: H4O2       | Training Loss: -0.45027
+DEBUG: Growth action added atom 121 and bond to 118
+DEBUG: Successfully added 2 bond(s) between 119 and 120. Current order: 2
+DEBUG: Was attempting double bond between 119 and 120
+DEBUG: Was attempting double bond between 121 and 118
+DEBUG: Was attempting double bond between 121 and 118
+DEBUG: Was attempting double bond between 118 and 121
+DEBUG: Was attempting double bond between 121 and 118
+DEBUG: Was attempting double bond between 118 and 121
+DEBUG: Growth action added atom 122 and bond to 117
+Epoch 22/50 | System Output: H2 + H2 + O2           | Training Loss: 1.26496
+DEBUG: Growth action added atom 127 and bond to 124
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 125 and 123
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 125 and 123
+DEBUG: Was attempting double bond between 127 and 124
+DEBUG: Was attempting double bond between 127 and 124
+DEBUG: Growth action added atom 128 and bond to 125
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 125 and 123
+DEBUG: Was attempting double bond between 127 and 124
+Epoch 23/50 | System Output: H2O + H2 + O           | Training Loss: 1.94425
+DEBUG: Successfully added 2 bond(s) between 132 and 131. Current order: 2
+DEBUG: Was attempting double bond between 132 and 131
+DEBUG: Growth action added atom 133 and bond to 130
+DEBUG: Was attempting double bond between 130 and 133
+DEBUG: Growth action added atom 134 and bond to 129
+DEBUG: Was attempting double bond between 133 and 130
+DEBUG: Was attempting double bond between 130 and 133
+DEBUG: Was attempting double bond between 130 and 133
+DEBUG: Was attempting double bond between 134 and 129
+Epoch 24/50 | System Output: H2 + H2 + O2           | Training Loss: 1.43331
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 137 and 135
+DEBUG: Growth action added atom 139 and bond to 135
+DEBUG: Successfully added 1 bond(s) between 136 and 138. Current order: 1
+DEBUG: Was attempting single bond between 136 and 138
+DEBUG: Growth action added atom 140 and bond to 137
+DEBUG: Was attempting double bond between 137 and 140
+DEBUG: Was attempting double bond between 136 and 138
+DEBUG: Was attempting double bond between 137 and 140
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 138 and 137
+DEBUG: Invalid structure found: H4O2 (H=4, O=2)
+Epoch 25/50 | System Output:  | Invalid: H4O2       | Training Loss: -0.48506
+DEBUG: Growth action added atom 145 and bond to 141
+DEBUG: Growth action added atom 146 and bond to 143
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 144 and 142
+DEBUG: Successfully added 1 bond(s) between 142 and 145. Current order: 1
+DEBUG: Was attempting single bond between 142 and 145
+DEBUG: Was attempting double bond between 142 and 145
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 144 and 143
+DEBUG: Was attempting double bond between 143 and 146
+DEBUG: Growth action added atom 147 and bond to 144
+DEBUG: Invalid structure found: H4O3 (H=4, O=3)
+Epoch 26/50 | System Output:  | Invalid: H4O3       | Training Loss: -0.53737
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 151 and 148
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 150 and 149
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 150 and 149
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 148 and 150
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 151 and 149
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 148 and 151
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 150 and 148
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 148 and 150
+Epoch 27/50 | System Output: H2O2                   | Training Loss: 2.27423
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 154 and 152
+DEBUG: Successfully added 1 bond(s) between 154 and 152. Current order: 1
+DEBUG: Was attempting single bond between 154 and 152
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 154 and 153
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 155 and 153
+DEBUG: Growth action added atom 156 and bond to 154
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 155 and 153
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 155 and 153
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 155 and 153
+DEBUG: Invalid structure found: H3O2 (H=3, O=2)
+Epoch 28/50 | System Output:  | Invalid: H3O2       | Training Loss: -0.53959
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 159 and 158
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 160 and 158
+DEBUG: Growth action added atom 161 and bond to 158
+DEBUG: Was attempting double bond between 158 and 161
+DEBUG: Growth action added atom 162 and bond to 159
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 159 and 157
+DEBUG: Successfully added 1 bond(s) between 157 and 159. Current order: 1
+DEBUG: Was attempting single bond between 157 and 159
+DEBUG: Was attempting double bond between 158 and 161
+DEBUG: Invalid structure found: H4O2 (H=4, O=2)
+Epoch 29/50 | System Output:  | Invalid: H4O2       | Training Loss: -0.58369
+DEBUG: Successfully added 1 bond(s) between 166 and 163. Current order: 1
+DEBUG: Was attempting single bond between 166 and 163
+DEBUG: Was attempting double bond between 163 and 166
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 165 and 164
+DEBUG: Growth action added atom 167 and bond to 165
+DEBUG: Was attempting double bond between 165 and 167
+DEBUG: Growth action added atom 168 and bond to 166
+DEBUG: Was attempting double bond between 165 and 167
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 164 and 167
+Epoch 30/50 | System Output: HO2 + HO2              | Training Loss: 2.13412
+DEBUG: Successfully added 1 bond(s) between 172 and 169. Current order: 1
+DEBUG: Was attempting single bond between 172 and 169
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 171 and 170
+DEBUG: Growth action added atom 173 and bond to 172
+DEBUG: Was attempting double bond between 172 and 169
+DEBUG: Successfully added 1 bond(s) between 171 and 170. Current order: 1
+DEBUG: Was attempting single bond between 171 and 170
+DEBUG: Was attempting double bond between 172 and 173
+DEBUG: Was attempting double bond between 169 and 172
+DEBUG: Was attempting double bond between 173 and 172
+Epoch 31/50 | System Output: H2O + OH               | Training Loss: 1.83206
+DEBUG: Growth action added atom 178 and bond to 175
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 177 and 174
+DEBUG: Was attempting double bond between 175 and 178
+DEBUG: Successfully added 2 bond(s) between 177 and 176. Current order: 2
+DEBUG: Was attempting double bond between 177 and 176
+DEBUG: Was attempting double bond between 175 and 178
+DEBUG: Was attempting double bond between 175 and 178
+DEBUG: Was attempting double bond between 178 and 175
+DEBUG: Was attempting double bond between 178 and 175
+Epoch 32/50 | System Output: HO2 + H2               | Training Loss: 1.51432
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 180 and 181
+DEBUG: Successfully added 2 bond(s) between 181 and 182. Current order: 2
+DEBUG: Was attempting double bond between 181 and 182
+DEBUG: Successfully added 1 bond(s) between 179 and 180. Current order: 1
+DEBUG: Was attempting single bond between 179 and 180
+DEBUG: Was attempting double bond between 180 and 179
+DEBUG: Was attempting double bond between 179 and 180
+DEBUG: Was attempting double bond between 180 and 179
+DEBUG: Was attempting double bond between 179 and 180
+DEBUG: Was attempting double bond between 179 and 180
+Epoch 33/50 | System Output: H2O2                   | Training Loss: 1.42891
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 183 and 186
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 183 and 184
+DEBUG: Successfully added 2 bond(s) between 185 and 186. Current order: 2
+DEBUG: Was attempting double bond between 185 and 186
+DEBUG: Growth action added atom 187 and bond to 183
+DEBUG: Growth action added atom 188 and bond to 184
+DEBUG: Was attempting double bond between 188 and 184
+DEBUG: Was attempting double bond between 184 and 188
+DEBUG: Was attempting double bond between 184 and 188
+DEBUG: Invalid structure found: H4O2 (H=4, O=2)
+Epoch 34/50 | System Output:  | Invalid: H4O2       | Training Loss: -0.29436
+DEBUG: Growth action added atom 193 and bond to 190
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 189 and 192
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 192 and 189
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 192 and 189
+DEBUG: Growth action added atom 194 and bond to 189
+DEBUG: Successfully added 2 bond(s) between 192 and 191. Current order: 2
+DEBUG: Was attempting double bond between 192 and 191
+DEBUG: Was attempting double bond between 193 and 190
+DEBUG: Was attempting double bond between 189 and 194
+DEBUG: Invalid structure found: HO3 (H=1, O=3)
+Epoch 35/50 | System Output: H2 | Invalid: HO3      | Training Loss: -0.40145
+DEBUG: Successfully added 2 bond(s) between 197 and 198. Current order: 2
+DEBUG: Was attempting double bond between 197 and 198
+DEBUG: Growth action added atom 199 and bond to 196
+DEBUG: Growth action added atom 200 and bond to 195
+DEBUG: Was attempting double bond between 200 and 195
+DEBUG: Was attempting double bond between 200 and 195
+DEBUG: Was attempting double bond between 200 and 195
+DEBUG: Was attempting double bond between 196 and 199
+DEBUG: Was attempting double bond between 199 and 196
+Epoch 36/50 | System Output: H2 + H2 + O2           | Training Loss: 1.46521
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 201 and 202
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 201 and 202
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 202 and 201
+DEBUG: Growth action added atom 205 and bond to 201
+DEBUG: Successfully added 1 bond(s) between 202 and 204. Current order: 1
+DEBUG: Was attempting single bond between 202 and 204
+DEBUG: Was attempting double bond between 205 and 201
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 203 and 204
+DEBUG: Was attempting double bond between 204 and 202
+DEBUG: Invalid structure found: H3O2 (H=3, O=2)
+Epoch 37/50 | System Output:  | Invalid: H3O2       | Training Loss: -0.60203
+DEBUG: Successfully added 1 bond(s) between 206 and 207. Current order: 1
+DEBUG: Was attempting single bond between 206 and 207
+DEBUG: Was attempting double bond between 206 and 207
+DEBUG: Was attempting double bond between 207 and 206
+DEBUG: Was attempting double bond between 206 and 207
+DEBUG: Successfully added 1 bond(s) between 209 and 208. Current order: 1
+DEBUG: Was attempting single bond between 209 and 208
+DEBUG: Successfully added 1 bond(s) between 209 and 208. Current order: 2
+DEBUG: Was attempting single bond between 209 and 208
+DEBUG: Was attempting double bond between 207 and 206
+DEBUG: Was attempting double bond between 206 and 207
+Epoch 38/50 | System Output: H2 + O2                | Training Loss: 1.58118
+DEBUG: Successfully added 1 bond(s) between 213 and 210. Current order: 1
+DEBUG: Was attempting single bond between 213 and 210
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 212 and 213
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 212 and 211
+DEBUG: Was attempting double bond between 210 and 213
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 211 and 212
+DEBUG: Growth action added atom 214 and bond to 213
+DEBUG: Was attempting double bond between 213 and 210
+DEBUG: Was attempting double bond between 213 and 210
+DEBUG: Invalid structure found: H3O2 (H=3, O=2)
+Epoch 39/50 | System Output:  | Invalid: H3O2       | Training Loss: -0.54745
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 217 and 215
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 218 and 215
+DEBUG: Successfully added 1 bond(s) between 216 and 215. Current order: 1
+DEBUG: Was attempting single bond between 216 and 215
+DEBUG: Was attempting double bond between 215 and 216
+DEBUG: Successfully added 2 bond(s) between 217 and 218. Current order: 2
+DEBUG: Was attempting double bond between 217 and 218
+DEBUG: Was attempting double bond between 215 and 216
+DEBUG: Was attempting double bond between 216 and 215
+DEBUG: Was attempting double bond between 216 and 215
+Epoch 40/50 | System Output: H2O2                   | Training Loss: 1.65291
+DEBUG: Growth action added atom 223 and bond to 222
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 223 and 220
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 221 and 222
+DEBUG: Growth action added atom 224 and bond to 220
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 222 and 221
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 219 and 223
+DEBUG: Successfully added 1 bond(s) between 222 and 223. Current order: 2
+DEBUG: Was attempting single bond between 222 and 223
+DEBUG: Was attempting double bond between 224 and 220
+DEBUG: Invalid structure found: H3O3 (H=3, O=3)
+Epoch 41/50 | System Output:  | Invalid: H3O3       | Training Loss: -0.75895
+DEBUG: Growth action added atom 229 and bond to 228
+DEBUG: Growth action added atom 230 and bond to 225
+DEBUG: Was attempting double bond between 228 and 229
+DEBUG: Was attempting double bond between 230 and 225
+DEBUG: Was attempting double bond between 228 and 229
+DEBUG: Was attempting double bond between 229 and 228
+DEBUG: Was attempting double bond between 225 and 230
+DEBUG: Was attempting double bond between 228 and 229
+Epoch 42/50 | System Output: H2 + H + O + OH        | Training Loss: 2.00010
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 232 and 231
+DEBUG: Successfully added 1 bond(s) between 232 and 234. Current order: 1
+DEBUG: Was attempting single bond between 232 and 234
+DEBUG: Successfully added 1 bond(s) between 233 and 234. Current order: 1
+DEBUG: Was attempting single bond between 233 and 234
+DEBUG: Growth action added atom 235 and bond to 231
+DEBUG: Was attempting double bond between 231 and 235
+DEBUG: Was attempting double bond between 234 and 233
+DEBUG: Growth action added atom 236 and bond to 233
+DEBUG: Was attempting double bond between 234 and 233
+DEBUG: Invalid structure found: H3O3 (H=3, O=3)
+Epoch 43/50 | System Output:  | Invalid: H3O3       | Training Loss: -0.37437
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 239 and 237
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 238 and 239
+DEBUG: Successfully added 2 bond(s) between 239 and 240. Current order: 2
+DEBUG: Was attempting double bond between 239 and 240
+DEBUG: Growth action added atom 241 and bond to 238
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 237 and 241
+DEBUG: Successfully added 1 bond(s) between 241 and 237. Current order: 1
+DEBUG: Was attempting single bond between 241 and 237
+DEBUG: Was attempting double bond between 238 and 241
+DEBUG: Was attempting double bond between 238 and 241
+DEBUG: Invalid structure found: H2O3 (H=2, O=3)
+Epoch 44/50 | System Output:  | Invalid: H2O3       | Training Loss: -0.40554
+DEBUG: Growth action added atom 246 and bond to 244
+DEBUG: Growth action added atom 247 and bond to 246
+DEBUG: Successfully added 1 bond(s) between 244 and 243. Current order: 1
+DEBUG: Was attempting single bond between 244 and 243
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 242 and 245
+DEBUG: Successfully added 1 bond(s) between 242 and 245. Current order: 1
+DEBUG: Was attempting single bond between 242 and 245
+DEBUG: Was attempting double bond between 244 and 246
+DEBUG: Was attempting double bond between 246 and 247
+DEBUG: Was attempting double bond between 242 and 245
+DEBUG: Invalid structure found: HO3 (H=1, O=3)
+Epoch 45/50 | System Output: OH | Invalid: HO3      | Training Loss: -0.67836
+DEBUG: Successfully added 2 bond(s) between 250 and 251. Current order: 2
+DEBUG: Was attempting double bond between 250 and 251
+DEBUG: Growth action added atom 252 and bond to 248
+DEBUG: Growth action added atom 253 and bond to 249
+DEBUG: Was attempting double bond between 248 and 252
+DEBUG: Growth action added atom 254 and bond to 253
+DEBUG: Was attempting double bond between 253 and 249
+DEBUG: Was attempting double bond between 248 and 252
+DEBUG: Was attempting double bond between 252 and 248
+Epoch 46/50 | System Output: H2 + H2O + O2          | Training Loss: 1.50637
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 256 and 255
+DEBUG: Successfully added 1 bond(s) between 256 and 255. Current order: 1
+DEBUG: Was attempting single bond between 256 and 255
+DEBUG: Was attempting double bond between 255 and 256
+DEBUG: Was attempting double bond between 255 and 256
+DEBUG: Successfully added 2 bond(s) between 257 and 258. Current order: 2
+DEBUG: Was attempting double bond between 257 and 258
+DEBUG: Was attempting double bond between 255 and 256
+DEBUG: Was attempting double bond between 256 and 255
+DEBUG: Was attempting double bond between 256 and 255
+Epoch 47/50 | System Output: H2 + O2                | Training Loss: 1.57035
+DEBUG: Successfully added 2 bond(s) between 262 and 261. Current order: 2
+DEBUG: Was attempting double bond between 262 and 261
+DEBUG: Successfully added 1 bond(s) between 260 and 259. Current order: 1
+DEBUG: Was attempting single bond between 260 and 259
+DEBUG: Was attempting double bond between 260 and 259
+DEBUG: Was attempting double bond between 260 and 259
+DEBUG: Was attempting double bond between 260 and 259
+DEBUG: Was attempting double bond between 260 and 259
+DEBUG: Was attempting double bond between 260 and 259
+DEBUG: Was attempting double bond between 259 and 260
+Epoch 48/50 | System Output: H2 + O2                | Training Loss: 1.25554
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 264 and 266
+DEBUG: Successfully added 2 bond(s) between 266 and 265. Current order: 2
+DEBUG: Was attempting double bond between 266 and 265
+DEBUG: Growth action added atom 267 and bond to 264
+DEBUG: Was attempting double bond between 264 and 267
+DEBUG: Was attempting double bond between 267 and 264
+DEBUG: Was attempting double bond between 267 and 264
+DEBUG: Was attempting double bond between 267 and 264
+DEBUG: Was attempting double bond between 264 and 267
+Epoch 49/50 | System Output: H + H2O2               | Training Loss: 1.39402
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 268 and 269
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 271 and 269
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 269 and 270
+DEBUG: Rejected bond! Insufficient valency.
+DEBUG: Was attempting double bond between 268 and 270
+DEBUG: Growth action added atom 272 and bond to 269
+DEBUG: Successfully added 2 bond(s) between 271 and 270. Current order: 2
+DEBUG: Was attempting double bond between 271 and 270
+DEBUG: Was attempting double bond between 272 and 269
+DEBUG: Was attempting double bond between 269 and 272
+DEBUG: Invalid structure found: H3O2 (H=3, O=2)
+Epoch 50/50 | System Output:  | Invalid: H3O2       | Training Loss: -0.46419
+
+Saving standalone image files for each epoch layout...
+
+Compiling full-grid composite plot map...
+Saving single-plot grid animation sequence: relaxed_8species_growth.gif ...
+Everything processed successfully!

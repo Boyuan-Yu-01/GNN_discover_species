@@ -1,0 +1,107 @@
+Simulating 50 Training Runs with Dynamic Structural Layout Scaling...
+DEBUG: Created single bond between 0 and 2
+DEBUG: Created single bond between 1 and 2
+DEBUG: Created double bond between 0 and 2
+DEBUG: Created double bond between 3 and 4
+Epoch 01/50 | System Output: H2O + OH               | Training Loss: 1.44206
+DEBUG: Created single bond between 0 and 2
+DEBUG: Created single bond between 2 and 3
+DEBUG: Created double bond between 4 and 1
+DEBUG: Created double bond between 2 and 0
+DEBUG: Created double bond between 3 and 5
+Epoch 02/50 | System Output: H2O2 + H2              | Training Loss: 1.38527
+DEBUG: Created single bond between 2 and 1
+DEBUG: Created single bond between 2 and 0
+DEBUG: Created double bond between 2 and 1
+DEBUG: Created double bond between 3 and 4
+Epoch 03/50 | System Output: H2O + OH               | Training Loss: 1.40300
+DEBUG: Created single bond between 3 and 0
+DEBUG: Created single bond between 3 and 2
+DEBUG: Created single bond between 2 and 1
+DEBUG: Created double bond between 1 and 2
+DEBUG: Created double bond between 3 and 0
+Epoch 04/50 | System Output: H2O2                   | Training Loss: 1.45563
+DEBUG: Created single bond between 3 and 2
+DEBUG: Created single bond between 2 and 1
+DEBUG: Created double bond between 3 and 5
+DEBUG: Created double bond between 2 and 1
+DEBUG: Created double bond between 0 and 4
+Epoch 05/50 | System Output: H2 + H2O2              | Training Loss: 1.28397
+DEBUG: Created single bond between 0 and 3
+DEBUG: Created single bond between 2 and 3
+DEBUG: Created double bond between 1 and 5
+DEBUG: Created double bond between 0 and 3
+DEBUG: Created double bond between 2 and 4
+Epoch 06/50 | System Output: H2O2 + H2              | Training Loss: 1.17821
+DEBUG: Created single bond between 1 and 3
+DEBUG: Created single bond between 3 and 2
+DEBUG: Created single bond between 2 and 0
+DEBUG: Created double bond between 2 and 3
+Epoch 07/50 | System Output: H2O2                   | Training Loss: 1.31547
+DEBUG: Created single bond between 0 and 1
+DEBUG: Created single bond between 3 and 2
+DEBUG: Created single bond between 3 and 2
+DEBUG: Created double bond between 0 and 1
+Epoch 08/50 | System Output: H2 + O2                | Training Loss: 0.95939
+DEBUG: Created single bond between 2 and 3
+DEBUG: Created single bond between 1 and 2
+DEBUG: Created single bond between 0 and 3
+DEBUG: Created double bond between 3 and 0
+DEBUG: Created double bond between 2 and 1
+Epoch 09/50 | System Output: H2O2                   | Training Loss: 1.05452
+DEBUG: Created single bond between 1 and 3
+DEBUG: Created single bond between 3 and 2
+DEBUG: Created single bond between 0 and 2
+DEBUG: Created double bond between 3 and 1
+DEBUG: Created double bond between 0 and 2
+Epoch 10/50 | System Output: H2O2                   | Training Loss: 0.91889
+DEBUG: Created single bond between 3 and 2
+DEBUG: Created single bond between 2 and 3
+DEBUG: Created single bond between 1 and 0
+DEBUG: Created double bond between 1 and 0
+Epoch 11/50 | System Output: H2 + O2                | Training Loss: 0.87016
+Epoch 12/50 | System Output: H + H + O + O          | Training Loss: 0.09846
+Epoch 13/50 | System Output: H + H + O + O          | Training Loss: 0.06698
+Epoch 14/50 | System Output: H + H + O + O          | Training Loss: 0.04388
+Epoch 15/50 | System Output: H + H + O + O          | Training Loss: 0.02792
+Epoch 16/50 | System Output: H + H + O + O          | Training Loss: 0.01741
+Epoch 17/50 | System Output: H + H + O + O          | Training Loss: 0.01074
+Epoch 18/50 | System Output: H + H + O + O          | Training Loss: 0.00660
+Epoch 19/50 | System Output: H + H + O + O          | Training Loss: 0.00406
+Epoch 20/50 | System Output: H + H + O + O          | Training Loss: 0.00251
+Epoch 21/50 | System Output: H + H + O + O          | Training Loss: 0.00158
+Epoch 22/50 | System Output: H + H + O + O          | Training Loss: 0.00101
+Epoch 23/50 | System Output: H + H + O + O          | Training Loss: 0.00066
+Epoch 24/50 | System Output: H + H + O + O          | Training Loss: 0.00044
+Epoch 25/50 | System Output: H + H + O + O          | Training Loss: 0.00029
+Epoch 26/50 | System Output: H + H + O + O          | Training Loss: 0.00020
+Epoch 27/50 | System Output: H + H + O + O          | Training Loss: 0.00014
+Epoch 28/50 | System Output: H + H + O + O          | Training Loss: 0.00010
+Epoch 29/50 | System Output: H + H + O + O          | Training Loss: 0.00008
+Epoch 30/50 | System Output: H + H + O + O          | Training Loss: 0.00006
+Epoch 31/50 | System Output: H + H + O + O          | Training Loss: 0.00004
+Epoch 32/50 | System Output: H + H + O + O          | Training Loss: 0.00003
+Epoch 33/50 | System Output: H + H + O + O          | Training Loss: 0.00003
+Epoch 34/50 | System Output: H + H + O + O          | Training Loss: 0.00002
+Epoch 35/50 | System Output: H + H + O + O          | Training Loss: 0.00002
+Epoch 36/50 | System Output: H + H + O + O          | Training Loss: 0.00002
+Epoch 37/50 | System Output: H + H + O + O          | Training Loss: 0.00001
+Epoch 38/50 | System Output: H + H + O + O          | Training Loss: 0.00001
+Epoch 39/50 | System Output: H + H + O + O          | Training Loss: 0.00001
+Epoch 40/50 | System Output: H + H + O + O          | Training Loss: 0.00001
+Epoch 41/50 | System Output: H + H + O + O          | Training Loss: 0.00001
+Epoch 42/50 | System Output: H + H + O + O          | Training Loss: 0.00001
+Epoch 43/50 | System Output: H + H + O + O          | Training Loss: 0.00001
+Epoch 44/50 | System Output: H + H + O + O          | Training Loss: 0.00001
+Epoch 45/50 | System Output: H + H + O + O          | Training Loss: 0.00001
+Epoch 46/50 | System Output: H + H + O + O          | Training Loss: 0.00000
+Epoch 47/50 | System Output: H + H + O + O          | Training Loss: 0.00000
+Epoch 48/50 | System Output: H + H + O + O          | Training Loss: 0.00000
+Epoch 49/50 | System Output: H + H + O + O          | Training Loss: 0.00000
+Epoch 50/50 | System Output: H + H + O + O          | Training Loss: 0.00000
+
+Saving standalone image files for each epoch layout...
+
+Compiling full-grid composite plot map...
+Saving single-plot grid animation sequence: relaxed_8species_growth.gif ...
+Everything processed successfully!

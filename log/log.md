@@ -46,7 +46,7 @@ A sample_type template has been given as a list that contains ``2 H + 2 O``. The
 * Further literature for the Adaptive Chemistry [Link](../../../AdaptiveChemistry/model_reduction_papers.md)
 * Exciting discovery on Spatial Reduction papers [Link](../../../SpatialReduction/literature/adaptive_chemistry_spatial_treatment_literature.md) (in total 27 papers)
 
-## July. 1st, 2026
+## Jul. 1st, 2026
 
 #### Discussing Points
 1. GNN Literature
@@ -57,6 +57,8 @@ A sample_type template has been given as a list that contains ``2 H + 2 O``. The
 2. GNN Xu-RL Code
 	1. (as shown below,) potential improvement on encoding valence rule with a scale (instead of 1 for getting bond, 0 for not getting bond) & similar for connection logit.
 	2. Might be a good idea to incorporate energy (represented by bond order)
+	3. Question: No O2--> more run should be sufficient to find
+	4. Question: don't want H-O-O-...-O-H --> Energy (bond order?)
 ### Read GNN-RL [CodeLink](../gnn_combustion/Xu_training/RL/grow_train_animation.py)     [README_gpt](../gnn_combustion/Xu_training/RL/README_gpt.md)
 #### class AdvanceMoleculeEnv
 * *def get_pyg_data*: <span style="color:blue">Encode info</span>
@@ -86,3 +88,48 @@ A sample_type template has been given as a list that contains ``2 H + 2 O``. The
 #### Training Loop
 *This is closer to a compact policy-gradient-style toy loop than to supervised training: there are no labeled target graphs. The model is rewarded when the final disconnected fragments are all valid H/O species.*
 
+## July. 1st, 2026
+<span style="color:red">Question:</span> H-O-O-...-O-H is not sustainable, <span style="color:blue">how to penalize?</span>
+<span style="color:red">Question:</span> How to penalize long chain hydrocarbon? 
+
+### Bond dissociation energy/ Bond strength:
+Average Bond Enthalpies (kJ/mol) at 25 °C[Link](https://owl.oit.umass.edu/departments/Chemistry/appendix/bond.html)
+#### Single Bonds
+
+|     |   H |   C |   N |   O |
+| --- | --: | --: | --: | --: |
+| H   | 436 | 413 | 391 | 463 |
+| C   | 413 | 346 | 305 | 358 |
+| N   | 391 | 305 | 163 | 201 |
+| O   | 463 | 358 | 201 | 146 |
+
+#### Multiple Bonds
+
+| Double Bond | kJ/mol | Triple Bond | kJ/mol |
+| ----------- | -----: | ----------- | -----: |
+| C=C         |    602 | C≡C         |    835 |
+| O=O         |    498 |             |        |
+| C=O         |    732 | C≡O         |   1072 |
+| N=O         |    607 |             |        |
+| N=N         |    418 | N≡N         |    945 |
+| C=N         |    615 | C≡N         |    887 |
+# An idea: mapping bond dissociation energy to the probability of single bond breaking 
+[Link](Mapping_E_to_P.pdf) 
+![](Mapping_E_to_P.pdf)<span style="color:blue">Improve this idea:</span>
+* Instead of using Arrhenius equation, where $Arr = Ae^{-\frac{E_a}{RT}}$, we should use just $e^{-\frac{E_a}{RT}}$ since Arrhenius has unit but $e^{-\frac{E_a}{RT}}$ doesn't
+* In reaction, the Arrhenius term multiply with concentrations of reactants. In here we only consider <span style="color:red">self-dissociation</span>.
+* Instead of using "RT", we should use a tunable parameter for the <span style="color:red">learning purpose</span>.
+
+## Concept proof the idea:
+* Find a reaction kinetic model <span style="color:blue">full of long chain hydrocarbon</span>.
+* Use this as a training model, train a <span style="color:blue">algorithm</span> or a <span style="color:red">neural network</span>.
+* Try some other chemical species, see the probability of existence.
+
+_The directory of this concept proof is stored under_ `GGN_discover_species/penalize_long_chain` [README](../penalize_long_chain/README.md)
+
+## Detailed kinetic models 
+_Stored under 'GNN_discover_species/penalize_long_chain/mechanism_file_chemkin'_ 
+It contains [JetSurF2.0](https://web.stanford.edu/group/haiwanglab/JetSurF/JetSurF2.0/Index.html) and [LLNL models](https://combustion.llnl.gov/archived-mechanisms/alkanes/n-heptane-detailed-mechanism-version-2) including C8-C16 and $\ce{C7H16}$ (n-Heptane)
+* A side-note for those detailed kinetic models: they <span style="color:red">do not contain N chemistries</span>
+* Within the `class identify_backbone_from_chemkin_mechanism`, *BOND_KEYS* contains <span style="color:red">20 types of bonds</span>, *EXACT_SPECIES* contains <span style="color:red">60 basic species</span> as a small chemistry knowledge table
+* <span style="color:blue">(Maybe not a problem but)</span> we do not distinguish isomers because it is a <span style="color:red">SUBGRAPH FEATURE</span>. Isomers are <span style="color:red">degeneracies</span> for this subgraph feature. 
