@@ -128,8 +128,90 @@ Average Bond Enthalpies (kJ/mol) at 25 °C[Link](https://owl.oit.umass.edu/depar
 _The directory of this concept proof is stored under_ `GGN_discover_species/penalize_long_chain` [README](../penalize_long_chain/README.md)
 
 ## Detailed kinetic models 
+![](plot/schemes.png)
 _Stored under 'GNN_discover_species/penalize_long_chain/mechanism_file_chemkin'_ 
-It contains [JetSurF2.0](https://web.stanford.edu/group/haiwanglab/JetSurF/JetSurF2.0/Index.html) and [LLNL models](https://combustion.llnl.gov/archived-mechanisms/alkanes/n-heptane-detailed-mechanism-version-2) including C8-C16 and $\ce{C7H16}$ (n-Heptane)
+It contains [JetSurF2.0](https://web.stanford.edu/group/haiwanglab/JetSurF/JetSurF2.0/Index.html),  [LLNL models](https://combustion.llnl.gov/archived-mechanisms/alkanes/n-heptane-detailed-mechanism-version-2) including C8-C16 and $\ce{C7H16}$ (n-Heptane), and [2-methyl alkanes(LLNL)](https://combustion.llnl.gov/sites/combustion/files/c7_c20_2methylalkanes_c8_c16_nalkanes_v1.1_mech_CnF_inp.txt) 
+
+<span style="color:red">Use LLNL C8-16 & C7H16 model only</span>
+
 * A side-note for those detailed kinetic models: they <span style="color:red">do not contain N chemistries</span>
 * Within the `class identify_backbone_from_chemkin_mechanism`, *BOND_KEYS* contains <span style="color:red">20 types of bonds</span>, *EXACT_SPECIES* contains <span style="color:red">60 basic species</span> as a small chemistry knowledge table
 * <span style="color:blue">(Maybe not a problem but)</span> we do not distinguish isomers because it is a <span style="color:red">SUBGRAPH FEATURE</span>. Isomers are <span style="color:red">degeneracies</span> for this subgraph feature. 
+
+### Read Detailed Kinetic Model Feature .json file
+
+```json
+{
+	# formulae that map to more than one formula degeneracy
+	"ambiguous_formulae":{
+		"C2H3O": [
+
+			"C2H3O_001",
+			
+			"C2H3O_002",
+			
+			"C2H3O_003"
+			
+		],
+	},
+	# Grouped entries with the same estimated formula, bond counts, and ring flag
+	"formula_degeneracies":{     # the parser found one group of species with the same estimated formula, bond counts, and ring flag
+		"C5H10O_002": {          # formula is C5H10O, degeneracy group is 002
+			"bond_counts": {     
+				"C#C": 0,
+				"C#N": 0,
+				"C#O": 0,
+				"C-C": 3,
+				"C-H": 10,
+				"C-N": 0,
+				"C-O": 0,
+				"C=C": 1,
+				"C=N": 0,
+				"C=O": 1,
+				"H-H": 0,
+				"N#N": 0,
+				"N-H": 0,
+				"N-N": 0,
+				"N=N": 0,
+				"N=O": 0,
+				"O-H": 0,
+				"O-N": 0,
+				"O-O": 0,
+				"O=O": 0
+			},
+			"degeneracy_id": "C5H10O_002",
+			"formula": "C5H10O",
+			"is_ring": false,
+			"species": [       # species that has same bond summary features
+				"c2h5coc2h5",
+				"nc3h7coch3",
+				"ic3h7coch3",
+				"nc4h9cho"
+			]
+		},
+	},
+	# Generic species labels that may represent multiple possible structures
+	"multi_species_labels":{     # Same composition but different degeneracies
+		"c3h5o": {
+			"formula": "C3H5O",
+			"formula_degeneracy_id": "C3H5O_002",
+			"reason": "generic/bare species label and same formula has multiple bond-count or ring degeneracies in this mechanism",
+			"related_formula_degeneracy_ids": [
+			"C3H5O_001",
+			"C3H5O_002",
+			"C3H5O_003",
+			"C3H5O_004"
+			]
+		},
+	},
+	"sanity_checks":{
+	},
+	"species":{                  # It records each species from the chemkin file and generate bond_counts summary
+	}
+	
+}
+```
+
+### Read master_dataset.json
+*master_dataset.json only keeps formula_degenracies as the subgraph feature for the training purpose.*
+* A modification is made toward degeneracy *CO*, change bond from C#O to C=O

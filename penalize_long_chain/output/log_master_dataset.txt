@@ -1,0 +1,37 @@
+Master dataset merge log
+Master JSON output: /Users/boyuanyu/Documents/research/GNN/GNN_discover_species/penalize_long_chain/output/master_dataset.json
+Log output: /Users/boyuanyu/Documents/research/GNN/GNN_discover_species/penalize_long_chain/output/log_master_dataset.txt
+Input files: 2
+  /Users/boyuanyu/Documents/research/GNN/GNN_discover_species/penalize_long_chain/output/c8-c16_n-alkanes_LLNL_subgraph_info.json: 273 formula degeneracies
+  /Users/boyuanyu/Documents/research/GNN/GNN_discover_species/penalize_long_chain/output/nHeptane_LLNL_subgraph_info.json: 153 formula degeneracies
+Input formula degeneracies: 426
+Master formula degeneracies: 273
+Merged duplicate signatures: 153
+Formulae represented: 225
+Ambiguous formulae in master: 44
+Invalid entries skipped: 0
+Source degeneracy ID clashes: 1
+Species signature clashes: 0
+Top ambiguous formulae:
+  C3H5O: 3 master degeneracies
+  C3H6O: 3 master degeneracies
+  C4H7O: 3 master degeneracies
+  C4H8O: 3 master degeneracies
+  C10H20O: 2 master degeneracies
+  C10H21O2: 2 master degeneracies
+  C11H22O: 2 master degeneracies
+  C11H23O2: 2 master degeneracies
+  C12H24O: 2 master degeneracies
+  C12H25O2: 2 master degeneracies
+  C13H26O: 2 master degeneracies
+  C13H27O2: 2 master degeneracies
+  C14H28O: 2 master degeneracies
+  C14H29O2: 2 master degeneracies
+  C15H30O: 2 master degeneracies
+  C15H31O2: 2 master degeneracies
+  C16H33O2: 2 master degeneracies
+  C2H3O: 2 master degeneracies
+  C2H4O: 2 master degeneracies
+  C2H5O: 2 master degeneracies
+Source degeneracy ID clash examples:
+  C7H14O_001: 2 different signatures

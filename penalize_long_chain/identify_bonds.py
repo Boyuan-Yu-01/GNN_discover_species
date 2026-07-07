@@ -10,7 +10,7 @@ import re
 #   3. Store backbone/bond information for further analysis.
 
 
-class identify_backbone_from_chemkin_mechanism():
+class identify_bonds_from_chemikin_mechanism():
     """Read a ChemKin mechanism file and collect species-level information."""
 
     # Types of bond keys to track
@@ -62,10 +62,12 @@ class identify_backbone_from_chemkin_mechanism():
         "ch3o": {"formula": "CH3O", "bonds": {"C-O": 1, "C-H": 3}, "is_ring": False},
         "ch2oh": {"formula": "CH3O", "bonds": {"C-O": 1, "C-H": 2, "O-H": 1}, "is_ring": False},
         "ch3oh": {"formula": "CH4O", "bonds": {"C-O": 1, "C-H": 3, "O-H": 1}, "is_ring": False},
+        "hoch2o": {"formula": "CH3O2", "bonds": {"C-O": 2, "C-H": 2, "O-H": 1}, "is_ring": False},
         "ch2co": {"formula": "C2H2O", "bonds": {"C=C": 1, "C=O": 1, "C-H": 2}, "is_ring": False},
         "hcco": {"formula": "C2HO", "bonds": {"C=C": 1, "C=O": 1, "C-H": 1}, "is_ring": False},
         "hccoh": {"formula": "C2H2O", "bonds": {"C#C": 1, "C-O": 1, "C-H": 1, "O-H": 1}, "is_ring": False},
         "ch3co": {"formula": "C2H3O", "bonds": {"C-C": 1, "C=O": 1, "C-H": 3}, "is_ring": False},
+        "ch3co2": {"formula": "C2H3O2", "bonds": {"C-C": 1, "C-O": 1, "C=O": 1, "C-H": 3}, "is_ring": False},
         "ch3cho": {"formula": "C2H4O", "bonds": {"C-C": 1, "C=O": 1, "C-H": 4}, "is_ring": False},
         "c2h5oh": {"formula": "C2H6O", "bonds": {"C-C": 1, "C-O": 1, "C-H": 5, "O-H": 1}, "is_ring": False},
         "c2h5o": {"formula": "C2H5O", "bonds": {"C-C": 1, "C-O": 1, "C-H": 5}, "is_ring": False},
@@ -75,6 +77,14 @@ class identify_backbone_from_chemkin_mechanism():
         "ch3coch2": {"formula": "C3H5O", "bonds": {"C-C": 2, "C=O": 1, "C-H": 5}, "is_ring": False},
         "c2h5cho": {"formula": "C3H6O", "bonds": {"C-C": 2, "C=O": 1, "C-H": 6}, "is_ring": False},
         "c2h5co": {"formula": "C3H5O", "bonds": {"C-C": 2, "C=O": 1, "C-H": 5}, "is_ring": False},
+        "ch2cch2oh": {"formula": "C3H5O", "bonds": {"C-C": 1, "C=C": 1, "C-O": 1, "C-H": 4, "O-H": 1}, "is_ring": False},
+        "neoc5h9q2": {"formula": "C5H11O4", "bonds": {"C-C": 4, "C-O": 2, "O-O": 2, "C-H": 10, "O-H": 1}, "is_ring": False},
+        "neoc5h9q2-n": {"formula": "C5H11O4", "bonds": {"C-C": 4, "C-O": 2, "O-O": 2, "C-H": 10, "O-H": 1}, "is_ring": False},
+        "neoc5ketox": {"formula": "C5H9O2", "bonds": {"C-C": 4, "C-O": 1, "C=O": 1, "C-H": 9}, "is_ring": False},
+        "neoc5kejol": {"formula": "C5H9O2", "bonds": {"C-C": 4, "C-O": 1, "C=O": 1, "C-H": 8, "O-H": 1}, "is_ring": False},
+        "neo-c5h10o": {"formula": "C5H10O", "bonds": {"C-C": 4, "C-O": 2, "C-H": 10}, "is_ring": True},
+        "p12oohx2": {"formula": "C12H25O2", "bonds": {"C-C": 11, "C-O": 1, "O-O": 1, "C-H": 24, "O-H": 1}, "is_ring": False},
+        "oc12ooh": {"formula": "C12H24O3", "bonds": {"C-C": 11, "C-O": 1, "C=O": 1, "O-O": 1, "C-H": 23, "O-H": 1}, "is_ring": False},
         "ch3o2": {"formula": "CH3O2", "bonds": {"C-O": 1, "O-O": 1, "C-H": 3}, "is_ring": False},
         "ch3o2h": {"formula": "CH4O2", "bonds": {"C-O": 1, "O-O": 1, "C-H": 3, "O-H": 1}, "is_ring": False},
         "c2h5o2": {"formula": "C2H5O2", "bonds": {"C-C": 1, "C-O": 1, "O-O": 1, "C-H": 5}, "is_ring": False},
@@ -85,6 +95,8 @@ class identify_backbone_from_chemkin_mechanism():
         "c2h4": {"formula": "C2H4", "bonds": {"C=C": 1, "C-H": 4}, "is_ring": False},
         "c2h5": {"formula": "C2H5", "bonds": {"C-C": 1, "C-H": 5}, "is_ring": False},
         "c2h6": {"formula": "C2H6", "bonds": {"C-C": 1, "C-H": 6}, "is_ring": False},
+        "ic4h6q2-ii": {"formula": "C4H8O4", "bonds": {"C-C": 2, "C=C": 1, "C-O": 2, "O-O": 2, "C-H": 6, "O-H": 2}, "is_ring": False},
+        "c4h71-4": {"formula": "C4H7", "bonds": {"C-C": 2, "C=C": 1, "C-H": 7}, "is_ring": False},
         "c3h4-a": {"formula": "C3H4", "bonds": {"C=C": 2, "C-H": 4}, "is_ring": False},
         "ac3h4": {"formula": "C3H4", "bonds": {"C=C": 2, "C-H": 4}, "is_ring": False},
         "c3h4-p": {"formula": "C3H4", "bonds": {"C-C": 1, "C#C": 1, "C-H": 4}, "is_ring": False},
@@ -95,8 +107,22 @@ class identify_backbone_from_chemkin_mechanism():
         "nc3h7": {"formula": "C3H7", "bonds": {"C-C": 2, "C-H": 7}, "is_ring": False},
         "ic3h7": {"formula": "C3H7", "bonds": {"C-C": 2, "C-H": 7}, "is_ring": False},
         "c4h6": {"formula": "C4H6", "bonds": {"C-C": 1, "C=C": 2, "C-H": 6}, "is_ring": False},
+        "c4h612": {"formula": "C4H6", "bonds": {"C-C": 1, "C=C": 2, "C-H": 6}, "is_ring": False},
+        "c4h6-2": {"formula": "C4H6", "bonds": {"C-C": 2, "C#C": 1, "C-H": 6}, "is_ring": False},
         "c4h8-1": {"formula": "C4H8", "bonds": {"C-C": 2, "C=C": 1, "C-H": 8}, "is_ring": False},
         "c4h8-2": {"formula": "C4H8", "bonds": {"C-C": 2, "C=C": 1, "C-H": 8}, "is_ring": False},
+        "c4h81": {"formula": "C4H8", "bonds": {"C-C": 2, "C=C": 1, "C-H": 8}, "is_ring": False},
+        "c4h82": {"formula": "C4H8", "bonds": {"C-C": 2, "C=C": 1, "C-H": 8}, "is_ring": False},
+        "ic4h8o": {"formula": "C4H8O", "bonds": {"C-C": 3, "C-O": 2, "C-H": 8}, "is_ring": True},
+        "c4h4o": {"formula": "C4H4O", "bonds": {"C-C": 1, "C=C": 2, "C-O": 2, "C-H": 4}, "is_ring": True},
+        "c2h3choch2": {"formula": "C4H6O", "bonds": {"C-C": 2, "C=C": 1, "C-O": 2, "C-H": 6}, "is_ring": True},
+        "c4h6o23": {"formula": "C4H6O", "bonds": {"C-C": 2, "C=C": 1, "C-O": 2, "C-H": 6}, "is_ring": True},
+        "c4h6o25": {"formula": "C4H6O", "bonds": {"C-C": 2, "C=C": 1, "C-O": 2, "C-H": 6}, "is_ring": True},
+        "c2h5-2-c4h513": {"formula": "C6H10", "bonds": {"C-C": 3, "C=C": 2, "C-H": 10}, "is_ring": False},
+        "c6h10-12": {"formula": "C6H10", "bonds": {"C-C": 3, "C=C": 2, "C-H": 10}, "is_ring": False},
+        "c6h10-15": {"formula": "C6H10", "bonds": {"C-C": 3, "C=C": 2, "C-H": 10}, "is_ring": False},
+        "l-c6h4": {"formula": "C6H4", "bonds": {"C-C": 2, "C=C": 1, "C#C": 2, "C-H": 4}, "is_ring": False},
+        "o-c6h4": {"formula": "C6H4", "bonds": {"C-C": 3, "C=C": 2, "C#C": 1, "C-H": 4}, "is_ring": True},
         "c4h10": {"formula": "C4H10", "bonds": {"C-C": 3, "C-H": 10}, "is_ring": False},
         "ic4h10": {"formula": "C4H10", "bonds": {"C-C": 3, "C-H": 10}, "is_ring": False},
         "c6h6": {"formula": "C6H6", "bonds": {"C-C": 3, "C=C": 3, "C-H": 6}, "is_ring": True},
@@ -179,19 +205,19 @@ class identify_backbone_from_chemkin_mechanism():
         Returns
         -------
         dict
-            Dictionary with four main top-level keys:
+            Dictionary with five main top-level keys:
 
             ``species``
                 Maps each ChemKin species name to formula, bond counts, ring
-                flag, formula-variant ID, confidence, and notes.
+                flag, formula-degeneracy ID, confidence, and notes.
 
-            ``formula_variants``
-                Stores each formula/bond-pattern variant under its own ID, for
+            ``formula_degeneracies``
+                Stores each formula/bond-pattern degeneracy under its own ID, for
                 example ``C3H4_001``. This avoids storing different
                 molecules under one formula bucket.
 
-            ``ambiguous_formulas``
-                Lists formulas that map to more than one formula variant.
+            ``ambiguous_formulae``
+                Lists formulae that map to more than one formula degeneracy.
 
             ``multi_species_labels``
                 Records species labels that may represent multiple structural
@@ -199,7 +225,7 @@ class identify_backbone_from_chemkin_mechanism():
                 ChemKin names whose formula has multiple bond-pattern variants.
 
             ``sanity_checks``
-                Reports raw species count and whether formula-variant species
+                Reports raw species count and whether formula-degeneracy species
                 references match the unique species list.
 
         Notes
@@ -225,37 +251,42 @@ class identify_backbone_from_chemkin_mechanism():
             formula_key = info["formula"] or "unknown"
             signatures_by_formula[formula_key][signature].append(species_name)
 
-        formula_variants = {}
-        ambiguous_formulas = {}
-        variant_id_by_formula_signature = {}
+        formula_degeneracies = {}
+        ambiguous_formulae = {}
+        degeneracy_id_by_formula_signature = {}
 
-        # Build one formula-variant entry per unique bond signature.
+        # Build one formula-degeneracy entry per unique bond signature.
         for formula_key in sorted(signatures_by_formula):
             signatures = sorted(signatures_by_formula[formula_key])
             if len(signatures) > 1:
-                ambiguous_formulas[formula_key] = []
+                ambiguous_formulae[formula_key] = []
 
-            for variant_number, signature in enumerate(signatures, start=1):
-                variant_id = self._formula_variant_id(formula_key, variant_number)
+            for degeneracy_number, signature in enumerate(signatures, start=1):
+                degeneracy_id = self._formula_degeneracy_id(
+                    formula_key,
+                    degeneracy_number,
+                )
                 bond_counts, is_ring = self._signature_to_bond_counts(signature)
 
-                formula_variants[variant_id] = {
+                formula_degeneracies[degeneracy_id] = {
                     "formula": formula_key,
-                    "variant_id": variant_id,
+                    "degeneracy_id": degeneracy_id,
                     "bond_counts": bond_counts,
                     "is_ring": is_ring,
                     "species": signatures_by_formula[formula_key][signature],
                 }
-                variant_id_by_formula_signature[(formula_key, signature)] = variant_id
+                degeneracy_id_by_formula_signature[
+                    (formula_key, signature)
+                ] = degeneracy_id
 
                 if len(signatures) > 1:
-                    ambiguous_formulas[formula_key].append(variant_id)
+                    ambiguous_formulae[formula_key].append(degeneracy_id)
 
-        # Attach the variant ID back to each individual species record.
+        # Attach the degeneracy ID back to each individual species record.
         for species_name, info in species_info.items():
             formula_key = info["formula"] or "unknown"
             signature = self._bond_signature(info)
-            info["formula_variant_id"] = variant_id_by_formula_signature[
+            info["formula_degeneracy_id"] = degeneracy_id_by_formula_signature[
                 (formula_key, signature)
             ]
 
@@ -264,44 +295,46 @@ class identify_backbone_from_chemkin_mechanism():
         # the same formula has multiple estimated bond patterns.
         for species_name, info in species_info.items():
             formula_key = info["formula"] or "unknown"
-            variant_ids = ambiguous_formulas.get(formula_key, [])
+            degeneracy_ids = ambiguous_formulae.get(formula_key, [])
             may_represent_multiple = bool(
-                variant_ids and self._is_generic_species_label(species_name, formula_key)
+                degeneracy_ids
+                and self._is_generic_species_label(species_name, formula_key)
             )
 
             info["may_represent_multiple_species"] = may_represent_multiple
-            info["related_formula_variant_ids"] = variant_ids
+            info["related_formula_degeneracy_ids"] = degeneracy_ids
             if may_represent_multiple:
                 reason = (
                     "generic/bare species label and same formula has multiple "
-                    "bond-count or ring variants in this mechanism"
+                    "bond-count or ring degeneracies in this mechanism"
                 )
                 info["multi_species_reason"] = reason
                 multi_species_labels[species_name] = {
                     "formula": formula_key,
-                    "formula_variant_id": info["formula_variant_id"],
-                    "related_formula_variant_ids": variant_ids,
+                    "formula_degeneracy_id": info["formula_degeneracy_id"],
+                    "related_formula_degeneracy_ids": degeneracy_ids,
                     "reason": reason,
                 }
             else:
                 info["multi_species_reason"] = None
 
-        variant_species_reference_count = sum(
-            len(variant["species"]) for variant in formula_variants.values()
+        degeneracy_species_reference_count = sum(
+            len(degeneracy["species"])
+            for degeneracy in formula_degeneracies.values()
         )
 
         # This final object is intentionally plain Python data so it can be
         # serialized, inspected, or converted into model features later.
         self.species_backbone = {
             "species": species_info,
-            "formula_variants": formula_variants,
-            "ambiguous_formulas": ambiguous_formulas,
+            "formula_degeneracies": formula_degeneracies,
+            "ambiguous_formulae": ambiguous_formulae,
             "multi_species_labels": multi_species_labels,
             "sanity_checks": {
                 "raw_species_count": self.raw_species_count,
-                "variant_species_reference_count": variant_species_reference_count,
-                "variant_species_reference_matches_species_count": (
-                    variant_species_reference_count == len(self.species)
+                "degeneracy_species_reference_count": degeneracy_species_reference_count,
+                "degeneracy_species_reference_matches_species_count": (
+                    degeneracy_species_reference_count == len(self.species)
                 ),
             },
         }
@@ -343,8 +376,42 @@ class identify_backbone_from_chemkin_mechanism():
 
         return output_path
 
+    def write_species_backbone_log(self, json_output_path, log_file):
+        """Write and print a summary log for the current parsed mechanism."""
+        if not self.species_backbone:
+            self.read_species_backbone()
+
+        log_output_path = Path(log_file).expanduser().resolve()
+        sanity_checks = self.species_backbone["sanity_checks"]
+
+        output_lines = [
+            f"Mechanism file: {self.chemkin_file}",
+            f"JSON output: {json_output_path}",
+            f"Log output: {log_output_path}",
+            f"Unique species found: {len(self.species)}",
+            f"Raw species labels read: {sanity_checks['raw_species_count']}",
+            f"Formula degeneracies: {len(self.species_backbone['formula_degeneracies'])}",
+            f"Ambiguous formulae: {len(self.species_backbone['ambiguous_formulae'])}",
+            f"Possible multi-species labels: {len(self.species_backbone['multi_species_labels'])}",
+            "Degeneracy species references match unique species count: "
+            f"{sanity_checks['degeneracy_species_reference_matches_species_count']}",
+            "Top formula ambiguity summary:",
+        ]
+        output_lines.extend(
+            formula_ambiguity_summary_lines(
+                self.species_backbone,
+                max_formulae=len(self.species_backbone["ambiguous_formulae"]),
+            )
+        )
+
+        log_output_path.parent.mkdir(parents=True, exist_ok=True)
+        log_output_path.write_text("\n".join(output_lines) + "\n", encoding="utf-8")
+
+        print("\n".join(output_lines))
+        return log_output_path
+
     def _bond_signature(self, info):
-        """Create a hashable formula-variant signature from bond counts and ring flag."""
+        """Create a hashable formula-degeneracy signature from bond counts and ring flag."""
         # Use BOND_KEYS order so two dictionaries with the same chemistry make
         # exactly the same tuple, independent of dictionary insertion details.
         return (
@@ -353,18 +420,18 @@ class identify_backbone_from_chemkin_mechanism():
         )
 
     def _signature_to_bond_counts(self, signature):
-        """Convert a stored formula-variant signature back into dictionary form."""
+        """Convert a stored formula-degeneracy signature back into dictionary form."""
         bond_count_items, is_ring = signature
         return dict(bond_count_items), is_ring
 
     @staticmethod
-    def _formula_variant_id(formula, variant_number):
-        """Create stable IDs such as C4H6_001 for formula-level variants."""
+    def _formula_degeneracy_id(formula, degeneracy_number):
+        """Create stable IDs such as C4H6_001 for formula-level degeneracies."""
         # Remove punctuation so the ID is convenient as a dictionary key or
         # column name in a later feature table.
         formula_label = re.sub(r"[^A-Za-z0-9]+", "_", formula or "unknown").strip("_")
         formula_label = formula_label or "unknown"
-        return f"{formula_label}_{variant_number:03d}"
+        return f"{formula_label}_{degeneracy_number:03d}"
 
     def _is_generic_species_label(self, species_name, formula):
         """Return True for labels that may hide structural ambiguity.
@@ -431,7 +498,7 @@ class identify_backbone_from_chemkin_mechanism():
                 "bond_counts": bond_counts,
                 "is_ring": exact["is_ring"],
                 "confidence": "exact_name_rule",
-                "notes": ["matched exact small-species rule"],
+                "notes": ["matched exact species rule"],
             }
 
         # If no exact entry exists, fall back to ChemKin-name heuristics.
@@ -488,9 +555,26 @@ class identify_backbone_from_chemkin_mechanism():
             if formula_counts:
                 return formula_counts
 
+        if "ket" in no_star:
+            formula_counts = self._infer_ketohydroperoxide_formula(no_star)
+            if formula_counts:
+                return formula_counts
+
+        if self._looks_like_cyclic_ether_name(no_star):
+            formula_counts = self._infer_cyclic_ether_formula(no_star)
+            if formula_counts:
+                return formula_counts
+
+        formula_counts = self._infer_acyl_fragment_formula(no_star)
+        if formula_counts:
+            return formula_counts
+
         # Remove structural prefixes/suffixes before reading elemental tokens.
         text = self._strip_non_formula_prefix(no_star)
         text = re.sub(r"-\d+", "", text)
+        text = re.sub(r"-[a-z]+$", "", text)
+        text = self._strip_position_suffix_digits(text)
+        text = re.sub(r"cc(\d+)", r"c\1", text)
 
         counts = defaultdict(int)
         matched = False
@@ -540,8 +624,15 @@ class identify_backbone_from_chemkin_mechanism():
             "s",
             "t",
         )
+        if lower_name.startswith(("o-c", "m-c")) and len(lower_name) > 3:
+            return lower_name[2:]
         # Longer prefixes appear first so "neo" is removed before "n".
         for prefix in prefixes:
+            if (
+                lower_name.startswith(prefix + "-c")
+                and len(lower_name) > len(prefix) + 2
+            ):
+                return lower_name[len(prefix) + 1:]
             if lower_name.startswith(prefix + "c") and len(lower_name) > len(prefix) + 1:
                 return lower_name[len(prefix):]
         if lower_name.startswith("c-c"):
@@ -549,23 +640,113 @@ class identify_backbone_from_chemkin_mechanism():
         return lower_name
 
     @staticmethod
+    def _strip_position_suffix_digits(lower_name):
+        """Remove position labels that are attached directly to formula tokens.
+
+        Some mechanisms use labels such as C4H81 for C4H8-1,
+        C4H612 for C4H6-1,2, and C4H6O25 for C4H6O-2,5. The trailing
+        position digits are not atom counts, so strip only the impossible
+        count tail while keeping legitimate labels such as C16H33.
+        """
+
+        def replace_hydrogen_count(match):
+            carbon_count = int(match.group(1))
+            hydrogen_digits = match.group(2)
+            maximum_hydrogen_count = 2 * carbon_count + 2
+
+            if int(hydrogen_digits) <= maximum_hydrogen_count:
+                return match.group(0)
+
+            usable_count = None
+            # Keep the longest chemically plausible hydrogen-count prefix and
+            # treat the remaining digits as positional labels.
+            for end_index in range(1, len(hydrogen_digits)):
+                candidate = int(hydrogen_digits[:end_index])
+                if candidate <= maximum_hydrogen_count:
+                    usable_count = hydrogen_digits[:end_index]
+
+            if usable_count is None:
+                return match.group(0)
+            return f"c{carbon_count}h{usable_count}"
+
+        lower_name = re.sub(r"c(\d+)h(\d{2,})(?=$|[-a-z])", replace_hydrogen_count, lower_name)
+        lower_name = re.sub(r"o(\d{2,})(?=$|[-a-z])", "o", lower_name)
+        return lower_name
+
+    @staticmethod
     def _infer_ooh_formula(lower_name):
-        """Infer formulas for names containing hydroperoxide shorthand, such as c8h17ooh."""
+        """Infer formulae for names containing hydroperoxide shorthand, such as c8h17ooh."""
         # Match the hydrocarbon part before "ooh"; the group contributes +HO2.
         match = re.search(r"c(\d+)h(\d+)ooh", lower_name)
-        if not match:
-            return {}
+        if match:
+            carbon_count = int(match.group(1))
+            hydrogen_count = int(match.group(2)) + 1
+            oxygen_count = 2
+            suffix_after_ooh = lower_name[match.end():]
+        else:
+            # LLNL C8-C16 mechanisms also use compact labels such as
+            # c16ooh1-2 and c16ooh1-2o2, where the alkyl H count is omitted.
+            match = re.search(r"c(\d+)ooh", lower_name)
+            if not match:
+                return {}
 
-        carbon_count = int(match.group(1))
-        hydrogen_count = int(match.group(2)) + 1
-        oxygen_count = 2
+            carbon_count = int(match.group(1))
+            hydrogen_count = 2 * carbon_count + 1
+            oxygen_count = 2
+            suffix_after_ooh = lower_name[match.end():]
 
-        suffix_after_ooh = lower_name[match.end():]
         # Some names contain an additional peroxy group after the OOH group.
         if "o2" in suffix_after_ooh:
             oxygen_count += 2
 
         return {"C": carbon_count, "H": hydrogen_count, "O": oxygen_count}
+
+    @staticmethod
+    def _infer_ketohydroperoxide_formula(lower_name):
+        """Infer formulae for KET shorthand labels such as nc7ket12."""
+        if "ketox" in lower_name:
+            return {}
+
+        match = re.search(r"c(\d+)ket", lower_name)
+        if not match:
+            return {}
+
+        carbon_count = int(match.group(1))
+        return {"C": carbon_count, "H": 2 * carbon_count, "O": 3}
+
+    @staticmethod
+    def _infer_cyclic_ether_formula(lower_name):
+        """Infer formulae for cyclic-ether position labels such as c5h10o1-2."""
+        match = re.search(r"c(\d+)h(\d+)o", lower_name)
+        if match:
+            return {"C": int(match.group(1)), "H": int(match.group(2)), "O": 1}
+
+        compact_match = re.match(r"^c(\d+)o\d+-\d+$", lower_name)
+        if compact_match:
+            carbon_count = int(compact_match.group(1))
+            return {"C": carbon_count, "H": 2 * carbon_count, "O": 1}
+
+        return {}
+
+    @staticmethod
+    def _infer_acyl_fragment_formula(lower_name):
+        """Infer formulae for labels such as c12coc2h4p.
+
+        These LLNL labels describe an alkyl-acyl fragment:
+        c12coc2h4p is C12H25-CO-C2H4 radical, so its formula is C15H29O.
+        """
+        match = re.match(r"^c(\d+)coc(\d+)h(\d+)p$", lower_name)
+        if not match:
+            return {}
+
+        alkyl_carbon_count = int(match.group(1))
+        tail_carbon_count = int(match.group(2))
+        tail_hydrogen_count = int(match.group(3))
+        return {
+            "C": alkyl_carbon_count + 1 + tail_carbon_count,
+            "H": 2 * alkyl_carbon_count + 1 + tail_hydrogen_count,
+            "O": 1,
+        }
 
     @staticmethod
     def _looks_like_ring(species_name):
@@ -577,10 +758,29 @@ class identify_backbone_from_chemkin_mechanism():
             return True
         if lower_name in {"c5h5", "c6h5", "c6h6"}:  # known small rings
             return True
-        # Cyclic ether shorthand often stores oxygen position as a suffix.
-        if re.match(r"^c\d+h\d+o\d*-\d+$", lower_name):
+        if identify_bonds_from_chemikin_mechanism._looks_like_cyclic_ether_name(
+            lower_name
+        ):
             return True
-        if re.match(r"^cc\d+h\d+o", lower_name):
+        return False
+
+    @staticmethod
+    def _looks_like_cyclic_ether_name(lower_name):
+        """Return True for LLNL-style cyclic ether labels."""
+        # Some cyclic ethers store the oxygen bridge position as a suffix, e.g.
+        # c5h10o1-2. Require H = 2*C so c5h11o2-1 stays a peroxy radical.
+        position_match = re.match(r"^c(\d+)h(\d+)o\d+-\d+$", lower_name)
+        if position_match and int(position_match.group(2)) == 2 * int(position_match.group(1)):
+            return True
+        compact_position_match = re.match(r"^c(\d+)o\d+-\d+$", lower_name)
+        if compact_position_match:
+            return True
+        cc_match = re.match(r"^cc(\d+)h(\d+)o$", lower_name)
+        if cc_match and int(cc_match.group(2)) == 2 * int(cc_match.group(1)):
+            return True
+        # Low-temperature alkane mechanisms also use labels like a-ac5h10o.
+        branch_match = re.match(r"^[a-z]-[a-z]c(\d+)h(\d+)o$", lower_name)
+        if branch_match and int(branch_match.group(2)) == 2 * int(branch_match.group(1)):
             return True
         return False
 
@@ -607,6 +807,7 @@ class identify_backbone_from_chemkin_mechanism():
         lower_name = species_name.lower()
         carbon_count = formula_counts.get("C", 0) or self._carbon_count_from_name(species_name)
         hydrogen_count = formula_counts.get("H")
+        oxygen_count = formula_counts.get("O", 0)
 
         # Single-carbon species have no carbon-carbon skeleton.
         if carbon_count <= 1:
@@ -614,8 +815,24 @@ class identify_backbone_from_chemkin_mechanism():
 
         # Ring species need a different carbon-bond count from open chains.
         if is_ring:
+            if oxygen_count:
+                # Monocyclic ethers such as c5h10o1-2 and a-ac5h10o contain
+                # two C-O ring bonds, so only C-1 carbon-carbon ring bonds remain.
+                bond_counts["C-C"] += max(carbon_count - 1, 0)
+                notes.append("oxygen-containing ring carbon skeleton estimated")
+                return
             self._estimate_ring_carbon_bonds(carbon_count, hydrogen_count, bond_counts)
             notes.append("ring carbon skeleton estimated from name/formula")
+            return
+
+        # Acyclic aldehydes/ketones already use one degree of unsaturation for
+        # C=O, so CnH2nO should not be treated as also containing C=C.
+        if "ket" in lower_name or self._contains_carbonyl_name(lower_name):
+            if hydrogen_count is not None and hydrogen_count <= 2 * carbon_count - 2:
+                bond_counts["C=C"] += 1
+                bond_counts["C-C"] += max(carbon_count - 2, 0)
+            else:
+                bond_counts["C-C"] += max(carbon_count - 1, 0)
             return
 
         # A single triple or double bond replaces one C-C single bond.
@@ -686,12 +903,14 @@ class identify_backbone_from_chemkin_mechanism():
         """Add approximate C-O, C=O, O-O, and ring features from heteroatom names."""
         lower_name = species_name.lower()
         carbon_count = formula_counts.get("C", 0) or self._carbon_count_from_name(species_name)
+        oxygen_count = formula_counts.get("O", 0)
+        is_cyclic_ether = self._looks_like_cyclic_ether_name(lower_name)
 
-        # o1-2 style labels are treated as cyclic ethers with two C-O bonds.
-        if re.search(r"o\d+-\d+", lower_name) and carbon_count:
+        # o1-2 and a-ac5h10o style labels are treated as cyclic ethers with two C-O bonds.
+        if is_cyclic_ether and carbon_count:
             bond_counts["C-O"] += 2
             is_ring = True
-            notes.append("cyclic ether C-O bonds inferred from o-position pattern")
+            notes.append("cyclic ether C-O bonds inferred from name pattern")
 
         # Ketohydroperoxide shorthand combines carbonyl, C-O, and O-O features.
         if "ket" in lower_name:
@@ -709,7 +928,10 @@ class identify_backbone_from_chemkin_mechanism():
                 bond_counts["O-O"] += 1
             notes.append("hydroperoxide/peroxy bonds inferred from ooh/o2 pattern")
 
-        elif "o2h" in lower_name or re.search(r"o2-\d+", lower_name):
+        elif (
+            not is_cyclic_ether
+            and ("o2h" in lower_name or re.search(r"o2-\d+", lower_name))
+        ):
             bond_counts["C-O"] += 1 if carbon_count else 0
             bond_counts["O-O"] += 1
             notes.append("peroxide bonds inferred from o2/o2h pattern")
@@ -719,6 +941,19 @@ class identify_backbone_from_chemkin_mechanism():
             bond_counts["O-O"] += 1
             notes.append("peroxy radical bonds inferred from o2 suffix")
 
+        # Acyl-peroxy/peroxy-carbonyl labels can place the o2/co3/oo marker in
+        # the middle or beginning of the name, for example ch3co3, ho2cho,
+        # o2cho, o2c4h8cho, and ch3choococh3.
+        if (
+            carbon_count
+            and not is_cyclic_ether
+            and bond_counts["O-O"] == 0
+            and self._contains_peroxy_or_acylperoxy_name(lower_name)
+        ):
+            bond_counts["C-O"] += 1
+            bond_counts["O-O"] += 1
+            notes.append("peroxy/acyl-peroxy bonds inferred from name pattern")
+
         # Carbonyl and alcohol/alkoxy labels add additional C=O or C-O features.
         if self._contains_carbonyl_name(lower_name):
             bond_counts["C=O"] += 1
@@ -726,7 +961,40 @@ class identify_backbone_from_chemkin_mechanism():
         if self._contains_alcohol_or_alkoxy_name(lower_name):
             bond_counts["C-O"] += 1
 
+        # If the formula contains C and O but no oxygen bond was inferred, add
+        # one conservative C-O bond. This catches alkoxy/acyl shorthand such as
+        # ac5h11o, pc4h9o, and c3h5o without changing carbonyl/peroxy cases.
+        if carbon_count and oxygen_count and not self._has_oxygen_bond(bond_counts):
+            bond_counts["C-O"] += 1
+            notes.append("fallback C-O bond inferred for oxygen-containing species")
+
         return is_ring
+
+    @staticmethod
+    def _has_oxygen_bond(bond_counts):
+        """Return True when any tracked bond includes oxygen."""
+        oxygen_bonds = (
+            "C-O",
+            "C=O",
+            "C#O",
+            "O-O",
+            "O=O",
+            "O-N",
+            "N=O",
+            "O-H",
+        )
+        return any(bond_counts[bond] > 0 for bond in oxygen_bonds)
+
+    @staticmethod
+    def _contains_peroxy_or_acylperoxy_name(lower_name):
+        """Check for peroxy markers not covered by the simple suffix rules."""
+        if "ooh" in lower_name or "o2h" in lower_name:
+            return False
+        return (
+            "co3" in lower_name
+            or "o2" in lower_name
+            or "oo" in lower_name
+        )
 
     @staticmethod
     def _add_hydrogen_bond_heuristics(species_name, formula_counts, bond_counts):
@@ -766,8 +1034,14 @@ class identify_backbone_from_chemkin_mechanism():
         else:
             oxygen_hydrogen_count += lower_name.count("ooh")
             remaining_name = lower_name.replace("ooh", "")
+            oxygen_hydrogen_count += remaining_name.count("ho2")
+            remaining_name = remaining_name.replace("ho2", "")
             oxygen_hydrogen_count += remaining_name.count("o2h")
             remaining_name = remaining_name.replace("o2h", "")
+            oxygen_hydrogen_count += remaining_name.count("co3h")
+            remaining_name = remaining_name.replace("co3h", "co3")
+            if "ket" in lower_name and "ketox" not in lower_name:
+                oxygen_hydrogen_count += 1
             oxygen_hydrogen_count += remaining_name.count("oh")
 
         # Clamp inferred H attachments so the estimate cannot exceed formula H.
@@ -803,14 +1077,24 @@ class identify_backbone_from_chemkin_mechanism():
         """Check whether the species name contains aldehyde/carbonyl-like markers."""
         if lower_name in {"co", "co2"}:
             return False
+        if lower_name.endswith("-co2"):
+            return False
         return "cho" in lower_name or "co" in lower_name
 
     @staticmethod
     def _contains_alcohol_or_alkoxy_name(lower_name):
         """Check whether the species name contains alcohol or alkoxy-like markers."""
-        if "ooh" in lower_name or "o2" in lower_name:
+        if (
+            "ooh" in lower_name
+            or "o2" in lower_name
+            or identify_bonds_from_chemikin_mechanism._contains_carbonyl_name(lower_name)
+        ):
             return False
         return lower_name.endswith("oh") or re.search(r"o-\d+$", lower_name) is not None
+
+
+# Backward-compatible alias for older notebooks/scripts.
+identify_backbone_from_chemkin_mechanism = identify_bonds_from_chemikin_mechanism
 
 
 def _nonzero_bond_counts(bond_counts):
@@ -819,70 +1103,77 @@ def _nonzero_bond_counts(bond_counts):
     return {bond: count for bond, count in bond_counts.items() if count}
 
 
-def print_formula_ambiguity_summary(backbone, max_formulas=8, max_species=5):
-    """Print formulas that have multiple bond-count/ring variants."""
-    # This summary is meant for quick inspection, not for machine parsing.
+def formula_ambiguity_summary_lines(backbone, max_formulae=8, max_species=5):
+    """Return summary lines for formulae with multiple bond-count/ring variants."""
     sanity_checks = backbone["sanity_checks"]
-    ambiguous_formulas = backbone["ambiguous_formulas"]
-    formula_variants = backbone["formula_variants"]
+    ambiguous_formulae = backbone["ambiguous_formulae"]
+    formula_degeneracies = backbone["formula_degeneracies"]
     multi_species_labels = backbone["multi_species_labels"]
+    lines = []
 
-    print(
+    lines.append(
         "  sanity: "
         f"raw={sanity_checks['raw_species_count']}, "
-        "variant_refs_match_species="
-        f"{sanity_checks['variant_species_reference_matches_species_count']}"
+        "degeneracy_refs_match_species="
+        f"{sanity_checks['degeneracy_species_reference_matches_species_count']}"
     )
 
-    print(
+    lines.append(
         "  species labels that may represent multiple structures: "
         f"{len(multi_species_labels)}"
     )
     for species_name, label_info in list(multi_species_labels.items())[:max_species]:
-        print(
+        lines.append(
             f"    {species_name}: formula={label_info['formula']}, "
-            f"variants={label_info['related_formula_variant_ids']}"
+            f"degeneracies={label_info['related_formula_degeneracy_ids']}"
         )
 
-    print(
-        "  formulas with multiple possible molecules: "
-        f"{len(ambiguous_formulas)}"
+    lines.append(
+        "  formulae with multiple possible molecules: "
+        f"{len(ambiguous_formulae)}"
     )
 
-    sorted_formulas = sorted(
-        ambiguous_formulas,
-        key=lambda formula: (-len(ambiguous_formulas[formula]), formula),
+    sorted_formulae = sorted(
+        ambiguous_formulae,
+        key=lambda formula: (-len(ambiguous_formulae[formula]), formula),
     )
 
-    for formula in sorted_formulas[:max_formulas]:
-        variant_ids = ambiguous_formulas[formula]
-        print(f"    {formula}: {len(variant_ids)} variants")
-        for variant_id in variant_ids:
-            variant = formula_variants[variant_id]
-            species_preview = ", ".join(variant["species"][:max_species])
-            if len(variant["species"]) > max_species:
+    for formula in sorted_formulae[:max_formulae]:
+        degeneracy_ids = ambiguous_formulae[formula]
+        lines.append(f"    {formula}: {len(degeneracy_ids)} degeneracies")
+        for degeneracy_id in degeneracy_ids:
+            degeneracy = formula_degeneracies[degeneracy_id]
+            species_preview = ", ".join(degeneracy["species"][:max_species])
+            if len(degeneracy["species"]) > max_species:
                 species_preview += ", ..."
-            print(
-                f"      {variant_id}: "
-                f"ring={variant['is_ring']}, "
-                f"bonds={_nonzero_bond_counts(variant['bond_counts'])}, "
+            lines.append(
+                f"      {degeneracy_id}: "
+                f"ring={degeneracy['is_ring']}, "
+                f"bonds={_nonzero_bond_counts(degeneracy['bond_counts'])}, "
                 f"species=[{species_preview}]"
             )
 
+    return lines
+
+
+def print_formula_ambiguity_summary(backbone, max_formulae=8, max_species=5):
+    """Print formulae that have multiple bond-count/ring variants."""
+    # This summary is meant for quick inspection, not for machine parsing.
+    for line in formula_ambiguity_summary_lines(backbone, max_formulae, max_species):
+        print(line)
+
 
 if __name__ == "__main__":
-    # When run as a script, scan every ChemKin mechanism in this folder.
+    # When run as a script, parse the n-heptane mechanism and export the full
+    # species-backbone dictionary for downstream inspection or GNN preprocessing.
     script_dir = Path(__file__).resolve().parent
     mechanism_dir = script_dir / "mechanism_file_chemkin"
+    mechanism_file = mechanism_dir / "nHeptane_LLNL.txt"
+    output_file = script_dir / "output" / "nHeptane_LLNL_species_backbone.json"
+    log_file = script_dir / "output" / f"log_{mechanism_file.stem}.txt"
 
-    for mechanism_file in sorted(mechanism_dir.glob("*.txt")):
-        reader = identify_backbone_from_chemkin_mechanism(mechanism_file)
-        species = reader.read_chemkin_species()
-        backbone = reader.read_species_backbone()
-
-        print(
-            f"{mechanism_file.name}: "
-            f"{len(species)} species found, "
-            f"{len(backbone['formula_variants'])} formula variants"
-        )
-        print_formula_ambiguity_summary(backbone)
+    reader = identify_bonds_from_chemikin_mechanism(mechanism_file)
+    reader.read_chemkin_species()
+    reader.read_species_backbone()
+    json_output_path = reader.export_species_backbone_to_json(output_file)
+    reader.write_species_backbone_log(json_output_path, log_file)
