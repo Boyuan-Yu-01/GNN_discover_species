@@ -88,7 +88,7 @@ A sample_type template has been given as a list that contains ``2 H + 2 O``. The
 #### Training Loop
 *This is closer to a compact policy-gradient-style toy loop than to supervised training: there are no labeled target graphs. The model is rewarded when the final disconnected fragments are all valid H/O species.*
 
-## July. 1st, 2026
+## July. 8th, 2026
 <span style="color:red">Question:</span> H-O-O-...-O-H is not sustainable, <span style="color:blue">how to penalize?</span>
 <span style="color:red">Question:</span> How to penalize long chain hydrocarbon? 
 
