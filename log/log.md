@@ -139,7 +139,7 @@ It contains [JetSurF2.0](https://web.stanford.edu/group/haiwanglab/JetSurF/JetSu
 
 <span style="color:red">Use LLNL C8-16 & C7H16 model only</span>
 
-* A side-note for those detailed kinetic models: they <span style="color:red">do not contain N chemistries</span>
+* A side-note for those detailed kinetic models: they <span style="color:red">do not contain N chemistries</span> [summary](../penalize_long_chain/output/log_master_dataset.txt) 
 * Within the `class identify_backbone_from_chemkin_mechanism`, *BOND_KEYS* contains <span style="color:red">20 types of bonds</span>, *EXACT_SPECIES* contains <span style="color:red">60 basic species</span> as a small chemistry knowledge table
 * <span style="color:blue">(Maybe not a problem but)</span> we do not distinguish isomers because it is a <span style="color:red">SUBGRAPH FEATURE</span>. Isomers are <span style="color:red">degeneracies</span> for this subgraph feature. 
 
