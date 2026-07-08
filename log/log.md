@@ -121,6 +121,7 @@ Average Bond Enthalpies (kJ/mol) at 25 °C[Link](https://owl.oit.umass.edu/depar
 * Instead of using "RT", we should use a tunable parameter for the <span style="color:red">learning purpose</span>.
 
 [Summary of This Idea](mapping_E_to_P.md)
+
 [Simple validation of this idea](../penalize_long_chain/validate_Eb_to_P/simple_validation.py)
 ![](../penalize_long_chain/validate_Eb_to_P/validation.png)
 
