@@ -1,4 +1,30 @@
 Master dataset merge log
+
+========================================
+MASTER DATASET STATISTICS
+========================================
+Formula-degeneracy groups: 273
+Groups with backbone: 263
+Ring groups: 15
+Backbone bond summary, excluding bonds that contain H:
+  C-C: max 15, nonzero groups 237
+  C=C: max 2, nonzero groups 58
+  C#C: max 1, nonzero groups 3
+  C-N: max 0, nonzero groups 0
+  C=N: max 0, nonzero groups 0
+  C#N: max 0, nonzero groups 0
+  C-O: max 2, nonzero groups 142
+  C=O: max 2, nonzero groups 75
+  C#O: max 1, nonzero groups 1
+  N-N: max 0, nonzero groups 0
+  N=N: max 0, nonzero groups 0
+  N#N: max 1, nonzero groups 1
+  O-O: max 2, nonzero groups 94
+  O=O: max 1, nonzero groups 1
+  O-N: max 0, nonzero groups 0
+  N=O: max 0, nonzero groups 0
+========================================
+
 Master JSON output: /Users/boyuanyu/Documents/research/GNN/GNN_discover_species/penalize_long_chain/output/master_dataset.json
 Log output: /Users/boyuanyu/Documents/research/GNN/GNN_discover_species/penalize_long_chain/output/log_master_dataset.txt
 Input files: 2

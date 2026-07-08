@@ -1,4 +1,5 @@
 from collections import defaultdict
+import csv
 import json
 from pathlib import Path
 import re
@@ -110,6 +111,38 @@ class master_dataset_merger:
                 sort_keys=True,
             )
             file_handle.write("\n")
+        return output_path
+
+    def export_formula_degeneracy_summary_to_csv(self, output_file):
+        """Write a transposed bond-count summary for master degeneracies.
+
+        The first row contains the formula-degeneracy IDs. The first column
+        contains row labels: ``is_ring`` followed by every known bond-count key.
+        Each cell is the value for that degeneracy group.
+        """
+        if not self.master_dataset:
+            self.merge_formula_degeneracies()
+
+        output_path = Path(output_file).expanduser().resolve()
+        output_path.parent.mkdir(parents=True, exist_ok=True)
+        formula_degeneracies = self.master_dataset.get("formula_degeneracies", {})
+        degeneracy_ids = sorted(formula_degeneracies)
+        row_labels = ["is_ring", *self.BOND_KEYS]
+
+        with output_path.open("w", encoding="utf-8", newline="") as file_handle:
+            writer = csv.writer(file_handle)
+            writer.writerow(["count_type", *degeneracy_ids])
+            for row_label in row_labels:
+                row = [row_label]
+                for degeneracy_id in degeneracy_ids:
+                    entry = formula_degeneracies[degeneracy_id]
+                    if row_label == "is_ring":
+                        value = int(bool(entry.get("is_ring", False)))
+                    else:
+                        value = entry.get("bond_counts", {}).get(row_label, 0)
+                    row.append(value)
+                writer.writerow(row)
+
         return output_path
 
     def write_log(self, log_file, master_json_path=None):
@@ -249,6 +282,7 @@ class master_dataset_merger:
             "input_files": input_summaries,
             "input_formula_degeneracy_count": input_degeneracy_count,
             "master_formula_degeneracy_count": len(signature_records),
+            "master_dataset_statistics": self._master_dataset_statistics(),
             "merged_duplicate_signature_count": (
                 input_degeneracy_count - len(signature_records)
             ),
@@ -269,14 +303,70 @@ class master_dataset_merger:
             )[:20],
         }
 
+    def _master_dataset_statistics(self):
+        """Summarize master dataset counts for non-H backbone bonds."""
+        formula_degeneracies = self.master_dataset.get("formula_degeneracies", {})
+        non_h_bond_keys = [bond for bond in self.BOND_KEYS if "H" not in bond]
+        group_count = len(formula_degeneracies)
+        groups_with_backbone = 0
+        ring_groups = 0
+        bond_summary = {}
+
+        for entry in formula_degeneracies.values():
+            bond_counts = entry.get("bond_counts", {})
+            if any(bond_counts.get(bond, 0) for bond in non_h_bond_keys):
+                groups_with_backbone += 1
+            if bool(entry.get("is_ring", False)):
+                ring_groups += 1
+
+        for bond in non_h_bond_keys:
+            counts = [
+                entry.get("bond_counts", {}).get(bond, 0)
+                for entry in formula_degeneracies.values()
+            ]
+            bond_summary[bond] = {
+                "max": max(counts, default=0),
+                "nonzero_groups": sum(count > 0 for count in counts),
+            }
+
+        return {
+            "formula_degeneracy_groups": group_count,
+            "groups_with_backbone": groups_with_backbone,
+            "ring_groups": ring_groups,
+            "bond_summary": bond_summary,
+        }
+
     def _log_lines(self, master_json_path, log_path):
         """Format merge statistics and clash summaries as readable lines."""
+        statistics = self.merge_log["master_dataset_statistics"]
         lines = [
             "Master dataset merge log",
-            f"Master JSON output: {master_json_path}",
-            f"Log output: {log_path}",
-            f"Input files: {len(self.merge_log['input_files'])}",
+            "",
+            "========================================",
+            "MASTER DATASET STATISTICS",
+            "========================================",
+            f"Formula-degeneracy groups: {statistics['formula_degeneracy_groups']}",
+            f"Groups with backbone: {statistics['groups_with_backbone']}",
+            f"Ring groups: {statistics['ring_groups']}",
+            "Backbone bond summary, excluding bonds that contain H:",
         ]
+        for bond, summary in statistics["bond_summary"].items():
+            lines.append(
+                "  "
+                f"{bond}: "
+                f"max {summary['max']}, "
+                f"nonzero groups {summary['nonzero_groups']}"
+            )
+
+        lines.extend(
+            [
+                "========================================",
+                "",
+                f"Master JSON output: {master_json_path}",
+                f"Log output: {log_path}",
+                f"Input files: {len(self.merge_log['input_files'])}",
+            ]
+        )
         for summary in self.merge_log["input_files"]:
             lines.append(
                 "  "
@@ -294,9 +384,9 @@ class master_dataset_merger:
                 f"Invalid entries skipped: {len(self.merge_log['invalid_entries'])}",
                 f"Source degeneracy ID clashes: {len(self.merge_log['source_id_clashes'])}",
                 f"Species signature clashes: {len(self.merge_log['species_signature_clashes'])}",
-                "Top ambiguous formulae:",
             ]
         )
+        lines.append("Top ambiguous formulae:")
 
         for formula, count in self.merge_log["top_ambiguous_formulae"]:
             lines.append(f"  {formula}: {count} master degeneracies")
@@ -332,4 +422,7 @@ if __name__ == "__main__":
     merger.merge_and_export(
         output_file=output_dir / "master_dataset.json",
         log_file=output_dir / "log_master_dataset.txt",
+    )
+    merger.export_formula_degeneracy_summary_to_csv(
+        output_dir / "master_dataset_summary.csv"
     )

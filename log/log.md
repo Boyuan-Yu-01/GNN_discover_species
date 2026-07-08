@@ -120,6 +120,10 @@ Average Bond Enthalpies (kJ/mol) at 25 °C[Link](https://owl.oit.umass.edu/depar
 * In reaction, the Arrhenius term multiply with concentrations of reactants. In here we only consider <span style="color:red">self-dissociation</span>.
 * Instead of using "RT", we should use a tunable parameter for the <span style="color:red">learning purpose</span>.
 
+[Summary of This Idea](mapping_E_to_P.md)
+[Simple validation of this idea](../penalize_long_chain/validate_Eb_to_P/simple_validation.py)
+![](../penalize_long_chain/validate_Eb_to_P/validation.png)
+
 ## Concept proof the idea:
 * Find a reaction kinetic model <span style="color:blue">full of long chain hydrocarbon</span>.
 * Use this as a training model, train a <span style="color:blue">algorithm</span> or a <span style="color:red">neural network</span>.
@@ -215,3 +219,5 @@ It contains [JetSurF2.0](https://web.stanford.edu/group/haiwanglab/JetSurF/JetSu
 ### Read master_dataset.json
 *master_dataset.json only keeps formula_degenracies as the subgraph feature for the training purpose.*
 * A modification is made toward degeneracy *CO*, change bond from C#O to C=O
+
+<span style="color:red">Limitation of the "master_dataset": It does not contain any negative example</span>  

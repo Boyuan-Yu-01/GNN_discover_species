@@ -36,9 +36,13 @@ with redirect_stdout(StringIO()):
         output_file=output_dir / "master_dataset.json",
         log_file=output_dir / "log_master_dataset.txt",
     )
+    master_summary_path = merger.export_formula_degeneracy_summary_to_csv(
+        output_dir / "master_dataset_summary.csv"
+    )
 
 print(
     "master_dataset.json: "
     f"{len(merger.master_dataset['formula_degeneracies'])} formula degeneracies"
 )
 print(f"log_master_dataset.txt: {master_log_path}")
+print(f"master_dataset_summary.csv: {master_summary_path}")
