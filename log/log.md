@@ -222,3 +222,8 @@ It contains [JetSurF2.0](https://web.stanford.edu/group/haiwanglab/JetSurF/JetSu
 * A modification is made toward degeneracy *CO*, change bond from C#O to C=O
 
 <span style="color:red">Limitation of the "master_dataset": It does not contain any negative example</span>  
+
+## Idea to Parameter-tuning 
+1. Tune the parameter from equation derivation [Link](../penalize_long_chain/parameter_tuning_plan.md)
+2. Use machine learning approach to tune parameter [Link](../penalize_long_chain/machine_learning_approach.md)
+3. Machine learning black box [Link](../penalize_long_chain/black_box_species_existence_ml.md)
