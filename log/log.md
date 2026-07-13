@@ -226,7 +226,7 @@ It contains [JetSurF2.0](https://web.stanford.edu/group/haiwanglab/JetSurF/JetSu
 ## Idea to Parameter-tuning 
 1. Tune the parameter from equation derivation [Link](../penalize_long_chain/parameter_tuning_plan.md)
 2. Use machine learning approach to tune parameter [Link](../penalize_long_chain/machine_learning_approach.md)
-3. Machine learning black box [Link](../penalize_long_chain/black_box_species_existence_ml.md
+3. Machine learning black box [Link](../penalize_long_chain/black_box_species_existence_ml.md)
 
 ## Jul. 15th, 2026
 ### Generate Pseudo Negative  [Link](../penalize_long_chain/README_pseudo_negative_generator.md)
@@ -234,5 +234,27 @@ A pseudo-negative is not proof that a molecule is impossible. It is a valence-va
 
 <span style="color:red">From parsing positive degeneracies to synthesis negative degeneracies:</span> [Link](../penalize_long_chain/README.md) 
 
+In total __569__ pseudo negative degeneracies are generated.
+In total __273__ positive degeneracies are recorded.
+
 [`Generated pseudo negative degeneracies`](../penalize_long_chain/output/pseudo_negative_dataset.json)
 
+Under the directory of `penalize_long_chain/training/dataSets/` contains 3 train data&validate data sets.
+* Each training dataset contains 214 positive & 214 pseudo negative samples
+* Each validation dataset contains 53 positive & 114 pseudo negative samples
+* *Validation dataset are identical across 3 datasets*
+```train_validation_X.json
+training_set
+    positive_samples
+        C10H19O_001
+        ...
+    pseudo_negative_samples
+        C10H10O2_001
+        ...
+
+validation_set
+    positive_samples
+        ...
+    pseudo_negative_samples
+        ...
+```

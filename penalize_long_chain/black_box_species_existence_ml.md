@@ -1,923 +1,731 @@
-# Black-Box Machine Learning Model for Species Existence
+# Bond-Count Species-Existence Model
 
-This document reformulates the problem. Instead of using machine learning only to tune the parameters `A`, `E_ref`, and `k` in a fixed bond-breaking probability formula, we use machine learning to directly predict whether a formula-degeneracy group or molecule-like bond structure may exist.
-
-The central idea is:
-
-```text
-bond-count information + bond-strength information + structural descriptors
-    -> machine learning model
-    -> existence score
-```
-
-The model should learn from known species groups, but it should also be able to score an unknown species if we provide its bond counts and bond-strength descriptors.
+This document defines a machine-learning model that scores whether a
+formula-degeneracy group may exist. Each sample is represented only by its bond
+counts and ring flag. Bond dissociation energies (BDEs) are retained as fixed
+physical knowledge used inside the model; they are not duplicated in every
+sample record.
 
 ## 1. Goal
 
-Given a candidate species or formula-degeneracy group `g`, predict:
+For a formula-degeneracy group `g`, predict an existence score:
 
 $$
-P_{\mathrm{exist}}(g)
+P_{\mathrm{exist}}(g) \in [0,1].
 $$
 
-or a probability-like score:
-
-$$
-s(g) \in [0, 1]
-$$
-
-where:
-
-- high score means the structure is likely to be chemically plausible or observed;
-- low score means the structure is unlikely, unstable, or over-penalized by weak/long-chain bonds.
-
-This is no longer a pure parameter-fitting problem. It is a representation-learning problem:
-
-```text
-Can the model learn a mapping from bond inventory and bond strength to species existence?
-```
-
-## 2. Why Not Just Tune `A`, `E_ref`, and `k`?
-
-The previous plan used a fixed formula:
-
-$$
-\mathrm{Arr}_b
-=
-A \exp \left(-\frac{E_b}{E_{\mathrm{ref}}}\right)
-$$
-
-$$
-P_{\mathrm{break},b}
-=
-\frac{1}{1 + k\exp(-\mathrm{Arr}_b)}
-$$
-
-and then tuned:
-
-```text
-A
-E_ref
-k
-```
-
-That approach is interpretable, but limited. It assumes the functional form is already correct.
-
-The new approach lets the model learn a more flexible relationship:
-
-$$
-P_{\mathrm{exist}}(g)
-=
-f_{\theta}
-\left(
-\mathrm{bond\ counts},
-\mathrm{bond\ strengths},
-\mathrm{bond\ descriptors},
-\mathrm{global\ structure}
-\right)
-$$
-
-where `f_theta` is a learned machine learning model.
-
-## 3. Key Design Requirement
-
-The model should be able to handle an unknown species or a newly introduced atom type as long as we can provide its bond-level descriptors.
-
-That means we should avoid a fixed input vector like:
-
-```text
-[C-C count, C-O count, C=O count, C=C count, C#C count]
-```
-
-because this fixed vector cannot naturally accept a new bond type without changing the input dimension.
-
-Instead, use a set-based representation:
-
-```text
-one row per bond type present in the molecule
-```
-
-Each row contains numerical descriptors of that bond type.
-
-Example:
-
-| bond | count | BDE | bond_order | atom_1_Z | atom_2_Z | atom_1_en | atom_2_en |
-| ---- | ----: | --: | ---------: | -------: | -------: | --------: | --------: |
-| C-C  | 9     | 346 | 1          | 6        | 6        | 2.55      | 2.55      |
-| C=O  | 1     | 732 | 2          | 6        | 8        | 2.55      | 3.44      |
-
-Then the model sees a collection of bond rows rather than a fixed set of named columns.
-
-## 4. Recommended Model Type: Bond-Set Neural Network
-
-Use a DeepSets-style model.
-
-For each bond type `b`, construct a feature vector:
-
-$$
-x_b
-=
-\left[
-N_b,
-E_b,
-o_b,
-Z_1,
-Z_2,
-\chi_1,
-\chi_2,
-r_1,
-r_2,
-\ldots
-\right]
-$$
-
-where:
-
-- `N_b` is the number of bonds of that type;
-- `E_b` is the bond dissociation energy;
-- `o_b` is the bond order: 1, 2, or 3;
-- `Z_1`, `Z_2` are atomic numbers;
-- `chi_1`, `chi_2` are electronegativities;
-- `r_1`, `r_2` are atomic radii or covalent radii.
-
-Then apply the same neural network to every bond row:
-
-$$
-h_b = \phi_{\theta}(x_b)
-$$
-
-Aggregate all bond embeddings:
-
-$$
-h_g
-=
-\sum_{b \in g}
-h_b
-$$
-
-Finally predict existence:
-
-$$
-P_{\mathrm{exist}}(g)
-=
-\sigma
-\left(
-\rho_{\theta}(h_g)
-\right)
-$$
-
-where:
-
-- `phi_theta` is a bond encoder MLP;
-- `sum` makes the model independent of bond-row ordering;
-- `rho_theta` is a final predictor MLP;
-- `sigma` maps the output to `[0, 1]`.
-
-## 5. Why This Helps With Unknown Species
-
-This representation can handle a new species because the model does not require a fixed species label.
-
-It only needs:
-
-```text
-bond counts
-bond strengths
-bond descriptors
-optional atom descriptors
-```
-
-If a new atom type is added, the model can still accept it if the same descriptor fields are available.
-
-For example, if sulfur is added later, a new bond row could look like:
-
-| bond | count | BDE | bond_order | atom_1_Z | atom_2_Z | atom_1_en | atom_2_en |
-| ---- | ----: | --: | ---------: | -------: | -------: | --------: | --------: |
-| C-S  | 1     | 272 | 1          | 6        | 16       | 2.55      | 2.58      |
-
-The network architecture does not need to change because this is still the same input feature shape:
-
-```text
-[count, BDE, bond_order, atom descriptors]
-```
-
-Important caveat:
-
-```text
-The model can accept new atom/bond descriptors without changing architecture,
-but prediction reliability depends on whether the new chemistry is close to
-the training distribution.
-```
-
-So this approach reduces the need for retraining, but it does not guarantee perfect extrapolation.
-
-## 6. Input Features
-
-### Bond-Level Features
-
-Recommended bond-level features:
-
-```text
-bond_count
-bond_dissociation_energy
-bond_order
-minimum_atomic_number
-maximum_atomic_number
-mean_atomic_number
-absolute_atomic_number_difference
-minimum_electronegativity
-maximum_electronegativity
-mean_electronegativity
-electronegativity_difference
-minimum_covalent_radius
-maximum_covalent_radius
-mean_covalent_radius
-radius_difference
-is_hydrogen_bond
-is_carbon_bond
-is_oxygen_bond
-is_nitrogen_bond
-```
-
-For the current dataset, you may start with:
-
-```text
-bond_count
-bond_dissociation_energy
-bond_order
-atom_1_atomic_number
-atom_2_atomic_number
-atom_1_electronegativity
-atom_2_electronegativity
-```
-
-### Global Group Features
-
-Add global features after aggregating bond embeddings:
-
-```text
-total_non_h_bond_count
-total_h_bond_count
-total_bond_count
-is_ring
-number_of_distinct_bond_types
-estimated_heavy_atom_count
-estimated_formula_size
-```
-
-Then the model becomes:
-
-$$
-h_g
-=
-\left[
-\sum_b \phi_{\theta}(x_b),
-x_{\mathrm{global}}
-\right]
-$$
-
-$$
-P_{\mathrm{exist}}(g)
-=
-\sigma
-\left(
-\rho_{\theta}(h_g)
-\right)
-$$
-
-## 7. Labels
-
-The dataset still has no measured probability labels and no true negative examples.
-
-Therefore, observed formula-degeneracy groups are positive examples:
-
-$$
-y = 1
-$$
-
-Pseudo-negative groups are generated artificial examples:
-
-$$
-\tilde{y} = 0
-$$
-
-This is a weakly supervised learning problem.
-
-The model should be described as learning:
-
-```text
-existence tendency
-```
-
-not perfectly calibrated physical probability.
-
-## 8. Positive Samples
-
-Each group from:
-
-```text
-formula_degeneracies
-```
-
-is an observed positive sample.
-
-For each positive group, build:
-
-```text
-bond-row table
-global feature vector
-label = 1
-support_weight = log1p(len(species))
-```
-
-The species-list length can be used as a weak confidence weight:
-
-$$
-w_g = \log(1 + \mathrm{species\_count}_g)
-$$
-
-This should not be interpreted as the true probability of existence.
-
-## 9. Pseudo-Negative Samples
-
-Since there are no true negatives, generate pseudo-negatives.
-
-### Random Count Negatives
-
-Sample bond counts from expanded observed ranges and reject any exact observed signature.
-
-### Corrupted Positive Negatives
-
-Start from an observed group and perturb it:
-
-```text
-increase weak-bond counts
-increase chain length
-add fragile motifs
-replace stronger bonds with weaker bonds
-```
-
-### Long-Chain Negatives
-
-Generate examples with too many repeated backbone bonds.
-
-This directly targets the long-chain penalty problem.
-
-### Valence-Violation Negatives
-
-If approximate valence rules are available, generate chemically impossible or very unlikely structures.
-
-Example:
-
-```text
-too many heavy-atom bonds for a formula size
-impossible ring/bond-count combinations
-too many multiple bonds for a saturated formula
-```
-
-These can be stronger negatives, but they should be used carefully because the current dataset has only approximate bond-count information.
-
-## 10. Model Architecture
-
-A simple PyTorch architecture could be:
-
-```text
-Bond rows -> shared bond encoder MLP -> sum pooling -> concatenate global features -> predictor MLP -> existence score
-```
-
-### Bond Encoder
-
-$$
-h_b = \phi_{\theta}(x_b)
-$$
-
-Example:
-
-```text
-input dimension: number of bond descriptor features
-hidden dimension: 32 or 64
-output dimension: 32 or 64
-```
-
-### Pooling
+A larger score means that the group resembles observed degeneracies more than
+the generated candidates used during training. Without measured probabilities
+or confirmed negatives, this score is not a calibrated physical probability.
+
+## 2. Training Data
 
 Use:
 
+```text
+training/dataSets/train_validation_1.json
+training/dataSets/train_validation_2.json
+training/dataSets/train_validation_3.json
+```
+
+Every file has this nested hierarchy:
+
+```text
+training_set
+    positive_samples
+        <degeneracy_id>: <sample record>
+    pseudo_negative_samples
+        <degeneracy_id>: <sample record>
+validation_set
+    positive_samples
+        <degeneracy_id>: <sample record>
+    pseudo_negative_samples
+        <degeneracy_id>: <sample record>
+```
+
+Each degeneracy contains:
+
+```text
+degeneracy_id
+formula
+bond_counts
+is_ring
+label
+class_name
+```
+
+The counts in every file are:
+
+| Partition | Positive samples | Pseudo-negative samples | Total |
+| --- | ---: | ---: | ---: |
+| `training_set` | 214 | 214 | 428 |
+| `validation_set` | 53 | 114 | 167 |
+
+The three files contain the same 214 training positives and the same validation
+set. They differ only in the 214 pseudo-negative training samples. No molecular
+formula is shared between training and validation.
+
+These collection names describe **where the samples came from**, not their PU
+training roles:
+
+```text
+positive_samples         -> observed-positive source pool
+pseudo_negative_samples  -> fabricated source pool
+```
+
+Do not directly equate `positive_samples` with `P`, and do not directly equate
+`pseudo_negative_samples` with `U`. A PU unlabeled pool must be a mixture that
+contains some real positives. Construct the training roles as:
+
+```text
+P = 171 retained observed positives
+U = 43 hidden observed positives + 214 fabricated samples = 257 samples
+```
+
+Thus 20% of the 214 observed training positives are deliberately hidden inside
+`U`. Select the 43 hidden positives by complete formula groups with a fixed seed
+so closely related degeneracies are not divided between `P` and the known-
+positive portion of `U`.
+
+The internal `label` and `class_name` fields are used only to construct and
+audit this experiment. They must be removed or masked after samples enter `U`;
+the model and loss must not be told which 43 unlabeled records are known
+positives. The fabricated samples are also not confirmed negatives.
+
+Minimal loading pattern:
+
+```python
+def load_partition(dataset, partition_name):
+    partition = dataset[partition_name]
+    observed = list(partition["positive_samples"].values())
+    fabricated = list(partition["pseudo_negative_samples"].values())
+    return observed, fabricated
+```
+
+Construct validation roles in the same way: retain 42 observed records as
+`P_validation`, then mix 11 hidden observed records with the 114 fabricated
+records to form `U_validation` (125 records total). Keep the original source
+identities in an evaluation-only copy so all 53 observed positives can be used
+to calculate recall. Never expose those hidden identities to the model or loss.
+
+## 3. Degeneracy Feature Vector
+
+Use the bond order stored in the JSON files:
+
+```python
+BOND_TYPES = [
+    "C-C",
+    "C=C",
+    "C#C",
+    "O-O",
+    "O=O",
+    "C-O",
+    "C=O",
+    "C-H",
+    "O-H",
+]
+```
+
+For degeneracy `g`, construct the fixed feature vector:
+
 $$
-h_{\mathrm{bond\ set}} = \sum_b h_b
+x_g = [
+N_{\mathrm{C-C}},
+N_{\mathrm{C=C}},
+N_{\mathrm{C\#C}},
+N_{\mathrm{O-O}},
+N_{\mathrm{O=O}},
+N_{\mathrm{C-O}},
+N_{\mathrm{C=O}},
+N_{\mathrm{C-H}},
+N_{\mathrm{O-H}},
+I_{\mathrm{ring}}
+].
 $$
 
-or:
+Here:
+
+- `N_b` is the integer count of bond type `b`;
+- `I_ring = 1` for a ring group and `0` otherwise.
+
+The input dimension is therefore exactly 10.
+
+Example:
+
+```json
+{
+  "bond_counts": {
+    "C-C": 9,
+    "C=C": 0,
+    "C#C": 0,
+    "O-O": 0,
+    "O=O": 0,
+    "C-O": 0,
+    "C=O": 1,
+    "C-H": 19,
+    "O-H": 0
+  },
+  "is_ring": false
+}
+```
+
+becomes:
+
+```text
+[9, 0, 0, 0, 0, 0, 1, 19, 0, 0]
+```
+
+Do not include formula, degeneracy ID, class name, or label in the feature
+vector. They are identifiers or training targets, not predictors.
+
+## 4. Retaining Bond Dissociation Energy
+
+BDE remains part of the model as a fixed lookup aligned with `BOND_TYPES`:
+
+```python
+BDE_BY_BOND = {
+    "C-C": 346.0,
+    "C=C": 602.0,
+    "C#C": 835.0,
+    "O-O": 146.0,
+    "O=O": 498.0,
+    "C-O": 358.0,
+    "C=O": 732.0,
+    "C-H": 413.0,
+    "O-H": 463.0,
+}
+```
+
+The values are approximate and must remain configurable. BDE depends on the
+molecular environment, so these numbers are physical descriptors rather than
+exact universal constants.
+
+The important separation is:
+
+```text
+sample-specific information = bond counts + is_ring
+shared physical information  = BDE lookup by bond type
+```
+
+This prevents the same BDE constants from being stored repeatedly in every
+degeneracy while ensuring they still influence prediction.
+
+## 5. BDE-Informed Physical Descriptor
+
+Convert each BDE into a fixed fragility weight:
 
 $$
-h_{\mathrm{bond\ set}} = \frac{1}{|\mathcal{B}_g|}\sum_b h_b
+q_b = \exp\left(-\frac{E_b}{E_{\mathrm{scale}}}\right),
 $$
 
-Sum pooling usually preserves molecule-size information better. Mean pooling removes some size information, so if mean pooling is used, total bond count should be included as a global feature.
+where `E_b` is the BDE of bond type `b`. Begin with:
 
-### Predictor
+```python
+E_SCALE = 400.0  # same energy unit as the BDE table
+```
 
-$$
-z_g = \rho_{\theta}
-\left(
-\left[
-h_{\mathrm{bond\ set}},
-x_{\mathrm{global}}
-\right]
-\right)
-$$
+Higher-BDE bonds receive smaller fragility weights. Calculate the total
+BDE-informed fragility of degeneracy `g`:
 
 $$
-P_{\mathrm{exist}}(g) = \sigma(z_g)
-$$
-
-## 11. Loss Function
-
-Use a combination of binary classification and ranking.
-
-### Weighted Binary Cross-Entropy
-
-For observed positives and pseudo-negatives:
-
-$$
-L_{\mathrm{BCE}}
+F_{\mathrm{BDE}}(g)
 =
--
-w_g
-\left[
-y_g \log p_g
-+
-(1-y_g)\log(1-p_g)
-\right]
+\sum_{b} N_{g,b}q_b.
 $$
 
-where:
+This value is derived from the bond-count vector and the shared BDE table. It is
+not an additional field required in the JSON dataset.
 
-- `y_g = 1` for observed groups;
-- `y_g = 0` for pseudo-negatives;
-- `w_g` can be larger for high-support observed groups.
+Because hydrogen-bond counts can be much larger than backbone-bond counts,
+calculate a second backbone-only descriptor:
 
-### Pairwise Ranking Loss
+$$
+F_{\mathrm{backbone}}(g)
+=
+\sum_{b \in \mathcal{B}_{\mathrm{backbone}}} N_{g,b}q_b,
+$$
 
-Also require observed groups to score above pseudo-negatives:
+with:
+
+```python
+BACKBONE_BONDS = ["C-C", "C=C", "C#C", "O-O", "O=O", "C-O", "C=O"]
+```
+
+This prevents `C-H` and `O-H` counts from hiding the heavy-atom structure.
+
+## 6. Recommended Model
+
+Use a small multilayer perceptron for the 10-value feature vector and combine it
+with the two fixed BDE-informed descriptors:
+
+$$
+h_g = \operatorname{MLP}_{\mathrm{count}}(\operatorname{scale}(x_g)),
+$$
+
+$$
+z_g
+=
+\operatorname{MLP}_{\mathrm{out}}
+\left([
+h_g,
+\widetilde{F}_{\mathrm{BDE}}(g),
+\widetilde{F}_{\mathrm{backbone}}(g)
+]\right),
+$$
+
+$$
+P_{\mathrm{exist}}(g)=\sigma(z_g).
+$$
+
+The tildes indicate descriptors standardized using training-set statistics.
+Never fit a scaler on the validation set.
+
+Suggested first architecture:
+
+```text
+10 input values
+32 hidden units + ReLU
+16 hidden units + ReLU
+concatenate 2 BDE-informed descriptors
+16 hidden units + ReLU
+1 output logit
+```
+
+This is still a bond-count model: all sample-specific inputs originate from
+`bond_counts` and `is_ring`. BDE contributes through a deterministic physical
+transformation.
+
+## 7. Minimal PyTorch Model Sketch
+
+```python
+class SpeciesExistenceModel(nn.Module):
+    def __init__(self):
+        super().__init__()
+        self.count_encoder = nn.Sequential(
+            nn.Linear(10, 32),
+            nn.ReLU(),
+            nn.Linear(32, 16),
+            nn.ReLU(),
+        )
+        self.predictor = nn.Sequential(
+            nn.Linear(16 + 2, 16),
+            nn.ReLU(),
+            nn.Linear(16, 1),
+        )
+
+    def forward(self, feature_vector, bde_descriptors):
+        count_embedding = self.count_encoder(feature_vector)
+        combined = torch.cat([count_embedding, bde_descriptors], dim=-1)
+        return self.predictor(combined).squeeze(-1)
+```
+
+The model returns a logit. Apply `torch.sigmoid(logit)` only when a probability-
+like score is needed for reporting.
+
+## 8. Feature Construction
+
+```python
+def build_feature_vector(entry):
+    bond_counts = entry["bond_counts"]
+    return [
+        *[float(bond_counts.get(bond, 0)) for bond in BOND_TYPES],
+        float(entry["is_ring"]),
+    ]
+```
+
+Construct BDE descriptors without changing the stored sample schema:
+
+```python
+import math
+
+
+def build_bde_descriptors(entry, energy_scale=400.0):
+    counts = entry["bond_counts"]
+    fragility = {
+        bond: math.exp(-energy / energy_scale)
+        for bond, energy in BDE_BY_BOND.items()
+    }
+    total = sum(counts.get(bond, 0) * fragility[bond] for bond in BOND_TYPES)
+    backbone = sum(
+        counts.get(bond, 0) * fragility[bond]
+        for bond in BACKBONE_BONDS
+    )
+    return [total, backbone]
+```
+
+## 9. Positive-Focused PU Training Objective
+
+After the training mixture is constructed, `P` contains 171 retained observed
+degeneracies. `U` contains 43 hidden observed degeneracies mixed with 214
+fabricated samples. The loss receives only membership in `P` or `U`; it does not
+receive the hidden source labels inside `U`.
+
+For logits from a positive batch and an unlabeled batch, calculate:
+
+$$
+R_P^+ = \mathbb{E}_{g\sim P}[\ell(f(g),1)],
+$$
+
+$$
+R_P^- = \mathbb{E}_{g\sim P}[\ell(f(g),0)],
+$$
+
+$$
+R_U^- = \mathbb{E}_{g\sim U}[\ell(f(g),0)].
+$$
+
+### Positive-only warm-up
+
+For the first 5 epochs, train only on the retained set `P`:
+
+$$
+L_{\mathrm{warmup}}=R_P^+.
+$$
+
+This first teaches the model that observed degeneracies should receive high
+scores. Keep the warm-up short; otherwise the model may learn to label every
+sample positive.
+
+### Cost-sensitive nnPU loss
+
+The standard non-negative PU risk is:
+
+$$
+L_{\mathrm{nnPU}}
+=
+\pi_p R_P^+
++
+\max\left(0,R_U^- - \pi_p R_P^-\right),
+$$
+
+where `pi_p` is an assumed or separately estimated positive-class prior. Do not
+derive `pi_p` from the selected positive-to-unlabeled sample ratio.
+
+Because membership in `P` is reliable while membership in `U` is uncertain, use
+a cost-sensitive version:
+
+$$
+L_{\mathrm{PU}}
+=
+\alpha\pi_pR_P^+
++
+\beta\max\left(0,R_U^- - \pi_pR_P^-\right),
+$$
+
+with:
+
+```text
+alpha = 1.00
+beta  = 0.25
+```
+
+`alpha` controls the reliable positive risk. `beta` reduces the effect of the
+uncertain unlabeled risk. Test `beta` values `0.10`, `0.25`, `0.50`, and `1.00`;
+use `0.25` for the first run.
+
+Minimal loss implementation:
+
+```python
+def nnpu_loss(
+    positive_logits,
+    unlabeled_logits,
+    positive_prior,
+    positive_weight=1.0,
+    unlabeled_weight=0.25,
+):
+    positive_risk = F.binary_cross_entropy_with_logits(
+        positive_logits, torch.ones_like(positive_logits)
+    )
+    positive_as_negative = F.binary_cross_entropy_with_logits(
+        positive_logits, torch.zeros_like(positive_logits)
+    )
+    unlabeled_as_negative = F.binary_cross_entropy_with_logits(
+        unlabeled_logits, torch.zeros_like(unlabeled_logits)
+    )
+    negative_risk = unlabeled_as_negative - positive_prior * positive_as_negative
+    return (
+        positive_weight * positive_prior * positive_risk
+        + unlabeled_weight * torch.clamp(negative_risk, min=0.0)
+    )
+```
+
+The constructed unlabeled pool contains at least:
+
+$$
+\frac{43}{43+214}\approx0.167
+$$
+
+known positive content, and some fabricated samples might also be real
+positives. Therefore, begin with `pi_p = 0.20` and test `0.17`, `0.20`, `0.25`,
+and `0.30`. Do not use `273 / (273 + 569)`; that ratio reflects dataset
+construction rather than the positive prevalence inside `U`.
+
+### Optional weak ranking loss
+
+If nnPU alone does not rank held-out positives sufficiently above unlabeled
+candidates, add:
 
 $$
 L_{\mathrm{rank}}
 =
-\max
-\left(
-0,
-m - [s(g^+) - s(g^-)]
-\right)
+\frac{1}{M}\sum_{(g^+,g^u)}
+\max\left(0,m-[s(g^+)-s(g^u)]\right).
 $$
 
-where:
+This is a weak preference, not a claim that every `g^u` is negative. Use:
 
-$$
-s(g) = \mathrm{logit}(P_{\mathrm{exist}}(g))
-$$
+```text
+margin = 0.5
+lambda_rank = 0.05
+```
 
-or simply the model output before sigmoid.
-
-### Total Loss
+The complete optional objective is:
 
 $$
 L
 =
-L_{\mathrm{BCE}}
+L_{\mathrm{PU}}
 +
-\lambda_{\mathrm{rank}} L_{\mathrm{rank}}
+\lambda_{\mathrm{rank}}L_{\mathrm{rank}}
 +
-\lambda_{\mathrm{reg}} L_{\mathrm{reg}}
+\lambda_{\mathrm{reg}}\lVert\theta\rVert_2^2.
 $$
 
-Recommended first version:
+For the first implementation, set `lambda_rank = 0` and apply L2 regularization
+through optimizer weight decay.
+
+## 10. Training Procedure
+
+For each of the three dataset files:
+
+1. Read `training_set["positive_samples"]` as `observed_train`.
+2. Read `training_set["pseudo_negative_samples"]` as `fabricated_train`.
+3. Select complete formula groups containing exactly 43 records from
+   `observed_train`, using a fixed seed.
+4. Put the remaining 171 observed records in `P_train`.
+5. Mix the 43 hidden observed records with all 214 fabricated records to form
+   `U_train`; discard their source labels from the training view.
+6. Read the validation collections as `observed_validation` and
+   `fabricated_validation`.
+7. Retain 42 validation observations as `P_validation`; hide the other 11 among
+   the 114 fabricated records to form `U_validation` with 125 records. Keep a
+   separate evaluation-only copy of the source identities.
+8. Assert the raw counts: `214/214` for training and `53/114` for
+   validation.
+9. Assert the PU counts: training `171/257` and validation `42/125` for `P/U`.
+10. Build the 10-value vector and two BDE descriptors for every degeneracy.
+11. Fit feature scalers using `P_train + U_train` only.
+12. Build independent `P_train` and `U_train` loaders.
+13. Warm up for 5 epochs using `P_train` loss only.
+14. Train with balanced positive/unlabeled minibatches and cost-sensitive nnPU.
+15. Use early stopping based on a positive-focused validation criterion.
+16. Repeat with random initialization seeds `11`, `22`, and `33`.
+
+Suggested first settings:
 
 ```text
-Start with BCE only.
-Then add ranking loss if pseudo-negative separation is weak.
-```
-
-## 12. Training Strategy
-
-### Step 1: Build Positive Dataset
-
-For every formula-degeneracy group:
-
-1. Read `bond_counts`.
-2. Convert nonzero bond counts into bond rows.
-3. Attach bond energy and atom descriptors to each row.
-4. Build global descriptors.
-5. Assign label 1.
-
-### Step 2: Generate Pseudo-Negatives
-
-Generate multiple pseudo-negative samples per positive group.
-
-Recommended starting ratio:
-
-```text
-3 pseudo-negatives per observed positive
-```
-
-Then test:
-
-```text
-1:1
-3:1
-5:1
-10:1
-```
-
-### Step 3: Split Dataset
-
-Do not split only at the row level if pseudo-negatives are generated from positives.
-
-Better split:
-
-```text
-split observed positives first
-generate pseudo-negatives separately inside each split
-```
-
-Suggested:
-
-```text
-70 percent train
-15 percent validation
-15 percent test
-```
-
-### Step 4: Train the Model
-
-Train with:
-
-```text
-Adam optimizer
-small MLP
-early stopping on validation loss
-```
-
-Suggested first hyperparameters:
-
-```text
-bond encoder hidden dimension: 64
-pooled embedding dimension: 64
-predictor hidden dimension: 64
+optimizer: Adam
 learning rate: 1e-3
-batch size: 32
-epochs: 200
-early stopping patience: 20
+weight decay: 1e-4
+positive batch size: 32
+unlabeled batch size: 32
+positive-only warm-up: 5 epochs
+maximum epochs: 300
+early-stopping patience: 30
+positive prior: 0.20
+positive-risk weight: 1.00
+unlabeled-risk weight: 0.25
+ranking-loss weight: 0.00 initially
 ```
 
-## 13. How to Represent Variable Number of Bond Rows
+Use all three training variants as robustness experiments. Because their
+validation mappings are identical, their validation results are directly
+comparable. Three datasets and three initialization seeds produce nine runs.
+Report their mean and standard deviation. The final prediction may be the mean
+score from the retained models:
 
-Each species group can contain a different number of bond types.
+$$
+s_{\mathrm{ensemble}}(g)
+=
+\frac{1}{K}\sum_{k=1}^{K}s_k(g).
+$$
 
-Use one of these options:
+## 11. Validation
 
-### Option A: Process One Molecule at a Time
+The validation loss sees 42 labeled positives and an unlabeled mixture of 11
+hidden positives plus 114 fabricated records. The evaluation code may use a
+separate, protected copy of the original source identities to audit behavior,
+but those identities must never affect gradients, feature scaling, or model
+selection inputs.
 
-For each sample:
+The fabricated records are not confirmed negatives. Therefore, do not describe
+ordinary accuracy, specificity, or precision as ground-truth measurements.
 
-```python
-bond_features = tensor[num_bond_types, feature_dim]
+Report:
+
+- recall of the 53 held-out known positives at score thresholds;
+- positive recall among the top 25, 50, and 100 validation scores;
+- observed-versus-fabricated source-ranking AUC, clearly labeled as a diagnostic;
+- score distributions for observed and fabricated source groups;
+- mean and standard deviation across the three training variants and random
+  initialization seeds.
+
+Use a positive-focused early-stopping score such as:
+
+$$
+S_{\mathrm{validation}}
+=
+0.7\,\mathrm{Recall}_P
++
+0.3\,\mathrm{SourceRankingAUC}_{\mathrm{observed,fabricated}}.
+$$
+
+The source-ranking AUC is only a diagnostic because fabricated samples are not
+confirmed negatives and the actual PU validation pool contains hidden
+positives. Select a reporting threshold that retains at least 90% or 95% of the
+53 observed validation records rather than maximizing ordinary accuracy.
+
+Also compare the learned model with two ablations:
+
+```text
+count only:       bond counts + is_ring
+BDE informed:     bond counts + is_ring + derived BDE branch
 ```
 
-Apply the bond encoder to all rows and sum over rows.
+The BDE-informed design is useful only if it improves held-out ranking or
+stability without harming positive recall.
 
-This is easiest for a first implementation.
+## 12. Feature and Physical Checks
 
-### Option B: Padding and Masking
+Before training, verify:
 
-For minibatch training:
+1. every sample produces exactly 10 primary features;
+2. bond counts are non-negative integers;
+3. `is_ring` converts only to `0.0` or `1.0`;
+4. every `BOND_TYPES` entry has a BDE value;
+5. the training and validation formula sets do not overlap;
+6. scaler statistics are calculated from training data only;
+7. all BDE descriptors and logits are finite.
 
-```python
-bond_features = tensor[batch_size, max_bond_types, feature_dim]
-mask = tensor[batch_size, max_bond_types]
+Test the BDE transformation separately:
+
+```text
+higher BDE -> smaller fragility weight
+adding a bond -> never decreases its fragility descriptor
+zero bond count -> zero contribution from that bond
 ```
 
-Apply the encoder and mask padded rows before pooling.
+## 13. Prediction for a New Degeneracy
 
-### Option C: Use PyTorch Geometric-Style Batching
-
-Treat bond rows like nodes in a set graph and use a batch index for pooling.
-
-This is elegant but not necessary for the first version.
-
-## 14. Prediction for an Unknown Species
-
-To predict a new species:
-
-1. Estimate its bond counts.
-2. For each bond type, provide bond energy and bond descriptors.
-3. Build the bond-row table.
-4. Build global features.
-5. Pass into the model.
-6. Output `P_exist`.
-
-Example input:
+A new candidate must provide exactly the same fields:
 
 ```json
 {
-  "candidate_id": "unknown_species_001",
-  "is_ring": false,
-  "bond_rows": [
-    {
-      "bond": "C-C",
-      "count": 7,
-      "BDE": 346,
-      "bond_order": 1,
-      "atom_1_Z": 6,
-      "atom_2_Z": 6,
-      "atom_1_en": 2.55,
-      "atom_2_en": 2.55
-    },
-    {
-      "bond": "C-S",
-      "count": 1,
-      "BDE": 272,
-      "bond_order": 1,
-      "atom_1_Z": 6,
-      "atom_2_Z": 16,
-      "atom_1_en": 2.55,
-      "atom_2_en": 2.58
-    }
-  ]
+  "bond_counts": {
+    "C-C": 7,
+    "C=C": 1,
+    "C#C": 0,
+    "O-O": 0,
+    "O=O": 0,
+    "C-O": 1,
+    "C=O": 0,
+    "C-H": 15,
+    "O-H": 1
+  },
+  "is_ring": false
 }
 ```
 
-The model can accept the `C-S` row if the feature schema is the same.
+The prediction code must:
 
-## 15. Why This Can Add New Atoms Without Changing the Model
+1. build the 10-value feature vector in the saved bond order;
+2. derive the BDE descriptors from the same saved BDE table;
+3. apply the training scalers;
+4. run the model;
+5. return the score and an out-of-distribution warning when appropriate.
 
-The model does not need a hard-coded `C-S` column.
+This fixed representation cannot accept a new bond type automatically. Adding
+new chemistry such as `C-S` requires updating `BOND_TYPES`, extending the BDE
+table, changing the input dimension, and retraining the model. This limitation
+is preferable to silently ignoring an unknown bond.
 
-It only needs numerical descriptors:
+## 14. Saved Outputs
 
-```text
-count
-BDE
-bond order
-atomic numbers
-electronegativity
-radius
-other atom/bond descriptors
-```
-
-Therefore, adding a new atom means adding descriptor values, not changing the neural network input dimension.
-
-This is the main advantage over a fixed bond-count vector.
-
-## 16. Important Extrapolation Warning
-
-The model can technically accept a new atom, but prediction quality depends on the training distribution.
-
-For example, if the model has only seen C/H/O/N chemistry, then a sulfur-containing candidate may be outside the training distribution.
-
-The model may still produce a score, but it should be treated as:
-
-```text
-extrapolated prediction
-```
-
-not a highly reliable calibrated probability.
-
-To improve this, include atom descriptors that help generalization:
-
-```text
-atomic number
-period
-group
-electronegativity
-covalent radius
-typical valence
-bond dissociation energy
-bond order
-```
-
-## 17. Evaluation
-
-Because there are no true negative examples, evaluate the model in several ways.
-
-### Pseudo-Negative Accuracy
-
-Check whether observed positives score higher than generated pseudo-negatives.
-
-### Ranking Accuracy
-
-For pairs:
-
-$$
-(g^+, g^-)
-$$
-
-compute:
-
-$$
-\mathbb{1}
-\left[
-s(g^+) > s(g^-)
-\right]
-$$
-
-### Score Distribution
-
-Plot:
-
-```text
-observed positive scores
-pseudo-negative scores
-```
-
-Good behavior:
-
-```text
-positive distribution shifted toward higher score
-pseudo-negative distribution shifted toward lower score
-```
-
-### Holdout by Formula Size
-
-Train on smaller species and test on larger species.
-
-This tests whether the model understands long-chain penalties.
-
-### Holdout by Bond Type
-
-Hold out groups containing certain bond types and test whether bond-strength descriptors help generalization.
-
-This is important for the unknown-species goal.
-
-## 18. Output Files
-
-Suggested model outputs:
+Save:
 
 ```text
 output/species_existence_model.pt
-output/species_existence_feature_scaler.json
-output/species_existence_feature_schema.json
-output/scored_formula_degeneracies_ml.csv
-output/pseudo_negative_samples_ml.csv
+output/species_existence_scaler.json
+output/species_existence_schema.json
+output/species_existence_validation_scores.csv
 output/species_existence_training_log.csv
-output/species_existence_plots/
 ```
 
-The feature schema is especially important. It records the required input fields:
+The schema must record the exact order and physical metadata:
 
 ```json
 {
-  "bond_feature_columns": [
-    "count",
-    "BDE",
-    "bond_order",
-    "atom_1_Z",
-    "atom_2_Z",
-    "atom_1_en",
-    "atom_2_en"
+  "feature_columns": [
+    "C-C", "C=C", "C#C", "O-O", "O=O",
+    "C-O", "C=O", "C-H", "O-H", "is_ring"
   ],
-  "global_feature_columns": [
-    "is_ring",
-    "total_bond_count",
-    "total_non_h_bond_count",
-    "number_of_distinct_bond_types"
-  ]
+  "derived_bde_features": [
+    "total_bde_fragility",
+    "backbone_bde_fragility"
+  ],
+  "bde_by_bond": {
+    "C-C": 346.0,
+    "C=C": 602.0,
+    "C#C": 835.0,
+    "O-O": 146.0,
+    "O=O": 498.0,
+    "C-O": 358.0,
+    "C=O": 732.0,
+    "C-H": 413.0,
+    "O-H": 463.0
+  },
+  "bde_energy_scale": 400.0
 }
 ```
 
-## 19. Suggested Script Structure
+Saving the BDE table with the model prevents training and inference from using
+different physical constants.
 
-Suggested script:
+## 15. Recommended First Implementation
 
-```text
-train_species_existence_model.py
-```
+1. Use the fixed 10-value feature vector.
+2. Preserve BDE as a shared lookup and derive the two physical descriptors.
+3. Hide 43 of the 214 observed training positives inside an unlabeled mixture
+   with all 214 fabricated samples.
+4. Retain the other 171 observed positives as the labeled-positive set.
+5. Warm up on the retained positive set for 5 epochs.
+6. Train with cost-sensitive nnPU using `pi_p = 0.20`, positive weight `1.00`,
+   and unlabeled weight `0.25`.
+7. Apply `1e-4` optimizer weight decay and initially omit ranking loss.
+8. Compare the count-only and BDE-informed versions.
+9. Repeat across all three training variants and seeds `11`, `22`, and `33`.
+10. Test positive priors `0.17`, `0.20`, `0.25`, and `0.30` and unlabeled weights
+   `0.10`, `0.25`, `0.50`, and `1.00`.
+11. Select a model based primarily on held-out positive recall, ranking, and
+   stability—not simply the smallest training loss.
 
-Suggested functions:
+The recommended initial loss is:
 
-```python
-def load_master_dataset(json_path):
-    pass
-```
+$$
+\boxed{
+L
+=
+\pi_pR_P^+
++
+0.25\max\left(0,R_U^- - \pi_pR_P^-\right)
++
+10^{-4}\lVert\theta\rVert_2^2
+}.
+$$
 
-```python
-def build_bond_rows(entry, bond_energy_table, atom_descriptor_table):
-    pass
-```
-
-```python
-def build_global_features(entry):
-    pass
-```
-
-```python
-def generate_pseudo_negatives(positive_entries, seed):
-    pass
-```
-
-```python
-def train_model(train_data, validation_data):
-    pass
-```
-
-```python
-def score_candidate(candidate, model, scaler, schema):
-    pass
-```
-
-```python
-def save_outputs(model, scaler, schema, scored_rows, output_dir):
-    pass
-```
-
-## 20. Minimal PyTorch Model Sketch
-
-```python
-class BondSetExistenceModel(nn.Module):
-    def __init__(self, bond_feature_dim, global_feature_dim, hidden_dim=64):
-        super().__init__()
-        self.bond_encoder = nn.Sequential(
-            nn.Linear(bond_feature_dim, hidden_dim),
-            nn.ReLU(),
-            nn.Linear(hidden_dim, hidden_dim),
-            nn.ReLU(),
-        )
-        self.predictor = nn.Sequential(
-            nn.Linear(hidden_dim + global_feature_dim, hidden_dim),
-            nn.ReLU(),
-            nn.Linear(hidden_dim, 1),
-        )
-
-    def forward(self, bond_features, global_features, mask=None):
-        h = self.bond_encoder(bond_features)
-        if mask is not None:
-            h = h * mask.unsqueeze(-1)
-        h = h.sum(dim=1)
-        z = torch.cat([h, global_features], dim=-1)
-        return self.predictor(z).squeeze(-1)
-```
-
-Use:
-
-```python
-probability = torch.sigmoid(logit)
-```
-
-for interpretation.
-
-## 21. Recommended First Implementation
-
-Start simple:
-
-1. Use observed formula-degeneracy groups as positives.
-2. Use random and corrupted pseudo-negatives.
-3. Use bond-row features:
+The final model should be described as:
 
 ```text
-count
-BDE
-bond_order
-atom_1_Z
-atom_2_Z
-atom_1_electronegativity
-atom_2_electronegativity
+a BDE-informed bond-count existence scoring model trained with positive and
+unlabeled formula-degeneracy groups
 ```
-
-4. Use global features:
-
-```text
-is_ring
-total_bond_count
-total_non_h_bond_count
-number_of_distinct_bond_types
-```
-
-5. Train the bond-set neural network.
-6. Score all observed groups.
-7. Test manually whether known stable groups score higher than fragile or long-chain pseudo-negatives.
-
-## 22. Final Interpretation
-
-The model should be described as:
-
-```text
-a descriptor-based species-existence classifier
-```
-
-or:
-
-```text
-a bond-strength-informed neural scoring model
-```
-
-Its main advantage is extensibility:
-
-```text
-new species can be scored if their bond inventory and bond descriptors are provided
-```
-
-Its main limitation is extrapolation:
-
-```text
-new atom types far outside the training chemistry may still require new data for reliable predictions
-```
-

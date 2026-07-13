@@ -1,0 +1,7970 @@
+{
+  "formula_degeneracies": {
+    "C10H10O2_001": {
+      "bond_counts": {
+        "C-C": 7,
+        "C=C": 3,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 2,
+        "C-H": 10,
+        "O-H": 0
+      },
+      "is_ring": true
+    },
+    "C10H10O2_002": {
+      "bond_counts": {
+        "C-C": 6,
+        "C=C": 3,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 2,
+        "C=O": 0,
+        "C-H": 8,
+        "O-H": 2
+      },
+      "is_ring": true
+    },
+    "C10H10O2_003": {
+      "bond_counts": {
+        "C-C": 7,
+        "C=C": 2,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 1,
+        "C-H": 9,
+        "O-H": 1
+      },
+      "is_ring": true
+    },
+    "C10H10O2_004": {
+      "bond_counts": {
+        "C-C": 8,
+        "C=C": 1,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 2,
+        "C-H": 10,
+        "O-H": 0
+      },
+      "is_ring": true
+    },
+    "C10H10O_001": {
+      "bond_counts": {
+        "C-C": 6,
+        "C=C": 3,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 0,
+        "C-H": 9,
+        "O-H": 1
+      },
+      "is_ring": true
+    },
+    "C10H10O_002": {
+      "bond_counts": {
+        "C-C": 7,
+        "C=C": 2,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 1,
+        "C-H": 10,
+        "O-H": 0
+      },
+      "is_ring": true
+    },
+    "C10H10_001": {
+      "bond_counts": {
+        "C-C": 6,
+        "C=C": 3,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 0,
+        "C-H": 10,
+        "O-H": 0
+      },
+      "is_ring": true
+    },
+    "C10H12O2_001": {
+      "bond_counts": {
+        "C-C": 7,
+        "C=C": 3,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 1,
+        "C-H": 11,
+        "O-H": 1
+      },
+      "is_ring": true
+    },
+    "C10H12O2_002": {
+      "bond_counts": {
+        "C-C": 8,
+        "C=C": 2,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 2,
+        "C-H": 12,
+        "O-H": 0
+      },
+      "is_ring": true
+    },
+    "C10H12O2_003": {
+      "bond_counts": {
+        "C-C": 7,
+        "C=C": 2,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 2,
+        "C=O": 0,
+        "C-H": 10,
+        "O-H": 2
+      },
+      "is_ring": true
+    },
+    "C10H12O2_004": {
+      "bond_counts": {
+        "C-C": 8,
+        "C=C": 1,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 1,
+        "C-H": 11,
+        "O-H": 1
+      },
+      "is_ring": true
+    },
+    "C10H12O2_005": {
+      "bond_counts": {
+        "C-C": 9,
+        "C=C": 0,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 2,
+        "C-H": 12,
+        "O-H": 0
+      },
+      "is_ring": true
+    },
+    "C10H12O_001": {
+      "bond_counts": {
+        "C-C": 7,
+        "C=C": 3,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 1,
+        "C-H": 12,
+        "O-H": 0
+      },
+      "is_ring": true
+    },
+    "C10H12O_002": {
+      "bond_counts": {
+        "C-C": 7,
+        "C=C": 2,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 0,
+        "C-H": 11,
+        "O-H": 1
+      },
+      "is_ring": true
+    },
+    "C10H12O_003": {
+      "bond_counts": {
+        "C-C": 8,
+        "C=C": 1,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 1,
+        "C-H": 12,
+        "O-H": 0
+      },
+      "is_ring": true
+    },
+    "C10H12_001": {
+      "bond_counts": {
+        "C-C": 7,
+        "C=C": 2,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 0,
+        "C-H": 12,
+        "O-H": 0
+      },
+      "is_ring": true
+    },
+    "C10H14O2_001": {
+      "bond_counts": {
+        "C-C": 7,
+        "C=C": 3,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 2,
+        "C=O": 0,
+        "C-H": 12,
+        "O-H": 2
+      },
+      "is_ring": true
+    },
+    "C10H14O2_002": {
+      "bond_counts": {
+        "C-C": 8,
+        "C=C": 2,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 1,
+        "C-H": 13,
+        "O-H": 1
+      },
+      "is_ring": true
+    },
+    "C10H14O2_003": {
+      "bond_counts": {
+        "C-C": 9,
+        "C=C": 1,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 2,
+        "C-H": 14,
+        "O-H": 0
+      },
+      "is_ring": true
+    },
+    "C10H14O2_004": {
+      "bond_counts": {
+        "C-C": 8,
+        "C=C": 1,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 2,
+        "C=O": 0,
+        "C-H": 12,
+        "O-H": 2
+      },
+      "is_ring": true
+    },
+    "C10H14O2_005": {
+      "bond_counts": {
+        "C-C": 9,
+        "C=C": 0,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 1,
+        "C-H": 13,
+        "O-H": 1
+      },
+      "is_ring": true
+    },
+    "C10H14O_001": {
+      "bond_counts": {
+        "C-C": 7,
+        "C=C": 3,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 0,
+        "C-H": 13,
+        "O-H": 1
+      },
+      "is_ring": true
+    },
+    "C10H14O_002": {
+      "bond_counts": {
+        "C-C": 8,
+        "C=C": 2,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 1,
+        "C-H": 14,
+        "O-H": 0
+      },
+      "is_ring": true
+    },
+    "C10H14O_003": {
+      "bond_counts": {
+        "C-C": 8,
+        "C=C": 1,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 0,
+        "C-H": 13,
+        "O-H": 1
+      },
+      "is_ring": true
+    },
+    "C10H14O_004": {
+      "bond_counts": {
+        "C-C": 9,
+        "C=C": 0,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 1,
+        "C-H": 14,
+        "O-H": 0
+      },
+      "is_ring": true
+    },
+    "C10H14_001": {
+      "bond_counts": {
+        "C-C": 7,
+        "C=C": 3,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 0,
+        "C-H": 14,
+        "O-H": 0
+      },
+      "is_ring": true
+    },
+    "C10H14_002": {
+      "bond_counts": {
+        "C-C": 8,
+        "C=C": 1,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 0,
+        "C-H": 14,
+        "O-H": 0
+      },
+      "is_ring": true
+    },
+    "C10H16O2_001": {
+      "bond_counts": {
+        "C-C": 8,
+        "C=C": 2,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 2,
+        "C=O": 0,
+        "C-H": 14,
+        "O-H": 2
+      },
+      "is_ring": true
+    },
+    "C10H16O2_002": {
+      "bond_counts": {
+        "C-C": 9,
+        "C=C": 1,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 1,
+        "C-H": 15,
+        "O-H": 1
+      },
+      "is_ring": true
+    },
+    "C10H16O2_003": {
+      "bond_counts": {
+        "C-C": 10,
+        "C=C": 0,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 2,
+        "C-H": 16,
+        "O-H": 0
+      },
+      "is_ring": true
+    },
+    "C10H16O2_004": {
+      "bond_counts": {
+        "C-C": 9,
+        "C=C": 0,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 2,
+        "C=O": 0,
+        "C-H": 14,
+        "O-H": 2
+      },
+      "is_ring": true
+    },
+    "C10H16O_001": {
+      "bond_counts": {
+        "C-C": 8,
+        "C=C": 2,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 0,
+        "C-H": 15,
+        "O-H": 1
+      },
+      "is_ring": true
+    },
+    "C10H16O_002": {
+      "bond_counts": {
+        "C-C": 9,
+        "C=C": 1,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 1,
+        "C-H": 16,
+        "O-H": 0
+      },
+      "is_ring": true
+    },
+    "C10H16O_003": {
+      "bond_counts": {
+        "C-C": 9,
+        "C=C": 0,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 0,
+        "C-H": 15,
+        "O-H": 1
+      },
+      "is_ring": true
+    },
+    "C10H16_001": {
+      "bond_counts": {
+        "C-C": 8,
+        "C=C": 2,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 0,
+        "C-H": 16,
+        "O-H": 0
+      },
+      "is_ring": true
+    },
+    "C10H16_002": {
+      "bond_counts": {
+        "C-C": 9,
+        "C=C": 0,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 0,
+        "C-H": 16,
+        "O-H": 0
+      },
+      "is_ring": true
+    },
+    "C10H18O2_001": {
+      "bond_counts": {
+        "C-C": 9,
+        "C=C": 1,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 2,
+        "C=O": 0,
+        "C-H": 16,
+        "O-H": 2
+      },
+      "is_ring": true
+    },
+    "C10H18O2_002": {
+      "bond_counts": {
+        "C-C": 10,
+        "C=C": 0,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 1,
+        "C-H": 17,
+        "O-H": 1
+      },
+      "is_ring": true
+    },
+    "C10H18O_001": {
+      "bond_counts": {
+        "C-C": 9,
+        "C=C": 1,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 0,
+        "C-H": 17,
+        "O-H": 1
+      },
+      "is_ring": true
+    },
+    "C10H18O_002": {
+      "bond_counts": {
+        "C-C": 10,
+        "C=C": 0,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 1,
+        "C-H": 18,
+        "O-H": 0
+      },
+      "is_ring": true
+    },
+    "C10H18_001": {
+      "bond_counts": {
+        "C-C": 9,
+        "C=C": 1,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 0,
+        "C-H": 18,
+        "O-H": 0
+      },
+      "is_ring": true
+    },
+    "C10H20O2_001": {
+      "bond_counts": {
+        "C-C": 10,
+        "C=C": 0,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 2,
+        "C=O": 0,
+        "C-H": 18,
+        "O-H": 2
+      },
+      "is_ring": true
+    },
+    "C10H20O_001": {
+      "bond_counts": {
+        "C-C": 10,
+        "C=C": 0,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 0,
+        "C-H": 19,
+        "O-H": 1
+      },
+      "is_ring": true
+    },
+    "C10H20_001": {
+      "bond_counts": {
+        "C-C": 10,
+        "C=C": 0,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 0,
+        "C-H": 20,
+        "O-H": 0
+      },
+      "is_ring": true
+    },
+    "C10H6O2_001": {
+      "bond_counts": {
+        "C-C": 6,
+        "C=C": 3,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 2,
+        "C-H": 6,
+        "O-H": 0
+      },
+      "is_ring": true
+    },
+    "C10H8O2_001": {
+      "bond_counts": {
+        "C-C": 6,
+        "C=C": 3,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 1,
+        "C-H": 7,
+        "O-H": 1
+      },
+      "is_ring": true
+    },
+    "C10H8O2_002": {
+      "bond_counts": {
+        "C-C": 7,
+        "C=C": 2,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 2,
+        "C-H": 8,
+        "O-H": 0
+      },
+      "is_ring": true
+    },
+    "C10H8O_001": {
+      "bond_counts": {
+        "C-C": 6,
+        "C=C": 3,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 1,
+        "C-H": 8,
+        "O-H": 0
+      },
+      "is_ring": true
+    },
+    "C12H10O2_001": {
+      "bond_counts": {
+        "C-C": 8,
+        "C=C": 3,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 2,
+        "C-H": 10,
+        "O-H": 0
+      },
+      "is_ring": true
+    },
+    "C12H12O2_001": {
+      "bond_counts": {
+        "C-C": 8,
+        "C=C": 3,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 1,
+        "C-H": 11,
+        "O-H": 1
+      },
+      "is_ring": true
+    },
+    "C12H12O2_002": {
+      "bond_counts": {
+        "C-C": 9,
+        "C=C": 2,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 2,
+        "C-H": 12,
+        "O-H": 0
+      },
+      "is_ring": true
+    },
+    "C12H12O_001": {
+      "bond_counts": {
+        "C-C": 8,
+        "C=C": 3,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 1,
+        "C-H": 12,
+        "O-H": 0
+      },
+      "is_ring": true
+    },
+    "C12H14O2_001": {
+      "bond_counts": {
+        "C-C": 9,
+        "C=C": 3,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 2,
+        "C-H": 14,
+        "O-H": 0
+      },
+      "is_ring": true
+    },
+    "C12H14O2_002": {
+      "bond_counts": {
+        "C-C": 8,
+        "C=C": 3,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 2,
+        "C=O": 0,
+        "C-H": 12,
+        "O-H": 2
+      },
+      "is_ring": true
+    },
+    "C12H14O2_003": {
+      "bond_counts": {
+        "C-C": 9,
+        "C=C": 2,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 1,
+        "C-H": 13,
+        "O-H": 1
+      },
+      "is_ring": true
+    },
+    "C12H14O2_004": {
+      "bond_counts": {
+        "C-C": 10,
+        "C=C": 1,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 2,
+        "C-H": 14,
+        "O-H": 0
+      },
+      "is_ring": true
+    },
+    "C12H14O_001": {
+      "bond_counts": {
+        "C-C": 8,
+        "C=C": 3,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 0,
+        "C-H": 13,
+        "O-H": 1
+      },
+      "is_ring": true
+    },
+    "C12H14O_002": {
+      "bond_counts": {
+        "C-C": 9,
+        "C=C": 2,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 1,
+        "C-H": 14,
+        "O-H": 0
+      },
+      "is_ring": true
+    },
+    "C12H14_001": {
+      "bond_counts": {
+        "C-C": 8,
+        "C=C": 3,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 0,
+        "C-H": 14,
+        "O-H": 0
+      },
+      "is_ring": true
+    },
+    "C12H16O2_001": {
+      "bond_counts": {
+        "C-C": 9,
+        "C=C": 3,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 1,
+        "C-H": 15,
+        "O-H": 1
+      },
+      "is_ring": true
+    },
+    "C12H16O2_002": {
+      "bond_counts": {
+        "C-C": 10,
+        "C=C": 2,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 2,
+        "C-H": 16,
+        "O-H": 0
+      },
+      "is_ring": true
+    },
+    "C12H16O2_003": {
+      "bond_counts": {
+        "C-C": 9,
+        "C=C": 2,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 2,
+        "C=O": 0,
+        "C-H": 14,
+        "O-H": 2
+      },
+      "is_ring": true
+    },
+    "C12H16O2_004": {
+      "bond_counts": {
+        "C-C": 10,
+        "C=C": 1,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 1,
+        "C-H": 15,
+        "O-H": 1
+      },
+      "is_ring": true
+    },
+    "C12H16O2_005": {
+      "bond_counts": {
+        "C-C": 11,
+        "C=C": 0,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 2,
+        "C-H": 16,
+        "O-H": 0
+      },
+      "is_ring": true
+    },
+    "C12H16O_001": {
+      "bond_counts": {
+        "C-C": 9,
+        "C=C": 3,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 1,
+        "C-H": 16,
+        "O-H": 0
+      },
+      "is_ring": true
+    },
+    "C12H16O_002": {
+      "bond_counts": {
+        "C-C": 9,
+        "C=C": 2,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 0,
+        "C-H": 15,
+        "O-H": 1
+      },
+      "is_ring": true
+    },
+    "C12H16O_003": {
+      "bond_counts": {
+        "C-C": 10,
+        "C=C": 1,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 1,
+        "C-H": 16,
+        "O-H": 0
+      },
+      "is_ring": true
+    },
+    "C12H16_001": {
+      "bond_counts": {
+        "C-C": 9,
+        "C=C": 2,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 0,
+        "C-H": 16,
+        "O-H": 0
+      },
+      "is_ring": true
+    },
+    "C12H18O2_001": {
+      "bond_counts": {
+        "C-C": 9,
+        "C=C": 3,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 2,
+        "C=O": 0,
+        "C-H": 16,
+        "O-H": 2
+      },
+      "is_ring": true
+    },
+    "C12H18O2_002": {
+      "bond_counts": {
+        "C-C": 10,
+        "C=C": 2,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 1,
+        "C-H": 17,
+        "O-H": 1
+      },
+      "is_ring": true
+    },
+    "C12H18O2_003": {
+      "bond_counts": {
+        "C-C": 11,
+        "C=C": 1,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 2,
+        "C-H": 18,
+        "O-H": 0
+      },
+      "is_ring": true
+    },
+    "C12H18O2_004": {
+      "bond_counts": {
+        "C-C": 10,
+        "C=C": 1,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 2,
+        "C=O": 0,
+        "C-H": 16,
+        "O-H": 2
+      },
+      "is_ring": true
+    },
+    "C12H18O2_005": {
+      "bond_counts": {
+        "C-C": 11,
+        "C=C": 0,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 1,
+        "C-H": 17,
+        "O-H": 1
+      },
+      "is_ring": true
+    },
+    "C12H18O_001": {
+      "bond_counts": {
+        "C-C": 9,
+        "C=C": 3,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 0,
+        "C-H": 17,
+        "O-H": 1
+      },
+      "is_ring": true
+    },
+    "C12H18O_002": {
+      "bond_counts": {
+        "C-C": 10,
+        "C=C": 2,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 1,
+        "C-H": 18,
+        "O-H": 0
+      },
+      "is_ring": true
+    },
+    "C12H18O_003": {
+      "bond_counts": {
+        "C-C": 10,
+        "C=C": 1,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 0,
+        "C-H": 17,
+        "O-H": 1
+      },
+      "is_ring": true
+    },
+    "C12H18O_004": {
+      "bond_counts": {
+        "C-C": 11,
+        "C=C": 0,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 1,
+        "C-H": 18,
+        "O-H": 0
+      },
+      "is_ring": true
+    },
+    "C12H18_001": {
+      "bond_counts": {
+        "C-C": 9,
+        "C=C": 3,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 0,
+        "C-H": 18,
+        "O-H": 0
+      },
+      "is_ring": true
+    },
+    "C12H18_002": {
+      "bond_counts": {
+        "C-C": 10,
+        "C=C": 1,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 0,
+        "C-H": 18,
+        "O-H": 0
+      },
+      "is_ring": true
+    },
+    "C12H20O2_001": {
+      "bond_counts": {
+        "C-C": 10,
+        "C=C": 2,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 2,
+        "C=O": 0,
+        "C-H": 18,
+        "O-H": 2
+      },
+      "is_ring": true
+    },
+    "C12H20O2_002": {
+      "bond_counts": {
+        "C-C": 11,
+        "C=C": 1,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 1,
+        "C-H": 19,
+        "O-H": 1
+      },
+      "is_ring": true
+    },
+    "C12H20O2_003": {
+      "bond_counts": {
+        "C-C": 12,
+        "C=C": 0,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 2,
+        "C-H": 20,
+        "O-H": 0
+      },
+      "is_ring": true
+    },
+    "C12H20O2_004": {
+      "bond_counts": {
+        "C-C": 11,
+        "C=C": 0,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 2,
+        "C=O": 0,
+        "C-H": 18,
+        "O-H": 2
+      },
+      "is_ring": true
+    },
+    "C12H20O_001": {
+      "bond_counts": {
+        "C-C": 10,
+        "C=C": 2,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 0,
+        "C-H": 19,
+        "O-H": 1
+      },
+      "is_ring": true
+    },
+    "C12H20O_002": {
+      "bond_counts": {
+        "C-C": 11,
+        "C=C": 1,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 1,
+        "C-H": 20,
+        "O-H": 0
+      },
+      "is_ring": true
+    },
+    "C12H20O_003": {
+      "bond_counts": {
+        "C-C": 11,
+        "C=C": 0,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 0,
+        "C-H": 19,
+        "O-H": 1
+      },
+      "is_ring": true
+    },
+    "C12H20_001": {
+      "bond_counts": {
+        "C-C": 10,
+        "C=C": 2,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 0,
+        "C-H": 20,
+        "O-H": 0
+      },
+      "is_ring": true
+    },
+    "C12H20_002": {
+      "bond_counts": {
+        "C-C": 11,
+        "C=C": 0,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 0,
+        "C-H": 20,
+        "O-H": 0
+      },
+      "is_ring": true
+    },
+    "C12H22O2_001": {
+      "bond_counts": {
+        "C-C": 11,
+        "C=C": 1,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 2,
+        "C=O": 0,
+        "C-H": 20,
+        "O-H": 2
+      },
+      "is_ring": true
+    },
+    "C12H22O2_002": {
+      "bond_counts": {
+        "C-C": 12,
+        "C=C": 0,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 1,
+        "C-H": 21,
+        "O-H": 1
+      },
+      "is_ring": true
+    },
+    "C12H22O_001": {
+      "bond_counts": {
+        "C-C": 11,
+        "C=C": 1,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 0,
+        "C-H": 21,
+        "O-H": 1
+      },
+      "is_ring": true
+    },
+    "C12H22O_002": {
+      "bond_counts": {
+        "C-C": 12,
+        "C=C": 0,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 1,
+        "C-H": 22,
+        "O-H": 0
+      },
+      "is_ring": true
+    },
+    "C12H22_001": {
+      "bond_counts": {
+        "C-C": 11,
+        "C=C": 1,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 0,
+        "C-H": 22,
+        "O-H": 0
+      },
+      "is_ring": true
+    },
+    "C12H24O2_001": {
+      "bond_counts": {
+        "C-C": 12,
+        "C=C": 0,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 2,
+        "C=O": 0,
+        "C-H": 22,
+        "O-H": 2
+      },
+      "is_ring": true
+    },
+    "C12H24O_001": {
+      "bond_counts": {
+        "C-C": 12,
+        "C=C": 0,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 0,
+        "C-H": 23,
+        "O-H": 1
+      },
+      "is_ring": true
+    },
+    "C12H24_001": {
+      "bond_counts": {
+        "C-C": 12,
+        "C=C": 0,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 0,
+        "C-H": 24,
+        "O-H": 0
+      },
+      "is_ring": true
+    },
+    "C17H24O2_001": {
+      "bond_counts": {
+        "C-C": 13,
+        "C=C": 2,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 2,
+        "C-H": 24,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C17H26O2_001": {
+      "bond_counts": {
+        "C-C": 13,
+        "C=C": 2,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 1,
+        "C-H": 25,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C17H26O2_002": {
+      "bond_counts": {
+        "C-C": 14,
+        "C=C": 1,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 2,
+        "C-H": 26,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C17H26O_001": {
+      "bond_counts": {
+        "C-C": 13,
+        "C=C": 2,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 1,
+        "C-H": 26,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C17H28O2_001": {
+      "bond_counts": {
+        "C-C": 14,
+        "C=C": 2,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 2,
+        "C-H": 28,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C17H28O2_002": {
+      "bond_counts": {
+        "C-C": 13,
+        "C=C": 2,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 2,
+        "C=O": 0,
+        "C-H": 26,
+        "O-H": 2
+      },
+      "is_ring": false
+    },
+    "C17H28O2_003": {
+      "bond_counts": {
+        "C-C": 14,
+        "C=C": 1,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 1,
+        "C-H": 27,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C17H28O2_004": {
+      "bond_counts": {
+        "C-C": 15,
+        "C=C": 0,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 2,
+        "C-H": 28,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C17H28O_001": {
+      "bond_counts": {
+        "C-C": 13,
+        "C=C": 2,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 0,
+        "C-H": 27,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C17H28O_002": {
+      "bond_counts": {
+        "C-C": 14,
+        "C=C": 1,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 1,
+        "C-H": 28,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C17H28_001": {
+      "bond_counts": {
+        "C-C": 13,
+        "C=C": 2,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 0,
+        "C-H": 28,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C17H30O2_001": {
+      "bond_counts": {
+        "C-C": 14,
+        "C=C": 2,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 1,
+        "C-H": 29,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C17H30O2_002": {
+      "bond_counts": {
+        "C-C": 15,
+        "C=C": 1,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 2,
+        "C-H": 30,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C17H30O2_003": {
+      "bond_counts": {
+        "C-C": 14,
+        "C=C": 1,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 2,
+        "C=O": 0,
+        "C-H": 28,
+        "O-H": 2
+      },
+      "is_ring": false
+    },
+    "C17H30O2_004": {
+      "bond_counts": {
+        "C-C": 15,
+        "C=C": 0,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 1,
+        "C-H": 29,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C17H30O_001": {
+      "bond_counts": {
+        "C-C": 14,
+        "C=C": 2,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 1,
+        "C-H": 30,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C17H30O_002": {
+      "bond_counts": {
+        "C-C": 14,
+        "C=C": 1,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 0,
+        "C-H": 29,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C17H30O_003": {
+      "bond_counts": {
+        "C-C": 15,
+        "C=C": 0,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 1,
+        "C-H": 30,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C17H30_001": {
+      "bond_counts": {
+        "C-C": 14,
+        "C=C": 1,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 0,
+        "C-H": 30,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C17H32O2_001": {
+      "bond_counts": {
+        "C-C": 14,
+        "C=C": 2,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 2,
+        "C=O": 0,
+        "C-H": 30,
+        "O-H": 2
+      },
+      "is_ring": false
+    },
+    "C17H32O2_002": {
+      "bond_counts": {
+        "C-C": 15,
+        "C=C": 1,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 1,
+        "C-H": 31,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C17H32O2_003": {
+      "bond_counts": {
+        "C-C": 16,
+        "C=C": 0,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 2,
+        "C-H": 32,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C17H32O2_004": {
+      "bond_counts": {
+        "C-C": 15,
+        "C=C": 0,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 2,
+        "C=O": 0,
+        "C-H": 30,
+        "O-H": 2
+      },
+      "is_ring": false
+    },
+    "C17H32O_001": {
+      "bond_counts": {
+        "C-C": 14,
+        "C=C": 2,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 0,
+        "C-H": 31,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C17H32O_002": {
+      "bond_counts": {
+        "C-C": 15,
+        "C=C": 1,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 1,
+        "C-H": 32,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C17H32O_003": {
+      "bond_counts": {
+        "C-C": 15,
+        "C=C": 0,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 0,
+        "C-H": 31,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C17H32_001": {
+      "bond_counts": {
+        "C-C": 14,
+        "C=C": 2,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 0,
+        "C-H": 32,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C17H32_002": {
+      "bond_counts": {
+        "C-C": 15,
+        "C=C": 0,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 0,
+        "C-H": 32,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C17H34O2_001": {
+      "bond_counts": {
+        "C-C": 15,
+        "C=C": 1,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 2,
+        "C=O": 0,
+        "C-H": 32,
+        "O-H": 2
+      },
+      "is_ring": false
+    },
+    "C17H34O2_002": {
+      "bond_counts": {
+        "C-C": 16,
+        "C=C": 0,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 1,
+        "C-H": 33,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C17H34O_001": {
+      "bond_counts": {
+        "C-C": 15,
+        "C=C": 1,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 0,
+        "C-H": 33,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C17H34O_002": {
+      "bond_counts": {
+        "C-C": 16,
+        "C=C": 0,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 1,
+        "C-H": 34,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C17H34_001": {
+      "bond_counts": {
+        "C-C": 15,
+        "C=C": 1,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 0,
+        "C-H": 34,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C17H36O2_001": {
+      "bond_counts": {
+        "C-C": 16,
+        "C=C": 0,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 2,
+        "C=O": 0,
+        "C-H": 34,
+        "O-H": 2
+      },
+      "is_ring": false
+    },
+    "C17H36O_001": {
+      "bond_counts": {
+        "C-C": 16,
+        "C=C": 0,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 0,
+        "C-H": 35,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C17H36_001": {
+      "bond_counts": {
+        "C-C": 16,
+        "C=C": 0,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 0,
+        "C-H": 36,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C18H26O2_001": {
+      "bond_counts": {
+        "C-C": 14,
+        "C=C": 2,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 2,
+        "C-H": 26,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C18H28O2_001": {
+      "bond_counts": {
+        "C-C": 14,
+        "C=C": 2,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 1,
+        "C-H": 27,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C18H28O2_002": {
+      "bond_counts": {
+        "C-C": 15,
+        "C=C": 1,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 2,
+        "C-H": 28,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C18H28O_001": {
+      "bond_counts": {
+        "C-C": 14,
+        "C=C": 2,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 1,
+        "C-H": 28,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C18H30O2_001": {
+      "bond_counts": {
+        "C-C": 15,
+        "C=C": 2,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 2,
+        "C-H": 30,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C18H30O2_002": {
+      "bond_counts": {
+        "C-C": 14,
+        "C=C": 2,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 2,
+        "C=O": 0,
+        "C-H": 28,
+        "O-H": 2
+      },
+      "is_ring": false
+    },
+    "C18H30O2_003": {
+      "bond_counts": {
+        "C-C": 15,
+        "C=C": 1,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 1,
+        "C-H": 29,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C18H30O2_004": {
+      "bond_counts": {
+        "C-C": 16,
+        "C=C": 0,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 2,
+        "C-H": 30,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C18H30O_001": {
+      "bond_counts": {
+        "C-C": 14,
+        "C=C": 2,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 0,
+        "C-H": 29,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C18H30O_002": {
+      "bond_counts": {
+        "C-C": 15,
+        "C=C": 1,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 1,
+        "C-H": 30,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C18H30_001": {
+      "bond_counts": {
+        "C-C": 14,
+        "C=C": 2,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 0,
+        "C-H": 30,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C18H32O2_001": {
+      "bond_counts": {
+        "C-C": 15,
+        "C=C": 2,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 1,
+        "C-H": 31,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C18H32O2_002": {
+      "bond_counts": {
+        "C-C": 16,
+        "C=C": 1,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 2,
+        "C-H": 32,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C18H32O2_003": {
+      "bond_counts": {
+        "C-C": 15,
+        "C=C": 1,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 2,
+        "C=O": 0,
+        "C-H": 30,
+        "O-H": 2
+      },
+      "is_ring": false
+    },
+    "C18H32O2_004": {
+      "bond_counts": {
+        "C-C": 16,
+        "C=C": 0,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 1,
+        "C-H": 31,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C18H32O_001": {
+      "bond_counts": {
+        "C-C": 15,
+        "C=C": 2,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 1,
+        "C-H": 32,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C18H32O_002": {
+      "bond_counts": {
+        "C-C": 15,
+        "C=C": 1,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 0,
+        "C-H": 31,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C18H32O_003": {
+      "bond_counts": {
+        "C-C": 16,
+        "C=C": 0,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 1,
+        "C-H": 32,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C18H32_001": {
+      "bond_counts": {
+        "C-C": 15,
+        "C=C": 1,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 0,
+        "C-H": 32,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C18H34O2_001": {
+      "bond_counts": {
+        "C-C": 15,
+        "C=C": 2,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 2,
+        "C=O": 0,
+        "C-H": 32,
+        "O-H": 2
+      },
+      "is_ring": false
+    },
+    "C18H34O2_002": {
+      "bond_counts": {
+        "C-C": 16,
+        "C=C": 1,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 1,
+        "C-H": 33,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C18H34O2_003": {
+      "bond_counts": {
+        "C-C": 17,
+        "C=C": 0,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 2,
+        "C-H": 34,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C18H34O2_004": {
+      "bond_counts": {
+        "C-C": 16,
+        "C=C": 0,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 2,
+        "C=O": 0,
+        "C-H": 32,
+        "O-H": 2
+      },
+      "is_ring": false
+    },
+    "C18H34O_001": {
+      "bond_counts": {
+        "C-C": 15,
+        "C=C": 2,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 0,
+        "C-H": 33,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C18H34O_002": {
+      "bond_counts": {
+        "C-C": 16,
+        "C=C": 1,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 1,
+        "C-H": 34,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C18H34O_003": {
+      "bond_counts": {
+        "C-C": 16,
+        "C=C": 0,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 0,
+        "C-H": 33,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C18H34_001": {
+      "bond_counts": {
+        "C-C": 15,
+        "C=C": 2,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 0,
+        "C-H": 34,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C18H34_002": {
+      "bond_counts": {
+        "C-C": 16,
+        "C=C": 0,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 0,
+        "C-H": 34,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C18H36O2_001": {
+      "bond_counts": {
+        "C-C": 16,
+        "C=C": 1,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 2,
+        "C=O": 0,
+        "C-H": 34,
+        "O-H": 2
+      },
+      "is_ring": false
+    },
+    "C18H36O2_002": {
+      "bond_counts": {
+        "C-C": 17,
+        "C=C": 0,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 1,
+        "C-H": 35,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C18H36O_001": {
+      "bond_counts": {
+        "C-C": 16,
+        "C=C": 1,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 0,
+        "C-H": 35,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C18H36O_002": {
+      "bond_counts": {
+        "C-C": 17,
+        "C=C": 0,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 1,
+        "C-H": 36,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C18H36_001": {
+      "bond_counts": {
+        "C-C": 16,
+        "C=C": 1,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 0,
+        "C-H": 36,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C18H38O2_001": {
+      "bond_counts": {
+        "C-C": 17,
+        "C=C": 0,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 2,
+        "C=O": 0,
+        "C-H": 36,
+        "O-H": 2
+      },
+      "is_ring": false
+    },
+    "C18H38O_001": {
+      "bond_counts": {
+        "C-C": 17,
+        "C=C": 0,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 0,
+        "C-H": 37,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C18H38_001": {
+      "bond_counts": {
+        "C-C": 17,
+        "C=C": 0,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 0,
+        "C-H": 38,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C20H30O2_001": {
+      "bond_counts": {
+        "C-C": 16,
+        "C=C": 2,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 2,
+        "C-H": 30,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C20H32O2_001": {
+      "bond_counts": {
+        "C-C": 16,
+        "C=C": 2,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 1,
+        "C-H": 31,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C20H32O2_002": {
+      "bond_counts": {
+        "C-C": 17,
+        "C=C": 1,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 2,
+        "C-H": 32,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C20H32O_001": {
+      "bond_counts": {
+        "C-C": 16,
+        "C=C": 2,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 1,
+        "C-H": 32,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C20H34O2_001": {
+      "bond_counts": {
+        "C-C": 17,
+        "C=C": 2,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 2,
+        "C-H": 34,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C20H34O2_002": {
+      "bond_counts": {
+        "C-C": 16,
+        "C=C": 2,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 2,
+        "C=O": 0,
+        "C-H": 32,
+        "O-H": 2
+      },
+      "is_ring": false
+    },
+    "C20H34O2_003": {
+      "bond_counts": {
+        "C-C": 17,
+        "C=C": 1,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 1,
+        "C-H": 33,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C20H34O2_004": {
+      "bond_counts": {
+        "C-C": 18,
+        "C=C": 0,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 2,
+        "C-H": 34,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C20H34O_001": {
+      "bond_counts": {
+        "C-C": 16,
+        "C=C": 2,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 0,
+        "C-H": 33,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C20H34O_002": {
+      "bond_counts": {
+        "C-C": 17,
+        "C=C": 1,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 1,
+        "C-H": 34,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C20H34_001": {
+      "bond_counts": {
+        "C-C": 16,
+        "C=C": 2,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 0,
+        "C-H": 34,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C20H36O2_001": {
+      "bond_counts": {
+        "C-C": 17,
+        "C=C": 2,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 1,
+        "C-H": 35,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C20H36O2_002": {
+      "bond_counts": {
+        "C-C": 18,
+        "C=C": 1,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 2,
+        "C-H": 36,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C20H36O2_003": {
+      "bond_counts": {
+        "C-C": 17,
+        "C=C": 1,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 2,
+        "C=O": 0,
+        "C-H": 34,
+        "O-H": 2
+      },
+      "is_ring": false
+    },
+    "C20H36O2_004": {
+      "bond_counts": {
+        "C-C": 18,
+        "C=C": 0,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 1,
+        "C-H": 35,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C20H36O_001": {
+      "bond_counts": {
+        "C-C": 17,
+        "C=C": 2,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 1,
+        "C-H": 36,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C20H36O_002": {
+      "bond_counts": {
+        "C-C": 17,
+        "C=C": 1,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 0,
+        "C-H": 35,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C20H36O_003": {
+      "bond_counts": {
+        "C-C": 18,
+        "C=C": 0,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 1,
+        "C-H": 36,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C20H36_001": {
+      "bond_counts": {
+        "C-C": 17,
+        "C=C": 1,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 0,
+        "C-H": 36,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C20H38O2_001": {
+      "bond_counts": {
+        "C-C": 17,
+        "C=C": 2,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 2,
+        "C=O": 0,
+        "C-H": 36,
+        "O-H": 2
+      },
+      "is_ring": false
+    },
+    "C20H38O2_002": {
+      "bond_counts": {
+        "C-C": 18,
+        "C=C": 1,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 1,
+        "C-H": 37,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C20H38O2_003": {
+      "bond_counts": {
+        "C-C": 19,
+        "C=C": 0,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 2,
+        "C-H": 38,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C20H38O2_004": {
+      "bond_counts": {
+        "C-C": 18,
+        "C=C": 0,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 2,
+        "C=O": 0,
+        "C-H": 36,
+        "O-H": 2
+      },
+      "is_ring": false
+    },
+    "C20H38O_001": {
+      "bond_counts": {
+        "C-C": 17,
+        "C=C": 2,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 0,
+        "C-H": 37,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C20H38O_002": {
+      "bond_counts": {
+        "C-C": 18,
+        "C=C": 1,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 1,
+        "C-H": 38,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C20H38O_003": {
+      "bond_counts": {
+        "C-C": 18,
+        "C=C": 0,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 0,
+        "C-H": 37,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C20H38_001": {
+      "bond_counts": {
+        "C-C": 17,
+        "C=C": 2,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 0,
+        "C-H": 38,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C20H38_002": {
+      "bond_counts": {
+        "C-C": 18,
+        "C=C": 0,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 0,
+        "C-H": 38,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C20H40O2_001": {
+      "bond_counts": {
+        "C-C": 18,
+        "C=C": 1,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 2,
+        "C=O": 0,
+        "C-H": 38,
+        "O-H": 2
+      },
+      "is_ring": false
+    },
+    "C20H40O2_002": {
+      "bond_counts": {
+        "C-C": 19,
+        "C=C": 0,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 1,
+        "C-H": 39,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C20H40O_001": {
+      "bond_counts": {
+        "C-C": 18,
+        "C=C": 1,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 0,
+        "C-H": 39,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C20H40O_002": {
+      "bond_counts": {
+        "C-C": 19,
+        "C=C": 0,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 1,
+        "C-H": 40,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C20H40_001": {
+      "bond_counts": {
+        "C-C": 18,
+        "C=C": 1,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 0,
+        "C-H": 40,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C20H42O2_001": {
+      "bond_counts": {
+        "C-C": 19,
+        "C=C": 0,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 2,
+        "C=O": 0,
+        "C-H": 40,
+        "O-H": 2
+      },
+      "is_ring": false
+    },
+    "C20H42O_001": {
+      "bond_counts": {
+        "C-C": 19,
+        "C=C": 0,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 0,
+        "C-H": 41,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C20H42_001": {
+      "bond_counts": {
+        "C-C": 19,
+        "C=C": 0,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 0,
+        "C-H": 42,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C21H30O2_001": {
+      "bond_counts": {
+        "C-C": 16,
+        "C=C": 3,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 2,
+        "C-H": 30,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C21H32O2_001": {
+      "bond_counts": {
+        "C-C": 16,
+        "C=C": 3,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 1,
+        "C-H": 31,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C21H32O2_002": {
+      "bond_counts": {
+        "C-C": 17,
+        "C=C": 2,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 2,
+        "C-H": 32,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C21H32O_001": {
+      "bond_counts": {
+        "C-C": 16,
+        "C=C": 3,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 1,
+        "C-H": 32,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C21H34O2_001": {
+      "bond_counts": {
+        "C-C": 17,
+        "C=C": 3,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 2,
+        "C-H": 34,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C21H34O2_002": {
+      "bond_counts": {
+        "C-C": 16,
+        "C=C": 3,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 2,
+        "C=O": 0,
+        "C-H": 32,
+        "O-H": 2
+      },
+      "is_ring": false
+    },
+    "C21H34O2_003": {
+      "bond_counts": {
+        "C-C": 17,
+        "C=C": 2,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 1,
+        "C-H": 33,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C21H34O2_004": {
+      "bond_counts": {
+        "C-C": 18,
+        "C=C": 1,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 2,
+        "C-H": 34,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C21H34O_001": {
+      "bond_counts": {
+        "C-C": 16,
+        "C=C": 3,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 0,
+        "C-H": 33,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C21H34O_002": {
+      "bond_counts": {
+        "C-C": 17,
+        "C=C": 2,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 1,
+        "C-H": 34,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C21H34_001": {
+      "bond_counts": {
+        "C-C": 16,
+        "C=C": 3,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 0,
+        "C-H": 34,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C21H36O2_001": {
+      "bond_counts": {
+        "C-C": 17,
+        "C=C": 3,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 1,
+        "C-H": 35,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C21H36O2_002": {
+      "bond_counts": {
+        "C-C": 18,
+        "C=C": 2,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 2,
+        "C-H": 36,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C21H36O2_003": {
+      "bond_counts": {
+        "C-C": 17,
+        "C=C": 2,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 2,
+        "C=O": 0,
+        "C-H": 34,
+        "O-H": 2
+      },
+      "is_ring": false
+    },
+    "C21H36O2_004": {
+      "bond_counts": {
+        "C-C": 18,
+        "C=C": 1,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 1,
+        "C-H": 35,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C21H36O2_005": {
+      "bond_counts": {
+        "C-C": 19,
+        "C=C": 0,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 2,
+        "C-H": 36,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C21H36O_001": {
+      "bond_counts": {
+        "C-C": 17,
+        "C=C": 3,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 1,
+        "C-H": 36,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C21H36O_002": {
+      "bond_counts": {
+        "C-C": 17,
+        "C=C": 2,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 0,
+        "C-H": 35,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C21H36O_003": {
+      "bond_counts": {
+        "C-C": 18,
+        "C=C": 1,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 1,
+        "C-H": 36,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C21H36_001": {
+      "bond_counts": {
+        "C-C": 17,
+        "C=C": 2,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 0,
+        "C-H": 36,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C21H38O2_001": {
+      "bond_counts": {
+        "C-C": 17,
+        "C=C": 3,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 2,
+        "C=O": 0,
+        "C-H": 36,
+        "O-H": 2
+      },
+      "is_ring": false
+    },
+    "C21H38O2_002": {
+      "bond_counts": {
+        "C-C": 18,
+        "C=C": 2,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 1,
+        "C-H": 37,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C21H38O2_003": {
+      "bond_counts": {
+        "C-C": 19,
+        "C=C": 1,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 2,
+        "C-H": 38,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C21H38O2_004": {
+      "bond_counts": {
+        "C-C": 18,
+        "C=C": 1,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 2,
+        "C=O": 0,
+        "C-H": 36,
+        "O-H": 2
+      },
+      "is_ring": false
+    },
+    "C21H38O2_005": {
+      "bond_counts": {
+        "C-C": 19,
+        "C=C": 0,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 1,
+        "C-H": 37,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C21H38O_001": {
+      "bond_counts": {
+        "C-C": 17,
+        "C=C": 3,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 0,
+        "C-H": 37,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C21H38O_002": {
+      "bond_counts": {
+        "C-C": 18,
+        "C=C": 2,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 1,
+        "C-H": 38,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C21H38O_003": {
+      "bond_counts": {
+        "C-C": 18,
+        "C=C": 1,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 0,
+        "C-H": 37,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C21H38O_004": {
+      "bond_counts": {
+        "C-C": 19,
+        "C=C": 0,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 1,
+        "C-H": 38,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C21H38_001": {
+      "bond_counts": {
+        "C-C": 17,
+        "C=C": 3,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 0,
+        "C-H": 38,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C21H38_002": {
+      "bond_counts": {
+        "C-C": 18,
+        "C=C": 1,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 0,
+        "C-H": 38,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C21H40O2_001": {
+      "bond_counts": {
+        "C-C": 18,
+        "C=C": 2,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 2,
+        "C=O": 0,
+        "C-H": 38,
+        "O-H": 2
+      },
+      "is_ring": false
+    },
+    "C21H40O2_002": {
+      "bond_counts": {
+        "C-C": 19,
+        "C=C": 1,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 1,
+        "C-H": 39,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C21H40O2_003": {
+      "bond_counts": {
+        "C-C": 20,
+        "C=C": 0,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 2,
+        "C-H": 40,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C21H40O2_004": {
+      "bond_counts": {
+        "C-C": 19,
+        "C=C": 0,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 2,
+        "C=O": 0,
+        "C-H": 38,
+        "O-H": 2
+      },
+      "is_ring": false
+    },
+    "C21H40O_001": {
+      "bond_counts": {
+        "C-C": 18,
+        "C=C": 2,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 0,
+        "C-H": 39,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C21H40O_002": {
+      "bond_counts": {
+        "C-C": 19,
+        "C=C": 1,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 1,
+        "C-H": 40,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C21H40O_003": {
+      "bond_counts": {
+        "C-C": 19,
+        "C=C": 0,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 0,
+        "C-H": 39,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C21H40_001": {
+      "bond_counts": {
+        "C-C": 18,
+        "C=C": 2,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 0,
+        "C-H": 40,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C21H40_002": {
+      "bond_counts": {
+        "C-C": 19,
+        "C=C": 0,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 0,
+        "C-H": 40,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C21H42O2_001": {
+      "bond_counts": {
+        "C-C": 19,
+        "C=C": 1,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 2,
+        "C=O": 0,
+        "C-H": 40,
+        "O-H": 2
+      },
+      "is_ring": false
+    },
+    "C21H42O2_002": {
+      "bond_counts": {
+        "C-C": 20,
+        "C=C": 0,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 1,
+        "C-H": 41,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C21H42O_001": {
+      "bond_counts": {
+        "C-C": 19,
+        "C=C": 1,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 0,
+        "C-H": 41,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C21H42O_002": {
+      "bond_counts": {
+        "C-C": 20,
+        "C=C": 0,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 1,
+        "C-H": 42,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C21H42_001": {
+      "bond_counts": {
+        "C-C": 19,
+        "C=C": 1,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 0,
+        "C-H": 42,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C21H44O2_001": {
+      "bond_counts": {
+        "C-C": 20,
+        "C=C": 0,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 2,
+        "C=O": 0,
+        "C-H": 42,
+        "O-H": 2
+      },
+      "is_ring": false
+    },
+    "C21H44O_001": {
+      "bond_counts": {
+        "C-C": 20,
+        "C=C": 0,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 0,
+        "C-H": 43,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C21H44_001": {
+      "bond_counts": {
+        "C-C": 20,
+        "C=C": 0,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 0,
+        "C-H": 44,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C22H32O2_001": {
+      "bond_counts": {
+        "C-C": 17,
+        "C=C": 3,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 2,
+        "C-H": 32,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C22H34O2_001": {
+      "bond_counts": {
+        "C-C": 17,
+        "C=C": 3,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 1,
+        "C-H": 33,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C22H34O2_002": {
+      "bond_counts": {
+        "C-C": 18,
+        "C=C": 2,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 2,
+        "C-H": 34,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C22H34O_001": {
+      "bond_counts": {
+        "C-C": 17,
+        "C=C": 3,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 1,
+        "C-H": 34,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C22H36O2_001": {
+      "bond_counts": {
+        "C-C": 18,
+        "C=C": 3,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 2,
+        "C-H": 36,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C22H36O2_002": {
+      "bond_counts": {
+        "C-C": 17,
+        "C=C": 3,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 2,
+        "C=O": 0,
+        "C-H": 34,
+        "O-H": 2
+      },
+      "is_ring": false
+    },
+    "C22H36O2_003": {
+      "bond_counts": {
+        "C-C": 18,
+        "C=C": 2,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 1,
+        "C-H": 35,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C22H36O2_004": {
+      "bond_counts": {
+        "C-C": 19,
+        "C=C": 1,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 2,
+        "C-H": 36,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C22H36O_001": {
+      "bond_counts": {
+        "C-C": 17,
+        "C=C": 3,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 0,
+        "C-H": 35,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C22H36O_002": {
+      "bond_counts": {
+        "C-C": 18,
+        "C=C": 2,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 1,
+        "C-H": 36,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C22H36_001": {
+      "bond_counts": {
+        "C-C": 17,
+        "C=C": 3,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 0,
+        "C-H": 36,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C22H38O2_001": {
+      "bond_counts": {
+        "C-C": 18,
+        "C=C": 3,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 1,
+        "C-H": 37,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C22H38O2_002": {
+      "bond_counts": {
+        "C-C": 19,
+        "C=C": 2,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 2,
+        "C-H": 38,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C22H38O2_003": {
+      "bond_counts": {
+        "C-C": 18,
+        "C=C": 2,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 2,
+        "C=O": 0,
+        "C-H": 36,
+        "O-H": 2
+      },
+      "is_ring": false
+    },
+    "C22H38O2_004": {
+      "bond_counts": {
+        "C-C": 19,
+        "C=C": 1,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 1,
+        "C-H": 37,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C22H38O2_005": {
+      "bond_counts": {
+        "C-C": 20,
+        "C=C": 0,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 2,
+        "C-H": 38,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C22H38O_001": {
+      "bond_counts": {
+        "C-C": 18,
+        "C=C": 3,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 1,
+        "C-H": 38,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C22H38O_002": {
+      "bond_counts": {
+        "C-C": 18,
+        "C=C": 2,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 0,
+        "C-H": 37,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C22H38O_003": {
+      "bond_counts": {
+        "C-C": 19,
+        "C=C": 1,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 1,
+        "C-H": 38,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C22H38_001": {
+      "bond_counts": {
+        "C-C": 18,
+        "C=C": 2,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 0,
+        "C-H": 38,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C22H40O2_001": {
+      "bond_counts": {
+        "C-C": 18,
+        "C=C": 3,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 2,
+        "C=O": 0,
+        "C-H": 38,
+        "O-H": 2
+      },
+      "is_ring": false
+    },
+    "C22H40O2_002": {
+      "bond_counts": {
+        "C-C": 19,
+        "C=C": 2,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 1,
+        "C-H": 39,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C22H40O2_003": {
+      "bond_counts": {
+        "C-C": 20,
+        "C=C": 1,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 2,
+        "C-H": 40,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C22H40O2_004": {
+      "bond_counts": {
+        "C-C": 19,
+        "C=C": 1,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 2,
+        "C=O": 0,
+        "C-H": 38,
+        "O-H": 2
+      },
+      "is_ring": false
+    },
+    "C22H40O2_005": {
+      "bond_counts": {
+        "C-C": 20,
+        "C=C": 0,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 1,
+        "C-H": 39,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C22H40O_001": {
+      "bond_counts": {
+        "C-C": 18,
+        "C=C": 3,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 0,
+        "C-H": 39,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C22H40O_002": {
+      "bond_counts": {
+        "C-C": 19,
+        "C=C": 2,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 1,
+        "C-H": 40,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C22H40O_003": {
+      "bond_counts": {
+        "C-C": 19,
+        "C=C": 1,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 0,
+        "C-H": 39,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C22H40O_004": {
+      "bond_counts": {
+        "C-C": 20,
+        "C=C": 0,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 1,
+        "C-H": 40,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C22H40_001": {
+      "bond_counts": {
+        "C-C": 18,
+        "C=C": 3,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 0,
+        "C-H": 40,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C22H40_002": {
+      "bond_counts": {
+        "C-C": 19,
+        "C=C": 1,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 0,
+        "C-H": 40,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C22H42O2_001": {
+      "bond_counts": {
+        "C-C": 19,
+        "C=C": 2,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 2,
+        "C=O": 0,
+        "C-H": 40,
+        "O-H": 2
+      },
+      "is_ring": false
+    },
+    "C22H42O2_002": {
+      "bond_counts": {
+        "C-C": 20,
+        "C=C": 1,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 1,
+        "C-H": 41,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C22H42O2_003": {
+      "bond_counts": {
+        "C-C": 21,
+        "C=C": 0,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 2,
+        "C-H": 42,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C22H42O2_004": {
+      "bond_counts": {
+        "C-C": 20,
+        "C=C": 0,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 2,
+        "C=O": 0,
+        "C-H": 40,
+        "O-H": 2
+      },
+      "is_ring": false
+    },
+    "C22H42O_001": {
+      "bond_counts": {
+        "C-C": 19,
+        "C=C": 2,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 0,
+        "C-H": 41,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C22H42O_002": {
+      "bond_counts": {
+        "C-C": 20,
+        "C=C": 1,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 1,
+        "C-H": 42,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C22H42O_003": {
+      "bond_counts": {
+        "C-C": 20,
+        "C=C": 0,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 0,
+        "C-H": 41,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C22H42_001": {
+      "bond_counts": {
+        "C-C": 19,
+        "C=C": 2,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 0,
+        "C-H": 42,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C22H42_002": {
+      "bond_counts": {
+        "C-C": 20,
+        "C=C": 0,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 0,
+        "C-H": 42,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C22H44O2_001": {
+      "bond_counts": {
+        "C-C": 20,
+        "C=C": 1,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 2,
+        "C=O": 0,
+        "C-H": 42,
+        "O-H": 2
+      },
+      "is_ring": false
+    },
+    "C22H44O2_002": {
+      "bond_counts": {
+        "C-C": 21,
+        "C=C": 0,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 1,
+        "C-H": 43,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C22H44O_001": {
+      "bond_counts": {
+        "C-C": 20,
+        "C=C": 1,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 0,
+        "C-H": 43,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C22H44O_002": {
+      "bond_counts": {
+        "C-C": 21,
+        "C=C": 0,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 1,
+        "C-H": 44,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C22H44_001": {
+      "bond_counts": {
+        "C-C": 20,
+        "C=C": 1,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 0,
+        "C-H": 44,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C22H46O2_001": {
+      "bond_counts": {
+        "C-C": 21,
+        "C=C": 0,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 2,
+        "C=O": 0,
+        "C-H": 44,
+        "O-H": 2
+      },
+      "is_ring": false
+    },
+    "C22H46O_001": {
+      "bond_counts": {
+        "C-C": 21,
+        "C=C": 0,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 0,
+        "C-H": 45,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C22H46_001": {
+      "bond_counts": {
+        "C-C": 21,
+        "C=C": 0,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 0,
+        "C-H": 46,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C23H34O2_001": {
+      "bond_counts": {
+        "C-C": 18,
+        "C=C": 3,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 2,
+        "C-H": 34,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C23H36O2_001": {
+      "bond_counts": {
+        "C-C": 18,
+        "C=C": 3,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 1,
+        "C-H": 35,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C23H36O2_002": {
+      "bond_counts": {
+        "C-C": 19,
+        "C=C": 2,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 2,
+        "C-H": 36,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C23H36O_001": {
+      "bond_counts": {
+        "C-C": 18,
+        "C=C": 3,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 1,
+        "C-H": 36,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C23H38O2_001": {
+      "bond_counts": {
+        "C-C": 19,
+        "C=C": 3,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 2,
+        "C-H": 38,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C23H38O2_002": {
+      "bond_counts": {
+        "C-C": 18,
+        "C=C": 3,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 2,
+        "C=O": 0,
+        "C-H": 36,
+        "O-H": 2
+      },
+      "is_ring": false
+    },
+    "C23H38O2_003": {
+      "bond_counts": {
+        "C-C": 19,
+        "C=C": 2,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 1,
+        "C-H": 37,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C23H38O2_004": {
+      "bond_counts": {
+        "C-C": 20,
+        "C=C": 1,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 2,
+        "C-H": 38,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C23H38O_001": {
+      "bond_counts": {
+        "C-C": 18,
+        "C=C": 3,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 0,
+        "C-H": 37,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C23H38O_002": {
+      "bond_counts": {
+        "C-C": 19,
+        "C=C": 2,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 1,
+        "C-H": 38,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C23H38_001": {
+      "bond_counts": {
+        "C-C": 18,
+        "C=C": 3,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 0,
+        "C-H": 38,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C23H40O2_001": {
+      "bond_counts": {
+        "C-C": 19,
+        "C=C": 3,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 1,
+        "C-H": 39,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C23H40O2_002": {
+      "bond_counts": {
+        "C-C": 20,
+        "C=C": 2,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 2,
+        "C-H": 40,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C23H40O2_003": {
+      "bond_counts": {
+        "C-C": 19,
+        "C=C": 2,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 2,
+        "C=O": 0,
+        "C-H": 38,
+        "O-H": 2
+      },
+      "is_ring": false
+    },
+    "C23H40O2_004": {
+      "bond_counts": {
+        "C-C": 20,
+        "C=C": 1,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 1,
+        "C-H": 39,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C23H40O2_005": {
+      "bond_counts": {
+        "C-C": 21,
+        "C=C": 0,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 2,
+        "C-H": 40,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C23H40O_001": {
+      "bond_counts": {
+        "C-C": 19,
+        "C=C": 3,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 1,
+        "C-H": 40,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C23H40O_002": {
+      "bond_counts": {
+        "C-C": 19,
+        "C=C": 2,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 0,
+        "C-H": 39,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C23H40O_003": {
+      "bond_counts": {
+        "C-C": 20,
+        "C=C": 1,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 1,
+        "C-H": 40,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C23H40_001": {
+      "bond_counts": {
+        "C-C": 19,
+        "C=C": 2,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 0,
+        "C-H": 40,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C23H42O2_001": {
+      "bond_counts": {
+        "C-C": 19,
+        "C=C": 3,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 2,
+        "C=O": 0,
+        "C-H": 40,
+        "O-H": 2
+      },
+      "is_ring": false
+    },
+    "C23H42O2_002": {
+      "bond_counts": {
+        "C-C": 20,
+        "C=C": 2,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 1,
+        "C-H": 41,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C23H42O2_003": {
+      "bond_counts": {
+        "C-C": 21,
+        "C=C": 1,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 2,
+        "C-H": 42,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C23H42O2_004": {
+      "bond_counts": {
+        "C-C": 20,
+        "C=C": 1,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 2,
+        "C=O": 0,
+        "C-H": 40,
+        "O-H": 2
+      },
+      "is_ring": false
+    },
+    "C23H42O2_005": {
+      "bond_counts": {
+        "C-C": 21,
+        "C=C": 0,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 1,
+        "C-H": 41,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C23H42O_001": {
+      "bond_counts": {
+        "C-C": 19,
+        "C=C": 3,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 0,
+        "C-H": 41,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C23H42O_002": {
+      "bond_counts": {
+        "C-C": 20,
+        "C=C": 2,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 1,
+        "C-H": 42,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C23H42O_003": {
+      "bond_counts": {
+        "C-C": 20,
+        "C=C": 1,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 0,
+        "C-H": 41,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C23H42O_004": {
+      "bond_counts": {
+        "C-C": 21,
+        "C=C": 0,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 1,
+        "C-H": 42,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C23H42_001": {
+      "bond_counts": {
+        "C-C": 19,
+        "C=C": 3,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 0,
+        "C-H": 42,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C23H42_002": {
+      "bond_counts": {
+        "C-C": 20,
+        "C=C": 1,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 0,
+        "C-H": 42,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C23H44O2_001": {
+      "bond_counts": {
+        "C-C": 20,
+        "C=C": 2,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 2,
+        "C=O": 0,
+        "C-H": 42,
+        "O-H": 2
+      },
+      "is_ring": false
+    },
+    "C23H44O2_002": {
+      "bond_counts": {
+        "C-C": 21,
+        "C=C": 1,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 1,
+        "C-H": 43,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C23H44O2_003": {
+      "bond_counts": {
+        "C-C": 22,
+        "C=C": 0,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 2,
+        "C-H": 44,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C23H44O2_004": {
+      "bond_counts": {
+        "C-C": 21,
+        "C=C": 0,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 2,
+        "C=O": 0,
+        "C-H": 42,
+        "O-H": 2
+      },
+      "is_ring": false
+    },
+    "C23H44O_001": {
+      "bond_counts": {
+        "C-C": 20,
+        "C=C": 2,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 0,
+        "C-H": 43,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C23H44O_002": {
+      "bond_counts": {
+        "C-C": 21,
+        "C=C": 1,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 1,
+        "C-H": 44,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C23H44O_003": {
+      "bond_counts": {
+        "C-C": 21,
+        "C=C": 0,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 0,
+        "C-H": 43,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C23H44_001": {
+      "bond_counts": {
+        "C-C": 20,
+        "C=C": 2,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 0,
+        "C-H": 44,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C23H44_002": {
+      "bond_counts": {
+        "C-C": 21,
+        "C=C": 0,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 0,
+        "C-H": 44,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C23H46O2_001": {
+      "bond_counts": {
+        "C-C": 21,
+        "C=C": 1,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 2,
+        "C=O": 0,
+        "C-H": 44,
+        "O-H": 2
+      },
+      "is_ring": false
+    },
+    "C23H46O2_002": {
+      "bond_counts": {
+        "C-C": 22,
+        "C=C": 0,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 1,
+        "C-H": 45,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C23H46O_001": {
+      "bond_counts": {
+        "C-C": 21,
+        "C=C": 1,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 0,
+        "C-H": 45,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C23H46O_002": {
+      "bond_counts": {
+        "C-C": 22,
+        "C=C": 0,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 1,
+        "C-H": 46,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C23H46_001": {
+      "bond_counts": {
+        "C-C": 21,
+        "C=C": 1,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 0,
+        "C-H": 46,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C23H48O2_001": {
+      "bond_counts": {
+        "C-C": 22,
+        "C=C": 0,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 2,
+        "C=O": 0,
+        "C-H": 46,
+        "O-H": 2
+      },
+      "is_ring": false
+    },
+    "C23H48O_001": {
+      "bond_counts": {
+        "C-C": 22,
+        "C=C": 0,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 0,
+        "C-H": 47,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C23H48_001": {
+      "bond_counts": {
+        "C-C": 22,
+        "C=C": 0,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 0,
+        "C-H": 48,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C24H36O2_001": {
+      "bond_counts": {
+        "C-C": 19,
+        "C=C": 3,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 2,
+        "C-H": 36,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C24H38O2_001": {
+      "bond_counts": {
+        "C-C": 19,
+        "C=C": 3,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 1,
+        "C-H": 37,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C24H38O2_002": {
+      "bond_counts": {
+        "C-C": 20,
+        "C=C": 2,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 2,
+        "C-H": 38,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C24H38O_001": {
+      "bond_counts": {
+        "C-C": 19,
+        "C=C": 3,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 1,
+        "C-H": 38,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C24H40O2_001": {
+      "bond_counts": {
+        "C-C": 20,
+        "C=C": 3,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 2,
+        "C-H": 40,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C24H40O2_002": {
+      "bond_counts": {
+        "C-C": 19,
+        "C=C": 3,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 2,
+        "C=O": 0,
+        "C-H": 38,
+        "O-H": 2
+      },
+      "is_ring": false
+    },
+    "C24H40O2_003": {
+      "bond_counts": {
+        "C-C": 20,
+        "C=C": 2,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 1,
+        "C-H": 39,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C24H40O2_004": {
+      "bond_counts": {
+        "C-C": 21,
+        "C=C": 1,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 2,
+        "C-H": 40,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C24H40O_001": {
+      "bond_counts": {
+        "C-C": 19,
+        "C=C": 3,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 0,
+        "C-H": 39,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C24H40O_002": {
+      "bond_counts": {
+        "C-C": 20,
+        "C=C": 2,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 1,
+        "C-H": 40,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C24H40_001": {
+      "bond_counts": {
+        "C-C": 19,
+        "C=C": 3,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 0,
+        "C-H": 40,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C24H42O2_001": {
+      "bond_counts": {
+        "C-C": 20,
+        "C=C": 3,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 1,
+        "C-H": 41,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C24H42O2_002": {
+      "bond_counts": {
+        "C-C": 21,
+        "C=C": 2,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 2,
+        "C-H": 42,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C24H42O2_003": {
+      "bond_counts": {
+        "C-C": 20,
+        "C=C": 2,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 2,
+        "C=O": 0,
+        "C-H": 40,
+        "O-H": 2
+      },
+      "is_ring": false
+    },
+    "C24H42O2_004": {
+      "bond_counts": {
+        "C-C": 21,
+        "C=C": 1,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 1,
+        "C-H": 41,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C24H42O2_005": {
+      "bond_counts": {
+        "C-C": 22,
+        "C=C": 0,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 2,
+        "C-H": 42,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C24H42O_001": {
+      "bond_counts": {
+        "C-C": 20,
+        "C=C": 3,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 1,
+        "C-H": 42,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C24H42O_002": {
+      "bond_counts": {
+        "C-C": 20,
+        "C=C": 2,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 0,
+        "C-H": 41,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C24H42O_003": {
+      "bond_counts": {
+        "C-C": 21,
+        "C=C": 1,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 1,
+        "C-H": 42,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C24H42_001": {
+      "bond_counts": {
+        "C-C": 20,
+        "C=C": 2,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 0,
+        "C-H": 42,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C24H44O2_001": {
+      "bond_counts": {
+        "C-C": 20,
+        "C=C": 3,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 2,
+        "C=O": 0,
+        "C-H": 42,
+        "O-H": 2
+      },
+      "is_ring": false
+    },
+    "C24H44O2_002": {
+      "bond_counts": {
+        "C-C": 21,
+        "C=C": 2,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 1,
+        "C-H": 43,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C24H44O2_003": {
+      "bond_counts": {
+        "C-C": 22,
+        "C=C": 1,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 2,
+        "C-H": 44,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C24H44O2_004": {
+      "bond_counts": {
+        "C-C": 21,
+        "C=C": 1,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 2,
+        "C=O": 0,
+        "C-H": 42,
+        "O-H": 2
+      },
+      "is_ring": false
+    },
+    "C24H44O2_005": {
+      "bond_counts": {
+        "C-C": 22,
+        "C=C": 0,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 1,
+        "C-H": 43,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C24H44O_001": {
+      "bond_counts": {
+        "C-C": 20,
+        "C=C": 3,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 0,
+        "C-H": 43,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C24H44O_002": {
+      "bond_counts": {
+        "C-C": 21,
+        "C=C": 2,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 1,
+        "C-H": 44,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C24H44O_003": {
+      "bond_counts": {
+        "C-C": 21,
+        "C=C": 1,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 0,
+        "C-H": 43,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C24H44O_004": {
+      "bond_counts": {
+        "C-C": 22,
+        "C=C": 0,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 1,
+        "C-H": 44,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C24H44_001": {
+      "bond_counts": {
+        "C-C": 20,
+        "C=C": 3,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 0,
+        "C-H": 44,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C24H44_002": {
+      "bond_counts": {
+        "C-C": 21,
+        "C=C": 1,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 0,
+        "C-H": 44,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C24H46O2_001": {
+      "bond_counts": {
+        "C-C": 21,
+        "C=C": 2,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 2,
+        "C=O": 0,
+        "C-H": 44,
+        "O-H": 2
+      },
+      "is_ring": false
+    },
+    "C24H46O2_002": {
+      "bond_counts": {
+        "C-C": 22,
+        "C=C": 1,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 1,
+        "C-H": 45,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C24H46O2_003": {
+      "bond_counts": {
+        "C-C": 23,
+        "C=C": 0,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 2,
+        "C-H": 46,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C24H46O2_004": {
+      "bond_counts": {
+        "C-C": 22,
+        "C=C": 0,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 2,
+        "C=O": 0,
+        "C-H": 44,
+        "O-H": 2
+      },
+      "is_ring": false
+    },
+    "C24H46O_001": {
+      "bond_counts": {
+        "C-C": 21,
+        "C=C": 2,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 0,
+        "C-H": 45,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C24H46O_002": {
+      "bond_counts": {
+        "C-C": 22,
+        "C=C": 1,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 1,
+        "C-H": 46,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C24H46O_003": {
+      "bond_counts": {
+        "C-C": 22,
+        "C=C": 0,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 0,
+        "C-H": 45,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C24H46_001": {
+      "bond_counts": {
+        "C-C": 21,
+        "C=C": 2,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 0,
+        "C-H": 46,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C24H46_002": {
+      "bond_counts": {
+        "C-C": 22,
+        "C=C": 0,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 0,
+        "C-H": 46,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C24H48O2_001": {
+      "bond_counts": {
+        "C-C": 22,
+        "C=C": 1,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 2,
+        "C=O": 0,
+        "C-H": 46,
+        "O-H": 2
+      },
+      "is_ring": false
+    },
+    "C24H48O2_002": {
+      "bond_counts": {
+        "C-C": 23,
+        "C=C": 0,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 1,
+        "C-H": 47,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C24H48O_001": {
+      "bond_counts": {
+        "C-C": 22,
+        "C=C": 1,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 0,
+        "C-H": 47,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C24H48O_002": {
+      "bond_counts": {
+        "C-C": 23,
+        "C=C": 0,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 1,
+        "C-H": 48,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C24H48_001": {
+      "bond_counts": {
+        "C-C": 22,
+        "C=C": 1,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 0,
+        "C-H": 48,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C24H50O2_001": {
+      "bond_counts": {
+        "C-C": 23,
+        "C=C": 0,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 2,
+        "C=O": 0,
+        "C-H": 48,
+        "O-H": 2
+      },
+      "is_ring": false
+    },
+    "C24H50O_001": {
+      "bond_counts": {
+        "C-C": 23,
+        "C=C": 0,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 0,
+        "C-H": 49,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C24H50_001": {
+      "bond_counts": {
+        "C-C": 23,
+        "C=C": 0,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 0,
+        "C-H": 50,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C25H38O2_001": {
+      "bond_counts": {
+        "C-C": 20,
+        "C=C": 3,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 2,
+        "C-H": 38,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C25H40O2_001": {
+      "bond_counts": {
+        "C-C": 20,
+        "C=C": 3,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 1,
+        "C-H": 39,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C25H40O2_002": {
+      "bond_counts": {
+        "C-C": 21,
+        "C=C": 2,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 2,
+        "C-H": 40,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C25H40O_001": {
+      "bond_counts": {
+        "C-C": 20,
+        "C=C": 3,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 1,
+        "C-H": 40,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C25H42O2_001": {
+      "bond_counts": {
+        "C-C": 21,
+        "C=C": 3,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 2,
+        "C-H": 42,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C25H42O2_002": {
+      "bond_counts": {
+        "C-C": 20,
+        "C=C": 3,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 2,
+        "C=O": 0,
+        "C-H": 40,
+        "O-H": 2
+      },
+      "is_ring": false
+    },
+    "C25H42O2_003": {
+      "bond_counts": {
+        "C-C": 21,
+        "C=C": 2,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 1,
+        "C-H": 41,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C25H42O2_004": {
+      "bond_counts": {
+        "C-C": 22,
+        "C=C": 1,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 2,
+        "C-H": 42,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C25H42O_001": {
+      "bond_counts": {
+        "C-C": 20,
+        "C=C": 3,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 0,
+        "C-H": 41,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C25H42O_002": {
+      "bond_counts": {
+        "C-C": 21,
+        "C=C": 2,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 1,
+        "C-H": 42,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C25H42_001": {
+      "bond_counts": {
+        "C-C": 20,
+        "C=C": 3,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 0,
+        "C-H": 42,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C25H44O2_001": {
+      "bond_counts": {
+        "C-C": 21,
+        "C=C": 3,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 1,
+        "C-H": 43,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C25H44O2_002": {
+      "bond_counts": {
+        "C-C": 22,
+        "C=C": 2,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 2,
+        "C-H": 44,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C25H44O2_003": {
+      "bond_counts": {
+        "C-C": 21,
+        "C=C": 2,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 2,
+        "C=O": 0,
+        "C-H": 42,
+        "O-H": 2
+      },
+      "is_ring": false
+    },
+    "C25H44O2_004": {
+      "bond_counts": {
+        "C-C": 22,
+        "C=C": 1,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 1,
+        "C-H": 43,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C25H44O2_005": {
+      "bond_counts": {
+        "C-C": 23,
+        "C=C": 0,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 2,
+        "C-H": 44,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C25H44O_001": {
+      "bond_counts": {
+        "C-C": 21,
+        "C=C": 3,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 1,
+        "C-H": 44,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C25H44O_002": {
+      "bond_counts": {
+        "C-C": 21,
+        "C=C": 2,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 0,
+        "C-H": 43,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C25H44O_003": {
+      "bond_counts": {
+        "C-C": 22,
+        "C=C": 1,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 1,
+        "C-H": 44,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C25H44_001": {
+      "bond_counts": {
+        "C-C": 21,
+        "C=C": 2,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 0,
+        "C-H": 44,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C25H46O2_001": {
+      "bond_counts": {
+        "C-C": 21,
+        "C=C": 3,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 2,
+        "C=O": 0,
+        "C-H": 44,
+        "O-H": 2
+      },
+      "is_ring": false
+    },
+    "C25H46O2_002": {
+      "bond_counts": {
+        "C-C": 22,
+        "C=C": 2,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 1,
+        "C-H": 45,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C25H46O2_003": {
+      "bond_counts": {
+        "C-C": 23,
+        "C=C": 1,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 2,
+        "C-H": 46,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C25H46O2_004": {
+      "bond_counts": {
+        "C-C": 22,
+        "C=C": 1,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 2,
+        "C=O": 0,
+        "C-H": 44,
+        "O-H": 2
+      },
+      "is_ring": false
+    },
+    "C25H46O2_005": {
+      "bond_counts": {
+        "C-C": 23,
+        "C=C": 0,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 1,
+        "C-H": 45,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C25H46O_001": {
+      "bond_counts": {
+        "C-C": 21,
+        "C=C": 3,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 0,
+        "C-H": 45,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C25H46O_002": {
+      "bond_counts": {
+        "C-C": 22,
+        "C=C": 2,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 1,
+        "C-H": 46,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C25H46O_003": {
+      "bond_counts": {
+        "C-C": 22,
+        "C=C": 1,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 0,
+        "C-H": 45,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C25H46O_004": {
+      "bond_counts": {
+        "C-C": 23,
+        "C=C": 0,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 1,
+        "C-H": 46,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C25H46_001": {
+      "bond_counts": {
+        "C-C": 21,
+        "C=C": 3,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 0,
+        "C-H": 46,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C25H46_002": {
+      "bond_counts": {
+        "C-C": 22,
+        "C=C": 1,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 0,
+        "C-H": 46,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C25H48O2_001": {
+      "bond_counts": {
+        "C-C": 22,
+        "C=C": 2,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 2,
+        "C=O": 0,
+        "C-H": 46,
+        "O-H": 2
+      },
+      "is_ring": false
+    },
+    "C25H48O2_002": {
+      "bond_counts": {
+        "C-C": 23,
+        "C=C": 1,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 1,
+        "C-H": 47,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C25H48O2_003": {
+      "bond_counts": {
+        "C-C": 24,
+        "C=C": 0,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 2,
+        "C-H": 48,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C25H48O2_004": {
+      "bond_counts": {
+        "C-C": 23,
+        "C=C": 0,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 2,
+        "C=O": 0,
+        "C-H": 46,
+        "O-H": 2
+      },
+      "is_ring": false
+    },
+    "C25H48O_001": {
+      "bond_counts": {
+        "C-C": 22,
+        "C=C": 2,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 0,
+        "C-H": 47,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C25H48O_002": {
+      "bond_counts": {
+        "C-C": 23,
+        "C=C": 1,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 1,
+        "C-H": 48,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C25H48O_003": {
+      "bond_counts": {
+        "C-C": 23,
+        "C=C": 0,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 0,
+        "C-H": 47,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C25H48_001": {
+      "bond_counts": {
+        "C-C": 22,
+        "C=C": 2,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 0,
+        "C-H": 48,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C25H48_002": {
+      "bond_counts": {
+        "C-C": 23,
+        "C=C": 0,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 0,
+        "C-H": 48,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C25H50O2_001": {
+      "bond_counts": {
+        "C-C": 23,
+        "C=C": 1,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 2,
+        "C=O": 0,
+        "C-H": 48,
+        "O-H": 2
+      },
+      "is_ring": false
+    },
+    "C25H50O2_002": {
+      "bond_counts": {
+        "C-C": 24,
+        "C=C": 0,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 1,
+        "C-H": 49,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C25H50O_001": {
+      "bond_counts": {
+        "C-C": 23,
+        "C=C": 1,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 0,
+        "C-H": 49,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C25H50O_002": {
+      "bond_counts": {
+        "C-C": 24,
+        "C=C": 0,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 1,
+        "C-H": 50,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C25H50_001": {
+      "bond_counts": {
+        "C-C": 23,
+        "C=C": 1,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 0,
+        "C-H": 50,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C25H52O2_001": {
+      "bond_counts": {
+        "C-C": 24,
+        "C=C": 0,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 2,
+        "C=O": 0,
+        "C-H": 50,
+        "O-H": 2
+      },
+      "is_ring": false
+    },
+    "C25H52O_001": {
+      "bond_counts": {
+        "C-C": 24,
+        "C=C": 0,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 0,
+        "C-H": 51,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C25H52_001": {
+      "bond_counts": {
+        "C-C": 24,
+        "C=C": 0,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 0,
+        "C-H": 52,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C26H42O2_001": {
+      "bond_counts": {
+        "C-C": 22,
+        "C=C": 2,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 2,
+        "C-H": 42,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C26H44O2_001": {
+      "bond_counts": {
+        "C-C": 22,
+        "C=C": 2,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 1,
+        "C-H": 43,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C26H44O2_002": {
+      "bond_counts": {
+        "C-C": 23,
+        "C=C": 1,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 2,
+        "C-H": 44,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C26H44O_001": {
+      "bond_counts": {
+        "C-C": 22,
+        "C=C": 2,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 1,
+        "C-H": 44,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C26H46O2_001": {
+      "bond_counts": {
+        "C-C": 23,
+        "C=C": 2,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 2,
+        "C-H": 46,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C26H46O2_002": {
+      "bond_counts": {
+        "C-C": 22,
+        "C=C": 2,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 2,
+        "C=O": 0,
+        "C-H": 44,
+        "O-H": 2
+      },
+      "is_ring": false
+    },
+    "C26H46O2_003": {
+      "bond_counts": {
+        "C-C": 23,
+        "C=C": 1,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 1,
+        "C-H": 45,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C26H46O2_004": {
+      "bond_counts": {
+        "C-C": 24,
+        "C=C": 0,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 2,
+        "C-H": 46,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C26H46O_001": {
+      "bond_counts": {
+        "C-C": 22,
+        "C=C": 2,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 0,
+        "C-H": 45,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C26H46O_002": {
+      "bond_counts": {
+        "C-C": 23,
+        "C=C": 1,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 1,
+        "C-H": 46,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C26H46_001": {
+      "bond_counts": {
+        "C-C": 22,
+        "C=C": 2,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 0,
+        "C-H": 46,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C26H48O2_001": {
+      "bond_counts": {
+        "C-C": 23,
+        "C=C": 2,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 1,
+        "C-H": 47,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C26H48O2_002": {
+      "bond_counts": {
+        "C-C": 24,
+        "C=C": 1,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 2,
+        "C-H": 48,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C26H48O2_003": {
+      "bond_counts": {
+        "C-C": 23,
+        "C=C": 1,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 2,
+        "C=O": 0,
+        "C-H": 46,
+        "O-H": 2
+      },
+      "is_ring": false
+    },
+    "C26H48O2_004": {
+      "bond_counts": {
+        "C-C": 24,
+        "C=C": 0,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 1,
+        "C-H": 47,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C26H48O_001": {
+      "bond_counts": {
+        "C-C": 23,
+        "C=C": 2,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 1,
+        "C-H": 48,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C26H48O_002": {
+      "bond_counts": {
+        "C-C": 23,
+        "C=C": 1,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 0,
+        "C-H": 47,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C26H48O_003": {
+      "bond_counts": {
+        "C-C": 24,
+        "C=C": 0,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 1,
+        "C-H": 48,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C26H48_001": {
+      "bond_counts": {
+        "C-C": 23,
+        "C=C": 1,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 0,
+        "C-H": 48,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C26H50O2_001": {
+      "bond_counts": {
+        "C-C": 23,
+        "C=C": 2,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 2,
+        "C=O": 0,
+        "C-H": 48,
+        "O-H": 2
+      },
+      "is_ring": false
+    },
+    "C26H50O2_002": {
+      "bond_counts": {
+        "C-C": 24,
+        "C=C": 1,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 1,
+        "C-H": 49,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C26H50O2_003": {
+      "bond_counts": {
+        "C-C": 25,
+        "C=C": 0,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 2,
+        "C-H": 50,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C26H50O2_004": {
+      "bond_counts": {
+        "C-C": 24,
+        "C=C": 0,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 2,
+        "C=O": 0,
+        "C-H": 48,
+        "O-H": 2
+      },
+      "is_ring": false
+    },
+    "C26H50O_001": {
+      "bond_counts": {
+        "C-C": 23,
+        "C=C": 2,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 0,
+        "C-H": 49,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C26H50O_002": {
+      "bond_counts": {
+        "C-C": 24,
+        "C=C": 1,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 1,
+        "C-H": 50,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C26H50O_003": {
+      "bond_counts": {
+        "C-C": 24,
+        "C=C": 0,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 0,
+        "C-H": 49,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C26H50_001": {
+      "bond_counts": {
+        "C-C": 23,
+        "C=C": 2,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 0,
+        "C-H": 50,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C26H50_002": {
+      "bond_counts": {
+        "C-C": 24,
+        "C=C": 0,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 0,
+        "C-H": 50,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C26H52O2_001": {
+      "bond_counts": {
+        "C-C": 24,
+        "C=C": 1,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 2,
+        "C=O": 0,
+        "C-H": 50,
+        "O-H": 2
+      },
+      "is_ring": false
+    },
+    "C26H52O2_002": {
+      "bond_counts": {
+        "C-C": 25,
+        "C=C": 0,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 1,
+        "C-H": 51,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C26H52O_001": {
+      "bond_counts": {
+        "C-C": 24,
+        "C=C": 1,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 0,
+        "C-H": 51,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C26H52O_002": {
+      "bond_counts": {
+        "C-C": 25,
+        "C=C": 0,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 1,
+        "C-H": 52,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C26H52_001": {
+      "bond_counts": {
+        "C-C": 24,
+        "C=C": 1,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 0,
+        "C-H": 52,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C26H54O2_001": {
+      "bond_counts": {
+        "C-C": 25,
+        "C=C": 0,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 2,
+        "C=O": 0,
+        "C-H": 52,
+        "O-H": 2
+      },
+      "is_ring": false
+    },
+    "C26H54O_001": {
+      "bond_counts": {
+        "C-C": 25,
+        "C=C": 0,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 0,
+        "C-H": 53,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C26H54_001": {
+      "bond_counts": {
+        "C-C": 25,
+        "C=C": 0,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 0,
+        "C-H": 54,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C28H46O2_001": {
+      "bond_counts": {
+        "C-C": 24,
+        "C=C": 2,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 2,
+        "C-H": 46,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C28H48O2_001": {
+      "bond_counts": {
+        "C-C": 24,
+        "C=C": 2,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 1,
+        "C-H": 47,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C28H48O2_002": {
+      "bond_counts": {
+        "C-C": 25,
+        "C=C": 1,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 2,
+        "C-H": 48,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C28H48O_001": {
+      "bond_counts": {
+        "C-C": 24,
+        "C=C": 2,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 1,
+        "C-H": 48,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C28H50O2_001": {
+      "bond_counts": {
+        "C-C": 25,
+        "C=C": 2,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 2,
+        "C-H": 50,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C28H50O2_002": {
+      "bond_counts": {
+        "C-C": 24,
+        "C=C": 2,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 2,
+        "C=O": 0,
+        "C-H": 48,
+        "O-H": 2
+      },
+      "is_ring": false
+    },
+    "C28H50O2_003": {
+      "bond_counts": {
+        "C-C": 25,
+        "C=C": 1,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 1,
+        "C-H": 49,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C28H50O2_004": {
+      "bond_counts": {
+        "C-C": 26,
+        "C=C": 0,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 2,
+        "C-H": 50,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C28H50O_001": {
+      "bond_counts": {
+        "C-C": 24,
+        "C=C": 2,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 0,
+        "C-H": 49,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C28H50O_002": {
+      "bond_counts": {
+        "C-C": 25,
+        "C=C": 1,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 1,
+        "C-H": 50,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C28H50_001": {
+      "bond_counts": {
+        "C-C": 24,
+        "C=C": 2,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 0,
+        "C-H": 50,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C28H52O2_001": {
+      "bond_counts": {
+        "C-C": 25,
+        "C=C": 2,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 1,
+        "C-H": 51,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C28H52O2_002": {
+      "bond_counts": {
+        "C-C": 26,
+        "C=C": 1,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 2,
+        "C-H": 52,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C28H52O2_003": {
+      "bond_counts": {
+        "C-C": 25,
+        "C=C": 1,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 2,
+        "C=O": 0,
+        "C-H": 50,
+        "O-H": 2
+      },
+      "is_ring": false
+    },
+    "C28H52O2_004": {
+      "bond_counts": {
+        "C-C": 26,
+        "C=C": 0,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 1,
+        "C-H": 51,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C28H52O_001": {
+      "bond_counts": {
+        "C-C": 25,
+        "C=C": 2,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 1,
+        "C-H": 52,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C28H52O_002": {
+      "bond_counts": {
+        "C-C": 25,
+        "C=C": 1,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 0,
+        "C-H": 51,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C28H52O_003": {
+      "bond_counts": {
+        "C-C": 26,
+        "C=C": 0,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 1,
+        "C-H": 52,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C28H52_001": {
+      "bond_counts": {
+        "C-C": 25,
+        "C=C": 1,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 0,
+        "C-H": 52,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C28H54O2_001": {
+      "bond_counts": {
+        "C-C": 25,
+        "C=C": 2,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 2,
+        "C=O": 0,
+        "C-H": 52,
+        "O-H": 2
+      },
+      "is_ring": false
+    },
+    "C28H54O2_002": {
+      "bond_counts": {
+        "C-C": 26,
+        "C=C": 1,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 1,
+        "C-H": 53,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C28H54O2_003": {
+      "bond_counts": {
+        "C-C": 27,
+        "C=C": 0,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 2,
+        "C-H": 54,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C28H54O2_004": {
+      "bond_counts": {
+        "C-C": 26,
+        "C=C": 0,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 2,
+        "C=O": 0,
+        "C-H": 52,
+        "O-H": 2
+      },
+      "is_ring": false
+    },
+    "C28H54O_001": {
+      "bond_counts": {
+        "C-C": 25,
+        "C=C": 2,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 0,
+        "C-H": 53,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C28H54O_002": {
+      "bond_counts": {
+        "C-C": 26,
+        "C=C": 1,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 1,
+        "C-H": 54,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C28H54O_003": {
+      "bond_counts": {
+        "C-C": 26,
+        "C=C": 0,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 0,
+        "C-H": 53,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C28H54_001": {
+      "bond_counts": {
+        "C-C": 25,
+        "C=C": 2,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 0,
+        "C-H": 54,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C28H54_002": {
+      "bond_counts": {
+        "C-C": 26,
+        "C=C": 0,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 0,
+        "C-H": 54,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C28H56O2_001": {
+      "bond_counts": {
+        "C-C": 26,
+        "C=C": 1,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 2,
+        "C=O": 0,
+        "C-H": 54,
+        "O-H": 2
+      },
+      "is_ring": false
+    },
+    "C28H56O2_002": {
+      "bond_counts": {
+        "C-C": 27,
+        "C=C": 0,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 1,
+        "C-H": 55,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C28H56O_001": {
+      "bond_counts": {
+        "C-C": 26,
+        "C=C": 1,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 0,
+        "C-H": 55,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C28H56O_002": {
+      "bond_counts": {
+        "C-C": 27,
+        "C=C": 0,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 1,
+        "C-H": 56,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C28H56_001": {
+      "bond_counts": {
+        "C-C": 26,
+        "C=C": 1,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 0,
+        "C-H": 56,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C28H58O2_001": {
+      "bond_counts": {
+        "C-C": 27,
+        "C=C": 0,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 2,
+        "C=O": 0,
+        "C-H": 56,
+        "O-H": 2
+      },
+      "is_ring": false
+    },
+    "C28H58O_001": {
+      "bond_counts": {
+        "C-C": 27,
+        "C=C": 0,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 0,
+        "C-H": 57,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C28H58_001": {
+      "bond_counts": {
+        "C-C": 27,
+        "C=C": 0,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 0,
+        "C-H": 58,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C30H48O2_001": {
+      "bond_counts": {
+        "C-C": 25,
+        "C=C": 3,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 2,
+        "C-H": 48,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C30H50O2_001": {
+      "bond_counts": {
+        "C-C": 25,
+        "C=C": 3,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 1,
+        "C-H": 49,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C30H50O2_002": {
+      "bond_counts": {
+        "C-C": 26,
+        "C=C": 2,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 2,
+        "C-H": 50,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C30H50O_001": {
+      "bond_counts": {
+        "C-C": 25,
+        "C=C": 3,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 1,
+        "C-H": 50,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C30H52O2_001": {
+      "bond_counts": {
+        "C-C": 26,
+        "C=C": 3,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 2,
+        "C-H": 52,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C30H52O2_002": {
+      "bond_counts": {
+        "C-C": 25,
+        "C=C": 3,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 2,
+        "C=O": 0,
+        "C-H": 50,
+        "O-H": 2
+      },
+      "is_ring": false
+    },
+    "C30H52O2_003": {
+      "bond_counts": {
+        "C-C": 26,
+        "C=C": 2,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 1,
+        "C-H": 51,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C30H52O2_004": {
+      "bond_counts": {
+        "C-C": 27,
+        "C=C": 1,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 2,
+        "C-H": 52,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C30H52O_001": {
+      "bond_counts": {
+        "C-C": 25,
+        "C=C": 3,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 0,
+        "C-H": 51,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C30H52O_002": {
+      "bond_counts": {
+        "C-C": 26,
+        "C=C": 2,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 1,
+        "C-H": 52,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C30H52_001": {
+      "bond_counts": {
+        "C-C": 25,
+        "C=C": 3,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 0,
+        "C-H": 52,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C30H54O2_001": {
+      "bond_counts": {
+        "C-C": 26,
+        "C=C": 3,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 1,
+        "C-H": 53,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C30H54O2_002": {
+      "bond_counts": {
+        "C-C": 27,
+        "C=C": 2,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 2,
+        "C-H": 54,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C30H54O2_003": {
+      "bond_counts": {
+        "C-C": 26,
+        "C=C": 2,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 2,
+        "C=O": 0,
+        "C-H": 52,
+        "O-H": 2
+      },
+      "is_ring": false
+    },
+    "C30H54O2_004": {
+      "bond_counts": {
+        "C-C": 27,
+        "C=C": 1,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 1,
+        "C-H": 53,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C30H54O2_005": {
+      "bond_counts": {
+        "C-C": 28,
+        "C=C": 0,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 2,
+        "C-H": 54,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C30H54O_001": {
+      "bond_counts": {
+        "C-C": 26,
+        "C=C": 3,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 1,
+        "C-H": 54,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C30H54O_002": {
+      "bond_counts": {
+        "C-C": 26,
+        "C=C": 2,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 0,
+        "C-H": 53,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C30H54O_003": {
+      "bond_counts": {
+        "C-C": 27,
+        "C=C": 1,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 1,
+        "C-H": 54,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C30H54_001": {
+      "bond_counts": {
+        "C-C": 26,
+        "C=C": 2,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 0,
+        "C-H": 54,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C30H56O2_001": {
+      "bond_counts": {
+        "C-C": 26,
+        "C=C": 3,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 2,
+        "C=O": 0,
+        "C-H": 54,
+        "O-H": 2
+      },
+      "is_ring": false
+    },
+    "C30H56O2_002": {
+      "bond_counts": {
+        "C-C": 27,
+        "C=C": 2,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 1,
+        "C-H": 55,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C30H56O2_003": {
+      "bond_counts": {
+        "C-C": 28,
+        "C=C": 1,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 2,
+        "C-H": 56,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C30H56O2_004": {
+      "bond_counts": {
+        "C-C": 27,
+        "C=C": 1,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 2,
+        "C=O": 0,
+        "C-H": 54,
+        "O-H": 2
+      },
+      "is_ring": false
+    },
+    "C30H56O2_005": {
+      "bond_counts": {
+        "C-C": 28,
+        "C=C": 0,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 1,
+        "C-H": 55,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C30H56O_001": {
+      "bond_counts": {
+        "C-C": 26,
+        "C=C": 3,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 0,
+        "C-H": 55,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C30H56O_002": {
+      "bond_counts": {
+        "C-C": 27,
+        "C=C": 2,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 1,
+        "C-H": 56,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C30H56O_003": {
+      "bond_counts": {
+        "C-C": 27,
+        "C=C": 1,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 0,
+        "C-H": 55,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C30H56O_004": {
+      "bond_counts": {
+        "C-C": 28,
+        "C=C": 0,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 1,
+        "C-H": 56,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C30H56_001": {
+      "bond_counts": {
+        "C-C": 26,
+        "C=C": 3,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 0,
+        "C-H": 56,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C30H56_002": {
+      "bond_counts": {
+        "C-C": 27,
+        "C=C": 1,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 0,
+        "C-H": 56,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C30H58O2_001": {
+      "bond_counts": {
+        "C-C": 27,
+        "C=C": 2,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 2,
+        "C=O": 0,
+        "C-H": 56,
+        "O-H": 2
+      },
+      "is_ring": false
+    },
+    "C30H58O2_002": {
+      "bond_counts": {
+        "C-C": 28,
+        "C=C": 1,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 1,
+        "C-H": 57,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C30H58O2_003": {
+      "bond_counts": {
+        "C-C": 29,
+        "C=C": 0,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 2,
+        "C-H": 58,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C30H58O2_004": {
+      "bond_counts": {
+        "C-C": 28,
+        "C=C": 0,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 2,
+        "C=O": 0,
+        "C-H": 56,
+        "O-H": 2
+      },
+      "is_ring": false
+    },
+    "C30H58O_001": {
+      "bond_counts": {
+        "C-C": 27,
+        "C=C": 2,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 0,
+        "C-H": 57,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C30H58O_002": {
+      "bond_counts": {
+        "C-C": 28,
+        "C=C": 1,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 1,
+        "C-H": 58,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C30H58O_003": {
+      "bond_counts": {
+        "C-C": 28,
+        "C=C": 0,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 0,
+        "C-H": 57,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C30H58_001": {
+      "bond_counts": {
+        "C-C": 27,
+        "C=C": 2,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 0,
+        "C-H": 58,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C30H58_002": {
+      "bond_counts": {
+        "C-C": 28,
+        "C=C": 0,
+        "C#C": 1,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 0,
+        "C-H": 58,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C30H60O2_001": {
+      "bond_counts": {
+        "C-C": 28,
+        "C=C": 1,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 2,
+        "C=O": 0,
+        "C-H": 58,
+        "O-H": 2
+      },
+      "is_ring": false
+    },
+    "C30H60O2_002": {
+      "bond_counts": {
+        "C-C": 29,
+        "C=C": 0,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 1,
+        "C-H": 59,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C30H60O_001": {
+      "bond_counts": {
+        "C-C": 28,
+        "C=C": 1,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 0,
+        "C-H": 59,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C30H60O_002": {
+      "bond_counts": {
+        "C-C": 29,
+        "C=C": 0,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 1,
+        "C-H": 60,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C30H60_001": {
+      "bond_counts": {
+        "C-C": 28,
+        "C=C": 1,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 0,
+        "C-H": 60,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "C30H62O2_001": {
+      "bond_counts": {
+        "C-C": 29,
+        "C=C": 0,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 2,
+        "C=O": 0,
+        "C-H": 60,
+        "O-H": 2
+      },
+      "is_ring": false
+    },
+    "C30H62O_001": {
+      "bond_counts": {
+        "C-C": 29,
+        "C=C": 0,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 1,
+        "C=O": 0,
+        "C-H": 61,
+        "O-H": 1
+      },
+      "is_ring": false
+    },
+    "C30H62_001": {
+      "bond_counts": {
+        "C-C": 29,
+        "C=C": 0,
+        "C#C": 0,
+        "O-O": 0,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 0,
+        "C-H": 62,
+        "O-H": 0
+      },
+      "is_ring": false
+    },
+    "H2O10_001": {
+      "bond_counts": {
+        "C-C": 0,
+        "C=C": 0,
+        "C#C": 0,
+        "O-O": 9,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 0,
+        "C-H": 0,
+        "O-H": 2
+      },
+      "is_ring": false
+    },
+    "H2O3_001": {
+      "bond_counts": {
+        "C-C": 0,
+        "C=C": 0,
+        "C#C": 0,
+        "O-O": 2,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 0,
+        "C-H": 0,
+        "O-H": 2
+      },
+      "is_ring": false
+    },
+    "H2O5_001": {
+      "bond_counts": {
+        "C-C": 0,
+        "C=C": 0,
+        "C#C": 0,
+        "O-O": 4,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 0,
+        "C-H": 0,
+        "O-H": 2
+      },
+      "is_ring": false
+    },
+    "H2O6_001": {
+      "bond_counts": {
+        "C-C": 0,
+        "C=C": 0,
+        "C#C": 0,
+        "O-O": 5,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 0,
+        "C-H": 0,
+        "O-H": 2
+      },
+      "is_ring": false
+    },
+    "H2O8_001": {
+      "bond_counts": {
+        "C-C": 0,
+        "C=C": 0,
+        "C#C": 0,
+        "O-O": 7,
+        "O=O": 0,
+        "C-O": 0,
+        "C=O": 0,
+        "C-H": 0,
+        "O-H": 2
+      },
+      "is_ring": false
+    }
+  }
+}
