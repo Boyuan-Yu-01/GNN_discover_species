@@ -1,0 +1,25 @@
+BOND-BREAKING PARAMETER SEARCH
+======================================
+Positive groups: 267
+Pseudo-negative groups: 569
+
+Best parameters
+  A: 8.55635563401
+  E_ref: 246.545290282
+  k: 1037.95771337
+
+Objective
+  total: 0.053192763451
+  positive: 0.0531285584868
+  separation: 6.52256026967e-15
+  regularization: 6.4204964176e-05
+  mean positive log score: -0.0531285584868
+  pseudo log score statistic: -0.153128558487
+  score gap: 0.1
+
+Bond-breaking probabilities
+  C#C: 0.00128506133084
+  C-C: 0.00782802227637
+  C-O: 0.00708907869347
+  C=C: 0.00202425118743
+  C=O: 0.00149279032738

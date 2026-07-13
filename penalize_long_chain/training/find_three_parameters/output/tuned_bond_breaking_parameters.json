@@ -1,0 +1,71 @@
+{
+  "A": 8.556355634007874,
+  "E_ref": 246.5452902821316,
+  "k": 1037.957713373269,
+  "objective_value": 0.05319276345099062,
+  "positive_loss": 0.05312855848680975,
+  "separation_loss": 6.522560269672795e-15,
+  "regularization_loss": 6.420496417597015e-05,
+  "mean_positive_log_score": -0.05312855848680975,
+  "pseudo_log_score_statistic": -0.15312855848680323,
+  "score_gap": 0.09999999999999348,
+  "positive_sample_count": 267,
+  "pseudo_negative_sample_count": 569,
+  "bond_types": [
+    "C#C",
+    "C-C",
+    "C-O",
+    "C=C",
+    "C=O"
+  ],
+  "bde_by_bond": {
+    "C#C": 835.0,
+    "C-C": 346.0,
+    "C-O": 358.0,
+    "C=C": 602.0,
+    "C=O": 732.0
+  },
+  "p_break_by_bond": {
+    "C#C": 0.0012850613308433019,
+    "C-C": 0.007828022276367282,
+    "C-O": 0.007089078693474657,
+    "C=C": 0.0020242511874289364,
+    "C=O": 0.001492790327384478
+  },
+  "search_settings": {
+    "parameter_bounds": {
+      "A": [
+        1.0,
+        100.0
+      ],
+      "E_ref": [
+        50.0,
+        1000.0
+      ],
+      "k": [
+        10.0,
+        1000000.0
+      ]
+    },
+    "reference_parameters": {
+      "A": 10.0,
+      "E_ref": 300.0,
+      "k": 1000.0
+    },
+    "regularization_weights": [
+      0.001,
+      0.001,
+      0.001
+    ],
+    "positive_weight": 1.0,
+    "pseudo_negative_weight": 0.75,
+    "separation_margin": 0.1,
+    "pseudo_score_quantile": null,
+    "random_seed": 20260713,
+    "random_trials": 20000,
+    "keep_best_random": 20,
+    "local_starts": 10,
+    "local_max_iterations": 1000,
+    "local_tolerance": 1e-09
+  }
+}

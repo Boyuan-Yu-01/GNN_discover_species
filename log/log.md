@@ -235,7 +235,7 @@ A pseudo-negative is not proof that a molecule is impossible. It is a valence-va
 <span style="color:red">From parsing positive degeneracies to synthesis negative degeneracies:</span> [Link](../penalize_long_chain/README.md) 
 
 In total __569__ pseudo negative degeneracies are generated.
-In total __273__ positive degeneracies are recorded.
+In total __267__ positive degeneracies are recorded (used to be 273 but some of them does not have backbones at all i.e. H, O, etc.).
 
 [`Generated pseudo negative degeneracies`](../penalize_long_chain/output/pseudo_negative_dataset.json)
 
