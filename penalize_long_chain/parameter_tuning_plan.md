@@ -83,7 +83,7 @@ $$
 \theta=\{A,E_{\mathrm{ref}},k\}.
 $$
 
-Scores satisfy (s_\theta(g)\leq0). A score closer to zero indicates higher
+Scores satisfy $s_\theta(g)\leq0$. A score closer to zero indicates higher
 predicted survival.
 
 Calculate in log space and clamp each `P_break` away from 0 and 1 before taking
