@@ -226,4 +226,13 @@ It contains [JetSurF2.0](https://web.stanford.edu/group/haiwanglab/JetSurF/JetSu
 ## Idea to Parameter-tuning 
 1. Tune the parameter from equation derivation [Link](../penalize_long_chain/parameter_tuning_plan.md)
 2. Use machine learning approach to tune parameter [Link](../penalize_long_chain/machine_learning_approach.md)
-3. Machine learning black box [Link](../penalize_long_chain/black_box_species_existence_ml.md)
+3. Machine learning black box [Link](../penalize_long_chain/black_box_species_existence_ml.md
+
+## Jul. 15th, 2026
+### Generate Pseudo Negative  [Link](../penalize_long_chain/README_pseudo_negative_generator.md)
+A pseudo-negative is not proof that a molecule is impossible. It is a valence-valid synthetic structure intended to represent an unobserved or potentially less-survivable molecular pattern.
+
+<span style="color:red">From parsing positive degeneracies to synthesis negative degeneracies:</span> [Link](../penalize_long_chain/README.md) 
+
+[`Generated pseudo negative degeneracies`](../penalize_long_chain/output/pseudo_negative_dataset.json)
+

@@ -1,0 +1,68 @@
+Pseudo-negative dataset generation log
+
+========================================
+PSEUDO-NEGATIVE DATASET STATISTICS
+========================================
+Formula-degeneracy groups: 569
+Formulae represented: 263
+Ambiguous formulae: 154
+Groups with backbone: 569
+Ring groups: 96
+Generated groups by family:
+  carbon_ring: 96
+  highly_branched_carbon: 180
+  long_carbon_chain: 288
+  long_oxygen_chain: 5
+Backbone bond summary, excluding bonds that contain H:
+  C#C: max 1, nonzero groups 282
+  C#N: max 0, nonzero groups 0
+  C#O: max 0, nonzero groups 0
+  C-C: max 29, nonzero groups 564
+  C-N: max 0, nonzero groups 0
+  C-O: max 2, nonzero groups 282
+  C=C: max 3, nonzero groups 408
+  C=N: max 0, nonzero groups 0
+  C=O: max 2, nonzero groups 282
+  N#N: max 0, nonzero groups 0
+  N-N: max 0, nonzero groups 0
+  N=N: max 0, nonzero groups 0
+  N=O: max 0, nonzero groups 0
+  O-N: max 0, nonzero groups 0
+  O-O: max 9, nonzero groups 5
+  O=O: max 0, nonzero groups 0
+========================================
+
+Pseudo JSON output: /Users/boyuanyu/Documents/research/GNN/GNN_discover_species/penalize_long_chain/output/pseudo_negative_dataset.json
+Log output: /Users/boyuanyu/Documents/research/GNN/GNN_discover_species/penalize_long_chain/output/log_pseudo_negative_dataset.txt
+Random seed: 42
+Maximum retained samples: 100000
+Candidate attempts: 759
+Accepted: 569
+Rejected as invalid: 10
+Rejected as duplicate: 180
+Rejected as observed positive: 0
+Remaining capacity: 99431
+Positive reference files: 2
+  /Users/boyuanyu/Documents/research/GNN/GNN_discover_species/penalize_long_chain/output/c8-c16_n-alkanes_LLNL_subgraph_info.json
+  /Users/boyuanyu/Documents/research/GNN/GNN_discover_species/penalize_long_chain/output/nHeptane_LLNL_subgraph_info.json
+Top formulae by degeneracy count:
+  C10H12O2: 5
+  C10H14O2: 5
+  C12H16O2: 5
+  C12H18O2: 5
+  C21H36O2: 5
+  C21H38O2: 5
+  C22H38O2: 5
+  C22H40O2: 5
+  C23H40O2: 5
+  C23H42O2: 5
+  C24H42O2: 5
+  C24H44O2: 5
+  C25H44O2: 5
+  C25H46O2: 5
+  C30H54O2: 5
+  C30H56O2: 5
+  C10H10O2: 4
+  C10H14O: 4
+  C10H16O2: 4
+  C12H14O2: 4

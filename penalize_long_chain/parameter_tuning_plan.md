@@ -87,11 +87,14 @@ ring groups:               15
 Backbone bond summary:
 
 ```text
-C#C: max 1,  nonzero groups 3
-C-C: max 15, nonzero groups 237
-C-O: max 2,  nonzero groups 142
-C=C: max 2,  nonzero groups 58
-C=O: max 2,  nonzero groups 75
+  C-C: max 15, nonzero groups 237
+  C=C: max 2, nonzero groups 58
+  C#C: max 1, nonzero groups 3
+  C-O: max 2, nonzero groups 142
+  C=O: max 2, nonzero groups 75
+  C#O: max 1, nonzero groups 1
+  O-O: max 2, nonzero groups 94
+  O=O: max 1, nonzero groups 1
 ```
 
 Because `C-C` dominates the dataset, the tuning objective should avoid letting only `C-C` determine all parameters.

@@ -6,11 +6,13 @@ from identify_bonds import identify_bonds_from_chemikin_mechanism
 from master_dataset_merger import master_dataset_merger
 
 
+# Resolve data directories relative to this script so it works from any cwd.
 script_dir = Path(__file__).resolve().parent
 mechanism_dir = script_dir / "mechanism_file_chemkin"
 output_dir = script_dir / "output"
 output_dir.mkdir(exist_ok=True)
 
+# Convert each CHEMKIN mechanism into a separate species/bond dataset.
 json_paths = []
 for mechanism_file in sorted(mechanism_dir.glob("*.txt")):
     reader = identify_bonds_from_chemikin_mechanism(mechanism_file)
@@ -20,6 +22,7 @@ for mechanism_file in sorted(mechanism_dir.glob("*.txt")):
     log_path = output_dir / f"log_{mechanism_file.stem}.txt"
     json_path = reader.export_species_backbone_to_json(json_path)
 
+    # The helper prints its own status; suppress it in favor of the summary below.
     with redirect_stdout(StringIO()):
         reader.write_species_backbone_log(json_path, log_path)
 
@@ -30,6 +33,7 @@ for mechanism_file in sorted(mechanism_dir.glob("*.txt")):
         f"{len(backbone['formula_degeneracies'])} formula degeneracies"
     )
 
+# Combine the per-mechanism datasets and produce the final reports.
 merger = master_dataset_merger(json_paths)
 with redirect_stdout(StringIO()):
     master_json_path, master_log_path = merger.merge_and_export(
