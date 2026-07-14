@@ -258,3 +258,49 @@ validation_set
     pseudo_negative_samples
         ...
 ```
+
+### Finding three parameters
+*The objective is to use the positive examples and the pseudo-negative examples to find three parameters defined in [Link](mapping_E_to_P.md)* 
+
+* In `def _regularization`, we intentionally do not penalize against $E_{ref}$ since we start from three different initial starting point <span style="color:red">CAVEAT: Even at T=3000K, the Arrhenius term is very small</span>, and the probability of bond breaking is close to $\frac{1}{1+k}$ 
+* Powell local optimization algorithm since it's a derivative-free local optimization algorithm without needing gradients.
+
+| $T_{ref}$ (K) | $E_{ref}=RT$(kJ/mol) |
+| ------------- | -------------------: |
+| 100           |               0.8134 |
+| 500           |                4.157 |
+| 1000          |                8.314 |
+| 3000          |               24.942 |
+#### Run `main.py`
+1. Loads 267 positive and 569 pseudo-negative records.
+2. Builds their five-column bond-count matrices.
+3. Excludes 9 positive and 5 pseudo-negative zero-backbone records from fitting.
+4. Evaluates 20,000 candidates:
+    - `(10, 300, 1000)`
+    - 19,999 random triples
+5. Selects the top 20 random candidates.
+6. Runs Powell refinement from all 20.
+7. Selects the lowest-loss result.
+8. Checks whether the five bond probabilities are distinguishable.
+9. Writes four output files.
+
+#### Output from `main.py`
+* `tuned_bond_breaking_parameters.json`
+``` json
+{
+  "A": 0.0,
+  "E_ref": 0.0,
+  "k": 0.0,
+  "objective_value": 0.0,
+  "positive_loss": 0.0,
+  "pseudo_negative_loss": 0.0,
+  "regularization_loss": 0.0,
+  "p_break_by_bond": {},
+  "probability_spread": 0.0,
+  "parameter_at_boundary": false,
+  "search_settings": {}
+}
+```
+* scored_formula_degeneracies.csv: <span style="color:red">Individual sample scores</span> 
+* log_tuned_bond_breaking_parameters.txt
+* parameter_search_animation.mp4

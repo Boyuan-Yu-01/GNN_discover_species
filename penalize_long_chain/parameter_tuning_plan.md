@@ -1,4 +1,4 @@
-# Plan: Tune Bond-Breaking Parameters
+# Plan: Tune A, E_ref, and k
 
 ## Goal
 
@@ -10,49 +10,49 @@ E_ref
 k
 ```
 
-for the existing bond-breaking score. This is a three-parameter numerical
-search, not machine learning and not a neural-network training procedure.
+Use one broad numerical search. The earlier `E_ref = R*T` values below
+25 kJ/mol are no longer used because they make the Arrhenius response nearly
+zero for the configured bond dissociation energies.
 
-Use observed formula-degeneracy groups as positive evidence and fabricated
-pseudo-negative groups as weak contrast evidence. The result is a relative
-survival score, not a calibrated physical probability.
+This is parameter fitting, not machine learning. Observed degeneracies are
+reliable positive evidence. Fabricated pseudo-negatives provide weak contrast
+evidence and are not treated as confirmed negatives.
 
 ## Data
 
-Use the filtered datasets already in the project:
+Use:
 
 ```text
 training/org_dataset/filtered_master.json
 training/org_dataset/filtered_pseudo_negative.json
 ```
 
-They contain:
+| Source | Total groups | Used in objective |
+| --- | ---: | ---: |
+| Observed positives | 267 | 258 |
+| Fabricated pseudo-negatives | 569 | 564 |
 
-| Source | Formula-degeneracy groups |
-| --- | ---: |
-| Observed positives | 267 |
-| Fabricated pseudo-negatives | 569 |
-
-The pseudo-negative groups are not confirmed chemical negatives. They should
-have lower influence than the observed groups in the objective.
+The parameters cannot affect groups whose configured backbone-bond counts are
+all zero. Exclude the 9 positive and 5 pseudo-negative zero-backbone groups
+from the objective, but retain them in scored output and report the counts.
 
 ## Bond-Breaking Model
 
-Use the backbone bond types:
+Use:
 
 ```python
-BACKBONE_BONDS = ["C#C", "C-C", "C-O", "C=C", "C=O"]
+BACKBONE_BONDS = ("C#C", "C-C", "C-O", "C=C", "C=O")
 
 BDE_BY_BOND = {
+    "C#C": 835.0,
     "C-C": 346.0,
     "C-O": 358.0,
     "C=C": 602.0,
     "C=O": 732.0,
-    "C#C": 835.0,
 }
 ```
 
-For each backbone bond (b):
+All energies use `kJ/mol`. For bond type $b$:
 
 $$
 \mathrm{Arr}_b
@@ -66,264 +66,202 @@ P_{\mathrm{break},b}
 \frac{1}{1+k\exp(-\mathrm{Arr}_b)}.
 $$
 
-For formula-degeneracy group (g), calculate the log survival score:
+For degeneracy $g$:
 
 $$
 s_\theta(g)
 =
 \log P_{\mathrm{exist}}(g)
 =
-\sum_{b\in\mathrm{backbone}}
-N_{g,b}\log(1-P_{\mathrm{break},b}),
+\sum_b N_{g,b}\log\left(1-P_{\mathrm{break},b}\right),
 $$
 
-where:
-
 $$
-\theta=\{A,E_{\mathrm{ref}},k\}.
+P_{\mathrm{exist}}(g;\theta)=\exp(s_\theta(g)),
 $$
 
-Scores satisfy $s_\theta(g)\leq0$. A score closer to zero indicates higher
-predicted survival.
+where $\theta=(A,E_{\mathrm{ref}},k)$. Calculate survival in log space and
+clamp breaking probabilities away from exactly zero and one.
 
-Calculate in log space and clamp each `P_break` away from 0 and 1 before taking
-the logarithm.
+## Individual-Sample Objective
 
-## Objective
+Every usable degeneracy contributes an independent nonlinear loss. There is no
+positive-negative pairing, ranking margin, or mean feature vector.
 
-For each tested parameter triple, score every group independently and calculate separate
-distribution statistics:
+For each observed positive:
 
 $$
-\bar{s}_+
+\ell_+(g;\theta)
 =
-\frac{1}{|P|}\sum_{g\in P}s_\theta(g),
+\left[1-P_{\mathrm{exist}}(g;\theta)\right]^2.
 $$
 
+For each fabricated pseudo-negative:
+
 $$
-\bar{s}_-
+\ell_-(g;\theta)
 =
-\frac{1}{|N|}\sum_{g\in N}s_\theta(g),
+P_{\mathrm{exist}}(g;\theta)^2.
 $$
 
-where (P) is the observed-positive set and (N) is the pseudo-negative set.
-
-Reward high scores for observed groups:
+Aggregate only after calculating every individual loss:
 
 $$
-L_{\mathrm{positive}}=-\bar{s}_+.
-$$
-
-Require the positive distribution to have a higher mean score than the
-pseudo-negative distribution by a fixed margin (m):
-
-$$
-L_{\mathrm{separation}}
+L_{\mathrm{positive}}
 =
-\max\left(0,\,m-[\bar{s}_+-\bar{s}_-]\right).
+\frac{1}{|P^*|}\sum_{g\in P^*}\ell_+(g;\theta),
 $$
 
-Use the final objective:
+$$
+L_{\mathrm{pseudo}}
+=
+\frac{1}{|N^*|}\sum_{g\in N^*}\ell_-(g;\theta),
+$$
 
 $$
-\boxed{
 L(\theta)
 =
 \alpha L_{\mathrm{positive}}
-+
-\beta L_{\mathrm{separation}}
-+
-L_{\mathrm{reg}}(\theta)
-}.
++\beta L_{\mathrm{pseudo}}
++L_{\mathrm{reg}}(\theta).
 $$
 
-Recommended starting values:
+Use:
 
 ```text
-alpha = 1.00      # observed positives are the main evidence
-beta  = 0.75      # lower than alpha, but large enough to enforce separation
-m     = 0.10      # fixed score margin; test sensitivity later
+alpha = 1.00
+beta  = 0.50
 ```
 
-The objective compares whole score distributions. It contains no positive-
-negative pairing and no pair list.
+The pseudo-negative term is weaker because the samples are fabricated. The
+averages normalize unequal source sizes only; losses are calculated per record
+before averaging.
 
-The loss components have different numerical scales, so a very small `beta`
-can make the all-high-survival solution preferable. Test `beta` values `0.50`,
-`0.75`, and `1.00`; use the smallest value that satisfies the fixed margin. On
-the current filtered datasets, `0.75` is the first of these values to reach the
-`0.10` mean-score gap while remaining below `alpha`.
+## Search Range and Initial Guess
 
-### Optional high-score pseudo-negative check
+Search the physical parameters in natural-log space:
 
-The mean pseudo-negative score can hide a few highly scored pseudo-negatives.
-After the first run, optionally replace $\bar{s}_-$ in the separation term with
-the 90th percentile of pseudo-negative scores:
-
-$$
-Q_{0.9}(s_-).
-$$
-
-This is valid because the search uses random search or differential evolution,
-not gradient descent. Keep the mean-based objective as the first version.
-
-## Parameter Regularization
-
-Search in log space to guarantee positive parameters:
-
-```python
-log_A
-log_E_ref
-log_k
+```text
+A      in [1, 100]
+E_ref  in [50, 1000] kJ/mol
+k      in [10, 1_000_000]
 ```
 
-Use a weak prior around physically reasonable reference values:
+Use this exact initial/reference candidate:
 
-```python
-A_0 = 10.0
-E_ref_0 = 300.0
-k_0 = 1000.0
+```text
+A_0     = 10
+E_ref_0 = 300 kJ/mol
+k_0     = 1000
 ```
+
+The 300 kJ/mol `E_ref` value is close to the approximately 310 kJ/mol region
+identified during the earlier exploratory pointwise calculation. It is a
+starting guess, not a fixed value.
+
+The optimizer coordinates are:
+
+```text
+log(A)
+log(E_ref)
+log(k)
+```
+
+This guarantees positive physical parameters and allows orders-of-magnitude
+coverage without the low-temperature transformation previously required.
+
+## Regularization
+
+Keep the accepted rule that `E_ref` is not pulled toward its initial value:
 
 $$
 L_{\mathrm{reg}}
 =
 \lambda_A(\log A-\log A_0)^2
-+
-\lambda_E(\log E_{\mathrm{ref}}-\log E_{\mathrm{ref},0})^2
-+
-\lambda_k(\log k-\log k_0)^2.
++\lambda_k(\log k-\log k_0)^2.
 $$
 
-Start with:
+Use:
 
 ```text
-lambda_A = lambda_E = lambda_k = 1e-3
+lambda_A     = 1e-3
+lambda_E_ref = 0
+lambda_k     = 1e-3
 ```
 
-The regularizer prevents extreme parameter values from winning merely by
-driving every score toward a boundary.
+Therefore, `E_ref_0=300` initializes and documents the search but does not act
+as a prior. `E_ref` may move freely anywhere in `[50, 1000]`.
 
-## Parameter Search
+## Search Procedure
 
-Use these bounds:
+1. Include the exact initial candidate `(10, 300, 1000)`.
+2. Draw 19,999 additional log-uniform candidates over the full bounds with a
+   fixed random seed.
+3. Calculate the pointwise objective for all 258 usable positives and 564
+   usable pseudo-negatives.
+4. Sort candidates by total loss.
+5. Refine the best candidates with bounded Powell optimization.
+6. Keep the better of each local result and its starting candidate.
+7. Select the final lowest-loss triple that passes the numerical checks.
 
-```python
-A      in [1.0, 100.0]
-E_ref  in [50.0, 1000.0]   # same energy unit as BDE
-k      in [10.0, 1_000_000.0]
-```
+The full-range random stage reduces dependence on the initial guess, while the
+exact reference candidate makes its objective directly inspectable.
 
-Recommended procedure:
+## Checks
 
-1. Draw 10,000 to 20,000 log-uniform parameter triples with a fixed seed.
-2. Calculate the non-paired objective for each triple.
-3. Retain the best 20 triples.
-4. Refine the best candidates with `scipy.optimize.differential_evolution` or
-   bounded local optimization.
-5. Select the best stable candidate that passes the checks below.
+For the final result:
 
-The objective does not require a validation split. To test stability, repeat
-the search with several pseudo-negative subsampling seeds and compare the
-selected parameter ranges and score distributions.
+1. Verify all parameters and intermediate values are finite.
+2. Verify every `P_break` lies strictly between zero and one.
+3. Verify higher BDE produces no larger `P_break`.
+4. Report `max(P_break) - min(P_break)` and flag a spread below `1e-6` as
+   weakly identifiable.
+5. Report whether a fitted parameter lies near a search boundary.
+6. Report positive, pseudo-negative, and regularization losses separately.
+7. Report mean, median, and selected quantiles of individual survival
+   probabilities for both sources.
+8. Report the 9 positive and 5 pseudo-negative zero-backbone exclusions.
 
-## Required Functions
+Mean scores are descriptive diagnostics only. They are not the fitting target.
+Pseudo-negative separation must not be described as confirmed-negative
+accuracy or a calibrated physical probability.
 
-Suggested script:
+## Implementation
+
+Use:
 
 ```text
-tune_bond_breaking_parameters.py
+training/find_three_parameters/parameter_finder.py
+training/find_three_parameters/parameter_utils.py
+training/find_three_parameters/parameter_animation.py
+training/find_three_parameters/main.py
 ```
 
-Suggested functions:
+`ParameterFinder` evaluates and optimizes the three logged physical parameters.
+`main.py` exposes the bounds, initial guess, objective weights, and numerical
+controls. Utilities load the datasets and write reproducible reports. The
+animation writer displays the bounded 3D log-parameter space, all 20,000 random
+candidates, the configured retained Powell starts, every recorded objective evaluation,
+SciPy's termination status for each run, and the final selected result. The
+camera remains fixed so apparent motion comes only from parameter changes.
 
-```python
-def load_formula_degeneracies(path):
-    """Return the formula_degeneracies mapping from one filtered JSON file."""
+## Outputs
 
-
-def bond_break_probability(energy, A, E_ref, k):
-    """Return P_break for one backbone bond type."""
-
-
-def log_survival(entry, params):
-    """Return s_theta(g) from the five configured backbone bond counts."""
-
-
-def distribution_objective(positive_entries, pseudo_entries, params):
-    """Return total, positive, separation, and regularization losses."""
-
-
-def random_search(positive_entries, pseudo_entries, seed, n_trials):
-    """Search log-space parameters and return the best candidates."""
-
-
-def save_outputs(best_params, diagnostics, scored_entries):
-    """Write parameters, scores, diagnostics, and a readable log."""
-```
-
-## Checks and Diagnostics
-
-For the final parameters, verify:
-
-1. Every bond-breaking probability is finite and lies strictly between 0 and 1.
-2. Higher BDE gives lower predicted `P_break` for the configured bond table.
-3. Observed groups have a higher mean log survival score than pseudo-negatives.
-4. The separation margin and each loss component are reported separately.
-5. For otherwise similar bond inventories, longer backbones generally have
-   lower survival scores.
-6. The best parameters are not at a search boundary.
-7. Results remain similar across pseudo-negative subsampling seeds.
-8. Inspect the top 20 and bottom 20 observed groups by score.
-
-Report pseudo-negative separation as a diagnostic, not as confirmed-negative
-accuracy, precision, or calibrated probability.
-
-## Output Files
-
-Write:
+When the search is approved and run, write:
 
 ```text
 output/tuned_bond_breaking_parameters.json
 output/scored_formula_degeneracies.csv
-output/tuning_diagnostics.csv
 output/log_tuned_bond_breaking_parameters.txt
+output/parameter_search_animation.mp4
 ```
 
-The parameter JSON should include:
-
-```json
-{
-  "A": 0.0,
-  "E_ref": 0.0,
-  "k": 0.0,
-  "objective_value": 0.0,
-  "positive_loss": 0.0,
-  "separation_loss": 0.0,
-  "regularization_loss": 0.0,
-  "alpha": 1.0,
-  "beta": 0.75,
-  "margin": 0.1,
-  "bde_by_bond": {},
-  "search_seed": 0
-}
-```
-
-The scored CSV should include:
-
-```text
-source,degeneracy_id,formula,is_ring,log_P_exist,P_exist,C#C,C-C,C-O,C=C,C=O
-```
-
-For filtered records, derive `formula` by removing the final `_###` suffix from
-`degeneracy_id`.
+The JSON records the selected triple, individual-loss components, sample
+counts, survival quantiles, bond-level Arrhenius terms and probabilities,
+identifiability checks, bounds, initial guess, and search settings.
 
 ## Interpretation
 
-The output parameters are the values that best satisfy the chosen weak,
-distribution-level constraints. They are not uniquely identified physical
-constants and do not provide calibrated existence probabilities.
-
-The useful outcome is a chemically interpretable survival ranking in which
-observed groups receive high scores and fabricated long-chain or fragile groups
-generally receive lower scores.
+The selected triple is the best result under this model, pointwise objective,
+weak pseudo-negative weight, bounds, and regularization. It is not a uniquely
+identified set of physical constants or a calibrated existence probability.

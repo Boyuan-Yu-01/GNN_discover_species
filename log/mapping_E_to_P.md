@@ -153,9 +153,7 @@ $k = e^{\mathrm{Arr}_0}$.
 
 The function `sigmoid` is interpreted as the probability of bond breaking.
 
-For larger `k`, the sigmoid curve moves to the right. In this formulation, when $E_D$ becomes very large, $\mathrm{Arr}$ approaches 0, so the probability approaches
-
-$\frac{1}{1+k}$.
+For larger `k`, the sigmoid curve moves to the right. In this formulation, when $E_D$ becomes very large, $\mathrm{Arr}$ approaches 0, so the probability approaches $\frac{1}{1+k}$.
 
 Therefore, `k` should be chosen sufficiently large if the desired high-energy bond-breaking probability should be close to 0.
 

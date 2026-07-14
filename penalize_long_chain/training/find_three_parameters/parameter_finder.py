@@ -1,4 +1,4 @@
-"""Numerical search for the three bond-breaking parameters."""
+"""Pointwise numerical search for A, E_ref, and k."""
 
 from __future__ import annotations
 
@@ -20,82 +20,75 @@ class Parameters:
 
 @dataclass(frozen=True)
 class ParameterBounds:
-    """Closed search bounds in physical parameter space.
-    
-    Defines min/max ranges for each of the three bond-breaking parameters.
-    Used to constrain the optimization search space.
-    """
+    """Closed bounds in physical parameter space."""
 
-    # Lower and upper bounds for the pre-exponential factor A
     A: tuple[float, float]
-    
-    # Lower and upper bounds for the reference energy parameter E_ref
     E_ref: tuple[float, float]
-    
-    # Lower and upper bounds for the dimensionless parameter k
     k: tuple[float, float]
 
-    def as_log_bounds(self) -> tuple[tuple[float, float], ...]:
-        """Convert bounds from linear space to log space.
-        
-        Returns the natural logarithm of each bound, which is useful for
-        log-uniform sampling and optimization in log-parameter space.
-        This ensures parameters are searched uniformly on a logarithmic scale.
-        
-        Returns:
-            Tuple of three (log_low, log_high) tuples in the same order as as_tuple()
-        """
-        return tuple((log(low), log(high)) for low, high in self.as_tuple())
-
     def as_tuple(self) -> tuple[tuple[float, float], ...]:
-        """Return all three bounds as a single tuple.
-        
-        Provides a convenient way to iterate over bounds in order: A, E_ref, k.
-        Used by as_log_bounds() and validation routines.
-        
-        Returns:
-            Tuple of (A_bounds, E_ref_bounds, k_bounds)
-        """
+        """Return bounds in optimizer order: A, E_ref, k."""
         return self.A, self.E_ref, self.k
+
+    def as_log_bounds(self) -> tuple[tuple[float, float], ...]:
+        """Convert positive physical bounds to natural-log space."""
+        # Searching logs guarantees that decoded physical parameters stay positive.
+        return tuple((log(low), log(high)) for low, high in self.as_tuple())
 
 
 @dataclass(frozen=True)
 class ObjectiveSettings:
-    """Fixed choices that define the parameter-search objective."""
+    """Weights, reference candidate, and numerical safeguards."""
 
+    # alpha weights reliable observations; beta weights fabricated negatives.
     alpha: float
     beta: float
-    margin: float   # fix-score margin for positive vs pseudo-negative separation
     reference: Parameters
+    # Regularization order is A, E_ref, k. Set the E_ref weight to zero when its
+    # reference value should be an initialization rather than a physical prior.
     regularization: tuple[float, float, float]
     probability_epsilon: float = 1e-12
-    pseudo_quantile: float | None = None
 
 
 @dataclass(frozen=True)
 class Evaluation:
-    """One parameter triple and all objective components."""
+    """One parameter candidate and its complete objective diagnostics."""
 
     parameters: Parameters
+    # Optimizer order is log(A), log(E_ref), log(k).
     log_parameters: tuple[float, float, float]
-    total_loss: float   # total loss = alpha * positive_loss + beta * separation_loss + regularization_loss
+    total_loss: float
     positive_loss: float
-    separation_loss: float
+    pseudo_loss: float
     regularization_loss: float
     mean_positive_score: float
-    pseudo_score_statistic: float
+    mean_pseudo_score: float
+    mean_positive_survival: float
+    mean_pseudo_survival: float
     score_gap: float
 
 
-class ParameterFinder:
-    """Search A, E_ref, and k without pairing individual samples.
+@dataclass(frozen=True)
+class RefinementTrace:
+    """One Powell run, including every evaluated point and iteration endpoint."""
 
-    The workflow is:
-    1) validate data and configuration,
-    2) evaluate loss for candidate parameters,
-    3) run random search,
-    4) locally refine the best candidates.
-    """
+    start: Evaluation
+    result: Evaluation
+    best: Evaluation
+    # Every point at which Powell requested the objective. These are line-search
+    # probes, so they show the optimizer's real work rather than only accepted
+    # outer-iteration endpoints.
+    log_path: tuple[tuple[float, float, float], ...]
+    # Powell's callback runs once after each completed outer iteration.
+    iteration_log_path: tuple[tuple[float, float, float], ...]
+    optimizer_iterations: int
+    optimizer_function_evaluations: int
+    optimizer_success: bool
+    optimizer_message: str
+
+
+class ParameterFinder:
+    """Optimize A, E_ref, and k using every usable degeneracy independently."""
 
     def __init__(
         self,
@@ -105,140 +98,241 @@ class ParameterFinder:
         bounds: ParameterBounds,
         objective: ObjectiveSettings,
     ) -> None:
-        # Convert to well-formed 2D float arrays and validate basic constraints.
+        # Retain complete matrices for reporting, but fit only rows containing
+        # at least one bond whose response can change with the parameters.
         self.positive_counts = self._validate_counts(positive_counts, "positive")
         self.pseudo_counts = self._validate_counts(pseudo_counts, "pseudo-negative")
+        self.positive_objective_counts = self._rows_with_backbone(self.positive_counts)
+        self.pseudo_objective_counts = self._rows_with_backbone(self.pseudo_counts)
+        self.ignored_positive_count = len(self.positive_counts) - len(
+            self.positive_objective_counts
+        )
+        self.ignored_pseudo_count = len(self.pseudo_counts) - len(
+            self.pseudo_objective_counts
+        )
+
+        # Bond-energy order must match the count-matrix column order from main.py.
         self.bond_energies = np.asarray(bond_energies, dtype=float)
         self.bounds = bounds
         self.objective = objective
 
         if self.bond_energies.shape != (self.positive_counts.shape[1],):
             raise ValueError("bond-energy count does not match bond-count columns")
-        if np.any(self.bond_energies <= 0.0):
-            raise ValueError("bond energies must be positive")
+        if np.any(~np.isfinite(self.bond_energies)) or np.any(self.bond_energies <= 0.0):
+            raise ValueError("bond energies must be finite and positive")
+        if self.pseudo_counts.shape[1] != self.positive_counts.shape[1]:
+            raise ValueError("positive and pseudo-negative matrices need equal columns")
 
         self._validate_settings()
-        # Cache dataset means once; evaluate() uses them repeatedly.
-        self._positive_mean_counts = self.positive_counts.mean(axis=0)
-        self._pseudo_mean_counts = self.pseudo_counts.mean(axis=0)
 
     @staticmethod
     def _validate_counts(counts: np.ndarray, source: str) -> np.ndarray:
-        # Counts are expected as [sample, bond_type] matrices.
+        """Return a finite, non-negative, two-dimensional count matrix."""
         array = np.asarray(counts, dtype=float)
         if array.ndim != 2 or not array.shape[0] or not array.shape[1]:
             raise ValueError(f"{source} bond counts must be a non-empty matrix")
-        if not np.all(np.isfinite(array)) or np.any(array < 0.0):
+        if np.any(~np.isfinite(array)) or np.any(array < 0.0):
             raise ValueError(f"{source} bond counts must be finite and non-negative")
         return array
 
+    @staticmethod
+    def _rows_with_backbone(counts: np.ndarray) -> np.ndarray:
+        """Return rows containing at least one configured backbone bond."""
+        # All-zero rows always have P_exist=1 and provide no parameter gradient.
+        usable = counts[np.any(counts > 0.0, axis=1)]
+        if not len(usable):
+            raise ValueError("the objective has no rows with configured backbone bonds")
+        return usable
+
     def _validate_settings(self) -> None:
-        # Log-parameter optimization requires strictly positive bounds.
+        """Reject invalid bounds and objective controls early."""
         for name, (low, high) in zip(("A", "E_ref", "k"), self.bounds.as_tuple()):
-            if low <= 0.0 or high <= low:
+            if not np.isfinite(low) or not np.isfinite(high) or low <= 0.0 or high <= low:
                 raise ValueError(f"invalid bounds for {name}: {(low, high)}")
 
         settings = self.objective
-        if settings.alpha <= 0.0 or settings.beta < 0.0 or settings.margin < 0.0:
-            raise ValueError("alpha must be positive; beta and margin must be non-negative")
-        if len(settings.regularization) != 3 or any(x < 0.0 for x in settings.regularization):
-            raise ValueError("regularization must contain three non-negative values")
+        if settings.alpha <= 0.0 or settings.beta < 0.0:
+            raise ValueError("alpha must be positive and beta must be non-negative")
+        if any(
+            value <= 0.0
+            for value in (
+                settings.reference.A,
+                settings.reference.E_ref,
+                settings.reference.k,
+            )
+        ):
+            raise ValueError("reference parameters must be positive")
+
+        # The explicitly inserted initial candidate must be a legal candidate.
+        for name, value, (low, high) in zip(
+            ("A", "E_ref", "k"),
+            (
+                settings.reference.A,
+                settings.reference.E_ref,
+                settings.reference.k,
+            ),
+            self.bounds.as_tuple(),
+        ):
+            if not low <= value <= high:
+                raise ValueError(f"reference {name} lies outside its bounds")
+        if len(settings.regularization) != 3 or any(
+            weight < 0.0 for weight in settings.regularization
+        ):
+            raise ValueError("regularization must contain three non-negative weights")
         if not 0.0 < settings.probability_epsilon < 0.5:
             raise ValueError("probability_epsilon must lie between 0 and 0.5")
-        if settings.pseudo_quantile is not None and not 0.0 < settings.pseudo_quantile < 1.0:
-            raise ValueError("pseudo_quantile must lie between 0 and 1")
 
     @staticmethod
     def decode(log_parameters: np.ndarray | tuple[float, ...]) -> Parameters:
-        """Convert unconstrained log parameters to positive physical values."""
-        # Exponentiation maps real-valued search variables to positive parameters.
+        """Convert logged optimizer values into positive physical parameters."""
+        if len(log_parameters) != 3:
+            raise ValueError("expected log(A), log(E_ref), and log(k)")
         values = tuple(exp(float(value)) for value in log_parameters)
         return Parameters(*values)
 
+    @staticmethod
+    def encode(parameters: Parameters) -> tuple[float, float, float]:
+        """Convert physical parameters into optimizer coordinates."""
+        return log(parameters.A), log(parameters.E_ref), log(parameters.k)
+
+    def arrhenius_terms(self, parameters: Parameters) -> np.ndarray:
+        """Return A exp(-E_b/E_ref), evaluated safely in log space."""
+        # Subtract exponents before exponentiating to avoid premature underflow.
+        log_terms = log(parameters.A) - self.bond_energies / parameters.E_ref
+        return np.exp(np.clip(log_terms, -745.0, 700.0))
+
     def bond_break_probabilities(self, parameters: Parameters) -> np.ndarray:
         """Return one breaking probability per configured backbone bond."""
-        # Arrhenius-like term: larger bond energy lowers effective break tendency.
-        arrhenius = parameters.A * np.exp(-self.bond_energies / parameters.E_ref)
+        arrhenius = self.arrhenius_terms(parameters)
         probabilities = 1.0 / (1.0 + parameters.k * np.exp(-arrhenius))
+
+        # Exact zero or one would make a later log(1-P_break) invalid.
         epsilon = self.objective.probability_epsilon
-        # Clip away from exactly 0/1 to keep logs finite and numerically stable.
         return np.clip(probabilities, epsilon, 1.0 - epsilon)
 
     def bond_log_survival(self, parameters: Parameters) -> np.ndarray:
-        """Return log(1 - P_break) for each backbone bond."""
+        """Return log(1-P_break) for each configured bond."""
         return np.log1p(-self.bond_break_probabilities(parameters))
 
     def score_counts(self, counts: np.ndarray, parameters: Parameters) -> np.ndarray:
-        """Return log-survival scores for a matrix of bond counts."""
-        return np.asarray(counts, dtype=float) @ self.bond_log_survival(parameters)
+        """Return one independent log-survival score per input row."""
+        matrix = np.asarray(counts, dtype=float)
+        if matrix.ndim != 2 or matrix.shape[1] != len(self.bond_energies):
+            raise ValueError("bond-count matrix has the wrong shape")
+
+        # Matrix multiplication implements sum_b N[g,b] log(1-P_break,b).
+        return matrix @ self.bond_log_survival(parameters)
+
+    def survival_probabilities(
+        self,
+        counts: np.ndarray,
+        parameters: Parameters,
+    ) -> np.ndarray:
+        """Return stable existence probabilities for a count matrix."""
+        scores = self.score_counts(counts, parameters)
+        return np.exp(np.clip(scores, -745.0, 0.0))
 
     def evaluate(self, log_parameters: np.ndarray | tuple[float, ...]) -> Evaluation:
-        """Evaluate the non-paired distribution objective."""
+        """Apply nonlinear losses to individual rows before averaging."""
         log_values = tuple(float(value) for value in log_parameters)
         parameters = self.decode(log_values)
-        bond_scores = self.bond_log_survival(parameters)
 
-        # Positive score summary uses the dataset mean for efficiency.
-        mean_positive = float(self._positive_mean_counts @ bond_scores)
-        # Pseudo-negative summary is either mean or quantile, per configuration.
-        if self.objective.pseudo_quantile is None:
-            pseudo_statistic = float(self._pseudo_mean_counts @ bond_scores)
-        else:
-            pseudo_scores = self.pseudo_counts @ bond_scores
-            pseudo_statistic = float(
-                np.quantile(pseudo_scores, self.objective.pseudo_quantile)
-            )
+        positive_scores = self.score_counts(self.positive_objective_counts, parameters)
+        pseudo_scores = self.score_counts(self.pseudo_objective_counts, parameters)
+        positive_survival = np.exp(np.clip(positive_scores, -745.0, 0.0))
+        pseudo_survival = np.exp(np.clip(pseudo_scores, -745.0, 0.0))
 
-        # Margin-based separation: no penalty when gap already exceeds margin.
-        gap = mean_positive - pseudo_statistic
-        positive_loss = -mean_positive
-        separation_loss = max(0.0, self.objective.margin - gap)
+        # Each row receives its own Brier-style loss before source normalization.
+        positive_loss = float(np.mean(np.square(1.0 - positive_survival)))
+        pseudo_loss = float(np.mean(np.square(pseudo_survival)))
         regularization_loss = self._regularization(log_values)
-        # Weighted objective optimized by random search and Powell refinement.
         total_loss = (
             self.objective.alpha * positive_loss
-            + self.objective.beta * separation_loss
+            + self.objective.beta * pseudo_loss
             + regularization_loss
         )
 
+        # These means are diagnostics only; they do not define the objective.
+        mean_positive_score = float(np.mean(positive_scores))
+        mean_pseudo_score = float(np.mean(pseudo_scores))
         return Evaluation(
             parameters=parameters,
             log_parameters=log_values,
             total_loss=total_loss,
             positive_loss=positive_loss,
-            separation_loss=separation_loss,
+            pseudo_loss=pseudo_loss,
             regularization_loss=regularization_loss,
-            mean_positive_score=mean_positive,
-            pseudo_score_statistic=pseudo_statistic,
-            score_gap=gap,
+            mean_positive_score=mean_positive_score,
+            mean_pseudo_score=mean_pseudo_score,
+            mean_positive_survival=float(np.mean(positive_survival)),
+            mean_pseudo_survival=float(np.mean(pseudo_survival)),
+            score_gap=mean_positive_score - mean_pseudo_score,
         )
 
-    def _regularization(self, log_parameters: tuple[float, ...]) -> float:
-        # L2 penalty in log space around a reference parameter triple.
-        reference = self.objective.reference
-        log_reference = (log(reference.A), log(reference.E_ref), log(reference.k))
+    def _regularization(self, log_parameters: tuple[float, float, float]) -> float:
+        """Apply configured relative penalties around the reference candidate."""
+        centers = self.encode(self.objective.reference)
         return sum(
             weight * (value - center) ** 2
             for weight, value, center in zip(
-                self.objective.regularization, log_parameters, log_reference
+                self.objective.regularization,
+                log_parameters,
+                centers,
             )
         )
 
-    def random_search(
-        self,
-        trial_count: int,
-        seed: int,
-    ) -> list[Evaluation]:
-        """Evaluate log-uniform random parameter triples."""
+    def probability_spread(self, parameters: Parameters) -> float:
+        """Return the range of configured bond-breaking probabilities."""
+        # Near-zero spread means bond identity has effectively disappeared.
+        return float(np.ptp(self.bond_break_probabilities(parameters)))
+
+    def is_at_boundary(self, parameters: Parameters, fraction: float = 1e-4) -> bool:
+        """Return whether a parameter lies near a log-space search boundary."""
+        values = self.encode(parameters)
+        for value, (low, high) in zip(values, self.bounds.as_log_bounds()):
+            if min(value - low, high - value) <= fraction * (high - low):
+                return True
+        return False
+
+    def random_search(self, trial_count: int, seed: int) -> list[Evaluation]:
+        """Evaluate the exact reference plus full-range log-uniform candidates."""
+        # One trial means one complete (A, E_ref, k) triple. Rejecting zero here
+        # also avoids trying to rank an empty result list in main.py.
         if trial_count <= 0:
             raise ValueError("trial_count must be positive")
 
+        # Convert physical bounds once:
+        #   A      [1, 100]       -> log(A)
+        #   E_ref  [50, 1000]     -> log(E_ref)
+        #   k      [10, 1e6]      -> log(k)
+        # All sampling and optimization are performed in these logged units.
+        bounds = np.asarray(self.bounds.as_log_bounds(), dtype=float)
+
+        # A fixed seed makes the exact same candidate population reproducible.
+        # Changing the seed changes the sampled triples, not the objective.
         rng = np.random.default_rng(seed)
-        log_bounds = np.asarray(self.bounds.as_log_bounds(), dtype=float)
-        # Uniform sampling in log space corresponds to log-uniform in linear space.
-        samples = rng.uniform(log_bounds[:, 0], log_bounds[:, 1], size=(trial_count, 3))
+
+        # Uniform sampling between logged bounds produces log-uniform physical
+        # values after decode(). This gives each order of magnitude meaningful
+        # coverage instead of concentrating candidates near the largest values.
+        # Reserve one trial because the exact reference is inserted below.
+        samples = rng.uniform(
+            bounds[:, 0],
+            bounds[:, 1],
+            size=(max(0, trial_count - 1), 3),
+        )
+
+        # Put the explicit (10, 300, 1000) reference first. It is evaluated by
+        # exactly the same code as every random candidate, so its loss can be
+        # compared directly. vstack also handles trial_count == 1 correctly.
+        samples = np.vstack((self.encode(self.objective.reference), samples))
+
+        # evaluate() decodes one row, scores every usable degeneracy, applies
+        # all individual losses, and returns the total plus diagnostics.
         evaluations = [self.evaluate(sample) for sample in samples]
-        # Best candidates first (lowest total_loss).
+
+        # Ascending order makes evaluations[0] the best global-search result and
+        # lets callers take evaluations[:N] as local-optimization starting points.
         evaluations.sort(key=lambda item: item.total_loss)
         return evaluations
 
@@ -247,27 +341,97 @@ class ParameterFinder:
         starts: list[Evaluation],
         maximum_iterations: int,
         tolerance: float,
-    ) -> list[Evaluation]:
-        """Refine the best random candidates with bounded Powell search."""
+    ) -> list[RefinementTrace]:
+        """Refine candidates and retain each Powell trajectory."""
+        # Each entry in starts is already a fully evaluated random-search result.
         if not starts:
             raise ValueError("at least one refinement start is required")
 
-        refined: list[Evaluation] = []
-        bounds = self.bounds.as_log_bounds()
+        traces: list[RefinementTrace] = []
 
+        # Powell receives the same logged bounds used by random_search(), so it
+        # cannot leave the approved physical ranges after exponentiation.
+        bounds = self.bounds.as_log_bounds()
         for start in starts:
-            # Local derivative-free optimization from each random-search seed.
+            # Keep the two notions of a Powell "step" distinct:
+            #
+            # evaluation_path records every objective probe made by a line
+            # search; iteration_path records only completed outer iterations.
+            # The animation uses the first so no optimizer movement is hidden.
+            evaluation_path = [start.log_parameters]
+            iteration_path = [start.log_parameters]
+
+            def record_point(
+                path: list[tuple[float, float, float]],
+                values: np.ndarray,
+            ) -> None:
+                """Append a point unless it exactly repeats the previous one."""
+                point = tuple(float(value) for value in values)
+                if point != path[-1]:
+                    path.append(point)
+
+            def objective_function(values: np.ndarray) -> float:
+                """Record every Powell probe, then return its scalar loss."""
+                record_point(evaluation_path, values)
+                return self.evaluate(values).total_loss
+
+            def record_iteration(values: np.ndarray) -> None:
+                """Record one completed Powell outer-iteration endpoint."""
+                record_point(iteration_path, values)
+
+            # Refine each promising basin independently. Multiple starts reduce
+            # the chance that one poor local basin determines the final answer.
+            #
+            # Powell is derivative-free: it probes directions using objective
+            # values and therefore needs no analytic gradient through clipping,
+            # exponentials, or the pointwise probability calculation.
             result = minimize(
-                lambda values: self.evaluate(values).total_loss,
+                # SciPy supplies logged candidate coordinates. evaluate() returns
+                # all metrics, but the optimizer minimizes total_loss only.
+                objective_function,
+                # Begin at the exact logged triple retained by random_search().
                 np.asarray(start.log_parameters),
                 method="Powell",
                 bounds=bounds,
-                options={"maxiter": maximum_iterations, "xtol": tolerance, "ftol": tolerance},
+                options={
+                    # maxiter caps work; xtol controls parameter convergence;
+                    # ftol controls objective-value convergence.
+                    "maxiter": maximum_iterations,
+                    "xtol": tolerance,
+                    "ftol": tolerance,
+                },
+                # callback marks accepted outer-iteration endpoints. The
+                # objective wrapper above independently records every probe.
+                callback=record_iteration,
             )
+
+            # Re-evaluate result.x through our own path so the returned object
+            # contains physical parameters and every diagnostic loss component.
             candidate = self.evaluate(result.x)
-            # Keep whichever is better: original start or refined candidate.
-            refined.append(min(start, candidate, key=lambda item: item.total_loss))
 
-        refined.sort(key=lambda item: item.total_loss)
-        return refined
+            # SciPy's final point normally appears in both traces. Append it
+            # explicitly if needed so every displayed path ends at result.x.
+            record_point(evaluation_path, result.x)
+            record_point(iteration_path, result.x)
 
+            # Powell may stop without improving, especially near a bound or flat
+            # region. Never replace a valid start with a worse local result.
+            best = min(start, candidate, key=lambda item: item.total_loss)
+            traces.append(
+                RefinementTrace(
+                    start=start,
+                    result=candidate,
+                    best=best,
+                    log_path=tuple(evaluation_path),
+                    iteration_log_path=tuple(iteration_path),
+                    optimizer_iterations=int(result.nit),
+                    optimizer_function_evaluations=int(result.nfev),
+                    optimizer_success=bool(result.success),
+                    optimizer_message=str(result.message),
+                )
+            )
+
+        # As in random_search(), index zero contains the best retained result.
+        # The trace stays attached to its start even after sorting.
+        traces.sort(key=lambda item: item.best.total_loss)
+        return traces
