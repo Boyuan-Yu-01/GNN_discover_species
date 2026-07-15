@@ -7,6 +7,7 @@ import json
 from dataclasses import dataclass
 from pathlib import Path
 
+import matplotlib.pyplot as plt
 import numpy as np
 
 from parameter_finder import Evaluation, ParameterFinder, Parameters
@@ -224,6 +225,55 @@ def write_scored_csv(
                 # Append the ordered bond counts as named CSV columns.
                 row.update(dict(zip(bond_types, sample.bond_counts)))
                 writer.writerow(row)
+
+
+def write_score_plot(
+    path: Path,
+    positive_samples: list[Sample],
+    pseudo_samples: list[Sample],
+    finder: ParameterFinder,
+    parameters: Parameters,
+) -> None:
+    """Plot every positive and pseudo-negative existence probability together."""
+    # The x-coordinate is P_exist from the CSV. A small,
+    # fixed vertical jitter prevents identical values from hiding one another.
+    positive_probabilities = finder.survival_probabilities(
+        count_matrix(positive_samples), parameters
+    )
+    pseudo_probabilities = finder.survival_probabilities(
+        count_matrix(pseudo_samples), parameters
+    )
+    rng = np.random.default_rng(0)
+
+    figure, axis = plt.subplots(figsize=(9.0, 3.8))
+    axis.scatter(
+        positive_probabilities,
+        1.0 + rng.uniform(-0.16, 0.16, size=len(positive_probabilities)),
+        s=22,
+        c="#1f77b4",
+        alpha=0.75,
+        edgecolors="none",
+        label="Observed positive",
+    )
+    axis.scatter(
+        pseudo_probabilities,
+        rng.uniform(-0.16, 0.16, size=len(pseudo_probabilities)),
+        s=22,
+        c="#808080",
+        alpha=0.65,
+        edgecolors="none",
+        label="Pseudo-negative",
+    )
+    axis.set_xlabel(r"$P_{\mathrm{exist}}(g)$")
+    axis.set_xlim(-0.02, 1.02)
+    axis.set_yticks((0.0, 1.0), ("Pseudo-negative", "Observed positive"))
+    axis.set_ylim(-0.35, 1.35)
+    axis.grid(axis="x", alpha=0.25)
+    axis.legend(loc="best")
+    figure.tight_layout()
+    path.parent.mkdir(parents=True, exist_ok=True)
+    figure.savefig(path, dpi=180)
+    plt.close(figure)
 
 
 def write_log(

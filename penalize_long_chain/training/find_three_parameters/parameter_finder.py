@@ -70,17 +70,14 @@ class Evaluation:
 
 @dataclass(frozen=True)
 class RefinementTrace:
-    """One Powell run, including every evaluated point and iteration endpoint."""
+    """One Powell run, including completed Powell iteration endpoints."""
 
     start: Evaluation
     result: Evaluation
     best: Evaluation
-    # Every point at which Powell requested the objective. These are line-search
-    # probes, so they show the optimizer's real work rather than only accepted
-    # outer-iteration endpoints.
+    # Every entry is a completed Powell outer-iteration endpoint, expressed in
+    # log(A), log(E_ref), log(k) so either optimizer mode can share one plot.
     log_path: tuple[tuple[float, float, float], ...]
-    # Powell's callback runs once after each completed outer iteration.
-    iteration_log_path: tuple[tuple[float, float, float], ...]
     optimizer_iterations: int
     optimizer_function_evaluations: int
     optimizer_success: bool
@@ -305,7 +302,7 @@ class ParameterFinder:
         #   A      [1, 100]       -> log(A)
         #   E_ref  [50, 1000]     -> log(E_ref)
         #   k      [10, 1e6]      -> log(k)
-        # All sampling and optimization are performed in these logged units.
+        # Random sampling is performed in these logged units.
         bounds = np.asarray(self.bounds.as_log_bounds(), dtype=float)
 
         # A fixed seed makes the exact same candidate population reproducible.
@@ -336,48 +333,67 @@ class ParameterFinder:
         evaluations.sort(key=lambda item: item.total_loss)
         return evaluations
 
+    def refine_log(
+        self,
+        starts: list[Evaluation],
+        maximum_iterations: int,
+        tolerance: float,
+    ) -> list[RefinementTrace]:
+        """Run Powell in log(A), log(E_ref), and log(k) coordinates."""
+        return self._refine(starts, maximum_iterations, tolerance, use_log_space=True)
+
     def refine(
         self,
         starts: list[Evaluation],
         maximum_iterations: int,
         tolerance: float,
     ) -> list[RefinementTrace]:
-        """Refine candidates and retain each Powell trajectory."""
+        """Run Powell directly in physical A, E_ref, and k coordinates."""
+        return self._refine(starts, maximum_iterations, tolerance, use_log_space=False)
+
+    def _refine(
+        self,
+        starts: list[Evaluation],
+        maximum_iterations: int,
+        tolerance: float,
+        use_log_space: bool,
+    ) -> list[RefinementTrace]:
+        """Implement the shared bounded Powell loop for both coordinate systems."""
         # Each entry in starts is already a fully evaluated random-search result.
         if not starts:
             raise ValueError("at least one refinement start is required")
 
         traces: list[RefinementTrace] = []
 
-        # Powell receives the same logged bounds used by random_search(), so it
-        # cannot leave the approved physical ranges after exponentiation.
-        bounds = self.bounds.as_log_bounds()
+        # Bounds and start points must be in the same coordinate system as the
+        # optimizer. evaluate() always receives log coordinates internally.
+        bounds = self.bounds.as_log_bounds() if use_log_space else self.bounds.as_tuple()
         for start in starts:
-            # Keep the two notions of a Powell "step" distinct:
-            #
-            # evaluation_path records every objective probe made by a line
-            # search; iteration_path records only completed outer iterations.
-            # The animation uses the first so no optimizer movement is hidden.
-            evaluation_path = [start.log_parameters]
-            iteration_path = [start.log_parameters]
+            start_values = (
+                start.log_parameters
+                if use_log_space
+                else (start.parameters.A, start.parameters.E_ref, start.parameters.k)
+            )
+            # The callback fires after a completed Powell outer iteration. Keep
+            # this lighter path for the animation rather than every line-search
+            # probe, which made the earlier video visually noisy.
+            path = [start.log_parameters]
 
-            def record_point(
-                path: list[tuple[float, float, float]],
-                values: np.ndarray,
-            ) -> None:
-                """Append a point unless it exactly repeats the previous one."""
-                point = tuple(float(value) for value in values)
+            def to_log_parameters(values: np.ndarray) -> tuple[float, float, float]:
+                """Convert an optimizer point into evaluate()'s log coordinates."""
+                if use_log_space:
+                    return tuple(float(value) for value in values)
+                return self.encode(Parameters(*(float(value) for value in values)))
+
+            def record_iteration(values: np.ndarray) -> None:
+                """Record one outer-iteration endpoint in shared log coordinates."""
+                point = to_log_parameters(values)
                 if point != path[-1]:
                     path.append(point)
 
             def objective_function(values: np.ndarray) -> float:
-                """Record every Powell probe, then return its scalar loss."""
-                record_point(evaluation_path, values)
-                return self.evaluate(values).total_loss
-
-            def record_iteration(values: np.ndarray) -> None:
-                """Record one completed Powell outer-iteration endpoint."""
-                record_point(iteration_path, values)
+                """Evaluate a candidate in either optimizer coordinate system."""
+                return self.evaluate(to_log_parameters(values)).total_loss
 
             # Refine each promising basin independently. Multiple starts reduce
             # the chance that one poor local basin determines the final answer.
@@ -386,11 +402,10 @@ class ParameterFinder:
             # values and therefore needs no analytic gradient through clipping,
             # exponentials, or the pointwise probability calculation.
             result = minimize(
-                # SciPy supplies logged candidate coordinates. evaluate() returns
-                # all metrics, but the optimizer minimizes total_loss only.
+                # The wrapper converts physical coordinates when refine() was
+                # selected; evaluate() always returns the scalar total loss.
                 objective_function,
-                # Begin at the exact logged triple retained by random_search().
-                np.asarray(start.log_parameters),
+                np.asarray(start_values),
                 method="Powell",
                 bounds=bounds,
                 options={
@@ -400,19 +415,18 @@ class ParameterFinder:
                     "xtol": tolerance,
                     "ftol": tolerance,
                 },
-                # callback marks accepted outer-iteration endpoints. The
-                # objective wrapper above independently records every probe.
+                # One callback point per completed Powell outer iteration.
                 callback=record_iteration,
             )
 
             # Re-evaluate result.x through our own path so the returned object
             # contains physical parameters and every diagnostic loss component.
-            candidate = self.evaluate(result.x)
+            candidate = self.evaluate(to_log_parameters(result.x))
 
-            # SciPy's final point normally appears in both traces. Append it
-            # explicitly if needed so every displayed path ends at result.x.
-            record_point(evaluation_path, result.x)
-            record_point(iteration_path, result.x)
+            # Append the final optimizer point if the final callback omitted it.
+            final_point = candidate.log_parameters
+            if final_point != path[-1]:
+                path.append(final_point)
 
             # Powell may stop without improving, especially near a bound or flat
             # region. Never replace a valid start with a worse local result.
@@ -422,8 +436,7 @@ class ParameterFinder:
                     start=start,
                     result=candidate,
                     best=best,
-                    log_path=tuple(evaluation_path),
-                    iteration_log_path=tuple(iteration_path),
+                    log_path=tuple(path),
                     optimizer_iterations=int(result.nit),
                     optimizer_function_evaluations=int(result.nfev),
                     optimizer_success=bool(result.success),

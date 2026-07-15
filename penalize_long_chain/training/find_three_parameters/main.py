@@ -21,6 +21,7 @@ from parameter_utils import (
     write_log,
     write_parameter_json,
     write_scored_csv,
+    write_score_plot,
 )
 
 
@@ -45,7 +46,7 @@ BOND_ENERGIES = np.asarray((835.0, 346.0, 358.0, 602.0, 732.0))
 # Broad physical ranges restored after rejecting the much smaller RT values.
 PARAMETER_BOUNDS = ParameterBounds(
     A=(1.0, 100.0),
-    E_ref=(50.0, 1000.0),  # kJ/mol, matching BOND_ENERGIES
+    E_ref=(50.0, 10000.0),  # kJ/mol, matching BOND_ENERGIES
     k=(10.0, 1_000_000.0),
 )
 
@@ -64,26 +65,31 @@ PSEUDO_NEGATIVE_WEIGHT = 0.50
 # Full-range log-uniform search followed by bounded Powell refinement.
 RANDOM_SEED = 20260713                      # Controls reproducible random-number generation
 RANDOM_TRIALS = 20_000                      # Total candidates evaluated globally
-KEEP_BEST_RANDOM = 50                       # Maximum random candidates eligible for refinement
-LOCAL_STARTS = 50                           # Number of candidates actually refined
+KEEP_BEST_RANDOM = 20                       # Maximum random candidates eligible for refinement
+LOCAL_STARTS = 20                           # Number of candidates actually refined
 LOCAL_MAX_ITERATIONS = 1000                 # Maximum Powell iterations per start
 LOCAL_TOLERANCE = 1e-12                      # Powell convergence precision
+# Choose "log" for multiplicative parameter steps or "physical" for direct
+# A, E_ref, k steps. This selects refine_log() or refine(), respectively.
+REFINEMENT_SPACE = "log"
+
+# Number of distinct low-loss parameter triples written after one search.
+NUMBER_OF_PARAMETER_SETS = 5
 
 # Numerical and identifiability checks.
 PROBABILITY_EPSILON = 1e-12
 IDENTIFIABILITY_TOLERANCE = 1e-6
 
-# Staged MP4: bounds -> random candidates -> retained starts -> Powell probes.
+# Staged MP4: bounds -> random candidates -> retained starts -> Powell paths.
 GENERATE_SEARCH_ANIMATION = True  # Set False to skip animation rendering.
 ANIMATION_FILENAME = "parameter_search_animation.mp4"
 ANIMATION_SETTINGS = AnimationSettings(
     fps=10,
-    dpi=1000,
+    dpi=100,
     space_frames=12,
     population_frames=18,
     selection_frames=18,
-    # One frame per requested objective evaluation: show every Powell probe.
-    evaluations_per_frame=1,
+    trajectory_frames=60,
     hold_frames=12,
 )
 
@@ -125,14 +131,21 @@ def run_search(
     # expensive Powell calls; KEEP_BEST_RANDOM limits how much of the ranked
     # global population is eligible. min() keeps inconsistent settings safe.
     starts = random_results[: min(LOCAL_STARTS, KEEP_BEST_RANDOM)]
-    refinement_traces = finder.refine(
+    if REFINEMENT_SPACE == "log":
+        refinement = finder.refine_log
+    elif REFINEMENT_SPACE == "physical":
+        refinement = finder.refine
+    else:
+        raise ValueError('REFINEMENT_SPACE must be "log" or "physical"')
+
+    refinement_traces = refinement(
         starts,
         maximum_iterations=LOCAL_MAX_ITERATIONS,
         tolerance=LOCAL_TOLERANCE,
     )
 
     # Each trace contains the start, final Powell point, retained best result,
-    # every objective probe, and outer-iteration endpoints for diagnostics.
+    # and completed Powell iteration endpoints for the 3D animation.
     refined_results = [trace.best for trace in refinement_traces]
 
     # Both lists are sorted, so index zero is the strongest result from its
@@ -140,6 +153,41 @@ def run_search(
     # blindly, and cannot erase a better global-search candidate.
     best = min(random_results[0], refined_results[0], key=lambda item: item.total_loss)
     return random_results, refinement_traces, best
+
+
+def select_parameter_sets(
+    finder: ParameterFinder,
+    random_results: list[Evaluation],
+    refinement_traces: list[RefinementTrace],
+) -> list[Evaluation]:
+    """Return the requested number of distinct, identifiable low-loss triples."""
+    if NUMBER_OF_PARAMETER_SETS <= 0:
+        raise ValueError("NUMBER_OF_PARAMETER_SETS must be positive")
+
+    # Local results are included alongside every global candidate. Sorting the
+    # combined list selects by objective value, rather than by start-point order.
+    candidates = [trace.best for trace in refinement_traces] + random_results
+    candidates.sort(key=lambda item: item.total_loss)
+
+    selected: list[Evaluation] = []
+    seen: set[tuple[float, float, float]] = set()
+    for candidate in candidates:
+        # Log coordinates make a scale-independent identity key. Rounding
+        # prevents numerically indistinguishable Powell endpoints from filling
+        # several output folders.
+        key = tuple(round(value, 12) for value in candidate.log_parameters)
+        if key in seen:
+            continue
+        seen.add(key)
+        if finder.probability_spread(candidate.parameters) < IDENTIFIABILITY_TOLERANCE:
+            continue
+        selected.append(candidate)
+        if len(selected) == NUMBER_OF_PARAMETER_SETS:
+            return selected
+
+    raise RuntimeError(
+        "fewer identifiable distinct candidates than NUMBER_OF_PARAMETER_SETS"
+    )
 
 
 def search_settings() -> dict:
@@ -169,6 +217,8 @@ def search_settings() -> dict:
         "local_starts": LOCAL_STARTS,
         "local_max_iterations": LOCAL_MAX_ITERATIONS,
         "local_tolerance": LOCAL_TOLERANCE,
+        "refinement_space": REFINEMENT_SPACE,
+        "number_of_parameter_sets": NUMBER_OF_PARAMETER_SETS,
         "probability_epsilon": PROBABILITY_EPSILON,
         "identifiability_tolerance": IDENTIFIABILITY_TOLERANCE,
         "animation": {
@@ -179,7 +229,7 @@ def search_settings() -> dict:
             "space_frames": ANIMATION_SETTINGS.space_frames,
             "population_frames": ANIMATION_SETTINGS.population_frames,
             "selection_frames": ANIMATION_SETTINGS.selection_frames,
-            "evaluations_per_frame": ANIMATION_SETTINGS.evaluations_per_frame,
+            "trajectory_frames": ANIMATION_SETTINGS.trajectory_frames,
             "hold_frames": ANIMATION_SETTINGS.hold_frames,
         },
     }
@@ -194,44 +244,51 @@ def main() -> None:
         count_matrix(pseudo_samples),
     )
 
-    random_results, refinement_traces, best = run_search(finder)
-    probability_spread = finder.probability_spread(best.parameters)
-    if probability_spread < IDENTIFIABILITY_TOLERANCE:
-        raise RuntimeError(
-            "best parameters give indistinguishable bond probabilities; "
-            "inspect the model"
-        )
+    random_results, refinement_traces, _ = run_search(finder)
+    selected_sets = select_parameter_sets(finder, random_results, refinement_traces)
+    best = selected_sets[0]
 
-    # Files are created only after the complete search and identifiability check.
+    # Each selected candidate receives an independent, self-contained report.
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
-    write_parameter_json(
-        OUTPUT_DIR / "tuned_bond_breaking_parameters.json",
-        best,
-        finder,
-        BOND_TYPES,
-        BOND_ENERGIES,
-        len(positive_samples),
-        len(pseudo_samples),
-        IDENTIFIABILITY_TOLERANCE,
-        search_settings(),
-    )
-    write_scored_csv(
-        OUTPUT_DIR / "scored_formula_degeneracies.csv",
-        positive_samples,
-        pseudo_samples,
-        finder,
-        best.parameters,
-        BOND_TYPES,
-    )
-    write_log(
-        OUTPUT_DIR / "log_tuned_bond_breaking_parameters.txt",
-        best,
-        finder,
-        BOND_TYPES,
-        len(positive_samples),
-        len(pseudo_samples),
-        IDENTIFIABILITY_TOLERANCE,
-    )
+    for rank, candidate in enumerate(selected_sets, start=1):
+        set_directory = OUTPUT_DIR / f"parameter_set_{rank:02d}"
+        settings = search_settings()
+        settings["selected_set_rank"] = rank
+        write_parameter_json(
+            set_directory / "tuned_bond_breaking_parameters.json",
+            candidate,
+            finder,
+            BOND_TYPES,
+            BOND_ENERGIES,
+            len(positive_samples),
+            len(pseudo_samples),
+            IDENTIFIABILITY_TOLERANCE,
+            settings,
+        )
+        write_scored_csv(
+            set_directory / "scored_formula_degeneracies.csv",
+            positive_samples,
+            pseudo_samples,
+            finder,
+            candidate.parameters,
+            BOND_TYPES,
+        )
+        write_log(
+            set_directory / "log_tuned_bond_breaking_parameters.txt",
+            candidate,
+            finder,
+            BOND_TYPES,
+            len(positive_samples),
+            len(pseudo_samples),
+            IDENTIFIABILITY_TOLERANCE,
+        )
+        write_score_plot(
+            set_directory / "positive_pseudo_negative_scores.png",
+            positive_samples,
+            pseudo_samples,
+            finder,
+            candidate.parameters,
+        )
 
     # Render only after the numerical result passes identifiability checks. The
     # animation uses the same random candidates and Powell paths as the outputs.
@@ -245,11 +302,12 @@ def main() -> None:
             ANIMATION_SETTINGS,
         )
 
-    print("Best bond-breaking parameters")
+    print("Best selected bond-breaking parameters")
     print(f"  A     = {best.parameters.A:.12g}")
     print(f"  E_ref = {best.parameters.E_ref:.12g} kJ/mol")
     print(f"  k     = {best.parameters.k:.12g}")
     print(f"  loss  = {best.total_loss:.12g}")
+    print(f"Parameter sets: {len(selected_sets)}")
     print(f"Output: {OUTPUT_DIR}")
     if GENERATE_SEARCH_ANIMATION:
         print(f"Animation: {OUTPUT_DIR / ANIMATION_FILENAME}")

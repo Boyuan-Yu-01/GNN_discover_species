@@ -8,29 +8,29 @@ Ignored zero-backbone positives: 9
 Ignored zero-backbone pseudo-negatives: 5
 
 Best parameters
-  A: 4.74840143178
-  E_ref: 1000 kJ/mol
-  k: 611.55463944
+  A: 4.76622871612
+  E_ref: 999.999999999 kJ/mol
+  k: 619.953837487
 
 Objective
-  total: 0.184075723498
-  positive: 0.0920116973544
-  pseudo-negative: 0.179635927443
-  regularization: 0.00224606242207
-  mean positive log score: -0.32791390156
-  mean pseudo-negative log score: -0.926322658184
-  mean positive survival: 0.736402010121
-  mean pseudo-negative survival: 0.409415220931
-  score gap: 0.598408756623
+  total: 0.184076091021
+  positive: 0.0918586928959
+  pseudo-negative: 0.179980266272
+  regularization: 0.00222726498902
+  mean positive log score: -0.327546482192
+  mean pseudo-negative log score: -0.925232399992
+  mean positive survival: 0.736642226632
+  mean pseudo-negative survival: 0.40983516654
+  score gap: 0.5976859178
 
 Checks
-  P_break spread: 0.0322701159155
+  P_break spread: 0.0322996935907
   weakly identifiable: False
   parameter at boundary: True
 
 Bond diagnostics
-  C#C: Arr=2.06021020885, P_break=0.0126696652547
-  C-C: Arr=3.35955330678, P_break=0.0449397811702
-  C-O: Arr=3.31947959028, P_break=0.043250834918
-  C=C: Arr=2.60077121117, P_break=0.0215576085174
-  C=O: Arr=2.2837253174, P_break=0.0157928515599
+  C#C: Arr=2.0679450126, P_break=0.0125959995848
+  C-C: Arr=3.37216633306, P_break=0.0448956931755
+  C-O: Arr=3.33194216476, P_break=0.0432021094394
+  C=C: Arr=2.61053548417, P_break=0.0214759946597
+  C=O: Arr=2.2922992809, P_break=0.0157142897284

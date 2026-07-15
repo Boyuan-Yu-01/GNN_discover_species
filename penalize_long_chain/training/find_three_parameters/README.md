@@ -216,8 +216,13 @@ The full-range random stage reduces dependence on the initial guess.
 `random_search`
 : Evaluates the exact reference plus full-range log-uniform candidates.
 
+`refine_log`
+: Runs bounded, derivative-free Powell optimization in `log(A)`,
+  `log(E_ref)`, and `log(k)`.
+
 `refine`
-: Runs bounded, derivative-free Powell optimization from the best candidates.
+: Runs the same bounded Powell algorithm directly in physical `A`, `E_ref`,
+  and `k` coordinates.
 
 `probability_spread` / `is_at_boundary`
 : Diagnose loss of bond sensitivity and boundary solutions.
@@ -258,6 +263,8 @@ RANDOM_TRIALS = 20_000
 KEEP_BEST_RANDOM = 20
 LOCAL_STARTS = 20
 LOCAL_MAX_ITERATIONS = 1000
+REFINEMENT_SPACE = "log"  # "log" selects refine_log(); "physical" selects refine()
+NUMBER_OF_PARAMETER_SETS = 20
 
 GENERATE_SEARCH_ANIMATION = True
 ANIMATION_FILENAME = "parameter_search_animation.mp4"
@@ -265,38 +272,42 @@ ANIMATION_FILENAME = "parameter_search_animation.mp4"
 
 ## Search Animation
 
-When enabled, `main.py` records every objective evaluation requested by Powell
-and renders a staged 3D animation in logarithmic parameter coordinates.
-Physical tick labels and axis limits still correspond exactly to
-`PARAMETER_BOUNDS`. The camera remains fixed throughout the MP4.
+When enabled, `main.py` records completed Powell iteration endpoints and
+renders a staged 3D animation in logarithmic parameter coordinates. Physical
+tick labels and axis limits still correspond exactly to `PARAMETER_BOUNDS`.
+The camera remains fixed throughout the MP4.
 
 The phases are:
 
 1. Display the empty bounded `(A, E_ref, k)` space.
 2. Fade in all 20,000 random-stage candidates.
 3. Fade out discarded candidates, leaving the configured Powell starts.
-4. Draw all Powell objective probes simultaneously, one evaluation per frame.
-5. Mark successful and unsuccessful SciPy terminations, then hold the selected
-   result.
+4. Draw the Powell trajectories simultaneously over `trajectory_frames` frames.
+5. Hold the completed paths and mark the selected result.
 
-`evaluations_per_frame=1` displays every evaluated point. These points include
-Powell's internal line-search probes; they are not all accepted outer-iteration
-updates. Increase this value only when a shorter video is more important than
-showing every probe.
-
-Different final points do not by themselves mean that Powell failed. A run is
-marked successful only from SciPy's termination status; several successful runs
-may end in different local minima or different points on a flat valley.
+The animation intentionally omits Powell's internal line-search probes. It
+shows the completed outer-iteration endpoints, which gives a clearer overview
+of each refinement path.
 
 ## Outputs Created When Run
 
 ```text
-output/tuned_bond_breaking_parameters.json
-output/scored_formula_degeneracies.csv
-output/log_tuned_bond_breaking_parameters.txt
+output/parameter_set_01/tuned_bond_breaking_parameters.json
+output/parameter_set_01/scored_formula_degeneracies.csv
+output/parameter_set_01/log_tuned_bond_breaking_parameters.txt
+output/parameter_set_01/positive_pseudo_negative_scores.png
+output/parameter_set_02/...
+...
 output/parameter_search_animation.mp4
 ```
 
+- `NUMBER_OF_PARAMETER_SETS` controls how many distinct, identifiable,
+  lowest-loss candidates are written. Folders are ranked from lowest to higher
+  total loss.
+- Each score plot shows every observed positive as a blue point and every
+  pseudo-negative as a grey point. The horizontal coordinate is
+  `P_exist(g)`; vertical jitter only prevents points with equal scores from
+  overlapping.
 - The JSON contains the selected triple, objective components, distribution
   quantiles, physical diagnostics, and reproducibility settings.
 - The scored CSV preserves every sample and its individual loss.

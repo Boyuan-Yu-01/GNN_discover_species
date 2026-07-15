@@ -28,9 +28,7 @@ class AnimationSettings:
     space_frames: int = 12
     population_frames: int = 18
     selection_frames: int = 18
-    # One means that every recorded objective evaluation receives one frame.
-    # Larger values shorten the video by advancing several evaluations at once.
-    evaluations_per_frame: int = 1
+    trajectory_frames: int = 60
     hold_frames: int = 12
 
     def validate(self) -> None:
@@ -41,12 +39,11 @@ class AnimationSettings:
             self.space_frames,
             self.population_frames,
             self.selection_frames,
+            self.trajectory_frames,
             self.hold_frames,
         )
         if any(count <= 0 for count in frame_counts):
             raise ValueError("every animation phase must contain at least one frame")
-        if self.evaluations_per_frame <= 0:
-            raise ValueError("evaluations_per_frame must be positive")
 
 
 def write_search_animation(
@@ -78,21 +75,12 @@ def write_search_animation(
         dtype=float,
     )
 
-    # Powell reports natural-log coordinates. Divide by ln(10) so every
-    # objective probe shares the plot's log10 coordinates and physical labels.
+    # Powell paths are stored in natural-log coordinates. Divide by ln(10) so
+    # they share the plot's log10 coordinates and physical labels.
     paths = [
         np.asarray(trace.log_path, dtype=float) / np.log(10.0)
         for trace in refinements
     ]
-    successful_endpoints = np.asarray(
-        [path[-1] for path, trace in zip(paths, refinements) if trace.optimizer_success],
-        dtype=float,
-    ).reshape(-1, 3)
-    failed_endpoints = np.asarray(
-        [path[-1] for path, trace in zip(paths, refinements) if not trace.optimizer_success],
-        dtype=float,
-    ).reshape(-1, 3)
-    longest_path = max(len(path) for path in paths)
     best_point = _parameter_point(best.parameters)
 
     figure = plt.figure(figsize=(10.0, 8.0))
@@ -151,29 +139,6 @@ def write_search_animation(
         alpha=0.0,
         depthshade=False,
     )
-    successful_finals = axis.scatter(
-        successful_endpoints[:, 0],
-        successful_endpoints[:, 1],
-        successful_endpoints[:, 2],
-        marker="o",
-        s=55,
-        facecolors="none",
-        edgecolors="#2a9d62",
-        linewidths=1.5,
-        alpha=0.0,
-        depthshade=False,
-    )
-    failed_finals = axis.scatter(
-        failed_endpoints[:, 0],
-        failed_endpoints[:, 1],
-        failed_endpoints[:, 2],
-        marker="x",
-        s=65,
-        c="#d94b4b",
-        linewidths=1.8,
-        alpha=0.0,
-        depthshade=False,
-    )
 
     status = axis.text2D(0.02, 0.96, "", transform=axis.transAxes)
     axis.legend(
@@ -187,24 +152,7 @@ def write_search_animation(
                 color=retained_color,
                 label="Best 20 starts",
             ),
-            Line2D([], [], color=colors[0], linewidth=2, label="Powell objective probes"),
-            Line2D(
-                [],
-                [],
-                marker="o",
-                markerfacecolor="none",
-                markeredgecolor="#2a9d62",
-                linestyle="none",
-                label="SciPy success",
-            ),
-            Line2D(
-                [],
-                [],
-                marker="x",
-                color="#d94b4b",
-                linestyle="none",
-                label="SciPy did not converge",
-            ),
+            Line2D([], [], color=colors[0], linewidth=2, label="Powell trajectories"),
             Line2D(
                 [],
                 [],
@@ -223,14 +171,7 @@ def write_search_animation(
     phase_1 = settings.space_frames
     phase_2 = phase_1 + settings.population_frames
     phase_3 = phase_2 + settings.selection_frames
-    # With evaluations_per_frame=1, each objective evaluation gets exactly one
-    # animation frame. Shorter runs remain at their final point while longer
-    # runs continue.
-    trajectory_frames = max(
-        1,
-        int(np.ceil((longest_path - 1) / settings.evaluations_per_frame)),
-    )
-    phase_4 = phase_3 + trajectory_frames
+    phase_4 = phase_3 + settings.trajectory_frames
     total_frames = phase_4 + settings.hold_frames
 
     def clear_paths() -> None:
@@ -240,11 +181,10 @@ def write_search_animation(
             line.set_3d_properties([])
             mover._offsets3d = ([], [], [])
 
-    def show_path_progress(evaluation_index: int) -> None:
-        """Reveal each path through the requested objective-evaluation index."""
+    def show_path_progress(progress: float) -> None:
+        """Reveal the same fraction of every recorded Powell path."""
         for line, mover, trajectory in zip(lines, movers, paths):
-            # A shorter run remains at its final point while other runs proceed.
-            last_index = min(evaluation_index, len(trajectory) - 1)
+            last_index = int(round(progress * (len(trajectory) - 1)))
             visible = trajectory[: last_index + 1]
             line.set_data(visible[:, 0], visible[:, 1])
             line.set_3d_properties(visible[:, 2])
@@ -258,8 +198,6 @@ def write_search_animation(
             cloud.set_alpha(0.0)
             retained.set_alpha(0.0)
             winner.set_alpha(0.0)
-            successful_finals.set_alpha(0.0)
-            failed_finals.set_alpha(0.0)
             clear_paths()
             status.set_text("1. Parameter space constrained by configured bounds")
 
@@ -270,8 +208,6 @@ def write_search_animation(
             retained.set_color(neutral)
             retained.set_alpha(0.22 * progress)
             winner.set_alpha(0.0)
-            successful_finals.set_alpha(0.0)
-            failed_finals.set_alpha(0.0)
             clear_paths()
             status.set_text(f"2. Initial population: {len(random_results):,} candidates")
 
@@ -282,52 +218,31 @@ def write_search_animation(
             retained.set_color(retained_color)
             retained.set_alpha(0.22 + 0.78 * progress)
             winner.set_alpha(0.0)
-            successful_finals.set_alpha(0.0)
-            failed_finals.set_alpha(0.0)
             clear_paths()
             status.set_text(f"3. Preserve the best {retained_count} Powell starting points")
 
         elif frame < phase_4:
-            # Phase 4: advance through every objective evaluation made by each
-            # Powell line search. These are probes, not necessarily accepted
-            # outer-iteration endpoints.
-            animation_step = frame - phase_3 + 1
-            evaluation_index = min(
-                animation_step * settings.evaluations_per_frame,
-                longest_path - 1,
-            )
-            progress = evaluation_index / max(1, longest_path - 1)
+            # Phase 4: draw completed Powell iteration endpoints.
+            progress = (frame - phase_3 + 1) / settings.trajectory_frames
             cloud.set_alpha(0.0)
             retained.set_color(retained_color)
             retained.set_alpha(0.45)
-            show_path_progress(evaluation_index)
+            show_path_progress(progress)
             winner.set_alpha(1.0 if progress >= 1.0 else 0.0)
-            successful_finals.set_alpha(1.0 if progress >= 1.0 else 0.0)
-            failed_finals.set_alpha(1.0 if progress >= 1.0 else 0.0)
-            status.set_text(
-                "4. Powell objective evaluations: "
-                f"step {evaluation_index:,} / {longest_path - 1:,}"
-            )
+            status.set_text(f"4. Powell refinement trajectories: {progress:>5.0%}")
 
         else:
             # Final hold: keep completed paths and winner visible for readability.
             cloud.set_alpha(0.0)
             retained.set_alpha(0.35)
-            show_path_progress(longest_path - 1)
+            show_path_progress(1.0)
             winner.set_alpha(1.0)
-            successful_finals.set_alpha(1.0)
-            failed_finals.set_alpha(1.0)
-            status.set_text(
-                "Powell termination: "
-                f"{len(successful_endpoints)}/{retained_count} successful"
-            )
+            status.set_text("Selected minimum after random search and Powell refinement")
 
         return (
             cloud,
             retained,
             winner,
-            successful_finals,
-            failed_finals,
             status,
             *lines,
             *movers,

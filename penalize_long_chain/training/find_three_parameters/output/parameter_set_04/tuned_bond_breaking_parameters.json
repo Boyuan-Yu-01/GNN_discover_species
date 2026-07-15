@@ -1,29 +1,29 @@
 {
-  "A": 4.766228716119469,
-  "E_ref": 999.9999999994677,
-  "k": 619.953837487026,
-  "objective_value": 0.1840760910207454,
-  "positive_loss": 0.09185869289586857,
-  "pseudo_negative_loss": 0.17998026627171052,
-  "regularization_loss": 0.0022272649890215943,
-  "mean_positive_log_score": -0.3275464821917008,
-  "mean_pseudo_negative_log_score": -0.9252323999921326,
-  "mean_positive_survival": 0.7366422266317947,
-  "mean_pseudo_negative_survival": 0.4098351665397576,
-  "score_gap": 0.5976859178004318,
+  "A": 4.307242124142337,
+  "E_ref": 1625.2367214518931,
+  "k": 698.3654299084798,
+  "objective_value": 0.1837916055221482,
+  "positive_loss": 0.0916720413215066,
+  "pseudo_negative_loss": 0.176852778398354,
+  "regularization_loss": 0.0036931750014646313,
+  "mean_positive_log_score": -0.3281665915990241,
+  "mean_pseudo_negative_log_score": -0.9322059628328262,
+  "mean_positive_survival": 0.7357379893711855,
+  "mean_pseudo_negative_survival": 0.4066336862040166,
+  "score_gap": 0.6040393712338021,
   "positive_survival_quantiles": {
-    "q05": 0.5029576950393766,
-    "q25": 0.6044052713062632,
-    "q50": 0.7538081981140341,
-    "q75": 0.8682266155946898,
-    "q95": 0.9567978905606442
+    "q05": 0.5060005264273791,
+    "q25": 0.606979938288331,
+    "q50": 0.7516666199673503,
+    "q75": 0.8651775800600316,
+    "q95": 0.9566052463167194
   },
   "pseudo_negative_survival_quantiles": {
-    "q05": 0.2698139392565957,
-    "q25": 0.3331551070290781,
-    "q50": 0.3838871586361322,
-    "q75": 0.46205960067258267,
-    "q95": 0.6341522504446123
+    "q05": 0.2680542619179558,
+    "q25": 0.3326427129634839,
+    "q50": 0.3812852573595008,
+    "q75": 0.45978440104376084,
+    "q95": 0.6276182414961328
   },
   "positive_sample_count": 267,
   "pseudo_negative_sample_count": 569,
@@ -46,22 +46,22 @@
     "C=O": 732.0
   },
   "arrhenius_by_bond": {
-    "C#C": 2.0679450125964456,
-    "C-C": 3.3721663330594933,
-    "C-O": 3.3319421647614074,
-    "C=C": 2.610535484169257,
-    "C=O": 2.2922992809048615
+    "C#C": 2.5767438045671507,
+    "C-C": 3.4812998946640628,
+    "C-O": 3.455690239672326,
+    "C=C": 2.9739476385665187,
+    "C=O": 2.7453316676503396
   },
   "p_break_by_bond": {
-    "C#C": 0.012595999584795287,
-    "C-C": 0.04489569317552373,
-    "C-O": 0.04320210943935574,
-    "C=C": 0.0214759946597443,
-    "C=O": 0.015714289728357558
+    "C#C": 0.01848752216426945,
+    "C-C": 0.0444703716481858,
+    "C-O": 0.043394753683280586,
+    "C=C": 0.027257389259323053,
+    "C=O": 0.021808389494117522
   },
-  "probability_spread": 0.03229969359072844,
+  "probability_spread": 0.025982849483916347,
   "weakly_identifiable": false,
-  "parameter_at_boundary": true,
+  "parameter_at_boundary": false,
   "search_settings": {
     "parameter_bounds": {
       "A": [
@@ -70,7 +70,7 @@
       ],
       "E_ref": [
         50.0,
-        1000.0
+        10000.0
       ],
       "k": [
         10.0,
@@ -97,6 +97,7 @@
     "local_max_iterations": 1000,
     "local_tolerance": 1e-12,
     "refinement_space": "log",
+    "number_of_parameter_sets": 5,
     "probability_epsilon": 1e-12,
     "identifiability_tolerance": 1e-06,
     "animation": {
@@ -109,6 +110,7 @@
       "selection_frames": 18,
       "trajectory_frames": 60,
       "hold_frames": 12
-    }
+    },
+    "selected_set_rank": 4
   }
 }

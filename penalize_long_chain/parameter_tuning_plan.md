@@ -202,7 +202,8 @@ as a prior. `E_ref` may move freely anywhere in `[50, 1000]`.
 4. Sort candidates by total loss.
 5. Refine the best candidates with bounded Powell optimization.
 6. Keep the better of each local result and its starting candidate.
-7. Select the final lowest-loss triple that passes the numerical checks.
+7. Select the configured number of distinct lowest-loss triples that pass the
+   numerical checks.
 
 The full-range random stage reduces dependence on the initial guess, while the
 exact reference candidate makes its objective directly inspectable.
@@ -237,28 +238,32 @@ training/find_three_parameters/parameter_animation.py
 training/find_three_parameters/main.py
 ```
 
-`ParameterFinder` evaluates and optimizes the three logged physical parameters.
-`main.py` exposes the bounds, initial guess, objective weights, and numerical
-controls. Utilities load the datasets and write reproducible reports. The
+`ParameterFinder` evaluates the three logged physical parameters and can refine
+them in either log or physical coordinates. `main.py` exposes the bounds,
+initial guess, objective weights, numerical controls, and output-set count.
+Utilities load the datasets and write reproducible reports. The
 animation writer displays the bounded 3D log-parameter space, all 20,000 random
-candidates, the configured retained Powell starts, every recorded objective evaluation,
-SciPy's termination status for each run, and the final selected result. The
-camera remains fixed so apparent motion comes only from parameter changes.
+candidates, the configured retained Powell starts, their completed Powell
+iteration paths, and the final selected result. The camera remains fixed so
+apparent motion comes only from parameter changes.
 
 ## Outputs
 
 When the search is approved and run, write:
 
 ```text
-output/tuned_bond_breaking_parameters.json
-output/scored_formula_degeneracies.csv
-output/log_tuned_bond_breaking_parameters.txt
+output/parameter_set_01/tuned_bond_breaking_parameters.json
+output/parameter_set_01/scored_formula_degeneracies.csv
+output/parameter_set_01/log_tuned_bond_breaking_parameters.txt
+output/parameter_set_01/positive_pseudo_negative_scores.png
+output/parameter_set_02/...
 output/parameter_search_animation.mp4
 ```
 
-The JSON records the selected triple, individual-loss components, sample
-counts, survival quantiles, bond-level Arrhenius terms and probabilities,
-identifiability checks, bounds, initial guess, and search settings.
+`NUMBER_OF_PARAMETER_SETS` controls how many ranked, distinct, identifiable
+parameter triples are written. Each folder contains its own JSON, CSV, text
+summary, and a plot of observed positives (blue) and pseudo-negatives (grey)
+on the same existence-probability axis.
 
 ## Interpretation
 
