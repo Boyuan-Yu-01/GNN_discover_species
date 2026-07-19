@@ -306,4 +306,4 @@ validation_set
 * parameter_search_animation.mp4
 
 ## Jul. 22nd, 2026
-* Presentation made for Dr. Chiping Li [GNN update_180726.pptx](../updates/GNN update_180726.pptx)
+* Presentation made for Dr. Chiping Li [GNN update_180726.pptx](<../updates/GNN update_180726.pptx>) 
