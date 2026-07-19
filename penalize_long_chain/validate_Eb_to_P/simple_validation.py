@@ -7,6 +7,10 @@ A = 10.0
 E_ref = 300.0
 k = 1000.0
 
+# A = 4.30724212053
+# E_ref = 1625.23671637
+# k = 698.365425223
+
 BOND_ENERGIES = {
     "H-H": 436,
     "C-H": 413,
@@ -15,15 +19,15 @@ BOND_ENERGIES = {
     "C-C": 346,
     "C-N": 305,
     "C-O": 358,
-    "N-N": 163,
-    "N-O": 201,
+    # "N-N": 163,
+    # "N-O": 201,
     "O-O": 146,
     "C=C": 602,
     "O=O": 498,
     "C=O": 732,
-    "N=O": 607,
-    "N=N": 418,
-    "C=N": 615,
+    # "N=O": 607,
+    # "N=N": 418,
+    # "C=N": 615,
     "C#C": 835,
     "C#O": 1072,
     "N#N": 945,
@@ -51,9 +55,9 @@ for i, (bond, energy) in enumerate(BOND_ENERGIES.items()):
         fontsize=7,
     )
 
-plt.xlabel(r"$E_b$ (kJ/mol)")
+plt.xlabel(r"$E_{B.D.E}$ (kJ/mol)")
 plt.ylabel(r"$P_{\mathrm{break},b}$")
-plt.title(r"$P_{\mathrm{break},b}=\frac{1}{1+k e^{-Arr_b}},\quad Arr_b=Ae^{-E_b/E_{ref}}$")
+# plt.title(r"$P_{\mathrm{break},b}=\frac{1}{1+k e^{-Arr_b}},\quad Arr_b=Ae^{-E_b/E_{ref}}$")
 plt.grid(True)
 plt.tight_layout()
 plt.show()

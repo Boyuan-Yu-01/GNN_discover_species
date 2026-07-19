@@ -304,3 +304,6 @@ validation_set
 * scored_formula_degeneracies.csv: <span style="color:red">Individual sample scores</span> 
 * log_tuned_bond_breaking_parameters.txt
 * parameter_search_animation.mp4
+
+## Jul. 22nd, 2026
+* Presentation made for Dr. Chiping Li [GNN update_180726.pptx](../updates/GNN update_180726.pptx)
