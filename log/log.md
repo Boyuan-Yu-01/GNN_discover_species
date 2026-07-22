@@ -356,4 +356,5 @@ What can be the problem?
 | 14.6398067953 | 238.881003242 | 1043.69728789 |
 
 ![](plot/randomly_tuned.png)
+
 <span style="color:blue">Could be problematic though, need to check its sensitivity</span> [Sensitivity Analysis](sensitivity_mapping_idea.md) 
