@@ -307,3 +307,53 @@ validation_set
 
 ## Jul. 22nd, 2026
 * Presentation made for Dr. Chiping Li [GNN update_180726.pptx](<../updates/GNN update_180726.pptx>) 
+
+1. Bug fixing: Check the training data species
+2. Bug fixing: check the data optimization process, tune parameters 
+3. <span style="color:red">Bug fixing?</span> Remove long chain oxygen from pseudo-negative samples
+4. Implement: Implement the current long-chain penalizing function to the GNN - reinforcement architecture.
+
+__Fixing dataset under `penalize_long_chain/training/org_dataset/`__ 
+* Fixing `filtered_pseudo_negative.json` & `filtered_master.json`: previously contains 9 types of bonds, now contains 11 types of bonds (previously lost `C#O` & `H-H`)
+* <span style="color:red">After fixing,</span> the rejected samples from `filtered_master.json` are:
+```text
+CH2_001 CH3_001 CH4_001 CH_001 H2O_001 H2_001 HO_001
+```
+
+## tuning parameter:
+
+| $\alpha$ | $\beta$ | $\mathcal{L}_{tot}$ | $A$           | $E_{ref}$     | $k$           |
+| -------- | ------: | ------------------- | ------------- | ------------- | ------------- |
+| 1        |     0.5 | 0.193869466         | 3.77002947898 | 2919.11063064 | 643.229281699 |
+| 1        |     0.3 | 0.148730432         | 3.70146258031 | 2100.25750012 | 688.392726851 |
+| 1        |     0.1 | 0.0735276271        | 3.81678654031 | 889.166242208 | 830.964575758 |
+*Use the result from $\alpha=1$, $\beta=0.3$, the H-O-O...-O-O-H system are penalized as the following:*
+
+| $\ce{H2O3}$ | $\ce{H2O5}$ | $\ce{H2O6}$ | $\ce{H2O8}$ |
+| ----------- | ----------: | ----------- | ----------- |
+| 0.8357      |   0.6984019 | 0.63845717  | 0.53356149  |
+
+### Thoughts
+Thought  Training Data modifying parameters 
+
+| Thought |                                               Training Data | Modifying Parameters          | Result Directory   | Note I                                                                                                                                                                     | Side Note                                                                                         |
+| ------- | ----------------------------------------------------------: | ----------------------------- | ------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| org     |                                          All skeletal bonds | 3 parameters<br>`A, E_ref, k` | output/            | <span style="color:red">number of parameters limits its performance: The entire dataset shift up or down when I play around with </span> `alpha` & `beta` in loss function |                                                                                                   |
+| TH_I    | All skeletal bonds. No long hydroperoxyl chain degeneracies | same as org<br>               | output_remove_OOO/ | This follows closer to the description of <span style="color:red">using long carbon chain to inform the penalizing function</span>                                         | ❎❎❎<br>not useful<br>[P_org](plot/3_param_org.png)<br>[P_remove_OOO](plot/3_param_remove_OOO.png) |
+| TH_II   |                                  All bonds, including 'X-H' | same as org                   | output_all_bonds/  | <span style="color:red">poor in penalizing HOOOOH system</span>                                                                                                            | ❎❎❎<br>not useful<br>                                                                             |
+| TH_III  |                                               Add parameter | ...                           | ...                | ...                                                                                                                                                                        | ...                                                                                               |
+
+The Current system is poor in penalizing O-...-O chain, regardless of with or without counting 'X-H' bonds
+What can be the problem?
+* training data?
+* mathematical formulation?
+![](plot/notIdeal.png)
+## What if we humanly tune these three parameter???
+<span style="color:red">Randomly tuned:</span> *The target is: $P_{\ce{C12H26}}=0.7$, $P_{\ce{H2O3}}=0.4$* 
+
+| $A$           |     $E_{ref}$ | $k$           |
+| ------------- | ------------: | ------------- |
+| 14.6398067953 | 238.881003242 | 1043.69728789 |
+
+![](plot/randomly_tuned.png)
+<span style="color:blue">Could be problematic though, need to check its sensitivity</span> [Sensitivity Analysis](sensitivity_mapping_idea.md) 

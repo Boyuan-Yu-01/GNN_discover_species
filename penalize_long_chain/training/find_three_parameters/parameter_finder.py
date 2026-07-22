@@ -4,6 +4,8 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from math import exp, log
+from numbers import Integral
+from typing import Sequence
 
 import numpy as np
 from scipy.optimize import minimize
@@ -94,13 +96,35 @@ class ParameterFinder:
         bond_energies: np.ndarray,
         bounds: ParameterBounds,
         objective: ObjectiveSettings,
+        positive_sample_ids: Sequence[str] | None = None,
+        pseudo_sample_ids: Sequence[str] | None = None,
+        positive_source: str = "positive input",
+        pseudo_source: str = "pseudo-negative input",
     ) -> None:
         # Retain complete matrices for reporting, but fit only rows containing
         # at least one bond whose response can change with the parameters.
         self.positive_counts = self._validate_counts(positive_counts, "positive")
         self.pseudo_counts = self._validate_counts(pseudo_counts, "pseudo-negative")
-        self.positive_objective_counts = self._rows_with_backbone(self.positive_counts)
-        self.pseudo_objective_counts = self._rows_with_backbone(self.pseudo_counts)
+        self.positive_sample_ids = self._validate_sample_ids(
+            positive_sample_ids,
+            len(self.positive_counts),
+            "positive",
+        )
+        self.pseudo_sample_ids = self._validate_sample_ids(
+            pseudo_sample_ids,
+            len(self.pseudo_counts),
+            "pseudo-negative",
+        )
+        self.positive_objective_counts = self._rows_with_backbone(
+            self.positive_counts,
+            self.positive_sample_ids,
+            positive_source,
+        )
+        self.pseudo_objective_counts = self._rows_with_backbone(
+            self.pseudo_counts,
+            self.pseudo_sample_ids,
+            pseudo_source,
+        )
         self.ignored_positive_count = len(self.positive_counts) - len(
             self.positive_objective_counts
         )
@@ -133,10 +157,36 @@ class ParameterFinder:
         return array
 
     @staticmethod
-    def _rows_with_backbone(counts: np.ndarray) -> np.ndarray:
-        """Return rows containing at least one configured backbone bond."""
+    def _validate_sample_ids(
+        sample_ids: Sequence[str] | None,
+        count: int,
+        source: str,
+    ) -> tuple[str, ...]:
+        """Return one printable sample ID per count-matrix row."""
+        if sample_ids is None:
+            return tuple(f"row_{index}" for index in range(count))
+        if len(sample_ids) != count or any(not isinstance(item, str) for item in sample_ids):
+            raise ValueError(f"{source} sample IDs must match the count-matrix rows")
+        return tuple(sample_ids)
+
+    @staticmethod
+    def _rows_with_backbone(
+        counts: np.ndarray,
+        sample_ids: tuple[str, ...],
+        source: str,
+    ) -> np.ndarray:
+        """Print and exclude rows with no configured backbone bonds."""
         # All-zero rows always have P_exist=1 and provide no parameter gradient.
-        usable = counts[np.any(counts > 0.0, axis=1)]
+        mask = np.any(counts > 0.0, axis=1)
+        rejected_ids = [sample_ids[index] for index in np.flatnonzero(~mask)]
+        if rejected_ids:
+            print(f"Excluded from objective ({source}):")
+            for degeneracy_id in rejected_ids:
+                print(f"  {degeneracy_id}")
+        else:
+            print(f"Excluded from objective ({source}): none")
+
+        usable = counts[mask]
         if not len(usable):
             raise ValueError("the objective has no rows with configured backbone bonds")
         return usable
@@ -295,6 +345,8 @@ class ParameterFinder:
         """Evaluate the exact reference plus full-range log-uniform candidates."""
         # One trial means one complete (A, E_ref, k) triple. Rejecting zero here
         # also avoids trying to rank an empty result list in main.py.
+        if isinstance(trial_count, bool) or not isinstance(trial_count, Integral):
+            raise TypeError("trial_count must be one integer, for example 20_000")
         if trial_count <= 0:
             raise ValueError("trial_count must be positive")
 
@@ -368,7 +420,11 @@ class ParameterFinder:
         # Bounds and start points must be in the same coordinate system as the
         # optimizer. evaluate() always receives log coordinates internally.
         bounds = self.bounds.as_log_bounds() if use_log_space else self.bounds.as_tuple()
-        for start in starts:
+        # Keep terminal output readable: report progress for only the first
+        # three retained starts, rather than every local optimization run.
+        reported_start_count = 3
+        reported_loss_histories: list[list[float]] = []
+        for start_number, start in enumerate(starts, start=1):
             start_values = (
                 start.log_parameters
                 if use_log_space
@@ -378,6 +434,12 @@ class ParameterFinder:
             # this lighter path for the animation rather than every line-search
             # probe, which made the earlier video visually noisy.
             path = [start.log_parameters]
+
+            # Keep a separate loss sequence for each of the first three starts.
+            # They are printed together after refinement as an N-by-3 table.
+            loss_history = [start.total_loss] if start_number <= reported_start_count else None
+            if loss_history is not None:
+                reported_loss_histories.append(loss_history)
 
             def to_log_parameters(values: np.ndarray) -> tuple[float, float, float]:
                 """Convert an optimizer point into evaluate()'s log coordinates."""
@@ -390,6 +452,8 @@ class ParameterFinder:
                 point = to_log_parameters(values)
                 if point != path[-1]:
                     path.append(point)
+                if loss_history is not None:
+                    loss_history.append(self.evaluate(point).total_loss)
 
             def objective_function(values: np.ndarray) -> float:
                 """Evaluate a candidate in either optimizer coordinate system."""
@@ -427,6 +491,8 @@ class ParameterFinder:
             final_point = candidate.log_parameters
             if final_point != path[-1]:
                 path.append(final_point)
+                if loss_history is not None:
+                    loss_history.append(candidate.total_loss)
 
             # Powell may stop without improving, especially near a bound or flat
             # region. Never replace a valid start with a worse local result.
@@ -444,7 +510,25 @@ class ParameterFinder:
                 )
             )
 
+        self._print_loss_table(reported_loss_histories)
+
         # As in random_search(), index zero contains the best retained result.
         # The trace stays attached to its start even after sorting.
         traces.sort(key=lambda item: item.best.total_loss)
         return traces
+
+    @staticmethod
+    def _print_loss_table(loss_histories: list[list[float]]) -> None:
+        """Print aligned total-loss histories for up to three Powell starts."""
+        if not loss_histories:
+            return
+
+        print("\nPowell total loss")
+        print("  ".join(f"start_{index + 1}" for index in range(len(loss_histories))))
+        row_count = max(len(history) for history in loss_histories)
+        for row in range(row_count):
+            values = [
+                f"{history[row]:.9g}" if row < len(history) else ""
+                for history in loss_histories
+            ]
+            print("  ".join(f"{value:>16}" for value in values))

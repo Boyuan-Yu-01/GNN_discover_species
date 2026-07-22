@@ -27,15 +27,20 @@ from parameter_utils import (
 
 HERE = Path(__file__).resolve().parent
 DATA_DIR = HERE.parent / "org_dataset"
-OUTPUT_DIR = HERE / "output"
+# OUTPUT_DIR = HERE / "output"
+OUTPUT_DIR = HERE / "output_all_bonds"
 
 # The search reads but never modifies these two source datasets.
 POSITIVE_FILE = DATA_DIR / "filtered_master.json"
 PSEUDO_NEGATIVE_FILE = DATA_DIR / "filtered_pseudo_negative.json"
+# PSEUDO_NEGATIVE_FILE = DATA_DIR / "filtered_pseudo_negative_remove_OOO.json"
 
 # Count-matrix columns and BDE values must remain in exactly the same order.
-BOND_TYPES = ("C#C", "C-C", "C-O", "C=C", "C=O")
-BOND_ENERGIES = np.asarray((835.0, 346.0, 358.0, 602.0, 732.0))
+# BOND_TYPES = ("C#C", "C-C", "C-O", "C=C", "C=O", "O-O", "O=O", "C#O")
+# BOND_ENERGIES = np.asarray((835.0, 346.0, 358.0, 602.0, 732.0, 146.0, 498.0, 1072.0))  # kJ/mol
+
+BOND_TYPES = ("C#C", "C-C", "C-O", "C=C", "C=O", "O-O", "O=O", "C#O", "C-H", "O-H", "H-H")
+BOND_ENERGIES = np.asarray((835.0, 346.0, 358.0, 602.0, 732.0, 146.0, 498.0, 1072.0, 413.0, 463.0, 436.0))  # kJ/mol
 
 
 # =============================================================================
@@ -60,21 +65,21 @@ REGULARIZATION_WEIGHTS = (1e-3, 1e-3, 1e-3)  # log(A), log(E_ref), log(k)
 
 # Observed positives dominate; fabricated pseudo-negatives are weak evidence.
 POSITIVE_WEIGHT = 1.00
-PSEUDO_NEGATIVE_WEIGHT = 0.50
+PSEUDO_NEGATIVE_WEIGHT = 0.3
 
 # Full-range log-uniform search followed by bounded Powell refinement.
 RANDOM_SEED = 20260713                      # Controls reproducible random-number generation
 RANDOM_TRIALS = 20_000                      # Total candidates evaluated globally
-KEEP_BEST_RANDOM = 20                       # Maximum random candidates eligible for refinement
-LOCAL_STARTS = 20                           # Number of candidates actually refined
-LOCAL_MAX_ITERATIONS = 1000                 # Maximum Powell iterations per start
-LOCAL_TOLERANCE = 1e-12                      # Powell convergence precision
+KEEP_BEST_RANDOM = 30                       # Maximum random candidates eligible for refinement
+LOCAL_STARTS = 30                           # Number of candidates actually refined
+LOCAL_MAX_ITERATIONS = 10000                 # Maximum Powell iterations per start
+LOCAL_TOLERANCE = 1e-15                      # Powell convergence precision
 # Choose "log" for multiplicative parameter steps or "physical" for direct
 # A, E_ref, k steps. This selects refine_log() or refine(), respectively.
 REFINEMENT_SPACE = "log"
 
 # Number of distinct low-loss parameter triples written after one search.
-NUMBER_OF_PARAMETER_SETS = 5
+NUMBER_OF_PARAMETER_SETS = 1
 
 # Numerical and identifiability checks.
 PROBABILITY_EPSILON = 1e-12
@@ -99,6 +104,8 @@ ANIMATION_SETTINGS = AnimationSettings(
 def make_finder(
     positive_counts: np.ndarray,
     pseudo_counts: np.ndarray,
+    positive_sample_ids: tuple[str, ...] | None = None,
+    pseudo_sample_ids: tuple[str, ...] | None = None,
 ) -> ParameterFinder:
     """Construct the shared physical model and pointwise objective."""
     objective = ObjectiveSettings(
@@ -114,6 +121,10 @@ def make_finder(
         bond_energies=BOND_ENERGIES,
         bounds=PARAMETER_BOUNDS,
         objective=objective,
+        positive_sample_ids=positive_sample_ids,
+        pseudo_sample_ids=pseudo_sample_ids,
+        positive_source=str(POSITIVE_FILE),
+        pseudo_source=str(PSEUDO_NEGATIVE_FILE),
     )
 
 
@@ -242,6 +253,8 @@ def main() -> None:
     finder = make_finder(
         count_matrix(positive_samples),
         count_matrix(pseudo_samples),
+        tuple(sample.degeneracy_id for sample in positive_samples),
+        tuple(sample.degeneracy_id for sample in pseudo_samples),
     )
 
     random_results, refinement_traces, _ = run_search(finder)

@@ -74,6 +74,7 @@ def load_samples(path: Path, bond_types: tuple[str, ...]) -> list[Sample]:
             Sample(
                 degeneracy_id=degeneracy_id,
                 formula=formula_from_id(degeneracy_id),
+                
                 is_ring=is_ring,
                 bond_counts=tuple(counts),
             )

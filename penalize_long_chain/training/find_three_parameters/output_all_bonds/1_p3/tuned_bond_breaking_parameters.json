@@ -1,0 +1,140 @@
+{
+  "A": 3.5569809903559766,
+  "E_ref": 844.7808672308605,
+  "k": 829.926176548289,
+  "objective_value": 0.15170350872768684,
+  "positive_loss": 0.06101212241157987,
+  "pseudo_negative_loss": 0.29505439796825733,
+  "regularization_loss": 0.00217506692562978,
+  "mean_positive_log_score": -0.2523668000535824,
+  "mean_pseudo_negative_log_score": -0.6562197948353754,
+  "mean_positive_survival": 0.7873251719765785,
+  "mean_pseudo_negative_survival": 0.5304937520966351,
+  "score_gap": 0.403852994781793,
+  "positive_survival_quantiles": {
+    "q05": 0.5832348748775281,
+    "q25": 0.6779161745740796,
+    "q50": 0.8028306554544002,
+    "q75": 0.8947675947113973,
+    "q95": 0.9737516902997481
+  },
+  "pseudo_negative_survival_quantiles": {
+    "q05": 0.3846156534580379,
+    "q25": 0.45021511375363904,
+    "q50": 0.5022536447360963,
+    "q75": 0.5748825232823466,
+    "q95": 0.7674537227733202
+  },
+  "positive_sample_count": 269,
+  "pseudo_negative_sample_count": 569,
+  "positive_objective_count": 269,
+  "pseudo_negative_objective_count": 569,
+  "ignored_positive_count": 0,
+  "ignored_pseudo_negative_count": 0,
+  "bond_types": [
+    "C#C",
+    "C-C",
+    "C-O",
+    "C=C",
+    "C=O",
+    "O-O",
+    "O=O",
+    "C#O",
+    "C-H",
+    "O-H",
+    "H-H"
+  ],
+  "bde_by_bond": {
+    "C#C": 835.0,
+    "C-C": 346.0,
+    "C-O": 358.0,
+    "C=C": 602.0,
+    "C=O": 732.0,
+    "O-O": 146.0,
+    "O=O": 498.0,
+    "C#O": 1072.0,
+    "C-H": 413.0,
+    "O-H": 463.0,
+    "H-H": 436.0
+  },
+  "arrhenius_by_bond": {
+    "C#C": 1.3237784927535863,
+    "C-C": 2.361597929821292,
+    "C-O": 2.3282888803347177,
+    "C=C": 1.7442092702566387,
+    "C=O": 1.4954321846383487,
+    "O-O": 2.9924314917060877,
+    "O=O": 1.972713806326107,
+    "C#O": 0.9999440170906402,
+    "C-H": 2.181533283226984,
+    "O-H": 2.0561617650445494,
+    "H-H": 2.122940116083407
+  },
+  "p_break_by_bond": {
+    "C#C": 0.0045072157607861825,
+    "C-C": 0.012620414827047928,
+    "C-O": 0.01221201390088797,
+    "C=C": 0.0068466372091197224,
+    "C=O": 0.005346753807784975,
+    "O-O": 0.02345573020009278,
+    "O=O": 0.00858920368301542,
+    "C#O": 0.0032644547439305985,
+    "C-H": 0.01056274181080169,
+    "O-H": 0.009329736387047939,
+    "H-H": 0.00996761184390709
+  },
+  "probability_spread": 0.020191275456162183,
+  "weakly_identifiable": false,
+  "parameter_at_boundary": false,
+  "search_settings": {
+    "parameter_bounds": {
+      "A": [
+        1.0,
+        100.0
+      ],
+      "E_ref": [
+        50.0,
+        10000.0
+      ],
+      "k": [
+        10.0,
+        1000000.0
+      ]
+    },
+    "reference_parameters": {
+      "A": 10.0,
+      "E_ref": 300.0,
+      "k": 1000.0
+    },
+    "regularization_weights": {
+      "log_A": 0.001,
+      "log_E_ref": 0.001,
+      "log_k": 0.001
+    },
+    "positive_weight": 1.0,
+    "pseudo_negative_weight": 0.3,
+    "individual_loss": "squared_probability_error",
+    "random_seed": 20260713,
+    "random_trials": 20000,
+    "keep_best_random": 30,
+    "local_starts": 30,
+    "local_max_iterations": 10000,
+    "local_tolerance": 1e-15,
+    "refinement_space": "log",
+    "number_of_parameter_sets": 1,
+    "probability_epsilon": 1e-12,
+    "identifiability_tolerance": 1e-06,
+    "animation": {
+      "enabled": true,
+      "filename": "parameter_search_animation.mp4",
+      "fps": 10,
+      "dpi": 100,
+      "space_frames": 12,
+      "population_frames": 18,
+      "selection_frames": 18,
+      "trajectory_frames": 60,
+      "hold_frames": 12
+    },
+    "selected_set_rank": 1
+  }
+}

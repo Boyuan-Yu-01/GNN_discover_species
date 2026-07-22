@@ -1,7 +1,7 @@
 """Create a cleaned JSON dataset from the two JSON files in this folder.
 
 The script keeps only these bond types:
-    C-C, C=C, C#C, O-O, O=O, C-O, C=O, C-H, O-H
+    C-C, C=C, C#C, O-O, O=O, C-O, C=O, C#O, C-H, O-H, H-H
 
 It also removes any degeneracy whose retained bond counts are all zero.
 """
@@ -20,8 +20,10 @@ TARGET_BONDS = [
     "O=O",
     "C-O",
     "C=O",
+    "C#O",
     "C-H",
     "O-H",
+    "H-H"
 ]
 
 

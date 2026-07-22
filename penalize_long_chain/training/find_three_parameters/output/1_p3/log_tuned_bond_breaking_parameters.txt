@@ -1,0 +1,39 @@
+BOND-BREAKING PARAMETER SEARCH
+======================================
+Positive groups: 269
+Pseudo-negative groups: 569
+Positive groups used: 262
+Pseudo-negative groups used: 569
+Ignored zero-backbone positives: 7
+Ignored zero-backbone pseudo-negatives: 0
+
+Best parameters
+  A: 3.70146258031
+  E_ref: 2100.25750012 kJ/mol
+  k: 688.392726851
+
+Objective
+  total: 0.148730431637
+  positive: 0.0611682464295
+  pseudo-negative: 0.275493218128
+  regularization: 0.00491421976869
+  mean positive log score: -0.255115646822
+  mean pseudo-negative log score: -0.680706550513
+  mean positive survival: 0.784547023101
+  mean pseudo-negative survival: 0.515288991087
+  score gap: 0.425590903691
+
+Checks
+  P_break spread: 0.0306563450031
+  weakly identifiable: False
+  parameter at boundary: False
+
+Bond diagnostics
+  C#C: Arr=2.48720038764, P_break=0.0171719133962
+  C-C: Arr=3.13925756984, P_break=0.0324488926732
+  C-O: Arr=3.12137229767, P_break=0.0318920387588
+  C=C: Arr=2.77901490269, P_break=0.0228576922766
+  C=O: Arr=2.61221714409, P_break=0.0194142578012
+  O-O: Arr=3.45289409635, P_break=0.0438782962636
+  O=O: Arr=2.92008945492, P_break=0.0262300331581
+  C#O: Arr=2.22179278214, P_break=0.0132219512605
