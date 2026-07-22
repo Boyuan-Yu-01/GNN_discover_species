@@ -17,7 +17,7 @@ We can use the sensitivity analysis to therefore:
 ## Derive analytical sensitivity
 #### Equation definition
 $$
-P = \frac{1}{1+k\ exp{-A\ exp(-E_{b.d.e}/E_{ref})}}
+P = \frac{1}{1+k\ exp(-A\ exp[-E_{b.d.e}/E_{ref})]}
 $$
 #### Define Auxiliary Equation
 $$
