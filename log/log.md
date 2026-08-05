@@ -333,6 +333,7 @@ CH2_001 CH3_001 CH4_001 CH_001 H2O_001 H2_001 HO_001
 | ----------- | ----------: | ----------- | ----------- |
 | 0.8357      |   0.6984019 | 0.63845717  | 0.53356149  |
 
+
 ### Thoughts
 Thought  Training Data modifying parameters 
 
@@ -358,3 +359,5 @@ What can be the problem?
 ![](plot/randomly_tuned.png)
 
 <span style="color:blue">Could be problematic though, need to check its sensitivity</span> [Sensitivity Analysis](sensitivity_mapping_idea.md) 
+
+## Aug. 3rd, 2026

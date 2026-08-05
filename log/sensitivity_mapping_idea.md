@@ -58,7 +58,7 @@ $$
 \boxed{S_{E_{\mathrm{ref}}}=\frac{\partial P_b}{\partial\log E_{\mathrm{ref}}}=P_b(1-P_b)x_b\frac{E_b}{E_{\mathrm{ref}}}}
 $$
 
-<span style="color:blue">Sensitivity to E_b.d.e.</span>:
+<span style="color:blue">Sensitivity to E_b.d.e.</span>: 
 $$
 \boxed{S_{E_{b.d.e.}}=\frac{\partial P_b}{\partial\log E_{\mathrm{ref}}} = -P_b(1-P_b)x_b\frac{E_b}{E_{ref}}}
 $$
