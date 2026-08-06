@@ -361,3 +361,65 @@ What can be the problem?
 <span style="color:blue">Could be problematic though, need to check its sensitivity</span> [Sensitivity Analysis](sensitivity_mapping_idea.md) 
 
 ## Aug. 3rd, 2026
+## Object Class: node, edge, subgraph, and graph level
+
+### Node Level Object: [`atom`](../codeBase/src/obj_node.py)
+*Represent one atom and its remaining valence.*
+Return `[is_C, is_H, is_O, remaining_valence]`
+### Edge Level Object: [Bond](../codeBase/src/obj_edge.py)
+*Represent a bond connecting two atomic nodes.*
+```.py
+self.node_i = node_i
+self.node_j = node_j
+self.order = order
+```
+
+### Subgraph Level Object: [molecule](../codeBase/src/obj_subgraph.py)
+*Molecule subgraph for the simplified C/H/O reaction system.*
+```.py
+FEATURE_NAMES = (
+"n_C",
+"n_H",
+"n_O",
+"total_remaining_valence",
+"n_C-C",
+"n_C=C",
+"n_C#C",
+"n_C-H",
+"n_C-O",
+"n_C=O",
+"n_C#O",
+"n_O-O",
+"n_O=O",
+"n_O-H",
+"n_H-H",
+)
+```
+This feature name allows us to integrate [penalize long chain](../penalize_long_chain/README.md) into GNN loss function 
+
+### Graph Level Object: [MoleculeEnv](../codeBase/src/obj_graph.py)
+*Reaction environment for learning bond-formation and bond-breakage actions.*
+Three most important properties:
+```.py
+self.molecules.sort(key=self._minimum_atom_index)
+self.atoms = {}
+self.bonds = {}
+```
+* The progress/adaption is conducted using method `step`, this step conduct bond modification, and see if merging/splitting molecule is needed.
+* A pair table is built so that available action will be selected (HARDCODING) instead of using loss function to constrain it. This table is ${N \choose 2} = \frac{N (N-1)}{2}\sim \mathcal{O}(N^2)$    
+* `pair table:` {'pair', 'current_BO', 'maximum_BO'}
+
+## <span style="color:red">Examples:</span>
+- [molecule example](../codeBase/src/molecule_examples.py)
+- [molecule env example](../codeBase/src/molecule_env_examples.py) 
+- <span style="color:red">Problem: triple bonds between C & O, need to add a formal charge</span> 
+
+
+### <span style="color:blue">Next Step:</span>
+- Isomorphism (example follows:)
+![](plot/4.pdf)
+How to **<span style="color:red">make sure that they are comparable:</span> 
+![](plot/5.pdf)
+
+- Consider Monte Carlo Tree Search
+- Encoding reinforcement learning
