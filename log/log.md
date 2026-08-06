@@ -418,7 +418,7 @@ self.bonds = {}
 ### <span style="color:blue">Next Step:</span>
 - Isomorphism (example follows:)
 ![](plot/4.pdf)
-How to **<span style="color:red">make sure that they are comparable:</span> 
+How to <span style="color:red">make sure that they are comparable:</span> 
 ![](plot/5.pdf)
 
 - Consider Monte Carlo Tree Search
