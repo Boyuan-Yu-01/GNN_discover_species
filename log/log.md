@@ -373,7 +373,6 @@ self.node_i = node_i
 self.node_j = node_j
 self.order = order
 ```
-
 ### Subgraph Level Object: [molecule](../codeBase/src/obj_subgraph.py)
 *Molecule subgraph for the simplified C/H/O reaction system.*
 ```.py
@@ -408,13 +407,11 @@ self.bonds = {}
 * The progress/adaption is conducted using method `step`, this step conduct bond modification, and see if merging/splitting molecule is needed.
 * A pair table is built so that available action will be selected (HARDCODING) instead of using loss function to constrain it. This table is ${N \choose 2} = \frac{N (N-1)}{2}\sim \mathcal{O}(N^2)$    
 * `pair table:` {'pair', 'current_BO', 'maximum_BO'}
-
 ## <span style="color:red">Examples:</span>
 - [molecule example](../codeBase/src/molecule_examples.py)
 - [molecule env example](../codeBase/src/molecule_env_examples.py) 
 - <span style="color:red">Problem: triple bonds between C & O, need to add a formal charge</span> 
-
-
+- Problem with <span style="color:red">HCO & CO</span>
 ### <span style="color:blue">Next Step:</span>
 - Isomorphism (example follows:)
 ![](plot/4.pdf)
@@ -423,3 +420,7 @@ How to <span style="color:red">make sure that they are comparable:</span>
 
 - Consider Monte Carlo Tree Search
 - Encoding reinforcement learning
+
+## Aug 13th 2026
+[Literature Review](../literature/Literature_Reading_Diary.md)
+[plan](../codeBase/task/GNN_chemical_species_policy_task.md) 

@@ -1,0 +1,29 @@
+## Tasks: Develop an GNN-reinforcement learning policy that can direct discover chemistry species in combustion system.
+
+### potential tools:
+- Monte Carlo Tree Search
+- Q-learning
+
+### already developed object classes: 
+*Directory: `/Users/boyuanyu/Documents/research/GNN/GNN_discover_species/codeBase/src`*
+- atom class
+- Bond class
+- subgraph class
+- graph class
+
+### penalizing function that might be helpful: 
+*File: `/Users/boyuanyu/Documents/research/GNN/GNN_discover_species/log/mapping_E_to_P.md `*
+
+## Reinforcement learning behavior:
+Initialization: some molecules are initialized in a graph
+Action: a trained policy is applied until converged or the designed number of steps reached
+Result: 'new' molecules are generated.
+
+## Some ideas:
+- from subgraph (molecule) level, the penalizing function will give us a value between 0 to 1: closer to 0 means the action on this molecule tends to break, and closer to 1 means the action on this molecule tend to form new bonds. However, this function does not help us to decide which molecule (subgraph) should the action be taken on.
+- This is a problem: We can take n actions, where n could be 1,2,3,....,n, and see what is the result after n actions, then decide the policy gradient. However, how to decide what n should we use?
+
+## existing ground truth: We can convert species existed in the current chemical kinetic model as ground truth, and we can compare with the molecules appeared after a series of actions
+
+## side notes:
+- I want to separately train the growth and break separately, we later combine bond breaking and bond growth using the penalizing function.
