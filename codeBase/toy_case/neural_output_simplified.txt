@@ -1,0 +1,107 @@
+======================================================================================================================================
+Iteration  1 [rollout warmup ]  mean R=0.900  buffer=  61  L_policy=0.8041  L_value=0.0419  V_theta(root)=0.946
+  post-training root P_theta: form_C-O=0.443, form_O-H=0.424, form_C-H=0.093, STOP=0.039
+  post-training s=C-O,H  : V_theta=0.884  P_theta: form_O-H=0.808, STOP=0.192
+  post-training s=C,O-H  : V_theta=0.904  P_theta: form_C-O=0.860, STOP=0.140
+  common routes: form_O-H -> form_C-O (14); form_C-O -> form_O-H (9); form_C-O -> STOP (4)
+  Iteration 1 search leaf-evaluation mix (new nonterminal leaves only):
+    rollout:   64/  64 = 100.00%
+    neural:     0/  64 =   0.00%
+    exact terminal hits: 4816/4880 of all simulations (excluded from the rollout/neural denominator)
+======================================================================================================================================
+Iteration  2 [neural+rollout ]  mean R=0.991  buffer= 125  L_policy=0.6816  L_value=0.0150  V_theta(root)=0.976
+  post-training root P_theta: form_C-O=0.473, form_O-H=0.448, form_C-H=0.058, STOP=0.021
+  post-training s=C-O,H  : V_theta=0.948  P_theta: form_O-H=0.867, STOP=0.133
+  post-training s=C,O-H  : V_theta=0.939  P_theta: form_C-O=0.896, STOP=0.104
+  common routes: form_O-H -> form_C-O (16); form_C-O -> form_O-H (15); form_C-O -> STOP (1)
+  Iteration 2 search leaf-evaluation mix (new nonterminal leaves only):
+    rollout:   17/  64 =  26.56%
+    neural:    47/  64 =  73.44%
+    exact terminal hits: 5056/5120 of all simulations (excluded from the rollout/neural denominator)
+======================================================================================================================================
+Iteration  3 [neural+rollout ]  mean R=0.922  buffer= 186  L_policy=0.6403  L_value=0.0189  V_theta(root)=0.973
+  post-training root P_theta: form_C-O=0.484, form_O-H=0.453, form_C-H=0.046, STOP=0.018
+  post-training s=C-O,H  : V_theta=0.952  P_theta: form_O-H=0.873, STOP=0.127
+  post-training s=C,O-H  : V_theta=0.938  P_theta: form_C-O=0.908, STOP=0.092
+  common routes: form_O-H -> form_C-O (15); form_C-O -> form_O-H (12); form_C-H (2)
+  Iteration 3 search leaf-evaluation mix (new nonterminal leaves only):
+    rollout:    9/  64 =  14.06%
+    neural:    55/  64 =  85.94%
+    exact terminal hits: 4816/4880 of all simulations (excluded from the rollout/neural denominator)
+======================================================================================================================================
+Iteration  4 [neural+rollout ]  mean R=0.959  buffer= 249  L_policy=0.6120  L_value=0.0192  V_theta(root)=0.972
+  post-training root P_theta: form_C-O=0.479, form_O-H=0.468, form_C-H=0.039, STOP=0.014
+  post-training s=C-O,H  : V_theta=0.962  P_theta: form_O-H=0.891, STOP=0.109
+  post-training s=C,O-H  : V_theta=0.941  P_theta: form_C-O=0.922, STOP=0.078
+  common routes: form_C-O -> form_O-H (16); form_O-H -> form_C-O (14); STOP (1)
+  Iteration 4 search leaf-evaluation mix (new nonterminal leaves only):
+    rollout:   13/  64 =  20.31%
+    neural:    51/  64 =  79.69%
+    exact terminal hits: 4976/5040 of all simulations (excluded from the rollout/neural denominator)
+======================================================================================================================================
+Iteration  5 [neural+rollout ]  mean R=0.969  buffer= 313  L_policy=0.5948  L_value=0.0170  V_theta(root)=0.971
+  post-training root P_theta: form_C-O=0.488, form_O-H=0.462, form_C-H=0.037, STOP=0.014
+  post-training s=C-O,H  : V_theta=0.962  P_theta: form_O-H=0.890, STOP=0.110
+  post-training s=C,O-H  : V_theta=0.949  P_theta: form_C-O=0.928, STOP=0.072
+  common routes: form_O-H -> form_C-O (17); form_C-O -> form_O-H (12); form_C-O -> STOP (2)
+  Iteration 5 search leaf-evaluation mix (new nonterminal leaves only):
+    rollout:   18/  64 =  28.12%
+    neural:    46/  64 =  71.88%
+    exact terminal hits: 5056/5120 of all simulations (excluded from the rollout/neural denominator)
+======================================================================================================================================
+Iteration  6 [neural+rollout ]  mean R=0.922  buffer= 375  L_policy=0.5839  L_value=0.0188  V_theta(root)=0.961
+  post-training root P_theta: form_C-O=0.481, form_O-H=0.475, form_C-H=0.032, STOP=0.012
+  post-training s=C-O,H  : V_theta=0.969  P_theta: form_O-H=0.903, STOP=0.097
+  post-training s=C,O-H  : V_theta=0.947  P_theta: form_C-O=0.929, STOP=0.071
+  common routes: form_C-O -> form_O-H (14); form_O-H -> form_C-O (13); form_O-H -> STOP (2)
+  Iteration 6 search leaf-evaluation mix (new nonterminal leaves only):
+    rollout:   18/  64 =  28.12%
+    neural:    46/  64 =  71.88%
+    exact terminal hits: 4896/4960 of all simulations (excluded from the rollout/neural denominator)
+======================================================================================================================================
+Iteration  7 [neural+rollout ]  mean R=0.969  buffer= 438  L_policy=0.5743  L_value=0.0187  V_theta(root)=0.955
+  post-training root P_theta: form_C-O=0.476, form_O-H=0.484, form_C-H=0.030, STOP=0.011
+  post-training s=C-O,H  : V_theta=0.968  P_theta: form_O-H=0.911, STOP=0.089
+  post-training s=C,O-H  : V_theta=0.959  P_theta: form_C-O=0.935, STOP=0.065
+  common routes: form_O-H -> form_C-O (20); form_C-O -> form_O-H (11); STOP (1)
+  Iteration 7 search leaf-evaluation mix (new nonterminal leaves only):
+    rollout:   14/  64 =  21.88%
+    neural:    50/  64 =  78.12%
+    exact terminal hits: 4976/5040 of all simulations (excluded from the rollout/neural denominator)
+======================================================================================================================================
+Iteration  8 [neural+rollout ]  mean R=0.950  buffer= 501  L_policy=0.5636  L_value=0.0186  V_theta(root)=0.949
+  post-training root P_theta: form_C-O=0.482, form_O-H=0.473, form_C-H=0.034, STOP=0.011
+  post-training s=C-O,H  : V_theta=0.969  P_theta: form_O-H=0.909, STOP=0.091
+  post-training s=C,O-H  : V_theta=0.970  P_theta: form_C-O=0.932, STOP=0.068
+  common routes: form_C-O -> form_O-H (17); form_O-H -> form_C-O (12); form_C-O -> STOP (2)
+  Iteration 8 search leaf-evaluation mix (new nonterminal leaves only):
+    rollout:   20/  64 =  31.25%
+    neural:    44/  64 =  68.75%
+    exact terminal hits: 4976/5040 of all simulations (excluded from the rollout/neural denominator)
+======================================================================================================================================
+Neural-network predictions
+  C,O,H    V_theta=0.949  P_theta: form_C-O=0.482, form_O-H=0.473, form_C-H=0.034, STOP=0.011
+  C-O,H    V_theta=0.969  P_theta: form_O-H=0.909, STOP=0.091
+  C,O-H    V_theta=0.970  P_theta: form_C-O=0.932, STOP=0.068
+
+Final root search (200 simulations, no root noise) at s=C,O,H (200 outgoing visits, V_theta=0.949)
+  action       P_theta     N       Q      pi
+  form_C-O      0.482    97   0.990   0.485
+  form_O-H      0.473   103   1.000   0.515
+  form_C-H      0.034     0   0.000   0.000
+  STOP          0.011     0   0.000   0.000
+
+Final second-level search at s=C-O,H (96 outgoing visits, V_theta=0.969)
+  action       P_theta     N       Q      pi
+  form_O-H      0.909    93   1.000   0.969
+  STOP          0.091     3   0.700   0.031
+
+Final second-level search at s=C,O-H (102 outgoing visits, V_theta=0.970)
+  action       P_theta     N       Q      pi
+  form_C-O      0.932   102   1.000   1.000
+  STOP          0.068     0   0.000   0.000
+  Final evaluation leaf-evaluation mix (new nonterminal leaves only):
+    rollout:    0/   2 =   0.00%
+    neural:     2/   2 = 100.00%
+    exact terminal hits:  198/ 200 of all simulations (excluded from the rollout/neural denominator)
+======================================================================================================================================

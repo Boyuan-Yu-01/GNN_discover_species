@@ -424,3 +424,157 @@ How to <span style="color:red">make sure that they are comparable:</span>
 ## Aug 13th 2026
 [Literature Review](../literature/Literature_Reading_Diary.md)
 [plan](../codeBase/task/GNN_chemical_species_policy_task.md) 
+
+## Aug 25th 2026
+
+[toy example README](Monte_Carlo_Tree_Search.md)
+toy example directory: `../codeBase/toy_case`
+
+A lot of similarities between go/tic-tac-toe & chemistry problem
+
+| tic-tac-toe | chemistry species | solution                                                                                                                                                                        | benefit of the solution                       |
+| ----------- | ----------------: | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------- |
+| symmetries  |     transposition | canonical representation: $V(s) = V(s'), s'\in \mathcal{S}(s)$, let $\mathcal{c}(s)=\text{canonical form of s}$, then the programme always looks up $V(c(s))$ instead of $V(s)$ | - faster learning<br>- fewer effective states |
+
+### Implement PUCT:  `toy_example.py` [Link](../codeBase/toy_case/toy_example.py)
+__Visit with__ [Link](Monte_Carlo_Tree_Search.md) 
+
+![](plot/initial.png)
+
+### The Evaluation of this problem -- PUCT:
+__At Each Step:__
+- calculate the PUCT of each action, and choose $a^* =\arg\max_{a} PUCT(s,a)$:
+$$
+PUCT = Q(s,a) + C_{puct}P_\theta(s,a) \frac{\sqrt{\sum_b N(s,b)}}{1+N(s,a)}
+$$
+- Yield the value of the next reached state $V_s'$
+- Update N (number of visit), W (sum of back-up returns through edge $(s,a)$), and Q (Mean back-up return)
+	- $N\leftarrow N(s,a) + 1$
+	- $W(s,a) \leftarrow W(s,a) + z$
+	- $Q(s,a)\leftarrow \frac{W(s,a)}{N(s,a)}$ 
+[Process of the Iteration](../codeBase/toy_case/toy_example_PUCT_output.txt)
+
+__After the iteration:__
+$$
+\pi_{\mathrm{MCTS}}(a\mid s)
+=
+\frac{N(s,a)}
+{\sum_bN(s,b)}.
+$$
+$$
+V_{MCTS}(S_i) = \sum_a \pi(a|s_i)Q(S_i,a)
+$$
+![](plot/final.png)
+
+### The Evaluation of this problem -- Policy Value Network:
+[Process of the Iteration](../codeBase/toy_case/neural_mcts_training.txt)
+[Distillate outputs](../codeBase/toy_case/neural_output_simplified.txt)
+
+- hidden layers use ReLu
+- output layer uses sigmoid
+-  The input of the neural network: (1,7)
+	- C-O present
+	- O-H present
+	- C-H present
+	- stop flag
+	- C free capacity
+	- O free capacity / 2
+	- H free capacity
+- OUTPUT 1: 4 logits, one per action:
+	- form_C-O
+	- form_O-H
+	- form_C-H
+	- STOP
+- OUTPUT 2: Estimated value of the state
+
+#### Understand the Training Process:
+
+__Step I: Warm Start__
+<span style="color:red">SUMMARY:</span> 
+- conducting rollouts
+- in total 32 episodes
+- in each episode, we have 2 by 80 sets of simulations. The first set determine the first action, the second set determine the second action.
+
+*During this stage, the neural network does not influence the search.*
+- Legal actions initially receive uniform prior probabilities
+- Small amount of Dirichlet noise is added for exploration
+- Every newly encountered nonterminal state is evaluated by a random rollout to a terminal state
+- The exact terminal reward is backed up through the tree
+
+
+
+
+*Uniform priors + terminal rollouts*
+$$
+P(a|s) = \frac{1}{|\mathcal{A}(s)|}
+$$
+The estimated of intermediate state value $V_\theta$ is same as PUCT
+
+The __mean reward__ is calculated using:
+$$
+\bar{R} = \frac{1}{N}\sum_{i=1}^N R_i
+$$
+Each incidence in the buffer (one training example) is created for every state where an actual action decision is made:
+$$
+(s,\pi, z)
+$$
+__buffer__ is calculated using:  
+$$buffer = \#decision I + \#decision II$$
+__L_policy__ is calculated using cross-entropy: 
+$$
+L_{policy} = -\frac{1}{B}\sum_{i=1}^{B}\sum_{a}\pi(s_i, a)\text{log}P_\theta (s_i,a)
+$$
+__L_value___ is calculated using mean-squared error:
+$$
+L_{value} = \frac{1}{B}\sum_{i=1}^{B}(V_\theta(s_i)-z_i)^2
+$$
+__V_theta(root)__ is the (predicted) value of the root state.
+
+__Output Read:__
+- `simulation`: sequential simulation number across the iteration.
+- `episode`: real episode number.
+- `root`: state where this particular MCTS search started.
+- `search_sim`: simulation number within that search; it resets to 1 at every real decision.
+- `source=rollout`: evaluated through a terminal rollout.
+- `source=network`: evaluated using $V_\theta$.
+- `source=terminal`: reached a terminal state directly.
+- `tree`: complete action path selected inside the MCTS tree.
+- `R_terminal`: exact terminal reward.
+
+<span style="color:red">Within each iteration, episodes are independent from each other.</span> 
+Within each iteration there are two sets of simulations:
+- simulation I: Decide the first action
+- simulation II: Decide the second action 
+- Example (episode 1):
+		- set 1: determined to go from `C, O, H` -> `C, O-H`
+		- set 2: determined to go from `C, O,-H` -> `C-O-H`
+
+### Final neural-network predictions:
+```
+Neural-network predictions
+  C,O,H    V_theta=0.949  P_theta: form_C-O=0.482, form_O-H=0.473, form_C-H=0.034, STOP=0.011
+  C-O,H    V_theta=0.969  P_theta: form_O-H=0.909, STOP=0.091
+  C,O-H    V_theta=0.970  P_theta: form_C-O=0.932, STOP=0.068
+
+Final root search (200 simulations, no root noise) at s=C,O,H (200 outgoing visits, V_theta=0.949)
+  action       P_theta     N       Q      pi
+  form_C-O      0.482    97   0.990   0.485
+  form_O-H      0.473   103   1.000   0.515
+  form_C-H      0.034     0   0.000   0.000
+  STOP          0.011     0   0.000   0.000
+
+Final second-level search at s=C-O,H (96 outgoing visits, V_theta=0.969)
+  action       P_theta     N       Q      pi
+  form_O-H      0.909    93   1.000   0.969
+  STOP          0.091     3   0.700   0.031
+
+Final second-level search at s=C,O-H (102 outgoing visits, V_theta=0.970)
+  action       P_theta     N       Q      pi
+  form_C-O      0.932   102   1.000   1.000
+  STOP          0.068     0   0.000   0.000
+  Final evaluation leaf-evaluation mix (new nonterminal leaves only):
+    rollout:    0/   2 =   0.00%
+    neural:     2/   2 = 100.00%
+    exact terminal hits:  198/ 200 of all simulations (excluded from the rollout/neural denominator)
+```
+
