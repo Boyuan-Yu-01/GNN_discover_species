@@ -1,0 +1,13 @@
+Help me write a function called 'isomorphism'. 
+- The input of this function are two matrices and one array: for example (mtx1, mtx2 [[0,3],[4],[5]]), where mtx1 and mtx2 both have shape 6 by 6.
+- I want the output to be either true or false. 
+- I want the function body to do the following thing: for rows and columns within each element of the array, they can swap: In this example rows and columns between 0 to 3 can swap with eachother, but row&column 4, row&column 5 can only swap with themselves.
+
+One example will be gaven below:
+
+mtx1 = [[0,0,0,0,1,0], [0,0,0,0,1,0], [0,0,0,0,1,0], [0,0,0,0,0,1], [1,1,1,0,0,1], [0,0,0,1,1,0]]
+mtx2 = [[0,0,0,0,1,0], [0,0,0,0,1,0], [0,0,0,0,0,1],[0,0,0,0,1,0], [1,1,0,1,0,1], [0,0,1,0,1,0]]
+[[0,3],[4],[5]]
+
+will return true.
+

@@ -578,3 +578,6 @@ Final second-level search at s=C,O-H (102 outgoing visits, V_theta=0.970)
     exact terminal hits:  198/ 200 of all simulations (excluded from the rollout/neural denominator)
 ```
 
+## Sep. 1st 2026
+Graph isomorphism `codeBase/isomorphism`
+
