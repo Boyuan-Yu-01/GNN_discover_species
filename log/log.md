@@ -653,6 +653,45 @@ $$
 G_t = \gamma^{T-1-t}R_T 
 $$, where $R_T$ is the reward of the final reached state.
 
+<span style="color:red">PROBLEM WITH CURRENT LOSS FUNCTION SETUP:</span> 
+- Repeating same 'easy' species
+![](../gnn_combustion/Xu_training/RL_v4/many_same_molecules/individual_plots/epoch_50_final.png)
+<span style="color:green">The model therefore learns that repeatedly producing easy species is an excellent strategy.</span>
+
+SOLUTION: Penalizing Duplicate Penalty 
+
+__NB: simplify the termination condition:__ <span style="color:red">Question: What should be the policy or meaning for the termination</span> 
+- The episode reaches eight actions
+- Or no valid growth or connection actions remain
+*This helps to separate two problems:*
+- Structural policy → learn to add atoms and bonds
+- Termination policy → learn when the graph is complete
+
+By doing this, the loss function should also be modified:
+$$
+P = 0.5 \times PolicyLoss
+$$
+For taking 8 actions, the result converge to some interesting configurations:
+```
+RECOGNIZED_MOLECULE_REWARD = 1.0
+DUPLICATE_MOLECULE_REWARD = -0.3
+UNRECOGNIZED_MOLECULE_REWARD = -0.5
+ISOLATED_ATOM_REWARD = -0.5
+SEED = 12345
+MAX_STEPS_PER_EPOCH = 8
+```
+
+![](../gnn_combustion/Xu_training/RL_v4/v4_1_8_steps/individual_plots/epoch_100_final.png)
+For taking 100 maximum actions, some interesting structure shows:
+```
+RECOGNIZED_MOLECULE_REWARD = 1.0
+DUPLICATE_MOLECULE_REWARD = -0.5
+UNRECOGNIZED_MOLECULE_REWARD = -0.5
+ISOLATED_ATOM_REWARD = -0.5
+SEED = 12345
+MAX_STEPS_PER_EPOCH = 100
+```
+![](../gnn_combustion/Xu_training/RL_v4/output_v4_1/individual_plots/epoch_23_final.png)
 ## Version 4 (continue): NN determined stop point
 
 ```
