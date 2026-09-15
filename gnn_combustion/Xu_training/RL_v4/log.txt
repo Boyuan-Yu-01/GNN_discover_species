@@ -1,0 +1,66 @@
+Starting training: 1 epochs, up to 8 actions per epoch, seed=12345
+Neural network: GrowthGNN, layers=2, hidden_dim=32, trainable_parameters=1511
+Reward settings: recognized=+1.0, unrecognized=-0.5, isolated_atom=-0.5, reward_weight=0.50, discount_factor=0.90
+
+==================== EPOCH 01/1 ====================
+
+---------- STEP 01/8 ----------
+Action: ADD ATOM
+Created: C(7)
+Bond: H(2) - C(7) [single]
+Result: accepted
+
+---------- STEP 02/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: O(6) and C(0)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 03/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: C(0) and H(1)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 04/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: O(5) and C(0)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 05/8 ----------
+Action: ADD ATOM
+Created: C(8)
+Bond: C(0) - C(8) [single]
+Result: accepted
+
+---------- STEP 06/8 ----------
+Action: ADD ATOM
+Created: C(9)
+Bond: O(5) - C(9) [single]
+Result: accepted
+
+---------- STEP 07/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: C(7) and C(9)
+Bond order: 0 -> 2
+Result: accepted
+
+---------- STEP 08/8 ----------
+Action: ADD ATOM
+Created: H(10)
+Bond: C(8) - H(10) [single]
+Result: accepted
+Unrecognized molecule: C4H3O2 (C=4, H=3, O=2)
+Molecule scores: C4H3O2=-0.5, H=-0.5, H=-0.5
+Average molecule reward: -0.500
+Epoch 01/1 | System Output: H + H | Unknown: C4H3O2 | Reward: -0.500 | P_valid_stop: 0.565 | Training Loss: 0.24519
+Restart file saved: /Users/boyuanyu/Documents/research/GNN/GNN_discover_species/gnn_combustion/Xu_training/RL_v4/output1/restart_files/restart_epoch_001.pt
+
+Saving standalone image files for each epoch layout...
+
+Compiling full-grid composite plot map...
+Saving single-plot grid animation sequence: /Users/boyuanyu/Documents/research/GNN/GNN_discover_species/gnn_combustion/Xu_training/RL_v4/output1/species_growth.gif ...
+Trained neural network saved: /Users/boyuanyu/Documents/research/GNN/GNN_discover_species/gnn_combustion/Xu_training/RL_v4/output1/trained_growth_gnn.pt
+Deleted 1 restart files after successful completion.
+Everything processed successfully!

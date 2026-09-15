@@ -1,0 +1,2725 @@
+Starting training: 50 epochs, up to 8 actions per epoch, seed=12345
+Neural network: GrowthGNN, layers=2, hidden_dim=32, trainable_parameters=1511
+Reward settings: recognized=+1.0, unrecognized=-0.5, isolated_atom=-0.5, reward_weight=0.50
+
+==================== EPOCH 01/50 ====================
+
+---------- STEP 01/8 ----------
+Action: ADD ATOM
+Created: C(7)
+Bond: H(2) - C(7) [single]
+Result: accepted
+
+---------- STEP 02/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: O(6) and C(0)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 03/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: C(0) and H(1)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 04/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: O(5) and C(0)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 05/8 ----------
+Action: ADD ATOM
+Created: C(8)
+Bond: C(0) - C(8) [single]
+Result: accepted
+
+---------- STEP 06/8 ----------
+Action: ADD ATOM
+Created: C(9)
+Bond: O(5) - C(9) [single]
+Result: accepted
+
+---------- STEP 07/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: C(7) and C(9)
+Bond order: 0 -> 2
+Result: accepted
+
+---------- STEP 08/8 ----------
+Action: ADD ATOM
+Created: H(10)
+Bond: C(8) - H(10) [single]
+Result: accepted
+Unrecognized molecule: C4H3O2 (C=4, H=3, O=2)
+Molecule scores: C4H3O2=-0.5, H=-0.5, H=-0.5
+Average molecule reward: -0.500
+Epoch 01/50 | System Output: H + H | Unknown: C4H3O2 | Reward: -0.500 | P_valid_stop: 0.565 | Training Loss: -0.00110
+Restart file saved: /Users/boyuanyu/Documents/research/GNN/GNN_discover_species/gnn_combustion/Xu_training/RL_v3p5/output1/restart_files/restart_epoch_001.pt
+
+==================== EPOCH 02/50 ====================
+
+---------- STEP 01/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: H(14) and H(15)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 02/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: C(11) and H(13)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 03/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: O(17) and C(11)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 04/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: C(11) and O(17)
+Bond order: 1 -> 2
+Result: accepted
+
+---------- STEP 05/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: H(12) and C(11)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 06/8 ----------
+Action: ADD ATOM
+Created: O(18)
+Bond: O(16) - O(18) [single]
+Result: accepted
+
+---------- STEP 07/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: O(18) and O(16)
+Bond order: 1 -> 2
+Result: accepted
+
+---------- STEP 08/8 ----------
+Action: STOP
+Result: molecule generation stopped
+Molecule scores: CH2O=+1.0, H2=+1.0, O2=+1.0
+Average molecule reward: +1.000
+Epoch 02/50 | System Output: CH2O + H2 + O2         | Reward: +1.000 | P_valid_stop: 0.542 | Training Loss: 1.76900
+Restart file saved: /Users/boyuanyu/Documents/research/GNN/GNN_discover_species/gnn_combustion/Xu_training/RL_v3p5/output1/restart_files/restart_epoch_002.pt
+
+==================== EPOCH 03/50 ====================
+
+---------- STEP 01/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: O(24) and H(21)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 02/8 ----------
+Action: ADD ATOM
+Created: H(26)
+Bond: O(25) - H(26) [single]
+Result: accepted
+
+---------- STEP 03/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: H(22) and H(23)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 04/8 ----------
+Action: ADD ATOM
+Created: H(27)
+Bond: O(25) - H(27) [single]
+Result: accepted
+
+---------- STEP 05/8 ----------
+Action: ADD ATOM
+Created: C(28)
+Bond: H(20) - C(28) [single]
+Result: accepted
+
+---------- STEP 06/8 ----------
+Action: ADD ATOM
+Created: H(29)
+Bond: C(28) - H(29) [single]
+Result: accepted
+
+---------- STEP 07/8 ----------
+Action: ADD ATOM
+Created: H(30)
+Bond: C(19) - H(30) [single]
+Result: accepted
+
+---------- STEP 08/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: C(28) and O(24)
+Bond order: 0 -> 1
+Result: accepted
+Molecule scores: CH=+1.0, CH2OH=+1.0, H2=+1.0, H2O=+1.0
+Average molecule reward: +1.000
+Epoch 03/50 | System Output: CH + CH2OH + H2 + H2O  | Reward: +1.000 | P_valid_stop: 0.539 | Training Loss: 1.95211
+Restart file saved: /Users/boyuanyu/Documents/research/GNN/GNN_discover_species/gnn_combustion/Xu_training/RL_v3p5/output1/restart_files/restart_epoch_003.pt
+
+==================== EPOCH 04/50 ====================
+
+---------- STEP 01/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: H(35) and O(36)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 02/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: H(33) and H(32)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 03/8 ----------
+Action: ADD ATOM
+Created: H(38)
+Bond: O(37) - H(38) [single]
+Result: accepted
+
+---------- STEP 04/8 ----------
+Action: ADD ATOM
+Created: C(39)
+Bond: C(31) - C(39) [single]
+Result: accepted
+
+---------- STEP 05/8 ----------
+Action: ADD ATOM
+Created: H(40)
+Bond: H(34) - H(40) [single]
+Result: accepted
+
+---------- STEP 06/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: C(39) and O(37)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 07/8 ----------
+Action: ADD ATOM
+Created: H(41)
+Bond: C(39) - H(41) [single]
+Result: accepted
+
+---------- STEP 08/8 ----------
+Action: ADD ATOM
+Created: C(42)
+Bond: C(39) - C(42) [single]
+Result: accepted
+Unrecognized molecule: C3H2O (C=3, H=2, O=1)
+Molecule scores: C3H2O=-0.5, H2=+1.0, H2=+1.0, OH=+1.0
+Average molecule reward: +0.625
+Epoch 04/50 | System Output: H2 + H2 + OH | Unknown: C3H2O | Reward: +0.625 | P_valid_stop: 0.545 | Training Loss: 1.63652
+Restart file saved: /Users/boyuanyu/Documents/research/GNN/GNN_discover_species/gnn_combustion/Xu_training/RL_v3p5/output1/restart_files/restart_epoch_004.pt
+
+==================== EPOCH 05/50 ====================
+
+---------- STEP 01/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: H(45) and H(47)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 02/8 ----------
+Action: ADD ATOM
+Created: C(50)
+Bond: H(46) - C(50) [single]
+Result: accepted
+
+---------- STEP 03/8 ----------
+Action: ADD ATOM
+Created: C(51)
+Bond: O(49) - C(51) [single]
+Result: accepted
+
+---------- STEP 04/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: H(44) and C(50)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 05/8 ----------
+Action: ADD ATOM
+Created: H(52)
+Bond: C(43) - H(52) [single]
+Result: accepted
+
+---------- STEP 06/8 ----------
+Action: ADD ATOM
+Created: H(53)
+Bond: C(43) - H(53) [single]
+Result: accepted
+
+---------- STEP 07/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: C(43) and O(48)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 08/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: C(50) and O(49)
+Bond order: 0 -> 1
+Result: accepted
+Unrecognized molecule: CH2O (C=1, H=2, O=1)
+Unrecognized molecule: C2H2O (C=2, H=2, O=1)
+Molecule scores: CH2O=-0.5, C2H2O=-0.5, H2=+1.0
+Average molecule reward: +0.000
+Epoch 05/50 | System Output: H2 | Unknown: CH2O, C2H2O | Reward: +0.000 | P_valid_stop: 0.543 | Training Loss: 0.78302
+Restart file saved: /Users/boyuanyu/Documents/research/GNN/GNN_discover_species/gnn_combustion/Xu_training/RL_v3p5/output1/restart_files/restart_epoch_005.pt
+
+==================== EPOCH 06/50 ====================
+
+---------- STEP 01/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: H(55) and O(59)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 02/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: H(57) and O(60)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 03/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: C(54) and O(60)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 04/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: O(59) and C(54)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 05/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: C(54) and H(58)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 06/8 ----------
+Action: ADD ATOM
+Created: H(61)
+Bond: C(54) - H(61) [single]
+Result: accepted
+
+---------- STEP 07/8 ----------
+Action: ADD ATOM
+Created: H(62)
+Bond: H(56) - H(62) [single]
+Result: accepted
+
+---------- STEP 08/8 ----------
+Action: STOP
+Result: molecule generation stopped
+Unrecognized molecule: CH4O2 (C=1, H=4, O=2)
+Molecule scores: CH4O2=-0.5, H2=+1.0
+Average molecule reward: +0.250
+Epoch 06/50 | System Output: H2 | Unknown: CH4O2    | Reward: +0.250 | P_valid_stop: 0.539 | Training Loss: 1.08807
+Restart file saved: /Users/boyuanyu/Documents/research/GNN/GNN_discover_species/gnn_combustion/Xu_training/RL_v3p5/output1/restart_files/restart_epoch_006.pt
+
+==================== EPOCH 07/50 ====================
+
+---------- STEP 01/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: C(63) and H(67)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 02/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: O(68) and H(64)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 03/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: C(63) and O(69)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 04/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: H(66) and C(63)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 05/8 ----------
+Action: ADD ATOM
+Created: H(70)
+Bond: H(65) - H(70) [single]
+Result: accepted
+
+---------- STEP 06/8 ----------
+Action: ADD ATOM
+Created: C(71)
+Bond: O(68) - C(71) [single]
+Result: accepted
+
+---------- STEP 07/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: C(63) and C(71)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 08/8 ----------
+Action: ADD ATOM
+Created: C(72)
+Bond: O(69) - C(72) [single]
+Result: accepted
+Unrecognized molecule: C3H3O2 (C=3, H=3, O=2)
+Molecule scores: C3H3O2=-0.5, H2=+1.0
+Average molecule reward: +0.250
+Epoch 07/50 | System Output: H2 | Unknown: C3H3O2   | Reward: +0.250 | P_valid_stop: 0.531 | Training Loss: 1.09207
+Restart file saved: /Users/boyuanyu/Documents/research/GNN/GNN_discover_species/gnn_combustion/Xu_training/RL_v3p5/output1/restart_files/restart_epoch_007.pt
+
+==================== EPOCH 08/50 ====================
+
+---------- STEP 01/8 ----------
+Action: ADD ATOM
+Created: H(80)
+Bond: H(77) - H(80) [single]
+Result: accepted
+
+---------- STEP 02/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: H(76) and C(73)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 03/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: C(73) and H(75)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 04/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: O(78) and H(74)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 05/8 ----------
+Action: ADD ATOM
+Created: H(81)
+Bond: C(73) - H(81) [single]
+Result: accepted
+
+---------- STEP 06/8 ----------
+Action: ADD ATOM
+Created: H(82)
+Bond: C(73) - H(82) [single]
+Result: accepted
+
+---------- STEP 07/8 ----------
+Action: ADD ATOM
+Created: O(83)
+Bond: O(79) - O(83) [single]
+Result: accepted
+
+---------- STEP 08/8 ----------
+Action: ADD ATOM
+Created: C(84)
+Bond: O(83) - C(84) [single]
+Result: accepted
+Unrecognized molecule: CO2 (C=1, H=0, O=2)
+Molecule scores: CH4=+1.0, OH=+1.0, H2=+1.0, CO2=-0.5
+Average molecule reward: +0.625
+Epoch 08/50 | System Output: CH4 + OH + H2 | Unknown: CO2 | Reward: +0.625 | P_valid_stop: 0.526 | Training Loss: 1.54504
+Restart file saved: /Users/boyuanyu/Documents/research/GNN/GNN_discover_species/gnn_combustion/Xu_training/RL_v3p5/output1/restart_files/restart_epoch_008.pt
+
+==================== EPOCH 09/50 ====================
+
+---------- STEP 01/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: H(88) and H(87)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 02/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: H(89) and O(90)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 03/8 ----------
+Action: ADD ATOM
+Created: H(92)
+Bond: C(85) - H(92) [single]
+Result: accepted
+
+---------- STEP 04/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: H(86) and C(85)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 05/8 ----------
+Action: ADD ATOM
+Created: C(93)
+Bond: C(85) - C(93) [single]
+Result: accepted
+
+---------- STEP 06/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: O(91) and O(90)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 07/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: O(91) and C(85)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 08/8 ----------
+Action: ADD ATOM
+Created: O(94)
+Bond: C(93) - O(94) [single]
+Result: accepted
+Unrecognized molecule: C2H3O3 (C=2, H=3, O=3)
+Molecule scores: C2H3O3=-0.5, H2=+1.0
+Average molecule reward: +0.250
+Epoch 09/50 | System Output: H2 | Unknown: C2H3O3   | Reward: +0.250 | P_valid_stop: 0.516 | Training Loss: 1.03060
+Restart file saved: /Users/boyuanyu/Documents/research/GNN/GNN_discover_species/gnn_combustion/Xu_training/RL_v3p5/output1/restart_files/restart_epoch_009.pt
+
+==================== EPOCH 10/50 ====================
+
+---------- STEP 01/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: H(97) and O(100)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 02/8 ----------
+Action: ADD ATOM
+Created: C(102)
+Bond: O(100) - C(102) [single]
+Result: accepted
+
+---------- STEP 03/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: H(96) and C(95)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 04/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: H(98) and C(102)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 05/8 ----------
+Action: ADD ATOM
+Created: H(103)
+Bond: O(101) - H(103) [single]
+Result: accepted
+
+---------- STEP 06/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: C(95) and C(102)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 07/8 ----------
+Action: ADD ATOM
+Created: H(104)
+Bond: C(102) - H(104) [single]
+Result: accepted
+
+---------- STEP 08/8 ----------
+Action: ADD ATOM
+Created: C(105)
+Bond: O(101) - C(105) [single]
+Result: accepted
+Unrecognized molecule: C2H4O (C=2, H=4, O=1)
+Unrecognized molecule: CHO (C=1, H=1, O=1)
+Molecule scores: C2H4O=-0.5, H=-0.5, CHO=-0.5
+Average molecule reward: -0.500
+Epoch 10/50 | System Output: H | Unknown: C2H4O, CHO | Reward: -0.500 | P_valid_stop: 0.505 | Training Loss: -0.01672
+Restart file saved: /Users/boyuanyu/Documents/research/GNN/GNN_discover_species/gnn_combustion/Xu_training/RL_v3p5/output1/restart_files/restart_epoch_010.pt
+
+==================== EPOCH 11/50 ====================
+
+---------- STEP 01/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: H(108) and H(107)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 02/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: H(110) and H(109)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 03/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: C(106) and O(111)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 04/8 ----------
+Action: ADD ATOM
+Created: H(113)
+Bond: C(106) - H(113) [single]
+Result: accepted
+
+---------- STEP 05/8 ----------
+Action: ADD ATOM
+Created: O(114)
+Bond: O(112) - O(114) [single]
+Result: accepted
+
+---------- STEP 06/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: O(114) and O(111)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 07/8 ----------
+Action: ADD ATOM
+Created: H(115)
+Bond: O(112) - H(115) [single]
+Result: accepted
+
+---------- STEP 08/8 ----------
+Action: ADD ATOM
+Created: C(116)
+Bond: C(106) - C(116) [single]
+Result: accepted
+Unrecognized molecule: C2H2O3 (C=2, H=2, O=3)
+Molecule scores: C2H2O3=-0.5, H2=+1.0, H2=+1.0
+Average molecule reward: +0.500
+Epoch 11/50 | System Output: H2 + H2 | Unknown: C2H2O3 | Reward: +0.500 | P_valid_stop: 0.490 | Training Loss: 1.24996
+Restart file saved: /Users/boyuanyu/Documents/research/GNN/GNN_discover_species/gnn_combustion/Xu_training/RL_v3p5/output1/restart_files/restart_epoch_011.pt
+
+==================== EPOCH 12/50 ====================
+
+---------- STEP 01/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: H(118) and H(121)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 02/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: O(122) and C(117)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 03/8 ----------
+Action: ADD ATOM
+Created: H(124)
+Bond: H(120) - H(124) [single]
+Result: accepted
+
+---------- STEP 04/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: H(119) and O(123)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 05/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: O(123) and O(122)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 06/8 ----------
+Action: ADD ATOM
+Created: O(125)
+Bond: C(117) - O(125) [single]
+Result: accepted
+
+---------- STEP 07/8 ----------
+Action: ADD ATOM
+Created: C(126)
+Bond: O(125) - C(126) [single]
+Result: accepted
+
+---------- STEP 08/8 ----------
+Action: ADD ATOM
+Created: C(127)
+Bond: C(126) - C(127) [single]
+Result: accepted
+Unrecognized molecule: C3HO3 (C=3, H=1, O=3)
+Molecule scores: C3HO3=-0.5, H2=+1.0, H2=+1.0
+Average molecule reward: +0.500
+Epoch 12/50 | System Output: H2 + H2 | Unknown: C3HO3 | Reward: +0.500 | P_valid_stop: 0.475 | Training Loss: 1.22165
+Restart file saved: /Users/boyuanyu/Documents/research/GNN/GNN_discover_species/gnn_combustion/Xu_training/RL_v3p5/output1/restart_files/restart_epoch_012.pt
+
+==================== EPOCH 13/50 ====================
+
+---------- STEP 01/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: C(128) and H(129)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 02/8 ----------
+Action: ADD ATOM
+Created: O(135)
+Bond: H(131) - O(135) [single]
+Result: accepted
+
+---------- STEP 03/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: O(135) and O(133)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 04/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: H(132) and C(128)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 05/8 ----------
+Action: ADD ATOM
+Created: H(136)
+Bond: O(134) - H(136) [single]
+Result: accepted
+
+---------- STEP 06/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: H(130) and C(128)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 07/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: C(128) and O(134)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 08/8 ----------
+Action: ADD ATOM
+Created: C(137)
+Bond: O(133) - C(137) [single]
+Result: accepted
+Unrecognized molecule: CHO2 (C=1, H=1, O=2)
+Molecule scores: CH3OH=+1.0, CHO2=-0.5
+Average molecule reward: +0.250
+Epoch 13/50 | System Output: CH3OH | Unknown: CHO2  | Reward: +0.250 | P_valid_stop: 0.467 | Training Loss: 0.95875
+Restart file saved: /Users/boyuanyu/Documents/research/GNN/GNN_discover_species/gnn_combustion/Xu_training/RL_v3p5/output1/restart_files/restart_epoch_013.pt
+
+==================== EPOCH 14/50 ====================
+
+---------- STEP 01/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: H(139) and H(140)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 02/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: C(138) and H(141)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 03/8 ----------
+Action: ADD ATOM
+Created: H(145)
+Bond: C(138) - H(145) [single]
+Result: accepted
+
+---------- STEP 04/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: C(138) and H(142)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 05/8 ----------
+Action: ADD ATOM
+Created: H(146)
+Bond: C(138) - H(146) [single]
+Result: accepted
+
+---------- STEP 06/8 ----------
+Action: ADD ATOM
+Created: H(147)
+Bond: O(143) - H(147) [single]
+Result: accepted
+
+---------- STEP 07/8 ----------
+Action: ADD ATOM
+Created: C(148)
+Bond: O(143) - C(148) [single]
+Result: accepted
+
+---------- STEP 08/8 ----------
+Action: ADD ATOM
+Created: H(149)
+Bond: O(144) - H(149) [single]
+Result: accepted
+Unrecognized molecule: CHO (C=1, H=1, O=1)
+Molecule scores: CH4=+1.0, H2=+1.0, CHO=-0.5, OH=+1.0
+Average molecule reward: +0.625
+Epoch 14/50 | System Output: CH4 + H2 + OH | Unknown: CHO | Reward: +0.625 | P_valid_stop: 0.438 | Training Loss: 1.28813
+Restart file saved: /Users/boyuanyu/Documents/research/GNN/GNN_discover_species/gnn_combustion/Xu_training/RL_v3p5/output1/restart_files/restart_epoch_014.pt
+
+==================== EPOCH 15/50 ====================
+
+---------- STEP 01/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: H(153) and O(156)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 02/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: H(154) and O(156)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 03/8 ----------
+Action: ADD ATOM
+Created: O(157)
+Bond: H(151) - O(157) [single]
+Result: accepted
+
+---------- STEP 04/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: C(150) and H(152)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 05/8 ----------
+Action: ADD ATOM
+Created: H(158)
+Bond: C(150) - H(158) [single]
+Result: accepted
+
+---------- STEP 06/8 ----------
+Action: ADD ATOM
+Created: H(159)
+Bond: C(150) - H(159) [single]
+Result: accepted
+
+---------- STEP 07/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: O(157) and C(150)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 08/8 ----------
+Action: ADD ATOM
+Created: H(160)
+Bond: O(155) - H(160) [single]
+Result: accepted
+Molecule scores: CH3OH=+1.0, H2O=+1.0, OH=+1.0
+Average molecule reward: +1.000
+Epoch 15/50 | System Output: CH3OH + H2O + OH       | Reward: +1.000 | P_valid_stop: 0.422 | Training Loss: 2.03414
+Restart file saved: /Users/boyuanyu/Documents/research/GNN/GNN_discover_species/gnn_combustion/Xu_training/RL_v3p5/output1/restart_files/restart_epoch_015.pt
+
+==================== EPOCH 16/50 ====================
+
+---------- STEP 01/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: H(165) and C(161)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 02/8 ----------
+Action: ADD ATOM
+Created: H(168)
+Bond: H(164) - H(168) [single]
+Result: accepted
+
+---------- STEP 03/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: C(161) and H(163)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 04/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: O(167) and H(162)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 05/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: C(161) and O(167)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 06/8 ----------
+Action: ADD ATOM
+Created: C(169)
+Bond: C(161) - C(169) [single]
+Result: accepted
+
+---------- STEP 07/8 ----------
+Action: ADD ATOM
+Created: O(170)
+Bond: O(166) - O(170) [single]
+Result: accepted
+
+---------- STEP 08/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: C(169) and O(170)
+Bond order: 0 -> 1
+Result: accepted
+Unrecognized molecule: C2H3O3 (C=2, H=3, O=3)
+Molecule scores: C2H3O3=-0.5, H2=+1.0
+Average molecule reward: +0.250
+Epoch 16/50 | System Output: H2 | Unknown: C2H3O3   | Reward: +0.250 | P_valid_stop: 0.409 | Training Loss: 0.82085
+Restart file saved: /Users/boyuanyu/Documents/research/GNN/GNN_discover_species/gnn_combustion/Xu_training/RL_v3p5/output1/restart_files/restart_epoch_016.pt
+
+==================== EPOCH 17/50 ====================
+
+---------- STEP 01/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: C(171) and H(172)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 02/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: C(171) and H(173)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 03/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: H(174) and H(175)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 04/8 ----------
+Action: ADD ATOM
+Created: H(178)
+Bond: C(171) - H(178) [single]
+Result: accepted
+
+---------- STEP 05/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: O(176) and C(171)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 06/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: O(176) and O(177)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 07/8 ----------
+Action: ADD ATOM
+Created: O(179)
+Bond: O(177) - O(179) [single]
+Result: accepted
+
+---------- STEP 08/8 ----------
+Action: ADD ATOM
+Created: H(180)
+Bond: O(179) - H(180) [single]
+Result: accepted
+Unrecognized molecule: CH4O3 (C=1, H=4, O=3)
+Molecule scores: CH4O3=-0.5, H2=+1.0
+Average molecule reward: +0.250
+Epoch 17/50 | System Output: H2 | Unknown: CH4O3    | Reward: +0.250 | P_valid_stop: 0.389 | Training Loss: 0.74220
+Restart file saved: /Users/boyuanyu/Documents/research/GNN/GNN_discover_species/gnn_combustion/Xu_training/RL_v3p5/output1/restart_files/restart_epoch_017.pt
+
+==================== EPOCH 18/50 ====================
+
+---------- STEP 01/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: C(181) and H(182)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 02/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: H(183) and H(185)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 03/8 ----------
+Action: ADD ATOM
+Created: H(188)
+Bond: C(181) - H(188) [single]
+Result: accepted
+
+---------- STEP 04/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: H(184) and O(186)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 05/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: O(187) and O(186)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 06/8 ----------
+Action: ADD ATOM
+Created: H(189)
+Bond: C(181) - H(189) [single]
+Result: accepted
+
+---------- STEP 07/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: C(181) and O(187)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 08/8 ----------
+Action: STOP
+Result: molecule generation stopped
+Unrecognized molecule: CH4O2 (C=1, H=4, O=2)
+Molecule scores: CH4O2=-0.5, H2=+1.0
+Average molecule reward: +0.250
+Epoch 18/50 | System Output: H2 | Unknown: CH4O2    | Reward: +0.250 | P_valid_stop: 0.365 | Training Loss: 0.72626
+Restart file saved: /Users/boyuanyu/Documents/research/GNN/GNN_discover_species/gnn_combustion/Xu_training/RL_v3p5/output1/restart_files/restart_epoch_018.pt
+
+==================== EPOCH 19/50 ====================
+
+---------- STEP 01/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: C(190) and H(192)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 02/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: H(191) and H(194)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 03/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: O(195) and C(190)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 04/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: C(190) and O(196)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 05/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: H(193) and O(196)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 06/8 ----------
+Action: ADD ATOM
+Created: C(197)
+Bond: C(190) - C(197) [single]
+Result: accepted
+
+---------- STEP 07/8 ----------
+Action: ADD ATOM
+Created: H(198)
+Bond: C(197) - H(198) [single]
+Result: accepted
+
+---------- STEP 08/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: C(197) and O(195)
+Bond order: 0 -> 1
+Result: accepted
+Unrecognized molecule: C2H3O2 (C=2, H=3, O=2)
+Molecule scores: C2H3O2=-0.5, H2=+1.0
+Average molecule reward: +0.250
+Epoch 19/50 | System Output: H2 | Unknown: C2H3O2   | Reward: +0.250 | P_valid_stop: 0.344 | Training Loss: 0.70650
+Restart file saved: /Users/boyuanyu/Documents/research/GNN/GNN_discover_species/gnn_combustion/Xu_training/RL_v3p5/output1/restart_files/restart_epoch_019.pt
+
+==================== EPOCH 20/50 ====================
+
+---------- STEP 01/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: H(200) and H(201)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 02/8 ----------
+Action: ADD ATOM
+Created: H(206)
+Bond: H(203) - H(206) [single]
+Result: accepted
+
+---------- STEP 03/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: H(202) and C(199)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 04/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: O(204) and C(199)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 05/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: O(205) and C(199)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 06/8 ----------
+Action: ADD ATOM
+Created: H(207)
+Bond: O(205) - H(207) [single]
+Result: accepted
+
+---------- STEP 07/8 ----------
+Action: ADD ATOM
+Created: H(208)
+Bond: C(199) - H(208) [single]
+Result: accepted
+
+---------- STEP 08/8 ----------
+Action: ADD ATOM
+Created: H(209)
+Bond: O(204) - H(209) [single]
+Result: accepted
+Unrecognized molecule: CH4O2 (C=1, H=4, O=2)
+Molecule scores: CH4O2=-0.5, H2=+1.0, H2=+1.0
+Average molecule reward: +0.500
+Epoch 20/50 | System Output: H2 + H2 | Unknown: CH4O2 | Reward: +0.500 | P_valid_stop: 0.302 | Training Loss: 0.82449
+Restart file saved: /Users/boyuanyu/Documents/research/GNN/GNN_discover_species/gnn_combustion/Xu_training/RL_v3p5/output1/restart_files/restart_epoch_020.pt
+
+==================== EPOCH 21/50 ====================
+
+---------- STEP 01/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: H(211) and H(212)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 02/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: H(214) and H(213)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 03/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: C(210) and O(215)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 04/8 ----------
+Action: ADD ATOM
+Created: H(217)
+Bond: C(210) - H(217) [single]
+Result: accepted
+
+---------- STEP 05/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: O(216) and C(210)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 06/8 ----------
+Action: ADD ATOM
+Created: H(218)
+Bond: C(210) - H(218) [single]
+Result: accepted
+
+---------- STEP 07/8 ----------
+Action: ADD ATOM
+Created: H(219)
+Bond: O(216) - H(219) [single]
+Result: accepted
+
+---------- STEP 08/8 ----------
+Action: ADD ATOM
+Created: H(220)
+Bond: O(215) - H(220) [single]
+Result: accepted
+Unrecognized molecule: CH4O2 (C=1, H=4, O=2)
+Molecule scores: CH4O2=-0.5, H2=+1.0, H2=+1.0
+Average molecule reward: +0.500
+Epoch 21/50 | System Output: H2 + H2 | Unknown: CH4O2 | Reward: +0.500 | P_valid_stop: 0.265 | Training Loss: 0.74959
+Restart file saved: /Users/boyuanyu/Documents/research/GNN/GNN_discover_species/gnn_combustion/Xu_training/RL_v3p5/output1/restart_files/restart_epoch_021.pt
+
+==================== EPOCH 22/50 ====================
+
+---------- STEP 01/8 ----------
+Action: ADD ATOM
+Created: H(228)
+Bond: H(225) - H(228) [single]
+Result: accepted
+
+---------- STEP 02/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: H(224) and H(222)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 03/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: O(226) and H(223)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 04/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: C(221) and O(226)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 05/8 ----------
+Action: ADD ATOM
+Created: H(229)
+Bond: C(221) - H(229) [single]
+Result: accepted
+
+---------- STEP 06/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: C(221) and O(227)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 07/8 ----------
+Action: ADD ATOM
+Created: H(230)
+Bond: C(221) - H(230) [single]
+Result: accepted
+
+---------- STEP 08/8 ----------
+Action: ADD ATOM
+Created: H(231)
+Bond: O(227) - H(231) [single]
+Result: accepted
+Unrecognized molecule: CH4O2 (C=1, H=4, O=2)
+Molecule scores: CH4O2=-0.5, H2=+1.0, H2=+1.0
+Average molecule reward: +0.500
+Epoch 22/50 | System Output: H2 + H2 | Unknown: CH4O2 | Reward: +0.500 | P_valid_stop: 0.225 | Training Loss: 0.63876
+Restart file saved: /Users/boyuanyu/Documents/research/GNN/GNN_discover_species/gnn_combustion/Xu_training/RL_v3p5/output1/restart_files/restart_epoch_022.pt
+
+==================== EPOCH 23/50 ====================
+
+---------- STEP 01/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: H(236) and H(233)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 02/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: H(234) and H(235)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 03/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: C(232) and O(238)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 04/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: O(237) and C(232)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 05/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: O(237) and O(238)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 06/8 ----------
+Action: ADD ATOM
+Created: H(239)
+Bond: C(232) - H(239) [single]
+Result: accepted
+
+---------- STEP 07/8 ----------
+Action: ADD ATOM
+Created: H(240)
+Bond: C(232) - H(240) [single]
+Result: accepted
+
+---------- STEP 08/8 ----------
+Action: STOP
+Result: molecule generation stopped
+Unrecognized molecule: CH2O2 (C=1, H=2, O=2)
+Molecule scores: CH2O2=-0.5, H2=+1.0, H2=+1.0
+Average molecule reward: +0.500
+Epoch 23/50 | System Output: H2 + H2 | Unknown: CH2O2 | Reward: +0.500 | P_valid_stop: 0.181 | Training Loss: 0.56758
+Restart file saved: /Users/boyuanyu/Documents/research/GNN/GNN_discover_species/gnn_combustion/Xu_training/RL_v3p5/output1/restart_files/restart_epoch_023.pt
+
+==================== EPOCH 24/50 ====================
+
+---------- STEP 01/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: H(244) and H(243)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 02/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: C(241) and H(242)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 03/8 ----------
+Action: ADD ATOM
+Created: H(248)
+Bond: C(241) - H(248) [single]
+Result: accepted
+
+---------- STEP 04/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: H(245) and C(241)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 05/8 ----------
+Action: ADD ATOM
+Created: H(249)
+Bond: C(241) - H(249) [single]
+Result: accepted
+
+---------- STEP 06/8 ----------
+Action: ADD ATOM
+Created: H(250)
+Bond: O(247) - H(250) [single]
+Result: accepted
+
+---------- STEP 07/8 ----------
+Action: ADD ATOM
+Created: H(251)
+Bond: O(246) - H(251) [single]
+Result: accepted
+
+---------- STEP 08/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: O(247) and O(246)
+Bond order: 0 -> 1
+Result: accepted
+Molecule scores: CH4=+1.0, H2=+1.0, H2O2=+1.0
+Average molecule reward: +1.000
+Epoch 24/50 | System Output: CH4 + H2 + H2O2        | Reward: +1.000 | P_valid_stop: 0.142 | Training Loss: 2.74211
+Restart file saved: /Users/boyuanyu/Documents/research/GNN/GNN_discover_species/gnn_combustion/Xu_training/RL_v3p5/output1/restart_files/restart_epoch_024.pt
+
+==================== EPOCH 25/50 ====================
+
+---------- STEP 01/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: H(255) and H(254)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 02/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: H(253) and H(256)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 03/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: C(252) and O(257)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 04/8 ----------
+Action: ADD ATOM
+Created: H(259)
+Bond: C(252) - H(259) [single]
+Result: accepted
+
+---------- STEP 05/8 ----------
+Action: ADD ATOM
+Created: H(260)
+Bond: C(252) - H(260) [single]
+Result: accepted
+
+---------- STEP 06/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: C(252) and O(258)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 07/8 ----------
+Action: ADD ATOM
+Created: H(261)
+Bond: O(257) - H(261) [single]
+Result: accepted
+
+---------- STEP 08/8 ----------
+Action: ADD ATOM
+Created: H(262)
+Bond: O(258) - H(262) [single]
+Result: accepted
+Unrecognized molecule: CH4O2 (C=1, H=4, O=2)
+Molecule scores: CH4O2=-0.5, H2=+1.0, H2=+1.0
+Average molecule reward: +0.500
+Epoch 25/50 | System Output: H2 + H2 | Unknown: CH4O2 | Reward: +0.500 | P_valid_stop: 0.135 | Training Loss: 0.50761
+Restart file saved: /Users/boyuanyu/Documents/research/GNN/GNN_discover_species/gnn_combustion/Xu_training/RL_v3p5/output1/restart_files/restart_epoch_025.pt
+
+==================== EPOCH 26/50 ====================
+
+---------- STEP 01/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: H(267) and H(265)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 02/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: H(264) and H(266)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 03/8 ----------
+Action: ADD ATOM
+Created: H(270)
+Bond: C(263) - H(270) [single]
+Result: accepted
+
+---------- STEP 04/8 ----------
+Action: ADD ATOM
+Created: H(271)
+Bond: C(263) - H(271) [single]
+Result: accepted
+
+---------- STEP 05/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: C(263) and O(268)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 06/8 ----------
+Action: ADD ATOM
+Created: H(272)
+Bond: C(263) - H(272) [single]
+Result: accepted
+
+---------- STEP 07/8 ----------
+Action: ADD ATOM
+Created: H(273)
+Bond: O(268) - H(273) [single]
+Result: accepted
+
+---------- STEP 08/8 ----------
+Action: ADD ATOM
+Created: H(274)
+Bond: O(269) - H(274) [single]
+Result: accepted
+Molecule scores: CH3OH=+1.0, H2=+1.0, H2=+1.0, OH=+1.0
+Average molecule reward: +1.000
+Epoch 26/50 | System Output: CH3OH + H2 + H2 + OH   | Reward: +1.000 | P_valid_stop: 0.124 | Training Loss: 2.73547
+Restart file saved: /Users/boyuanyu/Documents/research/GNN/GNN_discover_species/gnn_combustion/Xu_training/RL_v3p5/output1/restart_files/restart_epoch_026.pt
+
+==================== EPOCH 27/50 ====================
+
+---------- STEP 01/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: H(278) and C(275)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 02/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: H(279) and H(276)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 03/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: C(275) and H(277)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 04/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: O(280) and C(275)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 05/8 ----------
+Action: ADD ATOM
+Created: H(282)
+Bond: C(275) - H(282) [single]
+Result: accepted
+
+---------- STEP 06/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: O(281) and O(280)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 07/8 ----------
+Action: ADD ATOM
+Created: H(283)
+Bond: O(281) - H(283) [single]
+Result: accepted
+
+---------- STEP 08/8 ----------
+Action: STOP
+Result: molecule generation stopped
+Unrecognized molecule: CH4O2 (C=1, H=4, O=2)
+Molecule scores: CH4O2=-0.5, H2=+1.0
+Average molecule reward: +0.250
+Epoch 27/50 | System Output: H2 | Unknown: CH4O2    | Reward: +0.250 | P_valid_stop: 0.139 | Training Loss: 0.35394
+Restart file saved: /Users/boyuanyu/Documents/research/GNN/GNN_discover_species/gnn_combustion/Xu_training/RL_v3p5/output1/restart_files/restart_epoch_027.pt
+
+==================== EPOCH 28/50 ====================
+
+---------- STEP 01/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: H(286) and H(288)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 02/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: H(287) and C(284)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 03/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: C(284) and H(285)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 04/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: C(284) and O(289)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 05/8 ----------
+Action: ADD ATOM
+Created: H(291)
+Bond: C(284) - H(291) [single]
+Result: accepted
+
+---------- STEP 06/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: O(289) and O(290)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 07/8 ----------
+Action: ADD ATOM
+Created: H(292)
+Bond: O(290) - H(292) [single]
+Result: accepted
+
+---------- STEP 08/8 ----------
+Action: STOP
+Result: molecule generation stopped
+Unrecognized molecule: CH4O2 (C=1, H=4, O=2)
+Molecule scores: CH4O2=-0.5, H2=+1.0
+Average molecule reward: +0.250
+Epoch 28/50 | System Output: H2 | Unknown: CH4O2    | Reward: +0.250 | P_valid_stop: 0.144 | Training Loss: 0.33835
+Restart file saved: /Users/boyuanyu/Documents/research/GNN/GNN_discover_species/gnn_combustion/Xu_training/RL_v3p5/output1/restart_files/restart_epoch_028.pt
+
+==================== EPOCH 29/50 ====================
+
+---------- STEP 01/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: H(294) and H(297)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 02/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: C(293) and H(295)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 03/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: C(293) and H(296)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 04/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: C(293) and O(298)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 05/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: C(293) and O(299)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 06/8 ----------
+Action: ADD ATOM
+Created: H(300)
+Bond: O(298) - H(300) [single]
+Result: accepted
+
+---------- STEP 07/8 ----------
+Action: ADD ATOM
+Created: H(301)
+Bond: O(299) - H(301) [single]
+Result: accepted
+
+---------- STEP 08/8 ----------
+Action: STOP
+Result: molecule generation stopped
+Unrecognized molecule: CH4O2 (C=1, H=4, O=2)
+Molecule scores: CH4O2=-0.5, H2=+1.0
+Average molecule reward: +0.250
+Epoch 29/50 | System Output: H2 | Unknown: CH4O2    | Reward: +0.250 | P_valid_stop: 0.148 | Training Loss: 0.34040
+Restart file saved: /Users/boyuanyu/Documents/research/GNN/GNN_discover_species/gnn_combustion/Xu_training/RL_v3p5/output1/restart_files/restart_epoch_029.pt
+
+==================== EPOCH 30/50 ====================
+
+---------- STEP 01/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: H(304) and H(305)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 02/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: H(303) and H(306)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 03/8 ----------
+Action: ADD ATOM
+Created: H(309)
+Bond: C(302) - H(309) [single]
+Result: accepted
+
+---------- STEP 04/8 ----------
+Action: ADD ATOM
+Created: H(310)
+Bond: C(302) - H(310) [single]
+Result: accepted
+
+---------- STEP 05/8 ----------
+Action: ADD ATOM
+Created: H(311)
+Bond: C(302) - H(311) [single]
+Result: accepted
+
+---------- STEP 06/8 ----------
+Action: ADD ATOM
+Created: H(312)
+Bond: C(302) - H(312) [single]
+Result: accepted
+
+---------- STEP 07/8 ----------
+Action: ADD ATOM
+Created: H(313)
+Bond: O(307) - H(313) [single]
+Result: accepted
+
+---------- STEP 08/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: O(307) and O(308)
+Bond order: 0 -> 1
+Result: accepted
+Molecule scores: CH4=+1.0, H2=+1.0, H2=+1.0, HO2=+1.0
+Average molecule reward: +1.000
+Epoch 30/50 | System Output: CH4 + H2 + H2 + HO2    | Reward: +1.000 | P_valid_stop: 0.134 | Training Loss: 2.54280
+Restart file saved: /Users/boyuanyu/Documents/research/GNN/GNN_discover_species/gnn_combustion/Xu_training/RL_v3p5/output1/restart_files/restart_epoch_030.pt
+
+==================== EPOCH 31/50 ====================
+
+---------- STEP 01/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: H(317) and H(318)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 02/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: H(315) and H(316)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 03/8 ----------
+Action: ADD ATOM
+Created: H(321)
+Bond: C(314) - H(321) [single]
+Result: accepted
+
+---------- STEP 04/8 ----------
+Action: ADD ATOM
+Created: H(322)
+Bond: C(314) - H(322) [single]
+Result: accepted
+
+---------- STEP 05/8 ----------
+Action: ADD ATOM
+Created: H(323)
+Bond: C(314) - H(323) [single]
+Result: accepted
+
+---------- STEP 06/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: C(314) and O(320)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 07/8 ----------
+Action: ADD ATOM
+Created: H(324)
+Bond: O(319) - H(324) [single]
+Result: accepted
+
+---------- STEP 08/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: O(319) and O(320)
+Bond order: 0 -> 1
+Result: accepted
+Unrecognized molecule: CH4O2 (C=1, H=4, O=2)
+Molecule scores: CH4O2=-0.5, H2=+1.0, H2=+1.0
+Average molecule reward: +0.500
+Epoch 31/50 | System Output: H2 + H2 | Unknown: CH4O2 | Reward: +0.500 | P_valid_stop: 0.148 | Training Loss: 0.45741
+Restart file saved: /Users/boyuanyu/Documents/research/GNN/GNN_discover_species/gnn_combustion/Xu_training/RL_v3p5/output1/restart_files/restart_epoch_031.pt
+
+==================== EPOCH 32/50 ====================
+
+---------- STEP 01/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: H(328) and H(329)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 02/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: C(325) and H(327)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 03/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: C(325) and H(326)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 04/8 ----------
+Action: ADD ATOM
+Created: H(332)
+Bond: C(325) - H(332) [single]
+Result: accepted
+
+---------- STEP 05/8 ----------
+Action: ADD ATOM
+Created: H(333)
+Bond: C(325) - H(333) [single]
+Result: accepted
+
+---------- STEP 06/8 ----------
+Action: ADD ATOM
+Created: H(334)
+Bond: O(331) - H(334) [single]
+Result: accepted
+
+---------- STEP 07/8 ----------
+Action: ADD ATOM
+Created: H(335)
+Bond: O(331) - H(335) [single]
+Result: accepted
+
+---------- STEP 08/8 ----------
+Action: ADD ATOM
+Created: H(336)
+Bond: O(330) - H(336) [single]
+Result: accepted
+Molecule scores: CH4=+1.0, H2=+1.0, OH=+1.0, H2O=+1.0
+Average molecule reward: +1.000
+Epoch 32/50 | System Output: CH4 + H2 + OH + H2O    | Reward: +1.000 | P_valid_stop: 0.157 | Training Loss: 2.38800
+Restart file saved: /Users/boyuanyu/Documents/research/GNN/GNN_discover_species/gnn_combustion/Xu_training/RL_v3p5/output1/restart_files/restart_epoch_032.pt
+
+==================== EPOCH 33/50 ====================
+
+---------- STEP 01/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: H(339) and H(338)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 02/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: H(341) and H(340)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 03/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: C(337) and O(343)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 04/8 ----------
+Action: ADD ATOM
+Created: H(344)
+Bond: O(343) - H(344) [single]
+Result: accepted
+
+---------- STEP 05/8 ----------
+Action: ADD ATOM
+Created: H(345)
+Bond: C(337) - H(345) [single]
+Result: accepted
+
+---------- STEP 06/8 ----------
+Action: ADD ATOM
+Created: H(346)
+Bond: C(337) - H(346) [single]
+Result: accepted
+
+---------- STEP 07/8 ----------
+Action: ADD ATOM
+Created: H(347)
+Bond: C(337) - H(347) [single]
+Result: accepted
+
+---------- STEP 08/8 ----------
+Action: ADD ATOM
+Created: H(348)
+Bond: O(342) - H(348) [single]
+Result: accepted
+Molecule scores: CH3OH=+1.0, H2=+1.0, H2=+1.0, OH=+1.0
+Average molecule reward: +1.000
+Epoch 33/50 | System Output: CH3OH + H2 + H2 + OH   | Reward: +1.000 | P_valid_stop: 0.172 | Training Loss: 2.26932
+Restart file saved: /Users/boyuanyu/Documents/research/GNN/GNN_discover_species/gnn_combustion/Xu_training/RL_v3p5/output1/restart_files/restart_epoch_033.pt
+
+==================== EPOCH 34/50 ====================
+
+---------- STEP 01/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: H(353) and H(350)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 02/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: H(352) and H(351)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 03/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: C(349) and O(354)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 04/8 ----------
+Action: ADD ATOM
+Created: H(356)
+Bond: O(354) - H(356) [single]
+Result: accepted
+
+---------- STEP 05/8 ----------
+Action: ADD ATOM
+Created: H(357)
+Bond: O(355) - H(357) [single]
+Result: accepted
+
+---------- STEP 06/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: C(349) and O(355)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 07/8 ----------
+Action: ADD ATOM
+Created: H(358)
+Bond: C(349) - H(358) [single]
+Result: accepted
+
+---------- STEP 08/8 ----------
+Action: ADD ATOM
+Created: H(359)
+Bond: C(349) - H(359) [single]
+Result: accepted
+Unrecognized molecule: CH4O2 (C=1, H=4, O=2)
+Molecule scores: CH4O2=-0.5, H2=+1.0, H2=+1.0
+Average molecule reward: +0.500
+Epoch 34/50 | System Output: H2 + H2 | Unknown: CH4O2 | Reward: +0.500 | P_valid_stop: 0.200 | Training Loss: 0.49363
+Restart file saved: /Users/boyuanyu/Documents/research/GNN/GNN_discover_species/gnn_combustion/Xu_training/RL_v3p5/output1/restart_files/restart_epoch_034.pt
+
+==================== EPOCH 35/50 ====================
+
+---------- STEP 01/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: H(363) and H(364)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 02/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: H(362) and H(361)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 03/8 ----------
+Action: ADD ATOM
+Created: H(367)
+Bond: C(360) - H(367) [single]
+Result: accepted
+
+---------- STEP 04/8 ----------
+Action: ADD ATOM
+Created: H(368)
+Bond: C(360) - H(368) [single]
+Result: accepted
+
+---------- STEP 05/8 ----------
+Action: ADD ATOM
+Created: H(369)
+Bond: C(360) - H(369) [single]
+Result: accepted
+
+---------- STEP 06/8 ----------
+Action: ADD ATOM
+Created: H(370)
+Bond: C(360) - H(370) [single]
+Result: accepted
+
+---------- STEP 07/8 ----------
+Action: ADD ATOM
+Created: H(371)
+Bond: O(366) - H(371) [single]
+Result: accepted
+
+---------- STEP 08/8 ----------
+Action: ADD ATOM
+Created: H(372)
+Bond: O(366) - H(372) [single]
+Result: accepted
+Molecule scores: CH4=+1.0, H2=+1.0, H2=+1.0, O=-0.5, H2O=+1.0
+Average molecule reward: +0.700
+Epoch 35/50 | System Output: CH4 + H2 + H2 + O + H2O | Reward: +0.700 | P_valid_stop: 0.213 | Training Loss: 1.87091
+Restart file saved: /Users/boyuanyu/Documents/research/GNN/GNN_discover_species/gnn_combustion/Xu_training/RL_v3p5/output1/restart_files/restart_epoch_035.pt
+
+==================== EPOCH 36/50 ====================
+
+---------- STEP 01/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: H(377) and H(376)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 02/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: H(375) and H(374)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 03/8 ----------
+Action: ADD ATOM
+Created: H(380)
+Bond: C(373) - H(380) [single]
+Result: accepted
+
+---------- STEP 04/8 ----------
+Action: ADD ATOM
+Created: H(381)
+Bond: C(373) - H(381) [single]
+Result: accepted
+
+---------- STEP 05/8 ----------
+Action: ADD ATOM
+Created: H(382)
+Bond: C(373) - H(382) [single]
+Result: accepted
+
+---------- STEP 06/8 ----------
+Action: ADD ATOM
+Created: H(383)
+Bond: C(373) - H(383) [single]
+Result: accepted
+
+---------- STEP 07/8 ----------
+Action: ADD ATOM
+Created: H(384)
+Bond: O(379) - H(384) [single]
+Result: accepted
+
+---------- STEP 08/8 ----------
+Action: ADD ATOM
+Created: H(385)
+Bond: O(379) - H(385) [single]
+Result: accepted
+Molecule scores: CH4=+1.0, H2=+1.0, H2=+1.0, O=-0.5, H2O=+1.0
+Average molecule reward: +0.700
+Epoch 36/50 | System Output: CH4 + H2 + H2 + O + H2O | Reward: +0.700 | P_valid_stop: 0.240 | Training Loss: 1.74796
+Restart file saved: /Users/boyuanyu/Documents/research/GNN/GNN_discover_species/gnn_combustion/Xu_training/RL_v3p5/output1/restart_files/restart_epoch_036.pt
+
+==================== EPOCH 37/50 ====================
+
+---------- STEP 01/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: H(389) and H(390)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 02/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: H(388) and H(387)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 03/8 ----------
+Action: ADD ATOM
+Created: H(393)
+Bond: C(386) - H(393) [single]
+Result: accepted
+
+---------- STEP 04/8 ----------
+Action: ADD ATOM
+Created: H(394)
+Bond: C(386) - H(394) [single]
+Result: accepted
+
+---------- STEP 05/8 ----------
+Action: ADD ATOM
+Created: H(395)
+Bond: C(386) - H(395) [single]
+Result: accepted
+
+---------- STEP 06/8 ----------
+Action: ADD ATOM
+Created: H(396)
+Bond: C(386) - H(396) [single]
+Result: accepted
+
+---------- STEP 07/8 ----------
+Action: ADD ATOM
+Created: H(397)
+Bond: O(392) - H(397) [single]
+Result: accepted
+
+---------- STEP 08/8 ----------
+Action: ADD ATOM
+Created: H(398)
+Bond: O(392) - H(398) [single]
+Result: accepted
+Molecule scores: CH4=+1.0, H2=+1.0, H2=+1.0, O=-0.5, H2O=+1.0
+Average molecule reward: +0.700
+Epoch 37/50 | System Output: CH4 + H2 + H2 + O + H2O | Reward: +0.700 | P_valid_stop: 0.271 | Training Loss: 1.62194
+Restart file saved: /Users/boyuanyu/Documents/research/GNN/GNN_discover_species/gnn_combustion/Xu_training/RL_v3p5/output1/restart_files/restart_epoch_037.pt
+
+==================== EPOCH 38/50 ====================
+
+---------- STEP 01/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: H(403) and H(400)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 02/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: H(402) and H(401)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 03/8 ----------
+Action: ADD ATOM
+Created: H(406)
+Bond: C(399) - H(406) [single]
+Result: accepted
+
+---------- STEP 04/8 ----------
+Action: ADD ATOM
+Created: H(407)
+Bond: C(399) - H(407) [single]
+Result: accepted
+
+---------- STEP 05/8 ----------
+Action: ADD ATOM
+Created: H(408)
+Bond: C(399) - H(408) [single]
+Result: accepted
+
+---------- STEP 06/8 ----------
+Action: ADD ATOM
+Created: H(409)
+Bond: C(399) - H(409) [single]
+Result: accepted
+
+---------- STEP 07/8 ----------
+Action: ADD ATOM
+Created: H(410)
+Bond: O(404) - H(410) [single]
+Result: accepted
+
+---------- STEP 08/8 ----------
+Action: ADD ATOM
+Created: H(411)
+Bond: O(404) - H(411) [single]
+Result: accepted
+Molecule scores: CH4=+1.0, H2=+1.0, H2=+1.0, H2O=+1.0, O=-0.5
+Average molecule reward: +0.700
+Epoch 38/50 | System Output: CH4 + H2 + H2 + H2O + O | Reward: +0.700 | P_valid_stop: 0.305 | Training Loss: 1.49994
+Restart file saved: /Users/boyuanyu/Documents/research/GNN/GNN_discover_species/gnn_combustion/Xu_training/RL_v3p5/output1/restart_files/restart_epoch_038.pt
+
+==================== EPOCH 39/50 ====================
+
+---------- STEP 01/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: H(413) and H(415)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 02/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: H(414) and H(416)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 03/8 ----------
+Action: ADD ATOM
+Created: H(419)
+Bond: C(412) - H(419) [single]
+Result: accepted
+
+---------- STEP 04/8 ----------
+Action: ADD ATOM
+Created: H(420)
+Bond: C(412) - H(420) [single]
+Result: accepted
+
+---------- STEP 05/8 ----------
+Action: ADD ATOM
+Created: H(421)
+Bond: C(412) - H(421) [single]
+Result: accepted
+
+---------- STEP 06/8 ----------
+Action: ADD ATOM
+Created: H(422)
+Bond: C(412) - H(422) [single]
+Result: accepted
+
+---------- STEP 07/8 ----------
+Action: ADD ATOM
+Created: H(423)
+Bond: O(418) - H(423) [single]
+Result: accepted
+
+---------- STEP 08/8 ----------
+Action: ADD ATOM
+Created: H(424)
+Bond: O(418) - H(424) [single]
+Result: accepted
+Molecule scores: CH4=+1.0, H2=+1.0, H2=+1.0, O=-0.5, H2O=+1.0
+Average molecule reward: +0.700
+Epoch 39/50 | System Output: CH4 + H2 + H2 + O + H2O | Reward: +0.700 | P_valid_stop: 0.340 | Training Loss: 1.38803
+Restart file saved: /Users/boyuanyu/Documents/research/GNN/GNN_discover_species/gnn_combustion/Xu_training/RL_v3p5/output1/restart_files/restart_epoch_039.pt
+
+==================== EPOCH 40/50 ====================
+
+---------- STEP 01/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: H(426) and H(429)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 02/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: H(427) and H(428)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 03/8 ----------
+Action: ADD ATOM
+Created: H(432)
+Bond: C(425) - H(432) [single]
+Result: accepted
+
+---------- STEP 04/8 ----------
+Action: ADD ATOM
+Created: H(433)
+Bond: C(425) - H(433) [single]
+Result: accepted
+
+---------- STEP 05/8 ----------
+Action: ADD ATOM
+Created: H(434)
+Bond: C(425) - H(434) [single]
+Result: accepted
+
+---------- STEP 06/8 ----------
+Action: ADD ATOM
+Created: H(435)
+Bond: C(425) - H(435) [single]
+Result: accepted
+
+---------- STEP 07/8 ----------
+Action: ADD ATOM
+Created: H(436)
+Bond: O(431) - H(436) [single]
+Result: accepted
+
+---------- STEP 08/8 ----------
+Action: ADD ATOM
+Created: H(437)
+Bond: O(431) - H(437) [single]
+Result: accepted
+Molecule scores: CH4=+1.0, H2=+1.0, H2=+1.0, O=-0.5, H2O=+1.0
+Average molecule reward: +0.700
+Epoch 40/50 | System Output: CH4 + H2 + H2 + O + H2O | Reward: +0.700 | P_valid_stop: 0.374 | Training Loss: 1.28778
+Restart file saved: /Users/boyuanyu/Documents/research/GNN/GNN_discover_species/gnn_combustion/Xu_training/RL_v3p5/output1/restart_files/restart_epoch_040.pt
+
+==================== EPOCH 41/50 ====================
+
+---------- STEP 01/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: H(441) and H(439)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 02/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: H(440) and H(442)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 03/8 ----------
+Action: ADD ATOM
+Created: H(445)
+Bond: C(438) - H(445) [single]
+Result: accepted
+
+---------- STEP 04/8 ----------
+Action: ADD ATOM
+Created: H(446)
+Bond: C(438) - H(446) [single]
+Result: accepted
+
+---------- STEP 05/8 ----------
+Action: ADD ATOM
+Created: H(447)
+Bond: C(438) - H(447) [single]
+Result: accepted
+
+---------- STEP 06/8 ----------
+Action: ADD ATOM
+Created: H(448)
+Bond: C(438) - H(448) [single]
+Result: accepted
+
+---------- STEP 07/8 ----------
+Action: ADD ATOM
+Created: H(449)
+Bond: O(444) - H(449) [single]
+Result: accepted
+
+---------- STEP 08/8 ----------
+Action: ADD ATOM
+Created: H(450)
+Bond: O(444) - H(450) [single]
+Result: accepted
+Molecule scores: CH4=+1.0, H2=+1.0, H2=+1.0, O=-0.5, H2O=+1.0
+Average molecule reward: +0.700
+Epoch 41/50 | System Output: CH4 + H2 + H2 + O + H2O | Reward: +0.700 | P_valid_stop: 0.408 | Training Loss: 1.19882
+Restart file saved: /Users/boyuanyu/Documents/research/GNN/GNN_discover_species/gnn_combustion/Xu_training/RL_v3p5/output1/restart_files/restart_epoch_041.pt
+
+==================== EPOCH 42/50 ====================
+
+---------- STEP 01/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: H(452) and H(453)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 02/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: H(454) and H(455)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 03/8 ----------
+Action: ADD ATOM
+Created: H(458)
+Bond: C(451) - H(458) [single]
+Result: accepted
+
+---------- STEP 04/8 ----------
+Action: ADD ATOM
+Created: H(459)
+Bond: C(451) - H(459) [single]
+Result: accepted
+
+---------- STEP 05/8 ----------
+Action: ADD ATOM
+Created: H(460)
+Bond: C(451) - H(460) [single]
+Result: accepted
+
+---------- STEP 06/8 ----------
+Action: ADD ATOM
+Created: H(461)
+Bond: C(451) - H(461) [single]
+Result: accepted
+
+---------- STEP 07/8 ----------
+Action: ADD ATOM
+Created: H(462)
+Bond: O(456) - H(462) [single]
+Result: accepted
+
+---------- STEP 08/8 ----------
+Action: ADD ATOM
+Created: H(463)
+Bond: O(456) - H(463) [single]
+Result: accepted
+Molecule scores: CH4=+1.0, H2=+1.0, H2=+1.0, H2O=+1.0, O=-0.5
+Average molecule reward: +0.700
+Epoch 42/50 | System Output: CH4 + H2 + H2 + H2O + O | Reward: +0.700 | P_valid_stop: 0.441 | Training Loss: 1.11933
+Restart file saved: /Users/boyuanyu/Documents/research/GNN/GNN_discover_species/gnn_combustion/Xu_training/RL_v3p5/output1/restart_files/restart_epoch_042.pt
+
+==================== EPOCH 43/50 ====================
+
+---------- STEP 01/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: H(465) and H(468)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 02/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: H(467) and H(466)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 03/8 ----------
+Action: ADD ATOM
+Created: H(471)
+Bond: C(464) - H(471) [single]
+Result: accepted
+
+---------- STEP 04/8 ----------
+Action: ADD ATOM
+Created: H(472)
+Bond: C(464) - H(472) [single]
+Result: accepted
+
+---------- STEP 05/8 ----------
+Action: ADD ATOM
+Created: H(473)
+Bond: C(464) - H(473) [single]
+Result: accepted
+
+---------- STEP 06/8 ----------
+Action: ADD ATOM
+Created: H(474)
+Bond: C(464) - H(474) [single]
+Result: accepted
+
+---------- STEP 07/8 ----------
+Action: ADD ATOM
+Created: H(475)
+Bond: O(470) - H(475) [single]
+Result: accepted
+
+---------- STEP 08/8 ----------
+Action: ADD ATOM
+Created: H(476)
+Bond: O(470) - H(476) [single]
+Result: accepted
+Molecule scores: CH4=+1.0, H2=+1.0, H2=+1.0, O=-0.5, H2O=+1.0
+Average molecule reward: +0.700
+Epoch 43/50 | System Output: CH4 + H2 + H2 + O + H2O | Reward: +0.700 | P_valid_stop: 0.472 | Training Loss: 1.04741
+Restart file saved: /Users/boyuanyu/Documents/research/GNN/GNN_discover_species/gnn_combustion/Xu_training/RL_v3p5/output1/restart_files/restart_epoch_043.pt
+
+==================== EPOCH 44/50 ====================
+
+---------- STEP 01/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: H(479) and H(481)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 02/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: H(478) and H(480)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 03/8 ----------
+Action: ADD ATOM
+Created: H(484)
+Bond: C(477) - H(484) [single]
+Result: accepted
+
+---------- STEP 04/8 ----------
+Action: ADD ATOM
+Created: H(485)
+Bond: C(477) - H(485) [single]
+Result: accepted
+
+---------- STEP 05/8 ----------
+Action: ADD ATOM
+Created: H(486)
+Bond: C(477) - H(486) [single]
+Result: accepted
+
+---------- STEP 06/8 ----------
+Action: ADD ATOM
+Created: H(487)
+Bond: C(477) - H(487) [single]
+Result: accepted
+
+---------- STEP 07/8 ----------
+Action: ADD ATOM
+Created: H(488)
+Bond: O(482) - H(488) [single]
+Result: accepted
+
+---------- STEP 08/8 ----------
+Action: ADD ATOM
+Created: H(489)
+Bond: O(482) - H(489) [single]
+Result: accepted
+Molecule scores: CH4=+1.0, H2=+1.0, H2=+1.0, H2O=+1.0, O=-0.5
+Average molecule reward: +0.700
+Epoch 44/50 | System Output: CH4 + H2 + H2 + H2O + O | Reward: +0.700 | P_valid_stop: 0.503 | Training Loss: 0.98092
+Restart file saved: /Users/boyuanyu/Documents/research/GNN/GNN_discover_species/gnn_combustion/Xu_training/RL_v3p5/output1/restart_files/restart_epoch_044.pt
+
+==================== EPOCH 45/50 ====================
+
+---------- STEP 01/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: H(494) and H(493)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 02/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: H(492) and H(491)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 03/8 ----------
+Action: ADD ATOM
+Created: H(497)
+Bond: C(490) - H(497) [single]
+Result: accepted
+
+---------- STEP 04/8 ----------
+Action: ADD ATOM
+Created: H(498)
+Bond: C(490) - H(498) [single]
+Result: accepted
+
+---------- STEP 05/8 ----------
+Action: ADD ATOM
+Created: H(499)
+Bond: C(490) - H(499) [single]
+Result: accepted
+
+---------- STEP 06/8 ----------
+Action: ADD ATOM
+Created: H(500)
+Bond: C(490) - H(500) [single]
+Result: accepted
+
+---------- STEP 07/8 ----------
+Action: ADD ATOM
+Created: H(501)
+Bond: O(495) - H(501) [single]
+Result: accepted
+
+---------- STEP 08/8 ----------
+Action: ADD ATOM
+Created: H(502)
+Bond: O(495) - H(502) [single]
+Result: accepted
+Molecule scores: CH4=+1.0, H2=+1.0, H2=+1.0, H2O=+1.0, O=-0.5
+Average molecule reward: +0.700
+Epoch 45/50 | System Output: CH4 + H2 + H2 + H2O + O | Reward: +0.700 | P_valid_stop: 0.533 | Training Loss: 0.91717
+Restart file saved: /Users/boyuanyu/Documents/research/GNN/GNN_discover_species/gnn_combustion/Xu_training/RL_v3p5/output1/restart_files/restart_epoch_045.pt
+
+==================== EPOCH 46/50 ====================
+
+---------- STEP 01/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: H(506) and H(507)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 02/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: H(504) and H(505)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 03/8 ----------
+Action: ADD ATOM
+Created: H(510)
+Bond: C(503) - H(510) [single]
+Result: accepted
+
+---------- STEP 04/8 ----------
+Action: ADD ATOM
+Created: H(511)
+Bond: C(503) - H(511) [single]
+Result: accepted
+
+---------- STEP 05/8 ----------
+Action: ADD ATOM
+Created: H(512)
+Bond: C(503) - H(512) [single]
+Result: accepted
+
+---------- STEP 06/8 ----------
+Action: ADD ATOM
+Created: H(513)
+Bond: C(503) - H(513) [single]
+Result: accepted
+
+---------- STEP 07/8 ----------
+Action: ADD ATOM
+Created: H(514)
+Bond: O(509) - H(514) [single]
+Result: accepted
+
+---------- STEP 08/8 ----------
+Action: ADD ATOM
+Created: H(515)
+Bond: O(509) - H(515) [single]
+Result: accepted
+Molecule scores: CH4=+1.0, H2=+1.0, H2=+1.0, O=-0.5, H2O=+1.0
+Average molecule reward: +0.700
+Epoch 46/50 | System Output: CH4 + H2 + H2 + O + H2O | Reward: +0.700 | P_valid_stop: 0.562 | Training Loss: 0.85488
+Restart file saved: /Users/boyuanyu/Documents/research/GNN/GNN_discover_species/gnn_combustion/Xu_training/RL_v3p5/output1/restart_files/restart_epoch_046.pt
+
+==================== EPOCH 47/50 ====================
+
+---------- STEP 01/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: H(517) and H(520)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 02/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: H(519) and H(518)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 03/8 ----------
+Action: ADD ATOM
+Created: H(523)
+Bond: C(516) - H(523) [single]
+Result: accepted
+
+---------- STEP 04/8 ----------
+Action: ADD ATOM
+Created: H(524)
+Bond: C(516) - H(524) [single]
+Result: accepted
+
+---------- STEP 05/8 ----------
+Action: ADD ATOM
+Created: H(525)
+Bond: C(516) - H(525) [single]
+Result: accepted
+
+---------- STEP 06/8 ----------
+Action: ADD ATOM
+Created: H(526)
+Bond: C(516) - H(526) [single]
+Result: accepted
+
+---------- STEP 07/8 ----------
+Action: ADD ATOM
+Created: H(527)
+Bond: O(522) - H(527) [single]
+Result: accepted
+
+---------- STEP 08/8 ----------
+Action: ADD ATOM
+Created: H(528)
+Bond: O(522) - H(528) [single]
+Result: accepted
+Molecule scores: CH4=+1.0, H2=+1.0, H2=+1.0, O=-0.5, H2O=+1.0
+Average molecule reward: +0.700
+Epoch 47/50 | System Output: CH4 + H2 + H2 + O + H2O | Reward: +0.700 | P_valid_stop: 0.592 | Training Loss: 0.79353
+Restart file saved: /Users/boyuanyu/Documents/research/GNN/GNN_discover_species/gnn_combustion/Xu_training/RL_v3p5/output1/restart_files/restart_epoch_047.pt
+
+==================== EPOCH 48/50 ====================
+
+---------- STEP 01/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: H(533) and H(532)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 02/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: H(531) and H(530)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 03/8 ----------
+Action: ADD ATOM
+Created: H(536)
+Bond: C(529) - H(536) [single]
+Result: accepted
+
+---------- STEP 04/8 ----------
+Action: ADD ATOM
+Created: H(537)
+Bond: C(529) - H(537) [single]
+Result: accepted
+
+---------- STEP 05/8 ----------
+Action: ADD ATOM
+Created: H(538)
+Bond: C(529) - H(538) [single]
+Result: accepted
+
+---------- STEP 06/8 ----------
+Action: ADD ATOM
+Created: H(539)
+Bond: C(529) - H(539) [single]
+Result: accepted
+
+---------- STEP 07/8 ----------
+Action: ADD ATOM
+Created: O(540)
+Bond: O(534) - O(540) [single]
+Result: accepted
+
+---------- STEP 08/8 ----------
+Action: ADD ATOM
+Created: H(541)
+Bond: O(540) - H(541) [single]
+Result: accepted
+Molecule scores: CH4=+1.0, H2=+1.0, H2=+1.0, HO2=+1.0, O=-0.5
+Average molecule reward: +0.700
+Epoch 48/50 | System Output: CH4 + H2 + H2 + HO2 + O | Reward: +0.700 | P_valid_stop: 0.617 | Training Loss: 0.81844
+Restart file saved: /Users/boyuanyu/Documents/research/GNN/GNN_discover_species/gnn_combustion/Xu_training/RL_v3p5/output1/restart_files/restart_epoch_048.pt
+
+==================== EPOCH 49/50 ====================
+
+---------- STEP 01/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: H(546) and H(544)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 02/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: H(543) and H(545)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 03/8 ----------
+Action: ADD ATOM
+Created: H(549)
+Bond: C(542) - H(549) [single]
+Result: accepted
+
+---------- STEP 04/8 ----------
+Action: ADD ATOM
+Created: H(550)
+Bond: C(542) - H(550) [single]
+Result: accepted
+
+---------- STEP 05/8 ----------
+Action: ADD ATOM
+Created: H(551)
+Bond: C(542) - H(551) [single]
+Result: accepted
+
+---------- STEP 06/8 ----------
+Action: ADD ATOM
+Created: H(552)
+Bond: C(542) - H(552) [single]
+Result: accepted
+
+---------- STEP 07/8 ----------
+Action: ADD ATOM
+Created: H(553)
+Bond: O(547) - H(553) [single]
+Result: accepted
+
+---------- STEP 08/8 ----------
+Action: ADD ATOM
+Created: H(554)
+Bond: O(547) - H(554) [single]
+Result: accepted
+Molecule scores: CH4=+1.0, H2=+1.0, H2=+1.0, H2O=+1.0, O=-0.5
+Average molecule reward: +0.700
+Epoch 49/50 | System Output: CH4 + H2 + H2 + H2O + O | Reward: +0.700 | P_valid_stop: 0.656 | Training Loss: 0.67263
+Restart file saved: /Users/boyuanyu/Documents/research/GNN/GNN_discover_species/gnn_combustion/Xu_training/RL_v3p5/output1/restart_files/restart_epoch_049.pt
+
+==================== EPOCH 50/50 ====================
+
+---------- STEP 01/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: H(556) and H(559)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 02/8 ----------
+Action: ADD OR UPGRADE BOND
+Atoms: H(558) and H(557)
+Bond order: 0 -> 1
+Result: accepted
+
+---------- STEP 03/8 ----------
+Action: ADD ATOM
+Created: H(562)
+Bond: C(555) - H(562) [single]
+Result: accepted
+
+---------- STEP 04/8 ----------
+Action: ADD ATOM
+Created: H(563)
+Bond: C(555) - H(563) [single]
+Result: accepted
+
+---------- STEP 05/8 ----------
+Action: ADD ATOM
+Created: H(564)
+Bond: C(555) - H(564) [single]
+Result: accepted
+
+---------- STEP 06/8 ----------
+Action: ADD ATOM
+Created: H(565)
+Bond: C(555) - H(565) [single]
+Result: accepted
+
+---------- STEP 07/8 ----------
+Action: ADD ATOM
+Created: H(566)
+Bond: O(560) - H(566) [single]
+Result: accepted
+
+---------- STEP 08/8 ----------
+Action: ADD ATOM
+Created: H(567)
+Bond: O(560) - H(567) [single]
+Result: accepted
+Molecule scores: CH4=+1.0, H2=+1.0, H2=+1.0, H2O=+1.0, O=-0.5
+Average molecule reward: +0.700
+Epoch 50/50 | System Output: CH4 + H2 + H2 + H2O + O | Reward: +0.700 | P_valid_stop: 0.691 | Training Loss: 0.61216
+Restart file saved: /Users/boyuanyu/Documents/research/GNN/GNN_discover_species/gnn_combustion/Xu_training/RL_v3p5/output1/restart_files/restart_epoch_050.pt
+
+Saving standalone image files for each epoch layout...
+
+Compiling full-grid composite plot map...
+Saving single-plot grid animation sequence: /Users/boyuanyu/Documents/research/GNN/GNN_discover_species/gnn_combustion/Xu_training/RL_v3p5/output1/species_growth.gif ...
+Trained neural network saved: /Users/boyuanyu/Documents/research/GNN/GNN_discover_species/gnn_combustion/Xu_training/RL_v3p5/output1/trained_growth_gnn.pt
+Deleted 50 restart files after successful completion.
+Everything processed successfully!

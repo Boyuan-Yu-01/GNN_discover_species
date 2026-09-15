@@ -581,3 +581,90 @@ Final second-level search at s=C,O-H (102 outgoing visits, V_theta=0.970)
 ## Sep. 1st 2026
 Graph isomorphism `codeBase/isomorphism`
 
+## Sep. 15th 2026
+### Modify the penalization function
+<span style="color:red">previously:</span> 
+- Reward is evaluated once per epoch after molecule generation: +1 
+- if all generated components match known species, otherwise -1.
+- The same reward is applied to every action taken during that epoch.
+- $\text{totalLoss} = \text{termLoss}+0.5\times \text{policyLoss}$
+
+`policyLoss` is calculated:
+$$
+\text{policyLoss} = - \frac{\sum log(P_{eachAction})}{n_{actions}}\cdot r
+$$
+`termLoss` (termination loss) is calculated:
+$$
+\text{termLoss} = -log(1-P_{validStoppingPoint})
+$$
+<span style="color:red">all probabilities are Neural Network predictions</span> 
+
+## <span style="color:green">Now:</span> 
+For each molecular component `i`, its score is defined as
+
+$$
+
+r_i =
+
+\begin{cases}
+
++1, & \text{if } i \text{ is a recognized multi-atom molecule},
+
+\\
+
+-0.5, & \text{if } i \text{ is an isolated atom},
+
+\\
+
+-0.5, & \text{if } i \text{ is an unrecognized multi-atom molecule}.
+
+\end{cases}
+
+$$
+
+For an epoch containing `N`molecular components, the epoch reward is
+$$
+
+R_{\text{epoch}} = \frac{1}{N}\sum_{i=1}^{N} r_i.
+
+$$
+The resulting $R_{\text{epoch}}$ is applied to every action taken during that epoch.
+
+### restart file
+*a restart file contains:*
+- model weights
+- optimizer state
+- completed epoch number
+- reward and stop probability
+- training configuration
+- random number states
+
+## Version 4: Discounted Terminal Reward
+For each intermediate state:
+$$
+L_{policy}=\sum_{t=1}^T L_t
+$$
+where,
+$$
+L_t = -\frac{G_t}{T} \text{log}\pi(a_t|s_t)
+$$
+and 
+$$
+G_t = \gamma^{T-1-t}R_T 
+$$, where $R_T$ is the reward of the final reached state.
+
+## Version 4 (continue): NN determined stop point
+
+```
+Current graph
+     ↓
+Run GNN
+     ↓
+Should stop?
+  ┌──┴──┐
+ Yes    No
+  ↓      ↓
+Finish  Modify graph
+           ↓
+        Repeat
+```

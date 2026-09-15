@@ -102,6 +102,14 @@ def delete_restart_files():
     return deleted_count
 
 
+def calculate_discounted_returns(terminal_reward, num_actions, discount_factor):
+    """Return G_t = gamma^(T-1-t) * R_terminal for every action."""
+    return torch.tensor([
+        terminal_reward * discount_factor ** (num_actions - 1 - t)
+        for t in range(num_actions)
+    ], dtype=torch.float)
+
+
 def make_species_graph(heavy_atoms, heavy_bonds=(), hydrogen_counts=()):
     """Create a reference graph from heavy atoms, bonds, and attached H counts."""
     # Each graph represents one molecule: atoms are nodes and bonds are edges.
@@ -489,6 +497,7 @@ if __name__ == "__main__":
     num_layers = saved_config.get("num_layers", 2)
     learning_rate = 0.01
     reward_weight = 0.5
+    discount_factor = 0.9
     total_epochs = int(os.environ.get("GNN_ADDITIONAL_EPOCHS", "50"))
     max_steps_per_epoch = 8
 
@@ -505,6 +514,7 @@ if __name__ == "__main__":
         "trainable_parameters": sum(p.numel() for p in gnn_model.parameters() if p.requires_grad),
         "learning_rate": learning_rate,
         "reward_weight": reward_weight,
+        "discount_factor": discount_factor,
         "total_epochs": total_epochs,
         "max_steps_per_epoch": max_steps_per_epoch,
         "initial_atoms": INITIAL_ATOMS,
@@ -538,7 +548,8 @@ if __name__ == "__main__":
           f"hidden_dim={hidden_dim}, trainable_parameters={training_config['trainable_parameters']}")
     print(f"Reward settings: recognized={RECOGNIZED_MOLECULE_REWARD:+.1f}, "
           f"unrecognized={UNRECOGNIZED_MOLECULE_REWARD:+.1f}, "
-          f"isolated_atom={ISOLATED_ATOM_REWARD:+.1f}, reward_weight={reward_weight:.2f}")
+          f"isolated_atom={ISOLATED_ATOM_REWARD:+.1f}, reward_weight={reward_weight:.2f}, "
+          f"discount_factor={discount_factor:.2f}")
     
     for epoch in range(1, total_epochs + 1):
         print(f"\n{'=' * 20} EPOCH {epoch:02d}/{total_epochs} {'=' * 20}")
@@ -666,8 +677,13 @@ if __name__ == "__main__":
         # Policy Loss: Penalize choices that lead to chemical errors, reward valid configurations
         policy_loss = 0
         if len(action_log_probs) > 0:
-            # Apply the same averaged epoch reward to all actions taken this epoch.
-            policy_loss = -torch.stack(action_log_probs).mean() * reward
+            # Give action t the discounted return G_t = gamma^(T-1-t) * R_terminal.
+            discounted_returns = calculate_discounted_returns(
+                reward, len(action_log_probs), discount_factor
+            )
+            policy_loss = -(
+                torch.stack(action_log_probs) * discounted_returns
+            ).mean()
             
         # Total combined loss optimization
         total_loss = term_loss + reward_weight * policy_loss
