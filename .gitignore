@@ -1,0 +1,52 @@
+# Python bytecode and tool caches
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+.coverage
+.coverage.*
+htmlcov/
+
+# Local Python environments and build artifacts
+.venv/
+venv/
+env/
+build/
+dist/
+*.egg-info/
+
+# Generated training/exploration runs (including JSON, plots and videos)
+output*/
+checkpoints/
+*.pt
+*.pth
+*.ckpt
+events.out.tfevents.*
+wandb/
+
+# Runtime logs; retain research notes in log/
+*.log
+log_*.txt
+
+# Local environment configuration; keep shareable templates
+.env
+.env.*
+!.env.example
+!.env.sample
+
+# macOS and temporary editor/Office files
+.DS_Store
+._*
+*.swp
+*.swo
+*~
+~$*
+
+# Local Obsidian layout state
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+
+# Local update presentations and documents
+/updates/
