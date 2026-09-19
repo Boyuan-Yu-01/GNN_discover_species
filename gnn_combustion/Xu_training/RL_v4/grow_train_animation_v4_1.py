@@ -1,3 +1,4 @@
+import csv
 import os
 import random
 import sys
@@ -25,14 +26,24 @@ DUPLICATE_MOLECULE_REWARD = -0.5
 UNRECOGNIZED_MOLECULE_REWARD = -0.5
 ISOLATED_ATOM_REWARD = -0.5
 SEED = 12345
-MAX_STEPS_PER_EPOCH = 100
-INITIAL_ATOMS = [ATOM_C, ATOM_H, ATOM_H, ATOM_H, ATOM_H, ATOM_O, ATOM_O]
-# INITIAL_ATOMS = [
-#     ATOM_C, ATOM_C, ATOM_C, ATOM_C, ATOM_C, ATOM_C, ATOM_C, ATOM_C, ATOM_C,
-#     ATOM_H, ATOM_H, ATOM_H, ATOM_H, ATOM_H, ATOM_H,ATOM_H, ATOM_H, ATOM_H,
-#     ATOM_H, ATOM_H, ATOM_H, ATOM_H, ATOM_H, ATOM_H, ATOM_H, ATOM_H, ATOM_H,
-#     ATOM_O, ATOM_O, ATOM_O, ATOM_O, ATOM_O
-# ]
+MAX_STEPS_PER_EPOCH = 500
+# INITIAL_ATOMS = [ATOM_C, ATOM_H, ATOM_H, ATOM_H, ATOM_H, ATOM_O, ATOM_O]
+INITIAL_ATOMS = [
+    ATOM_C, ATOM_C, ATOM_C, ATOM_C, ATOM_C, ATOM_C, ATOM_C, ATOM_C, ATOM_C,
+    ATOM_C, ATOM_C, ATOM_C, ATOM_C, ATOM_C, ATOM_C, ATOM_C, ATOM_C, ATOM_C,
+    ATOM_H, ATOM_H, ATOM_H, ATOM_H, ATOM_H, ATOM_H,ATOM_H, ATOM_H, ATOM_H,
+    ATOM_H, ATOM_H, ATOM_H, ATOM_H, ATOM_H, ATOM_H, ATOM_H, ATOM_H, ATOM_H,
+    ATOM_H, ATOM_H, ATOM_H, ATOM_H, ATOM_H, ATOM_H, ATOM_H, ATOM_H, ATOM_H,
+    ATOM_H, ATOM_H, ATOM_H, ATOM_H, ATOM_H, ATOM_H, ATOM_H, ATOM_H, ATOM_H,
+    ATOM_H, ATOM_H, ATOM_H, ATOM_H, ATOM_H, ATOM_H, ATOM_H, ATOM_H, ATOM_H,
+    ATOM_H, ATOM_H, ATOM_H, ATOM_H, ATOM_H, ATOM_H, ATOM_H, ATOM_H, ATOM_H,
+    ATOM_H, ATOM_H, ATOM_H, ATOM_H, ATOM_H, ATOM_H, ATOM_H, ATOM_H, ATOM_H,
+    ATOM_H, ATOM_H, ATOM_H, ATOM_H, ATOM_H, ATOM_H, ATOM_H, ATOM_H, ATOM_H,
+    ATOM_O, ATOM_O, ATOM_O, ATOM_O, ATOM_O, ATOM_O, ATOM_O, ATOM_O, ATOM_O,
+]
+
+# Neural Network Configuration
+GNN_HIDDEN_DIMS = [32, 64, 32, 32, 16]
 
 # Save every generated plot beside this script, regardless of the launch folder.
 SCRIPT_FOLDER = os.path.dirname(os.path.abspath(__file__))
@@ -42,6 +53,8 @@ GIF_PATH = os.path.join(OUTPUT_FOLDER, "species_growth.gif")
 LOG_PATH = os.path.join(SCRIPT_FOLDER, "log_v4_1.txt")
 RESTART_FOLDER = os.path.join(OUTPUT_FOLDER, "restart_files")
 MODEL_PATH = os.path.join(OUTPUT_FOLDER, "trained_growth_gnn.pt")
+# CSV opens in Excel without extra packages; .xlsx requires openpyxl.
+SPECIES_INVENTORY_PATH = os.path.join(OUTPUT_FOLDER, "generated_species_inventory.csv")
 
 
 class Tee:
@@ -193,6 +206,161 @@ SPECIES_GRAPHS = {
 VALID_SPECIES = set(SPECIES_GRAPHS)
 NODE_MATCH = nx.algorithms.isomorphism.categorical_node_match("atom", None)     # compare two graph nodes using their "atom" attribute
 EDGE_MATCH = nx.algorithms.isomorphism.categorical_edge_match("order", None)    # compare two graph edges using their "order" attribute
+
+
+def get_species_inventory(env, epoch):
+    """Describe each final connected molecule using the reference-table fields.
+
+    Atom indices are local to each molecule. Recognized structures use the
+    reference graph's ordering; unknown structures use sorted environment IDs.
+    Pure-hydrogen species retain H as base atoms, as in SPECIES_GRAPHS.
+    """
+    inventory_graph = nx.Graph()
+    for local_index, atom_type in enumerate(env.node_types):
+        inventory_graph.add_node(env.offset + local_index, atom=atom_type)
+    for (u, v), order in env.bonds.items():
+        inventory_graph.add_edge(u, v, order=order)
+
+    rows = []
+    components = sorted(nx.connected_components(inventory_graph), key=min)
+    for molecule_number, nodes in enumerate(components, start=1):
+        structure = inventory_graph.subgraph(nodes)
+        species_key = None
+        for name, reference in SPECIES_GRAPHS.items():
+            if nx.is_isomorphic(structure, reference,
+                                node_match=NODE_MATCH, edge_match=EDGE_MATCH):
+                species_key = name
+                structure = reference
+                break
+        in_reference = species_key is not None
+
+        if species_key is None:
+            counts = {
+                symbol: sum(data["atom"] == atom_type
+                            for _, data in structure.nodes(data=True))
+                for atom_type, symbol in ATOM_SYMBOL.items()
+            }
+            formula = "".join(
+                symbol + (str(counts[symbol]) if counts[symbol] > 1 else "")
+                for symbol in ("C", "H", "O") if counts[symbol]
+            )
+            species_key = f"Unknown: {formula}"
+
+        base_nodes = sorted(
+            node for node, data in structure.nodes(data=True)
+            if data["atom"] != ATOM_H
+        )
+        hydrogen_only = not base_nodes
+        if hydrogen_only:
+            base_nodes = sorted(structure.nodes)
+        base_index = {node: index for index, node in enumerate(base_nodes)}
+        base_atoms = {
+            index: ATOM_SYMBOL[structure.nodes[node]["atom"]]
+            for node, index in base_index.items()
+        }
+        base_bonds = sorted(
+            (min(base_index[u], base_index[v]),
+             max(base_index[u], base_index[v]), data["order"])
+            for u, v, data in structure.edges(data=True)
+            if u in base_index and v in base_index
+        )
+        attached_h = [] if hydrogen_only else [
+            sum(structure.nodes[neighbor]["atom"] == ATOM_H
+                for neighbor in structure.neighbors(node))
+            for node in base_nodes
+        ]
+        rows.append({
+            "epoch": epoch,
+            "molecule_number": molecule_number,
+            "species_key": species_key,
+            "base_atom_indices": base_atoms,
+            "base_bonds": base_bonds,
+            "attached_h_per_base_atom": attached_h,
+            "in_species_training_reference": in_reference,
+        })
+    return rows
+
+
+def save_species_inventory(env, epoch, output_path=None, append=False):
+    """Export final molecules to CSV (default) or XLSX, one row per molecule.
+
+    Set append=True to add another epoch to an existing inventory. Unknown
+    molecules can share a formula; epoch and molecule number identify each row.
+    Reference membership is checked against SPECIES_GRAPHS, the source of the
+    species training reference workbook, rather than the workbook on Desktop.
+    XLSX export requires openpyxl; CSV uses only Python's standard library.
+    """
+    output_path = os.fspath(
+        SPECIES_INVENTORY_PATH if output_path is None else output_path
+    )
+    extension = os.path.splitext(output_path)[1].lower()
+    if extension not in (".csv", ".xlsx"):
+        raise ValueError("Species inventory output must end in .csv or .xlsx")
+    headers = [
+        "Epoch", "Molecule number", "Species key", "Base atom indices",
+        "Base bonds (u, v, order)", "Attached H per base atom",
+        "In species training reference",
+    ]
+    records = get_species_inventory(env, epoch)
+    rows = [
+        [
+            record["epoch"], record["molecule_number"], record["species_key"],
+            repr(record["base_atom_indices"]), repr(record["base_bonds"]),
+            repr(record["attached_h_per_base_atom"]),
+            "Yes" if record["in_species_training_reference"] else "No",
+        ]
+        for record in records
+    ]
+    os.makedirs(os.path.dirname(os.path.abspath(output_path)), exist_ok=True)
+    existing = append and os.path.isfile(output_path) and os.path.getsize(output_path) > 0
+
+    if extension == ".csv":
+        if existing:
+            with open(output_path, newline="", encoding="utf-8-sig") as source:
+                if next(csv.reader(source), None) != headers:
+                    raise ValueError("Existing species inventory has different columns")
+        with open(output_path, "a" if existing else "w",
+                  newline="", encoding="utf-8" if existing else "utf-8-sig") as target:
+            writer = csv.writer(target)
+            if not existing:
+                writer.writerow(headers)
+            writer.writerows(rows)
+    else:
+        try:
+            from openpyxl import Workbook, load_workbook
+            from openpyxl.styles import Alignment, Font, PatternFill
+        except ImportError as exc:
+            raise ImportError(
+                "XLSX export requires openpyxl in your training environment. "
+                "Install it with python -m pip install openpyxl, or use a .csv path."
+            ) from exc
+        workbook = load_workbook(output_path) if existing else Workbook()
+        try:
+            sheet = workbook.active
+            if existing:
+                if [cell.value for cell in sheet[1]] != headers:
+                    raise ValueError("Existing species inventory has different columns")
+            else:
+                sheet.title = "Generated species"
+                sheet.append(headers)
+                sheet.freeze_panes = "D2"
+                sheet.sheet_view.showGridLines = False
+                for column, width in zip("ABCDEFG", (10, 18, 26, 40, 55, 32, 32)):
+                    sheet.column_dimensions[column].width = width
+                for cell in sheet[1]:
+                    cell.font = Font(name="Arial", bold=True, color="FFFFFF")
+                    cell.fill = PatternFill("solid", fgColor="203B56")
+                    cell.alignment = Alignment(wrap_text=True, vertical="center")
+                sheet.row_dimensions[1].height = 32
+            for row in rows:
+                sheet.append(row)
+                for cell in sheet[sheet.max_row]:
+                    cell.alignment = Alignment(wrap_text=True, vertical="top")
+            sheet.auto_filter.ref = sheet.dimensions
+            workbook.save(output_path)
+        finally:
+            workbook.close()
+    return output_path
 
 # ==========================================
 # MOLECULE ENVIRONMENT (UNION-FIND TRACKING)
@@ -438,17 +606,22 @@ class AdvancedMoleculeEnv:
 # POLICY GNN MODEL
 # ==========================================
 class GrowthGNN(nn.Module):
-    def __init__(self, hidden_dim=32, num_layers=2):
+    def __init__(self, hidden_dims=None):
         super().__init__()
+        hidden_dims = list(GNN_HIDDEN_DIMS if hidden_dims is None else hidden_dims)
+        if not hidden_dims or any(type(width) is not int or width <= 0 for width in hidden_dims):
+            raise ValueError("hidden_dims must be a nonempty list of positive integers")
+        layer_dims = [3] + hidden_dims
         self.convs = nn.ModuleList([
-            GCNConv(3, hidden_dim),
-            *[GCNConv(hidden_dim, hidden_dim) for _ in range(num_layers - 1)]
+            GCNConv(in_dim, out_dim)
+            for in_dim, out_dim in zip(layer_dims[:-1], layer_dims[1:])
         ])
-        self.grow_head = nn.Linear(hidden_dim, 3)
+        final_dim = hidden_dims[-1]
+        self.grow_head = nn.Linear(final_dim, 3)
         # Output 3 values per pair (Single=0, Double=1, Triple=2)
-        self.connect_head = nn.Linear(hidden_dim * 2, 3)
-        self.termination_layer = nn.Linear(hidden_dim, 1)
-        
+        self.connect_head = nn.Linear(final_dim * 2, 3)
+        self.termination_layer = nn.Linear(final_dim, 1)
+
     def forward(self, data, grow_mask, edge_mask):
         h = data.x
         for conv in self.convs:
@@ -459,7 +632,7 @@ class GrowthGNN(nn.Module):
         h_i = h.unsqueeze(1).expand(-1, num_nodes, -1)
         h_j = h.unsqueeze(0).expand(num_nodes, -1, -1)
         pair_features = torch.cat([h_i, h_j], dim=-1)
-        # connect_logits shape: (N, N, 2)
+        # connect_logits shape: (N, N, 3)
         connect_logits = self.connect_head(pair_features) + (edge_mask - 1.0) * 1e9
         
         term_logit = self.termination_layer(global_mean_pool(h, batch=None))
@@ -503,14 +676,20 @@ if __name__ == "__main__":
         pretrained_data = torch.load(pretrained_model_path, map_location="cpu", weights_only=False)
 
     saved_config = pretrained_data["config"] if pretrained_data else {}
-    hidden_dim = saved_config.get("hidden_dim", 32)
-    num_layers = saved_config.get("num_layers", 3)
+    if "hidden_dims" in saved_config:
+        hidden_dims = list(saved_config["hidden_dims"])
+    elif pretrained_data:
+        # Older checkpoints used the same width for every GCN layer.
+        hidden_dims = [saved_config.get("hidden_dim", 32)] * saved_config.get("num_layers", 3)
+    else:
+        hidden_dims = list(GNN_HIDDEN_DIMS)
+    num_layers = len(hidden_dims)
     learning_rate = 0.01
     reward_weight = 0.5
     discount_factor = 0.9
     total_epochs = int(os.environ.get("GNN_ADDITIONAL_EPOCHS", "100"))
 
-    gnn_model = GrowthGNN(hidden_dim=hidden_dim, num_layers=num_layers)
+    gnn_model = GrowthGNN(hidden_dims=hidden_dims)
     if pretrained_data:
         gnn_model.load_state_dict(pretrained_data["model_state_dict"])
     optimizer = torch.optim.Adam(gnn_model.parameters(), lr=learning_rate)
@@ -518,7 +697,7 @@ if __name__ == "__main__":
     training_config = {
         "model_class": gnn_model.__class__.__name__,
         "node_feature_dim": 3,
-        "hidden_dim": hidden_dim,
+        "hidden_dims": hidden_dims,
         "num_layers": num_layers,
         "trainable_parameters": sum(p.numel() for p in gnn_model.parameters() if p.requires_grad),
         "learning_rate": learning_rate,
@@ -556,7 +735,7 @@ if __name__ == "__main__":
     if pretrained_model_path:
         print(f"Reusing trained neural network: {pretrained_model_path}")
     print(f"Neural network: {training_config['model_class']}, layers={num_layers}, "
-          f"hidden_dim={hidden_dim}, trainable_parameters={training_config['trainable_parameters']}")
+          f"hidden_dims={hidden_dims}, trainable_parameters={training_config['trainable_parameters']}")
     print(f"Reward settings: recognized={RECOGNIZED_MOLECULE_REWARD:+.1f}, "
           f"duplicate={DUPLICATE_MOLECULE_REWARD:+.1f}, "
           f"unrecognized={UNRECOGNIZED_MOLECULE_REWARD:+.1f}, "
@@ -681,6 +860,8 @@ if __name__ == "__main__":
         
         # Evaluate all final molecules and use their average score as the epoch reward.
         formulas_list, invalid_formulas_list, success, reward = env.evaluate_inventory()
+        inventory_path = save_species_inventory(env, epoch, append=epoch > 1)
+        print(f"Species inventory saved: {inventory_path}")
         
         # Policy Loss: Penalize choices that lead to chemical errors, reward valid configurations
         policy_loss = torch.tensor(0.0)

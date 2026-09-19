@@ -1,0 +1,34 @@
+11:23:42 | STAGE II | fixed network | checkpoint=../stageI/output_stage1/20260916_105526_866421/trained_growth_gnn.pt | epoch=300
+11:23:42 | Compositions=29 | samples/composition=100 | temperature=1.0 | seed=33680
+11:23:42 | New candidates satisfy the requested formula and construction masks; they are not confirmed stable or chemically important species.
+11:23:42 | C,H,O=(0, 2, 0) | reference=59 | candidate samples=0 | wrong formula=41 | step limit=0 | unique=1
+11:23:42 | C,H,O=(0, 0, 2) | reference=68 | candidate samples=0 | wrong formula=32 | step limit=0 | unique=1
+11:23:42 | C,H,O=(0, 1, 0) | reference=50 | candidate samples=0 | wrong formula=50 | step limit=0 | unique=1
+11:23:42 | C,H,O=(0, 0, 1) | reference=66 | candidate samples=0 | wrong formula=34 | step limit=0 | unique=1
+11:23:42 | C,H,O=(0, 1, 1) | reference=59 | candidate samples=0 | wrong formula=41 | step limit=0 | unique=1
+11:23:42 | C,H,O=(0, 2, 1) | reference=63 | candidate samples=0 | wrong formula=37 | step limit=0 | unique=1
+11:23:42 | C,H,O=(0, 1, 2) | reference=52 | candidate samples=0 | wrong formula=48 | step limit=0 | unique=1
+11:23:42 | C,H,O=(0, 2, 2) | reference=78 | candidate samples=0 | wrong formula=22 | step limit=0 | unique=1
+11:23:42 | C,H,O=(1, 0, 2) | reference=62 | candidate samples=0 | wrong formula=38 | step limit=0 | unique=1
+11:23:42 | C,H,O=(1, 1, 1) | reference=60 | candidate samples=0 | wrong formula=40 | step limit=0 | unique=1
+11:23:42 | C,H,O=(1, 2, 1) | reference=40 | candidate samples=1 | wrong formula=59 | step limit=0 | unique=2
+11:23:42 | C,H,O=(1, 4, 0) | reference=87 | candidate samples=0 | wrong formula=13 | step limit=0 | unique=1
+11:23:42 | C,H,O=(1, 3, 0) | reference=74 | candidate samples=0 | wrong formula=26 | step limit=0 | unique=1
+11:23:42 | C,H,O=(1, 3, 2) | reference=47 | candidate samples=1 | wrong formula=52 | step limit=0 | unique=2
+11:23:42 | C,H,O=(1, 2, 0) | reference=58 | candidate samples=0 | wrong formula=42 | step limit=0 | unique=1
+11:23:42 | C,H,O=(1, 1, 0) | reference=41 | candidate samples=0 | wrong formula=59 | step limit=0 | unique=1
+11:23:42 | C,H,O=(1, 0, 0) | reference=66 | candidate samples=0 | wrong formula=34 | step limit=0 | unique=1
+11:23:42 | C,H,O=(1, 3, 1) | reference=62 | candidate samples=0 | wrong formula=38 | step limit=0 | unique=2
+11:23:42 | C,H,O=(1, 4, 1) | reference=67 | candidate samples=0 | wrong formula=33 | step limit=0 | unique=1
+11:23:42 | C,H,O=(2, 6, 0) | reference=86 | candidate samples=0 | wrong formula=14 | step limit=0 | unique=1
+11:23:42 | C,H,O=(2, 5, 0) | reference=63 | candidate samples=0 | wrong formula=37 | step limit=0 | unique=1
+11:23:42 | C,H,O=(2, 4, 0) | reference=18 | candidate samples=0 | wrong formula=82 | step limit=0 | unique=1
+11:23:42 | C,H,O=(2, 3, 0) | reference=35 | candidate samples=0 | wrong formula=65 | step limit=0 | unique=1
+11:23:42 | C,H,O=(2, 2, 0) | reference=50 | candidate samples=2 | wrong formula=48 | step limit=0 | unique=3
+11:23:42 | C,H,O=(2, 1, 0) | reference=50 | candidate samples=0 | wrong formula=50 | step limit=0 | unique=1
+11:23:42 | C,H,O=(2, 1, 1) | reference=47 | candidate samples=0 | wrong formula=53 | step limit=0 | unique=1
+11:23:43 | C,H,O=(2, 2, 1) | reference=41 | candidate samples=0 | wrong formula=59 | step limit=0 | unique=1
+11:23:43 | C,H,O=(2, 3, 1) | reference=33 | candidate samples=1 | wrong formula=66 | step limit=0 | unique=3
+11:23:43 | C,H,O=(2, 4, 1) | reference=46 | candidate samples=0 | wrong formula=54 | step limit=0 | unique=1
+11:23:43 | FINISHED | attempts=2900 | reference structures=31 | new candidate structures=5 | elapsed=1.3s
+11:23:43 | Saved exploration outputs: output_stage2/exploration_III/runs/run_010

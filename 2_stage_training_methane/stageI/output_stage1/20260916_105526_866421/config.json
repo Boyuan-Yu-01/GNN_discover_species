@@ -1,0 +1,18 @@
+{
+  "atom_symbols": {"0": "H", "1": "O", "2": "C"},
+  "max_valency": {"0": 1, "1": 2, "2": 4},
+  "reference_path": "species_graphs.json",
+  "excluded_species": ["CO"],
+  "output_folder": "output_stage1/20260916_105526_866421",
+  "hidden_dims": [32, 64, 32, 32, 16],
+  "seed": 12345,
+  "max_atoms": 10,
+  "max_steps": 24,
+  "learning_rate": 0.003,
+  "epochs": 300,
+  "trajectory_sample_fraction": 0.2,
+  "eval_every": 50,
+  "eval_samples": 100,
+  "gradient_clip": 5.0,
+  "threads": 1
+}

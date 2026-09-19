@@ -1,0 +1,2164 @@
+[
+  {
+    "attempt": 2,
+    "requested_C_H_O": [0, 2, 0],
+    "generated_C_H_O": [0, 2, 0],
+    "category": "reference_match",
+    "species_key": "H2",
+    "in_species_training_reference": true,
+    "termination": "STOP",
+    "structure_id": "M00001",
+    "base_atom_indices": {"0": "H", "1": "H"},
+    "base_bonds": [
+      [0, 1, 1]
+    ],
+    "attached_h_per_base_atom": [],
+    "unused_valence_per_atom": [0, 0],
+    "graph": {
+      "nodes": [
+        {"id": 0, "atom": 0, "symbol": "H"},
+        {"id": 1, "atom": 0, "symbol": "H"}
+      ],
+      "edges": [
+        {"source": 0, "target": 1, "order": 1}
+      ]
+    },
+    "actions": [
+      {
+        "step": 1,
+        "action": ["START", 0],
+        "probability": 0.7803094387054443
+      },
+      {
+        "step": 2,
+        "action": ["GROW", 0, 0, 1],
+        "probability": 0.7395991086959839
+      },
+      {
+        "step": 3,
+        "action": ["STOP"],
+        "probability": 1.0
+      }
+    ],
+    "occurrences": 61,
+    "first_attempt": 2,
+    "frequency_within_requested_composition": 0.61
+  },
+  {
+    "attempt": 101,
+    "requested_C_H_O": [0, 0, 2],
+    "generated_C_H_O": [0, 0, 2],
+    "category": "reference_match",
+    "species_key": "O2",
+    "in_species_training_reference": true,
+    "termination": "STOP",
+    "structure_id": "M00002",
+    "base_atom_indices": {"0": "O", "1": "O"},
+    "base_bonds": [
+      [0, 1, 2]
+    ],
+    "attached_h_per_base_atom": [0, 0],
+    "unused_valence_per_atom": [0, 0],
+    "graph": {
+      "nodes": [
+        {"id": 0, "atom": 1, "symbol": "O"},
+        {"id": 1, "atom": 1, "symbol": "O"}
+      ],
+      "edges": [
+        {"source": 0, "target": 1, "order": 2}
+      ]
+    },
+    "actions": [
+      {
+        "step": 1,
+        "action": ["START", 1],
+        "probability": 0.9419335722923279
+      },
+      {
+        "step": 2,
+        "action": ["GROW", 0, 1, 2],
+        "probability": 0.6982572674751282
+      },
+      {
+        "step": 3,
+        "action": ["STOP"],
+        "probability": 1.0
+      }
+    ],
+    "occurrences": 66,
+    "first_attempt": 101,
+    "frequency_within_requested_composition": 0.66
+  },
+  {
+    "attempt": 201,
+    "requested_C_H_O": [0, 1, 0],
+    "generated_C_H_O": [0, 1, 0],
+    "category": "reference_match",
+    "species_key": "H",
+    "in_species_training_reference": true,
+    "termination": "STOP",
+    "structure_id": "M00003",
+    "base_atom_indices": {"0": "H"},
+    "base_bonds": [],
+    "attached_h_per_base_atom": [],
+    "unused_valence_per_atom": [1],
+    "graph": {
+      "nodes": [
+        {"id": 0, "atom": 0, "symbol": "H"}
+      ],
+      "edges": []
+    },
+    "actions": [
+      {
+        "step": 1,
+        "action": ["START", 0],
+        "probability": 0.6552891731262207
+      },
+      {
+        "step": 2,
+        "action": ["STOP"],
+        "probability": 0.7678762674331665
+      }
+    ],
+    "occurrences": 54,
+    "first_attempt": 201,
+    "frequency_within_requested_composition": 0.54
+  },
+  {
+    "attempt": 302,
+    "requested_C_H_O": [0, 0, 1],
+    "generated_C_H_O": [0, 0, 1],
+    "category": "reference_match",
+    "species_key": "O",
+    "in_species_training_reference": true,
+    "termination": "STOP",
+    "structure_id": "M00004",
+    "base_atom_indices": {"0": "O"},
+    "base_bonds": [],
+    "attached_h_per_base_atom": [0],
+    "unused_valence_per_atom": [2],
+    "graph": {
+      "nodes": [
+        {"id": 0, "atom": 1, "symbol": "O"}
+      ],
+      "edges": []
+    },
+    "actions": [
+      {
+        "step": 1,
+        "action": ["START", 1],
+        "probability": 0.7930334806442261
+      },
+      {
+        "step": 2,
+        "action": ["STOP"],
+        "probability": 0.7951489686965942
+      }
+    ],
+    "occurrences": 64,
+    "first_attempt": 302,
+    "frequency_within_requested_composition": 0.64
+  },
+  {
+    "attempt": 401,
+    "requested_C_H_O": [0, 1, 1],
+    "generated_C_H_O": [0, 1, 1],
+    "category": "reference_match",
+    "species_key": "OH",
+    "in_species_training_reference": true,
+    "termination": "STOP",
+    "structure_id": "M00005",
+    "base_atom_indices": {"0": "O"},
+    "base_bonds": [],
+    "attached_h_per_base_atom": [1],
+    "unused_valence_per_atom": [1, 0],
+    "graph": {
+      "nodes": [
+        {"id": 0, "atom": 1, "symbol": "O"},
+        {"id": 1, "atom": 0, "symbol": "H"}
+      ],
+      "edges": [
+        {"source": 0, "target": 1, "order": 1}
+      ]
+    },
+    "actions": [
+      {
+        "step": 1,
+        "action": ["START", 1],
+        "probability": 0.5807060599327087
+      },
+      {
+        "step": 2,
+        "action": ["GROW", 0, 0, 1],
+        "probability": 0.7984309196472168
+      },
+      {
+        "step": 3,
+        "action": ["STOP"],
+        "probability": 0.7816001772880554
+      }
+    ],
+    "occurrences": 60,
+    "first_attempt": 401,
+    "frequency_within_requested_composition": 0.6
+  },
+  {
+    "attempt": 501,
+    "requested_C_H_O": [0, 2, 1],
+    "generated_C_H_O": [0, 2, 1],
+    "category": "reference_match",
+    "species_key": "H2O",
+    "in_species_training_reference": true,
+    "termination": "STOP",
+    "structure_id": "M00006",
+    "base_atom_indices": {"0": "O"},
+    "base_bonds": [],
+    "attached_h_per_base_atom": [2],
+    "unused_valence_per_atom": [0, 0, 0],
+    "graph": {
+      "nodes": [
+        {"id": 0, "atom": 1, "symbol": "O"},
+        {"id": 1, "atom": 0, "symbol": "H"},
+        {"id": 2, "atom": 0, "symbol": "H"}
+      ],
+      "edges": [
+        {"source": 0, "target": 1, "order": 1},
+        {"source": 0, "target": 2, "order": 1}
+      ]
+    },
+    "actions": [
+      {
+        "step": 1,
+        "action": ["START", 1],
+        "probability": 0.3742755055427551
+      },
+      {
+        "step": 2,
+        "action": ["GROW", 0, 0, 1],
+        "probability": 0.9582025408744812
+      },
+      {
+        "step": 3,
+        "action": ["GROW", 0, 0, 1],
+        "probability": 0.8525950908660889
+      },
+      {
+        "step": 4,
+        "action": ["STOP"],
+        "probability": 1.0
+      }
+    ],
+    "occurrences": 64,
+    "first_attempt": 501,
+    "frequency_within_requested_composition": 0.64
+  },
+  {
+    "attempt": 601,
+    "requested_C_H_O": [0, 1, 2],
+    "generated_C_H_O": [0, 1, 2],
+    "category": "reference_match",
+    "species_key": "HO2",
+    "in_species_training_reference": true,
+    "termination": "STOP",
+    "structure_id": "M00007",
+    "base_atom_indices": {"0": "O", "1": "O"},
+    "base_bonds": [
+      [0, 1, 1]
+    ],
+    "attached_h_per_base_atom": [1, 0],
+    "unused_valence_per_atom": [0, 0, 1],
+    "graph": {
+      "nodes": [
+        {"id": 0, "atom": 1, "symbol": "O"},
+        {"id": 1, "atom": 0, "symbol": "H"},
+        {"id": 2, "atom": 1, "symbol": "O"}
+      ],
+      "edges": [
+        {"source": 0, "target": 1, "order": 1},
+        {"source": 0, "target": 2, "order": 1}
+      ]
+    },
+    "actions": [
+      {
+        "step": 1,
+        "action": ["START", 1],
+        "probability": 0.8916062712669373
+      },
+      {
+        "step": 2,
+        "action": ["GROW", 0, 0, 1],
+        "probability": 0.16614201664924622
+      },
+      {
+        "step": 3,
+        "action": ["GROW", 0, 1, 1],
+        "probability": 0.7365255355834961
+      },
+      {
+        "step": 4,
+        "action": ["STOP"],
+        "probability": 0.7781915068626404
+      }
+    ],
+    "occurrences": 50,
+    "first_attempt": 601,
+    "frequency_within_requested_composition": 0.5
+  },
+  {
+    "attempt": 701,
+    "requested_C_H_O": [0, 2, 2],
+    "generated_C_H_O": [0, 2, 2],
+    "category": "reference_match",
+    "species_key": "H2O2",
+    "in_species_training_reference": true,
+    "termination": "STOP",
+    "structure_id": "M00008",
+    "base_atom_indices": {"0": "O", "1": "O"},
+    "base_bonds": [
+      [0, 1, 1]
+    ],
+    "attached_h_per_base_atom": [1, 1],
+    "unused_valence_per_atom": [0, 0, 0, 0],
+    "graph": {
+      "nodes": [
+        {"id": 0, "atom": 1, "symbol": "O"},
+        {"id": 1, "atom": 0, "symbol": "H"},
+        {"id": 2, "atom": 1, "symbol": "O"},
+        {"id": 3, "atom": 0, "symbol": "H"}
+      ],
+      "edges": [
+        {"source": 0, "target": 1, "order": 1},
+        {"source": 0, "target": 2, "order": 1},
+        {"source": 2, "target": 3, "order": 1}
+      ]
+    },
+    "actions": [
+      {
+        "step": 1,
+        "action": ["START", 1],
+        "probability": 0.7633330821990967
+      },
+      {
+        "step": 2,
+        "action": ["GROW", 0, 0, 1],
+        "probability": 0.6007540225982666
+      },
+      {
+        "step": 3,
+        "action": ["GROW", 0, 1, 1],
+        "probability": 0.8708978295326233
+      },
+      {
+        "step": 4,
+        "action": ["GROW", 2, 0, 1],
+        "probability": 0.9399579763412476
+      },
+      {
+        "step": 5,
+        "action": ["STOP"],
+        "probability": 1.0
+      }
+    ],
+    "occurrences": 65,
+    "first_attempt": 701,
+    "frequency_within_requested_composition": 0.65
+  },
+  {
+    "attempt": 801,
+    "requested_C_H_O": [1, 0, 2],
+    "generated_C_H_O": [1, 0, 2],
+    "category": "reference_match",
+    "species_key": "CO2",
+    "in_species_training_reference": true,
+    "termination": "STOP",
+    "structure_id": "M00009",
+    "base_atom_indices": {"0": "C", "1": "O", "2": "O"},
+    "base_bonds": [
+      [0, 1, 2],
+      [0, 2, 2]
+    ],
+    "attached_h_per_base_atom": [0, 0, 0],
+    "unused_valence_per_atom": [0, 0, 0],
+    "graph": {
+      "nodes": [
+        {"id": 0, "atom": 2, "symbol": "C"},
+        {"id": 1, "atom": 1, "symbol": "O"},
+        {"id": 2, "atom": 1, "symbol": "O"}
+      ],
+      "edges": [
+        {"source": 0, "target": 1, "order": 2},
+        {"source": 0, "target": 2, "order": 2}
+      ]
+    },
+    "actions": [
+      {
+        "step": 1,
+        "action": ["START", 2],
+        "probability": 0.1383996605873108
+      },
+      {
+        "step": 2,
+        "action": ["GROW", 0, 1, 2],
+        "probability": 0.9765074253082275
+      },
+      {
+        "step": 3,
+        "action": ["GROW", 0, 1, 2],
+        "probability": 0.9628078937530518
+      },
+      {
+        "step": 4,
+        "action": ["STOP"],
+        "probability": 1.0
+      }
+    ],
+    "occurrences": 75,
+    "first_attempt": 801,
+    "frequency_within_requested_composition": 0.75
+  },
+  {
+    "attempt": 902,
+    "requested_C_H_O": [1, 1, 1],
+    "generated_C_H_O": [1, 1, 1],
+    "category": "reference_match",
+    "species_key": "HCO",
+    "in_species_training_reference": true,
+    "termination": "STOP",
+    "structure_id": "M00010",
+    "base_atom_indices": {"0": "C", "1": "O"},
+    "base_bonds": [
+      [0, 1, 2]
+    ],
+    "attached_h_per_base_atom": [1, 0],
+    "unused_valence_per_atom": [1, 0, 0],
+    "graph": {
+      "nodes": [
+        {"id": 0, "atom": 2, "symbol": "C"},
+        {"id": 1, "atom": 1, "symbol": "O"},
+        {"id": 2, "atom": 0, "symbol": "H"}
+      ],
+      "edges": [
+        {"source": 0, "target": 1, "order": 2},
+        {"source": 0, "target": 2, "order": 1}
+      ]
+    },
+    "actions": [
+      {
+        "step": 1,
+        "action": ["START", 2],
+        "probability": 0.4343585968017578
+      },
+      {
+        "step": 2,
+        "action": ["GROW", 0, 1, 2],
+        "probability": 0.6468362212181091
+      },
+      {
+        "step": 3,
+        "action": ["GROW", 0, 0, 1],
+        "probability": 0.9210501313209534
+      },
+      {
+        "step": 4,
+        "action": ["STOP"],
+        "probability": 0.8912299871444702
+      }
+    ],
+    "occurrences": 56,
+    "first_attempt": 902,
+    "frequency_within_requested_composition": 0.56
+  },
+  {
+    "attempt": 932,
+    "requested_C_H_O": [1, 1, 1],
+    "generated_C_H_O": [1, 1, 1],
+    "category": "new_candidate",
+    "species_key": "Unknown",
+    "in_species_training_reference": false,
+    "termination": "STOP",
+    "structure_id": "M00011",
+    "base_atom_indices": {"0": "C", "1": "O"},
+    "base_bonds": [
+      [0, 1, 1]
+    ],
+    "attached_h_per_base_atom": [1, 0],
+    "unused_valence_per_atom": [0, 2, 1],
+    "graph": {
+      "nodes": [
+        {"id": 0, "atom": 0, "symbol": "H"},
+        {"id": 1, "atom": 2, "symbol": "C"},
+        {"id": 2, "atom": 1, "symbol": "O"}
+      ],
+      "edges": [
+        {"source": 0, "target": 1, "order": 1},
+        {"source": 1, "target": 2, "order": 1}
+      ]
+    },
+    "actions": [
+      {
+        "step": 1,
+        "action": ["START", 0],
+        "probability": 0.2782691717147827
+      },
+      {
+        "step": 2,
+        "action": ["GROW", 0, 2, 1],
+        "probability": 0.6787585020065308
+      },
+      {
+        "step": 3,
+        "action": ["GROW", 1, 1, 1],
+        "probability": 0.037349533289670944
+      },
+      {
+        "step": 4,
+        "action": ["STOP"],
+        "probability": 0.15529942512512207
+      }
+    ],
+    "occurrences": 2,
+    "first_attempt": 932,
+    "frequency_within_requested_composition": 0.02
+  },
+  {
+    "attempt": 1004,
+    "requested_C_H_O": [1, 2, 1],
+    "generated_C_H_O": [1, 2, 1],
+    "category": "reference_match",
+    "species_key": "CH2O",
+    "in_species_training_reference": true,
+    "termination": "STOP",
+    "structure_id": "M00012",
+    "base_atom_indices": {"0": "C", "1": "O"},
+    "base_bonds": [
+      [0, 1, 2]
+    ],
+    "attached_h_per_base_atom": [2, 0],
+    "unused_valence_per_atom": [0, 0, 0, 0],
+    "graph": {
+      "nodes": [
+        {"id": 0, "atom": 0, "symbol": "H"},
+        {"id": 1, "atom": 2, "symbol": "C"},
+        {"id": 2, "atom": 1, "symbol": "O"},
+        {"id": 3, "atom": 0, "symbol": "H"}
+      ],
+      "edges": [
+        {"source": 0, "target": 1, "order": 1},
+        {"source": 1, "target": 2, "order": 2},
+        {"source": 1, "target": 3, "order": 1}
+      ]
+    },
+    "actions": [
+      {
+        "step": 1,
+        "action": ["START", 0],
+        "probability": 0.39222317934036255
+      },
+      {
+        "step": 2,
+        "action": ["GROW", 0, 2, 1],
+        "probability": 0.9461325407028198
+      },
+      {
+        "step": 3,
+        "action": ["GROW", 1, 1, 2],
+        "probability": 0.32161638140678406
+      },
+      {
+        "step": 4,
+        "action": ["GROW", 1, 0, 1],
+        "probability": 0.8456728458404541
+      },
+      {
+        "step": 5,
+        "action": ["STOP"],
+        "probability": 1.0
+      }
+    ],
+    "occurrences": 54,
+    "first_attempt": 1004,
+    "frequency_within_requested_composition": 0.54
+  },
+  {
+    "attempt": 1101,
+    "requested_C_H_O": [1, 4, 0],
+    "generated_C_H_O": [1, 4, 0],
+    "category": "reference_match",
+    "species_key": "CH4",
+    "in_species_training_reference": true,
+    "termination": "STOP",
+    "structure_id": "M00013",
+    "base_atom_indices": {"0": "C"},
+    "base_bonds": [],
+    "attached_h_per_base_atom": [4],
+    "unused_valence_per_atom": [0, 0, 0, 0, 0],
+    "graph": {
+      "nodes": [
+        {"id": 0, "atom": 0, "symbol": "H"},
+        {"id": 1, "atom": 2, "symbol": "C"},
+        {"id": 2, "atom": 0, "symbol": "H"},
+        {"id": 3, "atom": 0, "symbol": "H"},
+        {"id": 4, "atom": 0, "symbol": "H"}
+      ],
+      "edges": [
+        {"source": 0, "target": 1, "order": 1},
+        {"source": 1, "target": 2, "order": 1},
+        {"source": 1, "target": 3, "order": 1},
+        {"source": 1, "target": 4, "order": 1}
+      ]
+    },
+    "actions": [
+      {
+        "step": 1,
+        "action": ["START", 0],
+        "probability": 0.6665896773338318
+      },
+      {
+        "step": 2,
+        "action": ["GROW", 0, 2, 1],
+        "probability": 0.9906161427497864
+      },
+      {
+        "step": 3,
+        "action": ["GROW", 1, 0, 1],
+        "probability": 0.9795283079147339
+      },
+      {
+        "step": 4,
+        "action": ["GROW", 1, 0, 1],
+        "probability": 0.969667375087738
+      },
+      {
+        "step": 5,
+        "action": ["GROW", 1, 0, 1],
+        "probability": 0.8727405071258545
+      },
+      {
+        "step": 6,
+        "action": ["STOP"],
+        "probability": 1.0
+      }
+    ],
+    "occurrences": 79,
+    "first_attempt": 1101,
+    "frequency_within_requested_composition": 0.79
+  },
+  {
+    "attempt": 1204,
+    "requested_C_H_O": [1, 3, 0],
+    "generated_C_H_O": [1, 3, 0],
+    "category": "reference_match",
+    "species_key": "CH3",
+    "in_species_training_reference": true,
+    "termination": "STOP",
+    "structure_id": "M00014",
+    "base_atom_indices": {"0": "C"},
+    "base_bonds": [],
+    "attached_h_per_base_atom": [3],
+    "unused_valence_per_atom": [1, 0, 0, 0],
+    "graph": {
+      "nodes": [
+        {"id": 0, "atom": 2, "symbol": "C"},
+        {"id": 1, "atom": 0, "symbol": "H"},
+        {"id": 2, "atom": 0, "symbol": "H"},
+        {"id": 3, "atom": 0, "symbol": "H"}
+      ],
+      "edges": [
+        {"source": 0, "target": 1, "order": 1},
+        {"source": 0, "target": 2, "order": 1},
+        {"source": 0, "target": 3, "order": 1}
+      ]
+    },
+    "actions": [
+      {
+        "step": 1,
+        "action": ["START", 2],
+        "probability": 0.3859216272830963
+      },
+      {
+        "step": 2,
+        "action": ["GROW", 0, 0, 1],
+        "probability": 0.9838764071464539
+      },
+      {
+        "step": 3,
+        "action": ["GROW", 0, 0, 1],
+        "probability": 0.9713826775550842
+      },
+      {
+        "step": 4,
+        "action": ["GROW", 0, 0, 1],
+        "probability": 0.9117100834846497
+      },
+      {
+        "step": 5,
+        "action": ["STOP"],
+        "probability": 0.7858462929725647
+      }
+    ],
+    "occurrences": 63,
+    "first_attempt": 1204,
+    "frequency_within_requested_composition": 0.63
+  },
+  {
+    "attempt": 1301,
+    "requested_C_H_O": [1, 3, 2],
+    "generated_C_H_O": [1, 3, 2],
+    "category": "reference_match",
+    "species_key": "CH3O2",
+    "in_species_training_reference": true,
+    "termination": "STOP",
+    "structure_id": "M00015",
+    "base_atom_indices": {"0": "O", "1": "C", "2": "O"},
+    "base_bonds": [
+      [0, 1, 1],
+      [0, 2, 1]
+    ],
+    "attached_h_per_base_atom": [0, 3, 0],
+    "unused_valence_per_atom": [0, 0, 0, 1, 0, 0],
+    "graph": {
+      "nodes": [
+        {"id": 0, "atom": 1, "symbol": "O"},
+        {"id": 1, "atom": 2, "symbol": "C"},
+        {"id": 2, "atom": 0, "symbol": "H"},
+        {"id": 3, "atom": 1, "symbol": "O"},
+        {"id": 4, "atom": 0, "symbol": "H"},
+        {"id": 5, "atom": 0, "symbol": "H"}
+      ],
+      "edges": [
+        {"source": 0, "target": 1, "order": 1},
+        {"source": 0, "target": 3, "order": 1},
+        {"source": 1, "target": 2, "order": 1},
+        {"source": 1, "target": 4, "order": 1},
+        {"source": 1, "target": 5, "order": 1}
+      ]
+    },
+    "actions": [
+      {
+        "step": 1,
+        "action": ["START", 1],
+        "probability": 0.35891854763031006
+      },
+      {
+        "step": 2,
+        "action": ["GROW", 0, 2, 1],
+        "probability": 0.6300395727157593
+      },
+      {
+        "step": 3,
+        "action": ["GROW", 1, 0, 1],
+        "probability": 0.6675228476524353
+      },
+      {
+        "step": 4,
+        "action": ["GROW", 0, 1, 1],
+        "probability": 0.3266168534755707
+      },
+      {
+        "step": 5,
+        "action": ["GROW", 1, 0, 1],
+        "probability": 0.9847993850708008
+      },
+      {
+        "step": 6,
+        "action": ["GROW", 1, 0, 1],
+        "probability": 0.9876495003700256
+      },
+      {
+        "step": 7,
+        "action": ["STOP"],
+        "probability": 0.9910160303115845
+      }
+    ],
+    "occurrences": 59,
+    "first_attempt": 1301,
+    "frequency_within_requested_composition": 0.59
+  },
+  {
+    "attempt": 1337,
+    "requested_C_H_O": [1, 3, 2],
+    "generated_C_H_O": [1, 3, 2],
+    "category": "new_candidate",
+    "species_key": "Unknown",
+    "in_species_training_reference": false,
+    "termination": "STOP",
+    "structure_id": "M00016",
+    "base_atom_indices": {"0": "C", "1": "O", "2": "O"},
+    "base_bonds": [
+      [0, 1, 1],
+      [0, 2, 1]
+    ],
+    "attached_h_per_base_atom": [2, 0, 1],
+    "unused_valence_per_atom": [0, 1, 0, 0, 0, 0],
+    "graph": {
+      "nodes": [
+        {"id": 0, "atom": 2, "symbol": "C"},
+        {"id": 1, "atom": 1, "symbol": "O"},
+        {"id": 2, "atom": 0, "symbol": "H"},
+        {"id": 3, "atom": 1, "symbol": "O"},
+        {"id": 4, "atom": 0, "symbol": "H"},
+        {"id": 5, "atom": 0, "symbol": "H"}
+      ],
+      "edges": [
+        {"source": 0, "target": 1, "order": 1},
+        {"source": 0, "target": 2, "order": 1},
+        {"source": 0, "target": 3, "order": 1},
+        {"source": 0, "target": 4, "order": 1},
+        {"source": 3, "target": 5, "order": 1}
+      ]
+    },
+    "actions": [
+      {
+        "step": 1,
+        "action": ["START", 2],
+        "probability": 0.33918216824531555
+      },
+      {
+        "step": 2,
+        "action": ["GROW", 0, 1, 1],
+        "probability": 0.792943000793457
+      },
+      {
+        "step": 3,
+        "action": ["GROW", 0, 0, 1],
+        "probability": 0.6675228476524353
+      },
+      {
+        "step": 4,
+        "action": ["GROW", 0, 1, 1],
+        "probability": 0.011171604506671429
+      },
+      {
+        "step": 5,
+        "action": ["GROW", 0, 0, 1],
+        "probability": 0.46970024704933167
+      },
+      {
+        "step": 6,
+        "action": ["GROW", 3, 0, 1],
+        "probability": 0.45015719532966614
+      },
+      {
+        "step": 7,
+        "action": ["STOP"],
+        "probability": 0.9704618453979492
+      }
+    ],
+    "occurrences": 2,
+    "first_attempt": 1337,
+    "frequency_within_requested_composition": 0.02
+  },
+  {
+    "attempt": 1401,
+    "requested_C_H_O": [1, 2, 0],
+    "generated_C_H_O": [1, 2, 0],
+    "category": "reference_match",
+    "species_key": "CH2",
+    "in_species_training_reference": true,
+    "termination": "STOP",
+    "structure_id": "M00017",
+    "base_atom_indices": {"0": "C"},
+    "base_bonds": [],
+    "attached_h_per_base_atom": [2],
+    "unused_valence_per_atom": [2, 0, 0],
+    "graph": {
+      "nodes": [
+        {"id": 0, "atom": 2, "symbol": "C"},
+        {"id": 1, "atom": 0, "symbol": "H"},
+        {"id": 2, "atom": 0, "symbol": "H"}
+      ],
+      "edges": [
+        {"source": 0, "target": 1, "order": 1},
+        {"source": 0, "target": 2, "order": 1}
+      ]
+    },
+    "actions": [
+      {
+        "step": 1,
+        "action": ["START", 2],
+        "probability": 0.4568852484226227
+      },
+      {
+        "step": 2,
+        "action": ["GROW", 0, 0, 1],
+        "probability": 0.9442405104637146
+      },
+      {
+        "step": 3,
+        "action": ["GROW", 0, 0, 1],
+        "probability": 0.8549012541770935
+      },
+      {
+        "step": 4,
+        "action": ["STOP"],
+        "probability": 0.7148957252502441
+      }
+    ],
+    "occurrences": 66,
+    "first_attempt": 1401,
+    "frequency_within_requested_composition": 0.66
+  },
+  {
+    "attempt": 1503,
+    "requested_C_H_O": [1, 1, 0],
+    "generated_C_H_O": [1, 1, 0],
+    "category": "reference_match",
+    "species_key": "CH",
+    "in_species_training_reference": true,
+    "termination": "STOP",
+    "structure_id": "M00018",
+    "base_atom_indices": {"0": "C"},
+    "base_bonds": [],
+    "attached_h_per_base_atom": [1],
+    "unused_valence_per_atom": [0, 3],
+    "graph": {
+      "nodes": [
+        {"id": 0, "atom": 0, "symbol": "H"},
+        {"id": 1, "atom": 2, "symbol": "C"}
+      ],
+      "edges": [
+        {"source": 0, "target": 1, "order": 1}
+      ]
+    },
+    "actions": [
+      {
+        "step": 1,
+        "action": ["START", 0],
+        "probability": 0.3437003791332245
+      },
+      {
+        "step": 2,
+        "action": ["GROW", 0, 2, 1],
+        "probability": 0.8401870131492615
+      },
+      {
+        "step": 3,
+        "action": ["STOP"],
+        "probability": 0.6833747625350952
+      }
+    ],
+    "occurrences": 40,
+    "first_attempt": 1503,
+    "frequency_within_requested_composition": 0.4
+  },
+  {
+    "attempt": 1602,
+    "requested_C_H_O": [1, 0, 0],
+    "generated_C_H_O": [1, 0, 0],
+    "category": "reference_match",
+    "species_key": "C",
+    "in_species_training_reference": true,
+    "termination": "STOP",
+    "structure_id": "M00019",
+    "base_atom_indices": {"0": "C"},
+    "base_bonds": [],
+    "attached_h_per_base_atom": [0],
+    "unused_valence_per_atom": [4],
+    "graph": {
+      "nodes": [
+        {"id": 0, "atom": 2, "symbol": "C"}
+      ],
+      "edges": []
+    },
+    "actions": [
+      {
+        "step": 1,
+        "action": ["START", 2],
+        "probability": 0.701996386051178
+      },
+      {
+        "step": 2,
+        "action": ["STOP"],
+        "probability": 0.8456020355224609
+      }
+    ],
+    "occurrences": 57,
+    "first_attempt": 1602,
+    "frequency_within_requested_composition": 0.57
+  },
+  {
+    "attempt": 1701,
+    "requested_C_H_O": [1, 3, 1],
+    "generated_C_H_O": [1, 3, 1],
+    "category": "reference_match",
+    "species_key": "CH3O",
+    "in_species_training_reference": true,
+    "termination": "STOP",
+    "structure_id": "M00020",
+    "base_atom_indices": {"0": "C", "1": "O"},
+    "base_bonds": [
+      [0, 1, 1]
+    ],
+    "attached_h_per_base_atom": [3, 0],
+    "unused_valence_per_atom": [0, 0, 0, 1, 0],
+    "graph": {
+      "nodes": [
+        {"id": 0, "atom": 0, "symbol": "H"},
+        {"id": 1, "atom": 2, "symbol": "C"},
+        {"id": 2, "atom": 0, "symbol": "H"},
+        {"id": 3, "atom": 1, "symbol": "O"},
+        {"id": 4, "atom": 0, "symbol": "H"}
+      ],
+      "edges": [
+        {"source": 0, "target": 1, "order": 1},
+        {"source": 1, "target": 2, "order": 1},
+        {"source": 1, "target": 3, "order": 1},
+        {"source": 1, "target": 4, "order": 1}
+      ]
+    },
+    "actions": [
+      {
+        "step": 1,
+        "action": ["START", 0],
+        "probability": 0.49383777379989624
+      },
+      {
+        "step": 2,
+        "action": ["GROW", 0, 2, 1],
+        "probability": 0.9798866510391235
+      },
+      {
+        "step": 3,
+        "action": ["GROW", 1, 0, 1],
+        "probability": 0.7777519226074219
+      },
+      {
+        "step": 4,
+        "action": ["GROW", 1, 1, 1],
+        "probability": 0.4917258024215698
+      },
+      {
+        "step": 5,
+        "action": ["GROW", 1, 0, 1],
+        "probability": 0.6066235303878784
+      },
+      {
+        "step": 6,
+        "action": ["STOP"],
+        "probability": 0.8580418825149536
+      }
+    ],
+    "occurrences": 42,
+    "first_attempt": 1701,
+    "frequency_within_requested_composition": 0.42
+  },
+  {
+    "attempt": 1702,
+    "requested_C_H_O": [1, 3, 1],
+    "generated_C_H_O": [1, 3, 1],
+    "category": "reference_match",
+    "species_key": "CH2OH",
+    "in_species_training_reference": true,
+    "termination": "STOP",
+    "structure_id": "M00021",
+    "base_atom_indices": {"0": "C", "1": "O"},
+    "base_bonds": [
+      [0, 1, 1]
+    ],
+    "attached_h_per_base_atom": [2, 1],
+    "unused_valence_per_atom": [0, 1, 0, 0, 0],
+    "graph": {
+      "nodes": [
+        {"id": 0, "atom": 0, "symbol": "H"},
+        {"id": 1, "atom": 2, "symbol": "C"},
+        {"id": 2, "atom": 1, "symbol": "O"},
+        {"id": 3, "atom": 0, "symbol": "H"},
+        {"id": 4, "atom": 0, "symbol": "H"}
+      ],
+      "edges": [
+        {"source": 0, "target": 1, "order": 1},
+        {"source": 1, "target": 2, "order": 1},
+        {"source": 1, "target": 4, "order": 1},
+        {"source": 2, "target": 3, "order": 1}
+      ]
+    },
+    "actions": [
+      {
+        "step": 1,
+        "action": ["START", 0],
+        "probability": 0.49383777379989624
+      },
+      {
+        "step": 2,
+        "action": ["GROW", 0, 2, 1],
+        "probability": 0.9798866510391235
+      },
+      {
+        "step": 3,
+        "action": ["GROW", 1, 1, 1],
+        "probability": 0.18087945878505707
+      },
+      {
+        "step": 4,
+        "action": ["GROW", 2, 0, 1],
+        "probability": 0.26394665241241455
+      },
+      {
+        "step": 5,
+        "action": ["GROW", 1, 0, 1],
+        "probability": 0.9996587038040161
+      },
+      {
+        "step": 6,
+        "action": ["STOP"],
+        "probability": 0.8316897749900818
+      }
+    ],
+    "occurrences": 21,
+    "first_attempt": 1702,
+    "frequency_within_requested_composition": 0.21
+  },
+  {
+    "attempt": 1801,
+    "requested_C_H_O": [1, 4, 1],
+    "generated_C_H_O": [1, 4, 1],
+    "category": "reference_match",
+    "species_key": "CH3OH",
+    "in_species_training_reference": true,
+    "termination": "STOP",
+    "structure_id": "M00022",
+    "base_atom_indices": {"0": "C", "1": "O"},
+    "base_bonds": [
+      [0, 1, 1]
+    ],
+    "attached_h_per_base_atom": [3, 1],
+    "unused_valence_per_atom": [0, 0, 0, 0, 0, 0],
+    "graph": {
+      "nodes": [
+        {"id": 0, "atom": 0, "symbol": "H"},
+        {"id": 1, "atom": 2, "symbol": "C"},
+        {"id": 2, "atom": 0, "symbol": "H"},
+        {"id": 3, "atom": 0, "symbol": "H"},
+        {"id": 4, "atom": 1, "symbol": "O"},
+        {"id": 5, "atom": 0, "symbol": "H"}
+      ],
+      "edges": [
+        {"source": 0, "target": 1, "order": 1},
+        {"source": 1, "target": 2, "order": 1},
+        {"source": 1, "target": 3, "order": 1},
+        {"source": 1, "target": 4, "order": 1},
+        {"source": 4, "target": 5, "order": 1}
+      ]
+    },
+    "actions": [
+      {
+        "step": 1,
+        "action": ["START", 0],
+        "probability": 0.5863263607025146
+      },
+      {
+        "step": 2,
+        "action": ["GROW", 0, 2, 1],
+        "probability": 0.9879087805747986
+      },
+      {
+        "step": 3,
+        "action": ["GROW", 1, 0, 1],
+        "probability": 0.8615232706069946
+      },
+      {
+        "step": 4,
+        "action": ["GROW", 1, 0, 1],
+        "probability": 0.6661156415939331
+      },
+      {
+        "step": 5,
+        "action": ["GROW", 1, 1, 1],
+        "probability": 0.7293125987052917
+      },
+      {
+        "step": 6,
+        "action": ["GROW", 4, 0, 1],
+        "probability": 0.8685885667800903
+      },
+      {
+        "step": 7,
+        "action": ["STOP"],
+        "probability": 1.0
+      }
+    ],
+    "occurrences": 78,
+    "first_attempt": 1801,
+    "frequency_within_requested_composition": 0.78
+  },
+  {
+    "attempt": 1901,
+    "requested_C_H_O": [2, 6, 0],
+    "generated_C_H_O": [2, 6, 0],
+    "category": "reference_match",
+    "species_key": "C2H6",
+    "in_species_training_reference": true,
+    "termination": "STOP",
+    "structure_id": "M00023",
+    "base_atom_indices": {"0": "C", "1": "C"},
+    "base_bonds": [
+      [0, 1, 1]
+    ],
+    "attached_h_per_base_atom": [3, 3],
+    "unused_valence_per_atom": [0, 0, 0, 0, 0, 0, 0, 0],
+    "graph": {
+      "nodes": [
+        {"id": 0, "atom": 0, "symbol": "H"},
+        {"id": 1, "atom": 2, "symbol": "C"},
+        {"id": 2, "atom": 2, "symbol": "C"},
+        {"id": 3, "atom": 0, "symbol": "H"},
+        {"id": 4, "atom": 0, "symbol": "H"},
+        {"id": 5, "atom": 0, "symbol": "H"},
+        {"id": 6, "atom": 0, "symbol": "H"},
+        {"id": 7, "atom": 0, "symbol": "H"}
+      ],
+      "edges": [
+        {"source": 0, "target": 1, "order": 1},
+        {"source": 1, "target": 2, "order": 1},
+        {"source": 1, "target": 4, "order": 1},
+        {"source": 1, "target": 5, "order": 1},
+        {"source": 2, "target": 3, "order": 1},
+        {"source": 2, "target": 6, "order": 1},
+        {"source": 2, "target": 7, "order": 1}
+      ]
+    },
+    "actions": [
+      {
+        "step": 1,
+        "action": ["START", 0],
+        "probability": 0.4165569245815277
+      },
+      {
+        "step": 2,
+        "action": ["GROW", 0, 2, 1],
+        "probability": 0.9997485280036926
+      },
+      {
+        "step": 3,
+        "action": ["GROW", 1, 2, 1],
+        "probability": 0.6920403838157654
+      },
+      {
+        "step": 4,
+        "action": ["GROW", 2, 0, 1],
+        "probability": 0.6057325005531311
+      },
+      {
+        "step": 5,
+        "action": ["GROW", 1, 0, 1],
+        "probability": 0.49998462200164795
+      },
+      {
+        "step": 6,
+        "action": ["GROW", 1, 0, 1],
+        "probability": 0.3425998091697693
+      },
+      {
+        "step": 7,
+        "action": ["GROW", 2, 0, 1],
+        "probability": 0.9995121955871582
+      },
+      {
+        "step": 8,
+        "action": ["GROW", 2, 0, 1],
+        "probability": 0.9335702061653137
+      },
+      {
+        "step": 9,
+        "action": ["STOP"],
+        "probability": 1.0
+      }
+    ],
+    "occurrences": 87,
+    "first_attempt": 1901,
+    "frequency_within_requested_composition": 0.87
+  },
+  {
+    "attempt": 2004,
+    "requested_C_H_O": [2, 5, 0],
+    "generated_C_H_O": [2, 5, 0],
+    "category": "reference_match",
+    "species_key": "C2H5",
+    "in_species_training_reference": true,
+    "termination": "STOP",
+    "structure_id": "M00024",
+    "base_atom_indices": {"0": "C", "1": "C"},
+    "base_bonds": [
+      [0, 1, 1]
+    ],
+    "attached_h_per_base_atom": [3, 2],
+    "unused_valence_per_atom": [0, 0, 0, 1, 0, 0, 0],
+    "graph": {
+      "nodes": [
+        {"id": 0, "atom": 0, "symbol": "H"},
+        {"id": 1, "atom": 2, "symbol": "C"},
+        {"id": 2, "atom": 0, "symbol": "H"},
+        {"id": 3, "atom": 2, "symbol": "C"},
+        {"id": 4, "atom": 0, "symbol": "H"},
+        {"id": 5, "atom": 0, "symbol": "H"},
+        {"id": 6, "atom": 0, "symbol": "H"}
+      ],
+      "edges": [
+        {"source": 0, "target": 1, "order": 1},
+        {"source": 1, "target": 2, "order": 1},
+        {"source": 1, "target": 3, "order": 1},
+        {"source": 1, "target": 5, "order": 1},
+        {"source": 3, "target": 4, "order": 1},
+        {"source": 3, "target": 6, "order": 1}
+      ]
+    },
+    "actions": [
+      {
+        "step": 1,
+        "action": ["START", 0],
+        "probability": 0.3424491584300995
+      },
+      {
+        "step": 2,
+        "action": ["GROW", 0, 2, 1],
+        "probability": 0.9998020529747009
+      },
+      {
+        "step": 3,
+        "action": ["GROW", 1, 0, 1],
+        "probability": 0.22899958491325378
+      },
+      {
+        "step": 4,
+        "action": ["GROW", 1, 2, 1],
+        "probability": 0.6786587238311768
+      },
+      {
+        "step": 5,
+        "action": ["GROW", 3, 0, 1],
+        "probability": 0.6570897102355957
+      },
+      {
+        "step": 6,
+        "action": ["GROW", 1, 0, 1],
+        "probability": 0.35250669717788696
+      },
+      {
+        "step": 7,
+        "action": ["GROW", 3, 0, 1],
+        "probability": 0.9926838278770447
+      },
+      {
+        "step": 8,
+        "action": ["STOP"],
+        "probability": 0.8247637748718262
+      }
+    ],
+    "occurrences": 65,
+    "first_attempt": 2004,
+    "frequency_within_requested_composition": 0.65
+  },
+  {
+    "attempt": 2104,
+    "requested_C_H_O": [2, 4, 0],
+    "generated_C_H_O": [2, 4, 0],
+    "category": "reference_match",
+    "species_key": "C2H4",
+    "in_species_training_reference": true,
+    "termination": "STOP",
+    "structure_id": "M00025",
+    "base_atom_indices": {"0": "C", "1": "C"},
+    "base_bonds": [
+      [0, 1, 2]
+    ],
+    "attached_h_per_base_atom": [2, 2],
+    "unused_valence_per_atom": [0, 0, 0, 0, 0, 0],
+    "graph": {
+      "nodes": [
+        {"id": 0, "atom": 0, "symbol": "H"},
+        {"id": 1, "atom": 2, "symbol": "C"},
+        {"id": 2, "atom": 2, "symbol": "C"},
+        {"id": 3, "atom": 0, "symbol": "H"},
+        {"id": 4, "atom": 0, "symbol": "H"},
+        {"id": 5, "atom": 0, "symbol": "H"}
+      ],
+      "edges": [
+        {"source": 0, "target": 1, "order": 1},
+        {"source": 1, "target": 2, "order": 2},
+        {"source": 1, "target": 3, "order": 1},
+        {"source": 2, "target": 4, "order": 1},
+        {"source": 2, "target": 5, "order": 1}
+      ]
+    },
+    "actions": [
+      {
+        "step": 1,
+        "action": ["START", 0],
+        "probability": 0.2751902937889099
+      },
+      {
+        "step": 2,
+        "action": ["GROW", 0, 2, 1],
+        "probability": 0.999841570854187
+      },
+      {
+        "step": 3,
+        "action": ["GROW", 1, 2, 2],
+        "probability": 0.17997696995735168
+      },
+      {
+        "step": 4,
+        "action": ["GROW", 1, 0, 1],
+        "probability": 0.397433340549469
+      },
+      {
+        "step": 5,
+        "action": ["GROW", 2, 0, 1],
+        "probability": 0.9986717700958252
+      },
+      {
+        "step": 6,
+        "action": ["GROW", 2, 0, 1],
+        "probability": 0.9234008193016052
+      },
+      {
+        "step": 7,
+        "action": ["STOP"],
+        "probability": 1.0
+      }
+    ],
+    "occurrences": 23,
+    "first_attempt": 2104,
+    "frequency_within_requested_composition": 0.23
+  },
+  {
+    "attempt": 2199,
+    "requested_C_H_O": [2, 4, 0],
+    "generated_C_H_O": [2, 4, 0],
+    "category": "new_candidate",
+    "species_key": "Unknown",
+    "in_species_training_reference": false,
+    "termination": "STOP",
+    "structure_id": "M00026",
+    "base_atom_indices": {"0": "C", "1": "C"},
+    "base_bonds": [
+      [0, 1, 1]
+    ],
+    "attached_h_per_base_atom": [2, 2],
+    "unused_valence_per_atom": [0, 1, 0, 1, 0, 0],
+    "graph": {
+      "nodes": [
+        {"id": 0, "atom": 0, "symbol": "H"},
+        {"id": 1, "atom": 2, "symbol": "C"},
+        {"id": 2, "atom": 0, "symbol": "H"},
+        {"id": 3, "atom": 2, "symbol": "C"},
+        {"id": 4, "atom": 0, "symbol": "H"},
+        {"id": 5, "atom": 0, "symbol": "H"}
+      ],
+      "edges": [
+        {"source": 0, "target": 1, "order": 1},
+        {"source": 1, "target": 2, "order": 1},
+        {"source": 1, "target": 3, "order": 1},
+        {"source": 3, "target": 4, "order": 1},
+        {"source": 3, "target": 5, "order": 1}
+      ]
+    },
+    "actions": [
+      {
+        "step": 1,
+        "action": ["START", 0],
+        "probability": 0.2751902937889099
+      },
+      {
+        "step": 2,
+        "action": ["GROW", 0, 2, 1],
+        "probability": 0.999841570854187
+      },
+      {
+        "step": 3,
+        "action": ["GROW", 1, 0, 1],
+        "probability": 0.25525856018066406
+      },
+      {
+        "step": 4,
+        "action": ["GROW", 1, 2, 1],
+        "probability": 0.4849041998386383
+      },
+      {
+        "step": 5,
+        "action": ["GROW", 3, 0, 1],
+        "probability": 0.6305401921272278
+      },
+      {
+        "step": 6,
+        "action": ["GROW", 3, 0, 1],
+        "probability": 0.6153696775436401
+      },
+      {
+        "step": 7,
+        "action": ["STOP"],
+        "probability": 0.03032609261572361
+      }
+    ],
+    "occurrences": 1,
+    "first_attempt": 2199,
+    "frequency_within_requested_composition": 0.01
+  },
+  {
+    "attempt": 2202,
+    "requested_C_H_O": [2, 3, 0],
+    "generated_C_H_O": [2, 3, 0],
+    "category": "reference_match",
+    "species_key": "C2H3",
+    "in_species_training_reference": true,
+    "termination": "STOP",
+    "structure_id": "M00027",
+    "base_atom_indices": {"0": "C", "1": "C"},
+    "base_bonds": [
+      [0, 1, 2]
+    ],
+    "attached_h_per_base_atom": [1, 2],
+    "unused_valence_per_atom": [1, 0, 0, 0, 0],
+    "graph": {
+      "nodes": [
+        {"id": 0, "atom": 2, "symbol": "C"},
+        {"id": 1, "atom": 2, "symbol": "C"},
+        {"id": 2, "atom": 0, "symbol": "H"},
+        {"id": 3, "atom": 0, "symbol": "H"},
+        {"id": 4, "atom": 0, "symbol": "H"}
+      ],
+      "edges": [
+        {"source": 0, "target": 1, "order": 2},
+        {"source": 0, "target": 4, "order": 1},
+        {"source": 1, "target": 2, "order": 1},
+        {"source": 1, "target": 3, "order": 1}
+      ]
+    },
+    "actions": [
+      {
+        "step": 1,
+        "action": ["START", 2],
+        "probability": 0.7740293145179749
+      },
+      {
+        "step": 2,
+        "action": ["GROW", 0, 2, 2],
+        "probability": 0.2745252847671509
+      },
+      {
+        "step": 3,
+        "action": ["GROW", 1, 0, 1],
+        "probability": 0.49979016184806824
+      },
+      {
+        "step": 4,
+        "action": ["GROW", 1, 0, 1],
+        "probability": 0.43268921971321106
+      },
+      {
+        "step": 5,
+        "action": ["GROW", 0, 0, 1],
+        "probability": 0.975468635559082
+      },
+      {
+        "step": 6,
+        "action": ["STOP"],
+        "probability": 0.8474112749099731
+      }
+    ],
+    "occurrences": 40,
+    "first_attempt": 2202,
+    "frequency_within_requested_composition": 0.4
+  },
+  {
+    "attempt": 2301,
+    "requested_C_H_O": [2, 2, 0],
+    "generated_C_H_O": [2, 2, 0],
+    "category": "reference_match",
+    "species_key": "C2H2",
+    "in_species_training_reference": true,
+    "termination": "STOP",
+    "structure_id": "M00028",
+    "base_atom_indices": {"0": "C", "1": "C"},
+    "base_bonds": [
+      [0, 1, 3]
+    ],
+    "attached_h_per_base_atom": [1, 1],
+    "unused_valence_per_atom": [0, 0, 0, 0],
+    "graph": {
+      "nodes": [
+        {"id": 0, "atom": 2, "symbol": "C"},
+        {"id": 1, "atom": 2, "symbol": "C"},
+        {"id": 2, "atom": 0, "symbol": "H"},
+        {"id": 3, "atom": 0, "symbol": "H"}
+      ],
+      "edges": [
+        {"source": 0, "target": 1, "order": 3},
+        {"source": 0, "target": 3, "order": 1},
+        {"source": 1, "target": 2, "order": 1}
+      ]
+    },
+    "actions": [
+      {
+        "step": 1,
+        "action": ["START", 2],
+        "probability": 0.8447586297988892
+      },
+      {
+        "step": 2,
+        "action": ["GROW", 0, 2, 3],
+        "probability": 0.3131863474845886
+      },
+      {
+        "step": 3,
+        "action": ["GROW", 1, 0, 1],
+        "probability": 0.4999953508377075
+      },
+      {
+        "step": 4,
+        "action": ["GROW", 0, 0, 1],
+        "probability": 0.9271417260169983
+      },
+      {
+        "step": 5,
+        "action": ["STOP"],
+        "probability": 1.0
+      }
+    ],
+    "occurrences": 44,
+    "first_attempt": 2301,
+    "frequency_within_requested_composition": 0.44
+  },
+  {
+    "attempt": 2401,
+    "requested_C_H_O": [2, 1, 0],
+    "generated_C_H_O": [2, 1, 0],
+    "category": "reference_match",
+    "species_key": "C2H",
+    "in_species_training_reference": true,
+    "termination": "STOP",
+    "structure_id": "M00029",
+    "base_atom_indices": {"0": "C", "1": "C"},
+    "base_bonds": [
+      [0, 1, 3]
+    ],
+    "attached_h_per_base_atom": [1, 0],
+    "unused_valence_per_atom": [0, 1, 0],
+    "graph": {
+      "nodes": [
+        {"id": 0, "atom": 2, "symbol": "C"},
+        {"id": 1, "atom": 2, "symbol": "C"},
+        {"id": 2, "atom": 0, "symbol": "H"}
+      ],
+      "edges": [
+        {"source": 0, "target": 1, "order": 3},
+        {"source": 0, "target": 2, "order": 1}
+      ]
+    },
+    "actions": [
+      {
+        "step": 1,
+        "action": ["START", 2],
+        "probability": 0.9003056883811951
+      },
+      {
+        "step": 2,
+        "action": ["GROW", 0, 2, 3],
+        "probability": 0.5778250694274902
+      },
+      {
+        "step": 3,
+        "action": ["GROW", 0, 0, 1],
+        "probability": 0.4999803900718689
+      },
+      {
+        "step": 4,
+        "action": ["STOP"],
+        "probability": 0.8372638821601868
+      }
+    ],
+    "occurrences": 56,
+    "first_attempt": 2401,
+    "frequency_within_requested_composition": 0.56
+  },
+  {
+    "attempt": 2501,
+    "requested_C_H_O": [2, 1, 1],
+    "generated_C_H_O": [2, 1, 1],
+    "category": "reference_match",
+    "species_key": "HCCO",
+    "in_species_training_reference": true,
+    "termination": "STOP",
+    "structure_id": "M00030",
+    "base_atom_indices": {"0": "C", "1": "C", "2": "O"},
+    "base_bonds": [
+      [0, 1, 2],
+      [1, 2, 2]
+    ],
+    "attached_h_per_base_atom": [1, 0, 0],
+    "unused_valence_per_atom": [0, 1, 0, 0],
+    "graph": {
+      "nodes": [
+        {"id": 0, "atom": 0, "symbol": "H"},
+        {"id": 1, "atom": 2, "symbol": "C"},
+        {"id": 2, "atom": 2, "symbol": "C"},
+        {"id": 3, "atom": 1, "symbol": "O"}
+      ],
+      "edges": [
+        {"source": 0, "target": 1, "order": 1},
+        {"source": 1, "target": 2, "order": 2},
+        {"source": 2, "target": 3, "order": 2}
+      ]
+    },
+    "actions": [
+      {
+        "step": 1,
+        "action": ["START", 0],
+        "probability": 0.09341664612293243
+      },
+      {
+        "step": 2,
+        "action": ["GROW", 0, 2, 1],
+        "probability": 0.9982572197914124
+      },
+      {
+        "step": 3,
+        "action": ["GROW", 1, 2, 2],
+        "probability": 0.36082005500793457
+      },
+      {
+        "step": 4,
+        "action": ["GROW", 2, 1, 2],
+        "probability": 0.9395220279693604
+      },
+      {
+        "step": 5,
+        "action": ["STOP"],
+        "probability": 0.9018939733505249
+      }
+    ],
+    "occurrences": 50,
+    "first_attempt": 2501,
+    "frequency_within_requested_composition": 0.5
+  },
+  {
+    "attempt": 2544,
+    "requested_C_H_O": [2, 1, 1],
+    "generated_C_H_O": [2, 1, 1],
+    "category": "new_candidate",
+    "species_key": "Unknown",
+    "in_species_training_reference": false,
+    "termination": "STOP",
+    "structure_id": "M00031",
+    "base_atom_indices": {"0": "C", "1": "O", "2": "C"},
+    "base_bonds": [
+      [0, 1, 1],
+      [0, 2, 3]
+    ],
+    "attached_h_per_base_atom": [0, 0, 1],
+    "unused_valence_per_atom": [0, 1, 0, 0],
+    "graph": {
+      "nodes": [
+        {"id": 0, "atom": 2, "symbol": "C"},
+        {"id": 1, "atom": 1, "symbol": "O"},
+        {"id": 2, "atom": 2, "symbol": "C"},
+        {"id": 3, "atom": 0, "symbol": "H"}
+      ],
+      "edges": [
+        {"source": 0, "target": 1, "order": 1},
+        {"source": 0, "target": 2, "order": 3},
+        {"source": 2, "target": 3, "order": 1}
+      ]
+    },
+    "actions": [
+      {
+        "step": 1,
+        "action": ["START", 2],
+        "probability": 0.8571261763572693
+      },
+      {
+        "step": 2,
+        "action": ["GROW", 0, 1, 1],
+        "probability": 0.051119476556777954
+      },
+      {
+        "step": 3,
+        "action": ["GROW", 0, 2, 3],
+        "probability": 0.02085634507238865
+      },
+      {
+        "step": 4,
+        "action": ["GROW", 2, 0, 1],
+        "probability": 0.6361218094825745
+      },
+      {
+        "step": 5,
+        "action": ["STOP"],
+        "probability": 0.9671627879142761
+      }
+    ],
+    "occurrences": 1,
+    "first_attempt": 2544,
+    "frequency_within_requested_composition": 0.01
+  },
+  {
+    "attempt": 2606,
+    "requested_C_H_O": [2, 2, 1],
+    "generated_C_H_O": [2, 2, 1],
+    "category": "reference_match",
+    "species_key": "CH2CO",
+    "in_species_training_reference": true,
+    "termination": "STOP",
+    "structure_id": "M00032",
+    "base_atom_indices": {"0": "C", "1": "C", "2": "O"},
+    "base_bonds": [
+      [0, 1, 2],
+      [1, 2, 2]
+    ],
+    "attached_h_per_base_atom": [2, 0, 0],
+    "unused_valence_per_atom": [0, 0, 0, 0, 0],
+    "graph": {
+      "nodes": [
+        {"id": 0, "atom": 0, "symbol": "H"},
+        {"id": 1, "atom": 2, "symbol": "C"},
+        {"id": 2, "atom": 2, "symbol": "C"},
+        {"id": 3, "atom": 0, "symbol": "H"},
+        {"id": 4, "atom": 1, "symbol": "O"}
+      ],
+      "edges": [
+        {"source": 0, "target": 1, "order": 1},
+        {"source": 1, "target": 2, "order": 2},
+        {"source": 1, "target": 3, "order": 1},
+        {"source": 2, "target": 4, "order": 2}
+      ]
+    },
+    "actions": [
+      {
+        "step": 1,
+        "action": ["START", 0],
+        "probability": 0.13976745307445526
+      },
+      {
+        "step": 2,
+        "action": ["GROW", 0, 2, 1],
+        "probability": 0.9995244741439819
+      },
+      {
+        "step": 3,
+        "action": ["GROW", 1, 2, 2],
+        "probability": 0.47422581911087036
+      },
+      {
+        "step": 4,
+        "action": ["GROW", 1, 0, 1],
+        "probability": 0.4275690019130707
+      },
+      {
+        "step": 5,
+        "action": ["GROW", 2, 1, 2],
+        "probability": 0.9533812403678894
+      },
+      {
+        "step": 6,
+        "action": ["STOP"],
+        "probability": 1.0
+      }
+    ],
+    "occurrences": 51,
+    "first_attempt": 2606,
+    "frequency_within_requested_composition": 0.51
+  },
+  {
+    "attempt": 2701,
+    "requested_C_H_O": [2, 3, 1],
+    "generated_C_H_O": [2, 3, 1],
+    "category": "reference_match",
+    "species_key": "CH2CHO",
+    "in_species_training_reference": true,
+    "termination": "STOP",
+    "structure_id": "M00033",
+    "base_atom_indices": {"0": "C", "1": "C", "2": "O"},
+    "base_bonds": [
+      [0, 1, 1],
+      [1, 2, 2]
+    ],
+    "attached_h_per_base_atom": [2, 1, 0],
+    "unused_valence_per_atom": [1, 0, 0, 0, 0, 0],
+    "graph": {
+      "nodes": [
+        {"id": 0, "atom": 2, "symbol": "C"},
+        {"id": 1, "atom": 0, "symbol": "H"},
+        {"id": 2, "atom": 2, "symbol": "C"},
+        {"id": 3, "atom": 0, "symbol": "H"},
+        {"id": 4, "atom": 0, "symbol": "H"},
+        {"id": 5, "atom": 1, "symbol": "O"}
+      ],
+      "edges": [
+        {"source": 0, "target": 1, "order": 1},
+        {"source": 0, "target": 2, "order": 1},
+        {"source": 0, "target": 4, "order": 1},
+        {"source": 2, "target": 3, "order": 1},
+        {"source": 2, "target": 5, "order": 2}
+      ]
+    },
+    "actions": [
+      {
+        "step": 1,
+        "action": ["START", 2],
+        "probability": 0.7922268509864807
+      },
+      {
+        "step": 2,
+        "action": ["GROW", 0, 0, 1],
+        "probability": 0.28837400674819946
+      },
+      {
+        "step": 3,
+        "action": ["GROW", 0, 2, 1],
+        "probability": 0.33769264817237854
+      },
+      {
+        "step": 4,
+        "action": ["GROW", 2, 0, 1],
+        "probability": 0.3128245174884796
+      },
+      {
+        "step": 5,
+        "action": ["GROW", 0, 0, 1],
+        "probability": 0.23590482771396637
+      },
+      {
+        "step": 6,
+        "action": ["GROW", 2, 1, 2],
+        "probability": 0.8803783059120178
+      },
+      {
+        "step": 7,
+        "action": ["STOP"],
+        "probability": 0.8837800621986389
+      }
+    ],
+    "occurrences": 18,
+    "first_attempt": 2701,
+    "frequency_within_requested_composition": 0.18
+  },
+  {
+    "attempt": 2707,
+    "requested_C_H_O": [2, 3, 1],
+    "generated_C_H_O": [2, 3, 1],
+    "category": "reference_match",
+    "species_key": "CH3CO",
+    "in_species_training_reference": true,
+    "termination": "STOP",
+    "structure_id": "M00034",
+    "base_atom_indices": {"0": "C", "1": "C", "2": "O"},
+    "base_bonds": [
+      [0, 1, 1],
+      [1, 2, 2]
+    ],
+    "attached_h_per_base_atom": [3, 0, 0],
+    "unused_valence_per_atom": [0, 1, 0, 0, 0, 0],
+    "graph": {
+      "nodes": [
+        {"id": 0, "atom": 2, "symbol": "C"},
+        {"id": 1, "atom": 2, "symbol": "C"},
+        {"id": 2, "atom": 0, "symbol": "H"},
+        {"id": 3, "atom": 1, "symbol": "O"},
+        {"id": 4, "atom": 0, "symbol": "H"},
+        {"id": 5, "atom": 0, "symbol": "H"}
+      ],
+      "edges": [
+        {"source": 0, "target": 1, "order": 1},
+        {"source": 0, "target": 2, "order": 1},
+        {"source": 0, "target": 4, "order": 1},
+        {"source": 0, "target": 5, "order": 1},
+        {"source": 1, "target": 3, "order": 2}
+      ]
+    },
+    "actions": [
+      {
+        "step": 1,
+        "action": ["START", 2],
+        "probability": 0.7922268509864807
+      },
+      {
+        "step": 2,
+        "action": ["GROW", 0, 2, 1],
+        "probability": 0.37090247869491577
+      },
+      {
+        "step": 3,
+        "action": ["GROW", 0, 0, 1],
+        "probability": 0.41698527336120605
+      },
+      {
+        "step": 4,
+        "action": ["GROW", 1, 1, 2],
+        "probability": 0.20986168086528778
+      },
+      {
+        "step": 5,
+        "action": ["GROW", 0, 0, 1],
+        "probability": 0.6984836459159851
+      },
+      {
+        "step": 6,
+        "action": ["GROW", 0, 0, 1],
+        "probability": 0.6836401224136353
+      },
+      {
+        "step": 7,
+        "action": ["STOP"],
+        "probability": 0.9183349013328552
+      }
+    ],
+    "occurrences": 16,
+    "first_attempt": 2707,
+    "frequency_within_requested_composition": 0.16
+  },
+  {
+    "attempt": 2755,
+    "requested_C_H_O": [2, 3, 1],
+    "generated_C_H_O": [2, 3, 1],
+    "category": "new_candidate",
+    "species_key": "Unknown",
+    "in_species_training_reference": false,
+    "termination": "STOP",
+    "structure_id": "M00035",
+    "base_atom_indices": {"0": "O", "1": "C", "2": "C"},
+    "base_bonds": [
+      [0, 1, 1],
+      [1, 2, 1]
+    ],
+    "attached_h_per_base_atom": [1, 2, 0],
+    "unused_valence_per_atom": [0, 0, 3, 0, 0, 0],
+    "graph": {
+      "nodes": [
+        {"id": 0, "atom": 1, "symbol": "O"},
+        {"id": 1, "atom": 2, "symbol": "C"},
+        {"id": 2, "atom": 2, "symbol": "C"},
+        {"id": 3, "atom": 0, "symbol": "H"},
+        {"id": 4, "atom": 0, "symbol": "H"},
+        {"id": 5, "atom": 0, "symbol": "H"}
+      ],
+      "edges": [
+        {"source": 0, "target": 1, "order": 1},
+        {"source": 0, "target": 4, "order": 1},
+        {"source": 1, "target": 2, "order": 1},
+        {"source": 1, "target": 3, "order": 1},
+        {"source": 1, "target": 5, "order": 1}
+      ]
+    },
+    "actions": [
+      {
+        "step": 1,
+        "action": ["START", 1],
+        "probability": 0.029240459203720093
+      },
+      {
+        "step": 2,
+        "action": ["GROW", 0, 2, 1],
+        "probability": 0.49484628438949585
+      },
+      {
+        "step": 3,
+        "action": ["GROW", 1, 2, 1],
+        "probability": 0.01790865883231163
+      },
+      {
+        "step": 4,
+        "action": ["GROW", 1, 0, 1],
+        "probability": 0.5515133142471313
+      },
+      {
+        "step": 5,
+        "action": ["GROW", 0, 0, 1],
+        "probability": 0.22136692702770233
+      },
+      {
+        "step": 6,
+        "action": ["GROW", 1, 0, 1],
+        "probability": 0.5794678330421448
+      },
+      {
+        "step": 7,
+        "action": ["STOP"],
+        "probability": 0.2490159571170807
+      }
+    ],
+    "occurrences": 1,
+    "first_attempt": 2755,
+    "frequency_within_requested_composition": 0.01
+  },
+  {
+    "attempt": 2805,
+    "requested_C_H_O": [2, 4, 1],
+    "generated_C_H_O": [2, 4, 1],
+    "category": "reference_match",
+    "species_key": "CH3CHO",
+    "in_species_training_reference": true,
+    "termination": "STOP",
+    "structure_id": "M00036",
+    "base_atom_indices": {"0": "C", "1": "C", "2": "O"},
+    "base_bonds": [
+      [0, 1, 1],
+      [1, 2, 2]
+    ],
+    "attached_h_per_base_atom": [3, 1, 0],
+    "unused_valence_per_atom": [0, 0, 0, 0, 0, 0, 0],
+    "graph": {
+      "nodes": [
+        {"id": 0, "atom": 2, "symbol": "C"},
+        {"id": 1, "atom": 0, "symbol": "H"},
+        {"id": 2, "atom": 0, "symbol": "H"},
+        {"id": 3, "atom": 2, "symbol": "C"},
+        {"id": 4, "atom": 0, "symbol": "H"},
+        {"id": 5, "atom": 0, "symbol": "H"},
+        {"id": 6, "atom": 1, "symbol": "O"}
+      ],
+      "edges": [
+        {"source": 0, "target": 1, "order": 1},
+        {"source": 0, "target": 2, "order": 1},
+        {"source": 0, "target": 3, "order": 1},
+        {"source": 0, "target": 5, "order": 1},
+        {"source": 3, "target": 4, "order": 1},
+        {"source": 3, "target": 6, "order": 2}
+      ]
+    },
+    "actions": [
+      {
+        "step": 1,
+        "action": ["START", 2],
+        "probability": 0.7494580745697021
+      },
+      {
+        "step": 2,
+        "action": ["GROW", 0, 0, 1],
+        "probability": 0.364352285861969
+      },
+      {
+        "step": 3,
+        "action": ["GROW", 0, 0, 1],
+        "probability": 0.20820438861846924
+      },
+      {
+        "step": 4,
+        "action": ["GROW", 0, 2, 1],
+        "probability": 0.5517656803131104
+      },
+      {
+        "step": 5,
+        "action": ["GROW", 3, 0, 1],
+        "probability": 0.4868846535682678
+      },
+      {
+        "step": 6,
+        "action": ["GROW", 0, 0, 1],
+        "probability": 0.35502296686172485
+      },
+      {
+        "step": 7,
+        "action": ["GROW", 3, 1, 2],
+        "probability": 0.8721677660942078
+      },
+      {
+        "step": 8,
+        "action": ["STOP"],
+        "probability": 1.0
+      }
+    ],
+    "occurrences": 50,
+    "first_attempt": 2805,
+    "frequency_within_requested_composition": 0.5
+  }
+]

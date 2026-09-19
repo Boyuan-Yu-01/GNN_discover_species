@@ -501,9 +501,6 @@ __Step I: Warm Start__
 - Every newly encountered nonterminal state is evaluated by a random rollout to a terminal state
 - The exact terminal reward is backed up through the tree
 
-
-
-
 *Uniform priors + terminal rollouts*
 $$
 P(a|s) = \frac{1}{|\mathcal{A}(s)|}
@@ -692,18 +689,44 @@ SEED = 12345
 MAX_STEPS_PER_EPOCH = 100
 ```
 ![](../gnn_combustion/Xu_training/RL_v4/output_v4_1/individual_plots/epoch_23_final.png)
-## Version 4 (continue): NN determined stop point
+## VERSION 4.1: PROBLEM WITH THE CURRENT PENALIZATION FUNCTION:
+- <span style="color:red">The reward makes a giant unknown molecule cheap: every unknown component receives `-0.5` regardless of size, therefore, merging many bad components into one giant component can improve the average reward without improving their chemistry.</span>
+- <span style="color:red">The model cannot decide that a molecule is finished</span>
 
-```
-Current graph
-     ↓
-Run GNN
-     ↓
-Should stop?
-  ┌──┴──┐
- Yes    No
-  ↓      ↓
-Finish  Modify graph
-           ↓
-        Repeat
-```
+__Proposed solution: Graph Convolutional Policy Network (GCPN)__ [Link](../literature/GCPN.pdf)
+
+For each training example:
+1. Sample one of the 32 reference species uniformly.
+2. Construct a valid sequence of atom and bond additions.
+3. Include a final **STOP** action.
+4. Train the policy to predict those actions.
+5. Vary node numbering and valid construction orders.
+
+## New training procedure: `2_stage_training`
+
+## Stage 1: Train the GCPN according to the given molecules:
+1. Convert molecules to database: `species_graphs.py` outputs `species_graphs.json`
+2. Train the neural network using 31 reference species from JSON `train_stage1.py`
+	1. loads 31 reference species from JSON
+	2. Creates construction examples
+	3. Trains the shared GNN
+	4. Evaluates generated molecules
+	5. Saves model, log, metrics, and species inventories
+
+*The way we train the neural network, is that we exhausts all approaches for each species, then we choose $n\times P$ approaches per species to complete 1 epoch of training*
+- $P\in[0,1]$ 
+- Select without replacement within each epoch
+- Draw fresh selection each epoch
+- Keep each species equally weighted:
+$$
+L=\frac{1}{S}\sum_{s=1}^{S} \frac{1}{K_s}\sum_{k=1}^{K_s} \frac{1}{T_{s,k}}\sum_{t=1}^{T_{s,k}}\ell_{s,k,t}
+$$
+In this equation, $S$ is the total number of species, $K$ is the selected number of approaches to construct a molecule, $T$ is the number of construction steps of each approach
+
+The loss is calculated by:
+$$
+\ell_{s,k,t}
+=
+-\log\left( \sum_{a\in A_{s,k,t}} p_\theta(a\mid \text{partial graph},\text{composition}) \right)
+$$
+1. Check the trained neural network works correctly `test_stage1.py`

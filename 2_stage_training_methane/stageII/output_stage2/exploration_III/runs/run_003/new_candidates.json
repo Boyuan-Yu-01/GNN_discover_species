@@ -1,0 +1,358 @@
+[
+  {
+    "attempt": 101,
+    "requested_C_H_O": [0, 0, 2],
+    "generated_C_H_O": [0, 0, 2],
+    "category": "new_candidate",
+    "species_key": "Unknown",
+    "in_species_training_reference": false,
+    "termination": "STOP",
+    "structure_id": "M00002",
+    "base_atom_indices": {"0": "O", "1": "O"},
+    "base_bonds": [
+      [0, 1, 1]
+    ],
+    "attached_h_per_base_atom": [0, 0],
+    "unused_valence_per_atom": [1, 1],
+    "graph": {
+      "nodes": [
+        {"id": 0, "atom": 1, "symbol": "O"},
+        {"id": 1, "atom": 1, "symbol": "O"}
+      ],
+      "edges": [
+        {"source": 0, "target": 1, "order": 1}
+      ]
+    },
+    "actions": [
+      {
+        "step": 1,
+        "action": ["START", 1],
+        "probability": 0.9419335722923279
+      },
+      {
+        "step": 2,
+        "action": ["GROW", 0, 1, 1],
+        "probability": 0.10503600537776947
+      },
+      {
+        "step": 3,
+        "action": ["STOP"],
+        "probability": 0.0371386893093586
+      }
+    ],
+    "occurrences": 2,
+    "first_attempt": 101,
+    "frequency_within_requested_composition": 0.02
+  },
+  {
+    "attempt": 855,
+    "requested_C_H_O": [1, 0, 2],
+    "generated_C_H_O": [1, 0, 2],
+    "category": "new_candidate",
+    "species_key": "Unknown",
+    "in_species_training_reference": false,
+    "termination": "STOP",
+    "structure_id": "M00011",
+    "base_atom_indices": {"0": "O", "1": "C", "2": "O"},
+    "base_bonds": [
+      [0, 1, 2],
+      [1, 2, 1]
+    ],
+    "attached_h_per_base_atom": [0, 0, 0],
+    "unused_valence_per_atom": [0, 1, 1],
+    "graph": {
+      "nodes": [
+        {"id": 0, "atom": 1, "symbol": "O"},
+        {"id": 1, "atom": 2, "symbol": "C"},
+        {"id": 2, "atom": 1, "symbol": "O"}
+      ],
+      "edges": [
+        {"source": 0, "target": 1, "order": 2},
+        {"source": 1, "target": 2, "order": 1}
+      ]
+    },
+    "actions": [
+      {
+        "step": 1,
+        "action": ["START", 1],
+        "probability": 0.7835516929626465
+      },
+      {
+        "step": 2,
+        "action": ["GROW", 0, 2, 2],
+        "probability": 0.7347961068153381
+      },
+      {
+        "step": 3,
+        "action": ["GROW", 1, 1, 1],
+        "probability": 0.003822870086878538
+      },
+      {
+        "step": 4,
+        "action": ["STOP"],
+        "probability": 0.16236388683319092
+      }
+    ],
+    "occurrences": 1,
+    "first_attempt": 855,
+    "frequency_within_requested_composition": 0.01
+  },
+  {
+    "attempt": 953,
+    "requested_C_H_O": [1, 1, 1],
+    "generated_C_H_O": [1, 1, 1],
+    "category": "new_candidate",
+    "species_key": "Unknown",
+    "in_species_training_reference": false,
+    "termination": "STOP",
+    "structure_id": "M00013",
+    "base_atom_indices": {"0": "C", "1": "O"},
+    "base_bonds": [
+      [0, 1, 1]
+    ],
+    "attached_h_per_base_atom": [1, 0],
+    "unused_valence_per_atom": [2, 1, 0],
+    "graph": {
+      "nodes": [
+        {"id": 0, "atom": 2, "symbol": "C"},
+        {"id": 1, "atom": 1, "symbol": "O"},
+        {"id": 2, "atom": 0, "symbol": "H"}
+      ],
+      "edges": [
+        {"source": 0, "target": 1, "order": 1},
+        {"source": 0, "target": 2, "order": 1}
+      ]
+    },
+    "actions": [
+      {
+        "step": 1,
+        "action": ["START", 2],
+        "probability": 0.4343585968017578
+      },
+      {
+        "step": 2,
+        "action": ["GROW", 0, 1, 1],
+        "probability": 0.05480097234249115
+      },
+      {
+        "step": 3,
+        "action": ["GROW", 0, 0, 1],
+        "probability": 0.8444846272468567
+      },
+      {
+        "step": 4,
+        "action": ["STOP"],
+        "probability": 0.15529942512512207
+      }
+    ],
+    "occurrences": 1,
+    "first_attempt": 953,
+    "frequency_within_requested_composition": 0.01
+  },
+  {
+    "attempt": 2181,
+    "requested_C_H_O": [2, 4, 0],
+    "generated_C_H_O": [2, 4, 0],
+    "category": "new_candidate",
+    "species_key": "Unknown",
+    "in_species_training_reference": false,
+    "termination": "STOP",
+    "structure_id": "M00027",
+    "base_atom_indices": {"0": "C", "1": "C"},
+    "base_bonds": [
+      [0, 1, 1]
+    ],
+    "attached_h_per_base_atom": [3, 1],
+    "unused_valence_per_atom": [0, 0, 0, 0, 2, 0],
+    "graph": {
+      "nodes": [
+        {"id": 0, "atom": 2, "symbol": "C"},
+        {"id": 1, "atom": 0, "symbol": "H"},
+        {"id": 2, "atom": 0, "symbol": "H"},
+        {"id": 3, "atom": 0, "symbol": "H"},
+        {"id": 4, "atom": 2, "symbol": "C"},
+        {"id": 5, "atom": 0, "symbol": "H"}
+      ],
+      "edges": [
+        {"source": 0, "target": 1, "order": 1},
+        {"source": 0, "target": 2, "order": 1},
+        {"source": 0, "target": 3, "order": 1},
+        {"source": 0, "target": 4, "order": 1},
+        {"source": 4, "target": 5, "order": 1}
+      ]
+    },
+    "actions": [
+      {
+        "step": 1,
+        "action": ["START", 2],
+        "probability": 0.7202423810958862
+      },
+      {
+        "step": 2,
+        "action": ["GROW", 0, 0, 1],
+        "probability": 0.41013357043266296
+      },
+      {
+        "step": 3,
+        "action": ["GROW", 0, 0, 1],
+        "probability": 0.25525858998298645
+      },
+      {
+        "step": 4,
+        "action": ["GROW", 0, 0, 1],
+        "probability": 0.22543500363826752
+      },
+      {
+        "step": 5,
+        "action": ["GROW", 0, 2, 1],
+        "probability": 0.8243363499641418
+      },
+      {
+        "step": 6,
+        "action": ["GROW", 4, 0, 1],
+        "probability": 0.9865334033966064
+      },
+      {
+        "step": 7,
+        "action": ["STOP"],
+        "probability": 0.038527678698301315
+      }
+    ],
+    "occurrences": 1,
+    "first_attempt": 2181,
+    "frequency_within_requested_composition": 0.01
+  },
+  {
+    "attempt": 2422,
+    "requested_C_H_O": [2, 1, 0],
+    "generated_C_H_O": [2, 1, 0],
+    "category": "new_candidate",
+    "species_key": "Unknown",
+    "in_species_training_reference": false,
+    "termination": "STOP",
+    "structure_id": "M00031",
+    "base_atom_indices": {"0": "C", "1": "C"},
+    "base_bonds": [
+      [0, 1, 2]
+    ],
+    "attached_h_per_base_atom": [0, 1],
+    "unused_valence_per_atom": [2, 1, 0],
+    "graph": {
+      "nodes": [
+        {"id": 0, "atom": 2, "symbol": "C"},
+        {"id": 1, "atom": 2, "symbol": "C"},
+        {"id": 2, "atom": 0, "symbol": "H"}
+      ],
+      "edges": [
+        {"source": 0, "target": 1, "order": 2},
+        {"source": 1, "target": 2, "order": 1}
+      ]
+    },
+    "actions": [
+      {
+        "step": 1,
+        "action": ["START", 2],
+        "probability": 0.9003056883811951
+      },
+      {
+        "step": 2,
+        "action": ["GROW", 0, 2, 2],
+        "probability": 0.2590722441673279
+      },
+      {
+        "step": 3,
+        "action": ["GROW", 1, 0, 1],
+        "probability": 0.4424530863761902
+      },
+      {
+        "step": 4,
+        "action": ["STOP"],
+        "probability": 0.006791793275624514
+      }
+    ],
+    "occurrences": 2,
+    "first_attempt": 2422,
+    "frequency_within_requested_composition": 0.02
+  },
+  {
+    "attempt": 2807,
+    "requested_C_H_O": [2, 4, 1],
+    "generated_C_H_O": [2, 4, 1],
+    "category": "new_candidate",
+    "species_key": "Unknown",
+    "in_species_training_reference": false,
+    "termination": "STOP",
+    "structure_id": "M00037",
+    "base_atom_indices": {"0": "C", "1": "C", "2": "O"},
+    "base_bonds": [
+      [0, 1, 1],
+      [1, 2, 1]
+    ],
+    "attached_h_per_base_atom": [3, 1, 0],
+    "unused_valence_per_atom": [0, 1, 0, 0, 0, 0, 1],
+    "graph": {
+      "nodes": [
+        {"id": 0, "atom": 2, "symbol": "C"},
+        {"id": 1, "atom": 2, "symbol": "C"},
+        {"id": 2, "atom": 0, "symbol": "H"},
+        {"id": 3, "atom": 0, "symbol": "H"},
+        {"id": 4, "atom": 0, "symbol": "H"},
+        {"id": 5, "atom": 0, "symbol": "H"},
+        {"id": 6, "atom": 1, "symbol": "O"}
+      ],
+      "edges": [
+        {"source": 0, "target": 1, "order": 1},
+        {"source": 0, "target": 2, "order": 1},
+        {"source": 0, "target": 3, "order": 1},
+        {"source": 0, "target": 4, "order": 1},
+        {"source": 1, "target": 5, "order": 1},
+        {"source": 1, "target": 6, "order": 1}
+      ]
+    },
+    "actions": [
+      {
+        "step": 1,
+        "action": ["START", 2],
+        "probability": 0.7494580745697021
+      },
+      {
+        "step": 2,
+        "action": ["GROW", 0, 2, 1],
+        "probability": 0.4923357665538788
+      },
+      {
+        "step": 3,
+        "action": ["GROW", 0, 0, 1],
+        "probability": 0.4956110119819641
+      },
+      {
+        "step": 4,
+        "action": ["GROW", 0, 0, 1],
+        "probability": 0.49082064628601074
+      },
+      {
+        "step": 5,
+        "action": ["GROW", 0, 0, 1],
+        "probability": 0.4720253646373749
+      },
+      {
+        "step": 6,
+        "action": ["GROW", 1, 0, 1],
+        "probability": 0.7512267231941223
+      },
+      {
+        "step": 7,
+        "action": ["GROW", 1, 1, 1],
+        "probability": 0.0008975634118542075
+      },
+      {
+        "step": 8,
+        "action": ["STOP"],
+        "probability": 0.3077912926673889
+      }
+    ],
+    "occurrences": 1,
+    "first_attempt": 2807,
+    "frequency_within_requested_composition": 0.01
+  }
+]

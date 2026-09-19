@@ -1,0 +1,877 @@
+10:55:27 | STAGE 1 | shared composition-conditioned GNN | supervised imitation
+10:55:27 | Reference=species_graphs.json | SHA256=d6d204b45ada1c37b2b8f90250428f27766fc6195d135ed3d632248615bc3f8c
+10:55:27 | Active species=31 | distinct compositions=29 | excluded=['CO']
+10:55:27 | One molecule per episode. Condition order: C,H,O. Masks use chemistry only; STOP is allowed before valence saturation.
+10:55:27 | Training and evaluation use supplied reference structures. These are reconstruction metrics, not held-out molecular generalization.
+10:55:27 | Config: {"atom_symbols": {"0": "H", "1": "O", "2": "C"}, "epochs": 300, "eval_every": 50, "eval_samples": 100, "excluded_species": ["CO"], "gradient_clip": 5.0, "hidden_dims": [32, 64, 32, 32, 16], "learning_rate": 0.003, "max_atoms": 10, "max_steps": 24, "max_valency": {"0": 1, "1": 2, "2": 4}, "output_folder": "output_stage1/20260916_105526_866421", "reference_path": "species_graphs.json", "seed": 12345, "threads": 1, "trajectory_sample_fraction": 0.2}
+10:55:27 | REFERENCE H2      | C=0, H=2, O=0 | atoms=2 | unique sequences=1 | sampled/epoch=1 | steps=3
+10:55:27 |   START H -> ADD H to node 0, bond order 1 -> STOP
+10:55:27 | REFERENCE O2      | C=0, H=0, O=2 | atoms=2 | unique sequences=1 | sampled/epoch=1 | steps=3
+10:55:27 |   START O -> ADD O to node 0, bond order 2 -> STOP
+10:55:27 | REFERENCE H       | C=0, H=1, O=0 | atoms=1 | unique sequences=1 | sampled/epoch=1 | steps=2
+10:55:27 |   START H -> STOP
+10:55:27 | REFERENCE O       | C=0, H=0, O=1 | atoms=1 | unique sequences=1 | sampled/epoch=1 | steps=2
+10:55:27 |   START O -> STOP
+10:55:27 | REFERENCE OH      | C=0, H=1, O=1 | atoms=2 | unique sequences=2 | sampled/epoch=1 | steps=3
+10:55:27 |   START H -> ADD O to node 0, bond order 1 -> STOP
+10:55:27 | REFERENCE H2O     | C=0, H=2, O=1 | atoms=3 | unique sequences=2 | sampled/epoch=1 | steps=4
+10:55:27 |   START H -> ADD O to node 0, bond order 1 -> ADD H to node 1, bond order 1 -> STOP
+10:55:27 | REFERENCE HO2     | C=0, H=1, O=2 | atoms=3 | unique sequences=4 | sampled/epoch=1 | steps=4
+10:55:27 |   START H -> ADD O to node 0, bond order 1 -> ADD O to node 1, bond order 1 -> STOP
+10:55:27 | REFERENCE H2O2    | C=0, H=2, O=2 | atoms=4 | unique sequences=4 | sampled/epoch=1 | steps=5
+10:55:27 |   START H -> ADD O to node 0, bond order 1 -> ADD O to node 1, bond order 1 -> ADD H to node 2, bond order 1 -> STOP
+10:55:27 | REFERENCE CO2     | C=1, H=0, O=2 | atoms=3 | unique sequences=2 | sampled/epoch=1 | steps=4
+10:55:27 |   START O -> ADD C to node 0, bond order 2 -> ADD O to node 1, bond order 2 -> STOP
+10:55:27 | REFERENCE HCO     | C=1, H=1, O=1 | atoms=3 | unique sequences=4 | sampled/epoch=1 | steps=4
+10:55:27 |   START H -> ADD C to node 0, bond order 1 -> ADD O to node 1, bond order 2 -> STOP
+10:55:27 | REFERENCE CH2O    | C=1, H=2, O=1 | atoms=4 | unique sequences=6 | sampled/epoch=2 | steps=5
+10:55:27 |   START H -> ADD C to node 0, bond order 1 -> ADD H to node 1, bond order 1 -> ADD O to node 1, bond order 2 -> STOP
+10:55:27 | REFERENCE CH4     | C=1, H=4, O=0 | atoms=5 | unique sequences=2 | sampled/epoch=1 | steps=6
+10:55:27 |   START H -> ADD C to node 0, bond order 1 -> ADD H to node 1, bond order 1 -> ADD H to node 1, bond order 1 -> ADD H to node 1, bond order 1 -> STOP
+10:55:27 | REFERENCE CH3     | C=1, H=3, O=0 | atoms=4 | unique sequences=2 | sampled/epoch=1 | steps=5
+10:55:27 |   START H -> ADD C to node 0, bond order 1 -> ADD H to node 1, bond order 1 -> ADD H to node 1, bond order 1 -> STOP
+10:55:27 | REFERENCE CH3O2   | C=1, H=3, O=2 | atoms=6 | unique sequences=22 | sampled/epoch=5 | steps=7
+10:55:27 |   START H -> ADD C to node 0, bond order 1 -> ADD H to node 1, bond order 1 -> ADD H to node 1, bond order 1 -> ADD O to node 1, bond order 1 -> ADD O to node 4, bond order 1 -> STOP
+10:55:27 | REFERENCE CH2     | C=1, H=2, O=0 | atoms=3 | unique sequences=2 | sampled/epoch=1 | steps=4
+10:55:27 |   START H -> ADD C to node 0, bond order 1 -> ADD H to node 1, bond order 1 -> STOP
+10:55:27 | REFERENCE CH      | C=1, H=1, O=0 | atoms=2 | unique sequences=2 | sampled/epoch=1 | steps=3
+10:55:27 |   START H -> ADD C to node 0, bond order 1 -> STOP
+10:55:27 | REFERENCE C       | C=1, H=0, O=0 | atoms=1 | unique sequences=1 | sampled/epoch=1 | steps=2
+10:55:27 |   START C -> STOP
+10:55:27 | REFERENCE CH3O    | C=1, H=3, O=1 | atoms=5 | unique sequences=8 | sampled/epoch=2 | steps=6
+10:55:27 |   START H -> ADD C to node 0, bond order 1 -> ADD H to node 1, bond order 1 -> ADD H to node 1, bond order 1 -> ADD O to node 1, bond order 1 -> STOP
+10:55:27 | REFERENCE CH2OH   | C=1, H=3, O=1 | atoms=5 | unique sequences=14 | sampled/epoch=3 | steps=6
+10:55:27 |   START H -> ADD O to node 0, bond order 1 -> ADD C to node 1, bond order 1 -> ADD H to node 2, bond order 1 -> ADD H to node 2, bond order 1 -> STOP
+10:55:27 | REFERENCE CH3OH   | C=1, H=4, O=1 | atoms=6 | unique sequences=22 | sampled/epoch=5 | steps=7
+10:55:27 |   START H -> ADD O to node 0, bond order 1 -> ADD C to node 1, bond order 1 -> ADD H to node 2, bond order 1 -> ADD H to node 2, bond order 1 -> ADD H to node 2, bond order 1 -> STOP
+10:55:27 | REFERENCE C2H6    | C=2, H=6, O=0 | atoms=8 | unique sequences=50 | sampled/epoch=10 | steps=9
+10:55:27 |   START H -> ADD C to node 0, bond order 1 -> ADD H to node 1, bond order 1 -> ADD H to node 1, bond order 1 -> ADD C to node 1, bond order 1 -> ADD H to node 4, bond order 1 -> ADD H to node 4, bond order 1 -> ADD H to node 4, bond order 1 -> STOP
+10:55:27 | REFERENCE C2H5    | C=2, H=5, O=0 | atoms=7 | unique sequences=50 | sampled/epoch=10 | steps=8
+10:55:27 |   START H -> ADD C to node 0, bond order 1 -> ADD H to node 1, bond order 1 -> ADD H to node 1, bond order 1 -> ADD C to node 1, bond order 1 -> ADD H to node 4, bond order 1 -> ADD H to node 4, bond order 1 -> STOP
+10:55:27 | REFERENCE C2H4    | C=2, H=4, O=0 | atoms=6 | unique sequences=14 | sampled/epoch=3 | steps=7
+10:55:27 |   START H -> ADD C to node 0, bond order 1 -> ADD H to node 1, bond order 1 -> ADD C to node 1, bond order 2 -> ADD H to node 3, bond order 1 -> ADD H to node 3, bond order 1 -> STOP
+10:55:27 | REFERENCE C2H3    | C=2, H=3, O=0 | atoms=5 | unique sequences=14 | sampled/epoch=3 | steps=6
+10:55:27 |   START H -> ADD C to node 0, bond order 1 -> ADD H to node 1, bond order 1 -> ADD C to node 1, bond order 2 -> ADD H to node 3, bond order 1 -> STOP
+10:55:27 | REFERENCE C2H2    | C=2, H=2, O=0 | atoms=4 | unique sequences=4 | sampled/epoch=1 | steps=5
+10:55:27 |   START H -> ADD C to node 0, bond order 1 -> ADD C to node 1, bond order 3 -> ADD H to node 2, bond order 1 -> STOP
+10:55:27 | REFERENCE C2H     | C=2, H=1, O=0 | atoms=3 | unique sequences=4 | sampled/epoch=1 | steps=4
+10:55:27 |   START H -> ADD C to node 0, bond order 1 -> ADD C to node 1, bond order 3 -> STOP
+10:55:27 | REFERENCE HCCO    | C=2, H=1, O=1 | atoms=4 | unique sequences=8 | sampled/epoch=2 | steps=5
+10:55:27 |   START H -> ADD C to node 0, bond order 1 -> ADD C to node 1, bond order 2 -> ADD O to node 2, bond order 2 -> STOP
+10:55:27 | REFERENCE CH2CO   | C=2, H=2, O=1 | atoms=5 | unique sequences=14 | sampled/epoch=3 | steps=6
+10:55:27 |   START H -> ADD C to node 0, bond order 1 -> ADD H to node 1, bond order 1 -> ADD C to node 1, bond order 2 -> ADD O to node 3, bond order 2 -> STOP
+10:55:27 | REFERENCE CH2CHO  | C=2, H=3, O=1 | atoms=6 | unique sequences=56 | sampled/epoch=12 | steps=7
+10:55:27 |   START H -> ADD C to node 0, bond order 1 -> ADD H to node 1, bond order 1 -> ADD C to node 1, bond order 1 -> ADD H to node 3, bond order 1 -> ADD O to node 3, bond order 2 -> STOP
+10:55:27 | REFERENCE CH3CHO  | C=2, H=4, O=1 | atoms=7 | unique sequences=100 | sampled/epoch=20 | steps=8
+10:55:27 |   START H -> ADD C to node 0, bond order 1 -> ADD H to node 1, bond order 1 -> ADD H to node 1, bond order 1 -> ADD C to node 1, bond order 1 -> ADD H to node 4, bond order 1 -> ADD O to node 4, bond order 2 -> STOP
+10:55:27 | REFERENCE CH3CO   | C=2, H=3, O=1 | atoms=6 | unique sequences=22 | sampled/epoch=5 | steps=7
+10:55:27 |   START H -> ADD C to node 0, bond order 1 -> ADD H to node 1, bond order 1 -> ADD H to node 1, bond order 1 -> ADD C to node 1, bond order 1 -> ADD O to node 4, bond order 2 -> STOP
+10:55:27 | MODEL node_features=5 | hidden_dims=[32, 64, 32, 32, 16] | trainable_parameters=25696
+10:55:27 | EVALUATION epoch=0 mode=greedy | correct structure+composition=3.4% | coverage=1/31 | STOP=29/29
+10:55:27 |   [C=0, H=2, O=0] expected=H2 | correct=0/1 | composition=0/1 | generated={'unknown': 1}
+10:55:27 |   [C=0, H=0, O=2] expected=O2 | correct=0/1 | composition=0/1 | generated={'CH2CO': 1}
+10:55:27 |   [C=0, H=1, O=0] expected=H | correct=0/1 | composition=0/1 | generated={'CH2CO': 1}
+10:55:27 |   [C=0, H=0, O=1] expected=O | correct=0/1 | composition=0/1 | generated={'CH2CO': 1}
+10:55:27 |   [C=0, H=1, O=1] expected=OH | correct=0/1 | composition=0/1 | generated={'CH2CO': 1}
+10:55:27 |   [C=0, H=2, O=1] expected=H2O | correct=0/1 | composition=0/1 | generated={'CH2CO': 1}
+10:55:27 |   [C=0, H=1, O=2] expected=HO2 | correct=0/1 | composition=0/1 | generated={'CH2CO': 1}
+10:55:27 |   [C=0, H=2, O=2] expected=H2O2 | correct=0/1 | composition=0/1 | generated={'CH2CO': 1}
+10:55:27 |   [C=1, H=0, O=2] expected=CO2 | correct=0/1 | composition=0/1 | generated={'CH2CO': 1}
+10:55:27 |   [C=1, H=1, O=1] expected=HCO | correct=0/1 | composition=0/1 | generated={'CH2CO': 1}
+10:55:27 |   [C=1, H=2, O=1] expected=CH2O | correct=0/1 | composition=0/1 | generated={'CH2CO': 1}
+10:55:27 |   [C=1, H=4, O=0] expected=CH4 | correct=0/1 | composition=0/1 | generated={'unknown': 1}
+10:55:27 |   [C=1, H=3, O=0] expected=CH3 | correct=0/1 | composition=0/1 | generated={'CH2CO': 1}
+10:55:27 |   [C=1, H=3, O=2] expected=CH3O2 | correct=0/1 | composition=0/1 | generated={'CH2CO': 1}
+10:55:27 |   [C=1, H=2, O=0] expected=CH2 | correct=0/1 | composition=0/1 | generated={'CH2CO': 1}
+10:55:27 |   [C=1, H=1, O=0] expected=CH | correct=0/1 | composition=0/1 | generated={'CH2CO': 1}
+10:55:27 |   [C=1, H=0, O=0] expected=C | correct=0/1 | composition=0/1 | generated={'CH2CO': 1}
+10:55:27 |   [C=1, H=3, O=1] expected=CH3O,CH2OH | correct=0/1 | composition=0/1 | generated={'CH2CO': 1}
+10:55:27 |   [C=1, H=4, O=1] expected=CH3OH | correct=0/1 | composition=0/1 | generated={'CH2CO': 1}
+10:55:27 |   [C=2, H=6, O=0] expected=C2H6 | correct=0/1 | composition=0/1 | generated={'unknown': 1}
+10:55:27 |   [C=2, H=5, O=0] expected=C2H5 | correct=0/1 | composition=0/1 | generated={'CH2CO': 1}
+10:55:27 |   [C=2, H=4, O=0] expected=C2H4 | correct=0/1 | composition=0/1 | generated={'CH2CO': 1}
+10:55:27 |   [C=2, H=3, O=0] expected=C2H3 | correct=0/1 | composition=0/1 | generated={'CH2CO': 1}
+10:55:27 |   [C=2, H=2, O=0] expected=C2H2 | correct=0/1 | composition=0/1 | generated={'CH2CO': 1}
+10:55:27 |   [C=2, H=1, O=0] expected=C2H | correct=0/1 | composition=0/1 | generated={'CH2CO': 1}
+10:55:27 |   [C=2, H=1, O=1] expected=HCCO | correct=0/1 | composition=0/1 | generated={'CH2CO': 1}
+10:55:27 |   [C=2, H=2, O=1] expected=CH2CO | correct=1/1 | composition=1/1 | generated={'CH2CO': 1}
+10:55:27 |   [C=2, H=3, O=1] expected=CH2CHO,CH3CO | correct=0/1 | composition=0/1 | generated={'CH2CO': 1}
+10:55:27 |   [C=2, H=4, O=1] expected=CH3CHO | correct=0/1 | composition=0/1 | generated={'CH2CO': 1}
+10:55:27 |   SPECIES H2      | correctly generated=0
+10:55:27 |   SPECIES O2      | correctly generated=0
+10:55:27 |   SPECIES H       | correctly generated=0
+10:55:27 |   SPECIES O       | correctly generated=0
+10:55:27 |   SPECIES OH      | correctly generated=0
+10:55:27 |   SPECIES H2O     | correctly generated=0
+10:55:27 |   SPECIES HO2     | correctly generated=0
+10:55:27 |   SPECIES H2O2    | correctly generated=0
+10:55:27 |   SPECIES CO2     | correctly generated=0
+10:55:27 |   SPECIES HCO     | correctly generated=0
+10:55:27 |   SPECIES CH2O    | correctly generated=0
+10:55:27 |   SPECIES CH4     | correctly generated=0
+10:55:27 |   SPECIES CH3     | correctly generated=0
+10:55:27 |   SPECIES CH3O2   | correctly generated=0
+10:55:27 |   SPECIES CH2     | correctly generated=0
+10:55:27 |   SPECIES CH      | correctly generated=0
+10:55:27 |   SPECIES C       | correctly generated=0
+10:55:27 |   SPECIES CH3O    | correctly generated=0
+10:55:27 |   SPECIES CH2OH   | correctly generated=0
+10:55:27 |   SPECIES CH3OH   | correctly generated=0
+10:55:27 |   SPECIES C2H6    | correctly generated=0
+10:55:27 |   SPECIES C2H5    | correctly generated=0
+10:55:27 |   SPECIES C2H4    | correctly generated=0
+10:55:27 |   SPECIES C2H3    | correctly generated=0
+10:55:27 |   SPECIES C2H2    | correctly generated=0
+10:55:27 |   SPECIES C2H     | correctly generated=0
+10:55:27 |   SPECIES HCCO    | correctly generated=0
+10:55:27 |   SPECIES CH2CO   | correctly generated=1
+10:55:27 |   SPECIES CH2CHO  | correctly generated=0
+10:55:27 |   SPECIES CH3CHO  | correctly generated=0
+10:55:27 |   SPECIES CH3CO   | correctly generated=0
+10:55:27 | EPOCH 0001/300 | loss=1.45337 | sampled sequences=102 | teacher-action accuracy=32.5% | mean correct-action probability=0.2890 | grad_norm=0.592 | 0.04s
+10:55:27 | EPOCH 0002/300 | loss=1.40862 | sampled sequences=102 | teacher-action accuracy=46.6% | mean correct-action probability=0.2967 | grad_norm=0.430 | 0.03s
+10:55:27 | EPOCH 0003/300 | loss=1.38238 | sampled sequences=102 | teacher-action accuracy=45.2% | mean correct-action probability=0.3020 | grad_norm=0.370 | 0.03s
+10:55:27 | EPOCH 0004/300 | loss=1.36464 | sampled sequences=102 | teacher-action accuracy=45.8% | mean correct-action probability=0.3055 | grad_norm=0.338 | 0.03s
+10:55:27 | EPOCH 0005/300 | loss=1.35227 | sampled sequences=102 | teacher-action accuracy=44.8% | mean correct-action probability=0.3098 | grad_norm=0.326 | 0.03s
+10:55:27 | EPOCH 0006/300 | loss=1.33861 | sampled sequences=102 | teacher-action accuracy=44.5% | mean correct-action probability=0.3127 | grad_norm=0.315 | 0.03s
+10:55:27 | EPOCH 0007/300 | loss=1.31503 | sampled sequences=102 | teacher-action accuracy=48.1% | mean correct-action probability=0.3208 | grad_norm=0.317 | 0.03s
+10:55:27 | EPOCH 0008/300 | loss=1.30756 | sampled sequences=102 | teacher-action accuracy=46.2% | mean correct-action probability=0.3228 | grad_norm=0.339 | 0.03s
+10:55:27 | EPOCH 0009/300 | loss=1.29341 | sampled sequences=102 | teacher-action accuracy=46.1% | mean correct-action probability=0.3278 | grad_norm=0.329 | 0.03s
+10:55:27 | EPOCH 0010/300 | loss=1.29164 | sampled sequences=102 | teacher-action accuracy=44.7% | mean correct-action probability=0.3290 | grad_norm=0.271 | 0.03s
+10:55:27 | EPOCH 0011/300 | loss=1.26704 | sampled sequences=102 | teacher-action accuracy=44.7% | mean correct-action probability=0.3366 | grad_norm=0.298 | 0.03s
+10:55:27 | EPOCH 0012/300 | loss=1.26537 | sampled sequences=102 | teacher-action accuracy=43.6% | mean correct-action probability=0.3379 | grad_norm=0.246 | 0.03s
+10:55:28 | EPOCH 0013/300 | loss=1.23420 | sampled sequences=102 | teacher-action accuracy=52.1% | mean correct-action probability=0.3528 | grad_norm=0.270 | 0.03s
+10:55:28 | EPOCH 0014/300 | loss=1.20420 | sampled sequences=102 | teacher-action accuracy=51.0% | mean correct-action probability=0.3625 | grad_norm=0.275 | 0.03s
+10:55:28 | EPOCH 0015/300 | loss=1.21818 | sampled sequences=102 | teacher-action accuracy=48.8% | mean correct-action probability=0.3603 | grad_norm=0.205 | 0.03s
+10:55:28 | EPOCH 0016/300 | loss=1.23079 | sampled sequences=102 | teacher-action accuracy=45.9% | mean correct-action probability=0.3615 | grad_norm=0.138 | 0.03s
+10:55:28 | EPOCH 0017/300 | loss=1.20661 | sampled sequences=102 | teacher-action accuracy=47.4% | mean correct-action probability=0.3732 | grad_norm=0.155 | 0.03s
+10:55:28 | EPOCH 0018/300 | loss=1.21980 | sampled sequences=102 | teacher-action accuracy=44.8% | mean correct-action probability=0.3703 | grad_norm=0.137 | 0.03s
+10:55:28 | EPOCH 0019/300 | loss=1.21316 | sampled sequences=102 | teacher-action accuracy=43.2% | mean correct-action probability=0.3760 | grad_norm=0.158 | 0.03s
+10:55:28 | EPOCH 0020/300 | loss=1.17708 | sampled sequences=102 | teacher-action accuracy=50.5% | mean correct-action probability=0.3908 | grad_norm=0.105 | 0.03s
+10:55:28 | EPOCH 0021/300 | loss=1.19433 | sampled sequences=102 | teacher-action accuracy=46.2% | mean correct-action probability=0.3852 | grad_norm=0.174 | 0.03s
+10:55:28 | EPOCH 0022/300 | loss=1.16876 | sampled sequences=102 | teacher-action accuracy=50.3% | mean correct-action probability=0.3941 | grad_norm=0.107 | 0.03s
+10:55:28 | EPOCH 0023/300 | loss=1.19164 | sampled sequences=102 | teacher-action accuracy=48.8% | mean correct-action probability=0.3861 | grad_norm=0.157 | 0.03s
+10:55:28 | EPOCH 0024/300 | loss=1.19043 | sampled sequences=102 | teacher-action accuracy=48.5% | mean correct-action probability=0.3865 | grad_norm=0.156 | 0.03s
+10:55:28 | EPOCH 0025/300 | loss=1.17366 | sampled sequences=102 | teacher-action accuracy=51.4% | mean correct-action probability=0.3902 | grad_norm=0.127 | 0.03s
+10:55:28 | EPOCH 0026/300 | loss=1.15615 | sampled sequences=102 | teacher-action accuracy=50.8% | mean correct-action probability=0.3916 | grad_norm=0.120 | 0.03s
+10:55:28 | EPOCH 0027/300 | loss=1.18050 | sampled sequences=102 | teacher-action accuracy=47.7% | mean correct-action probability=0.3800 | grad_norm=0.209 | 0.03s
+10:55:28 | EPOCH 0028/300 | loss=1.14497 | sampled sequences=102 | teacher-action accuracy=50.0% | mean correct-action probability=0.3888 | grad_norm=0.233 | 0.03s
+10:55:28 | EPOCH 0029/300 | loss=1.15256 | sampled sequences=102 | teacher-action accuracy=50.3% | mean correct-action probability=0.3828 | grad_norm=0.213 | 0.03s
+10:55:28 | EPOCH 0030/300 | loss=1.14918 | sampled sequences=102 | teacher-action accuracy=49.7% | mean correct-action probability=0.3841 | grad_norm=0.214 | 0.03s
+10:55:28 | EPOCH 0031/300 | loss=1.15447 | sampled sequences=102 | teacher-action accuracy=50.6% | mean correct-action probability=0.3802 | grad_norm=0.273 | 0.03s
+10:55:28 | EPOCH 0032/300 | loss=1.12536 | sampled sequences=102 | teacher-action accuracy=51.5% | mean correct-action probability=0.3940 | grad_norm=0.307 | 0.03s
+10:55:28 | EPOCH 0033/300 | loss=1.11493 | sampled sequences=102 | teacher-action accuracy=53.6% | mean correct-action probability=0.4026 | grad_norm=0.272 | 0.03s
+10:55:28 | EPOCH 0034/300 | loss=1.11236 | sampled sequences=102 | teacher-action accuracy=54.1% | mean correct-action probability=0.4071 | grad_norm=0.151 | 0.03s
+10:55:28 | EPOCH 0035/300 | loss=1.12441 | sampled sequences=102 | teacher-action accuracy=50.4% | mean correct-action probability=0.4095 | grad_norm=0.302 | 0.03s
+10:55:28 | EPOCH 0036/300 | loss=1.11058 | sampled sequences=102 | teacher-action accuracy=50.7% | mean correct-action probability=0.4140 | grad_norm=0.229 | 0.03s
+10:55:28 | EPOCH 0037/300 | loss=1.13050 | sampled sequences=102 | teacher-action accuracy=51.4% | mean correct-action probability=0.4044 | grad_norm=0.231 | 0.03s
+10:55:28 | EPOCH 0038/300 | loss=1.10299 | sampled sequences=102 | teacher-action accuracy=52.2% | mean correct-action probability=0.4154 | grad_norm=0.232 | 0.03s
+10:55:28 | EPOCH 0039/300 | loss=1.09826 | sampled sequences=102 | teacher-action accuracy=53.3% | mean correct-action probability=0.4143 | grad_norm=0.128 | 0.03s
+10:55:28 | EPOCH 0040/300 | loss=1.09616 | sampled sequences=102 | teacher-action accuracy=51.8% | mean correct-action probability=0.4164 | grad_norm=0.345 | 0.03s
+10:55:28 | EPOCH 0041/300 | loss=1.09390 | sampled sequences=102 | teacher-action accuracy=52.7% | mean correct-action probability=0.4156 | grad_norm=0.149 | 0.03s
+10:55:28 | EPOCH 0042/300 | loss=1.08965 | sampled sequences=102 | teacher-action accuracy=52.7% | mean correct-action probability=0.4139 | grad_norm=0.214 | 0.03s
+10:55:29 | EPOCH 0043/300 | loss=1.06989 | sampled sequences=102 | teacher-action accuracy=52.6% | mean correct-action probability=0.4282 | grad_norm=0.265 | 0.03s
+10:55:29 | EPOCH 0044/300 | loss=1.05648 | sampled sequences=102 | teacher-action accuracy=51.8% | mean correct-action probability=0.4343 | grad_norm=0.262 | 0.03s
+10:55:29 | EPOCH 0045/300 | loss=1.08298 | sampled sequences=102 | teacher-action accuracy=53.3% | mean correct-action probability=0.4275 | grad_norm=0.358 | 0.03s
+10:55:29 | EPOCH 0046/300 | loss=1.07479 | sampled sequences=102 | teacher-action accuracy=52.5% | mean correct-action probability=0.4217 | grad_norm=0.170 | 0.03s
+10:55:29 | EPOCH 0047/300 | loss=1.06662 | sampled sequences=102 | teacher-action accuracy=53.4% | mean correct-action probability=0.4260 | grad_norm=0.282 | 0.03s
+10:55:29 | EPOCH 0048/300 | loss=1.07143 | sampled sequences=102 | teacher-action accuracy=52.2% | mean correct-action probability=0.4252 | grad_norm=0.217 | 0.03s
+10:55:29 | EPOCH 0049/300 | loss=1.06548 | sampled sequences=102 | teacher-action accuracy=52.1% | mean correct-action probability=0.4317 | grad_norm=0.331 | 0.03s
+10:55:29 | EPOCH 0050/300 | loss=1.06732 | sampled sequences=102 | teacher-action accuracy=54.7% | mean correct-action probability=0.4269 | grad_norm=0.191 | 0.03s
+10:55:29 | EVALUATION epoch=50 mode=greedy | correct structure+composition=3.4% | coverage=1/31 | STOP=29/29
+10:55:29 |   [C=0, H=2, O=0] expected=H2 | correct=0/1 | composition=0/1 | generated={'CH3': 1}
+10:55:29 |   [C=0, H=0, O=2] expected=O2 | correct=0/1 | composition=0/1 | generated={'CH3': 1}
+10:55:29 |   [C=0, H=1, O=0] expected=H | correct=0/1 | composition=0/1 | generated={'CH3': 1}
+10:55:29 |   [C=0, H=0, O=1] expected=O | correct=0/1 | composition=0/1 | generated={'CH3': 1}
+10:55:29 |   [C=0, H=1, O=1] expected=OH | correct=0/1 | composition=0/1 | generated={'CH3': 1}
+10:55:29 |   [C=0, H=2, O=1] expected=H2O | correct=0/1 | composition=0/1 | generated={'CH3': 1}
+10:55:29 |   [C=0, H=1, O=2] expected=HO2 | correct=0/1 | composition=0/1 | generated={'CH3': 1}
+10:55:29 |   [C=0, H=2, O=2] expected=H2O2 | correct=0/1 | composition=0/1 | generated={'CH3': 1}
+10:55:29 |   [C=1, H=0, O=2] expected=CO2 | correct=0/1 | composition=0/1 | generated={'CH3': 1}
+10:55:29 |   [C=1, H=1, O=1] expected=HCO | correct=0/1 | composition=0/1 | generated={'CH3': 1}
+10:55:29 |   [C=1, H=2, O=1] expected=CH2O | correct=0/1 | composition=0/1 | generated={'CH3': 1}
+10:55:29 |   [C=1, H=4, O=0] expected=CH4 | correct=0/1 | composition=0/1 | generated={'CH3': 1}
+10:55:29 |   [C=1, H=3, O=0] expected=CH3 | correct=1/1 | composition=1/1 | generated={'CH3': 1}
+10:55:29 |   [C=1, H=3, O=2] expected=CH3O2 | correct=0/1 | composition=0/1 | generated={'CH3': 1}
+10:55:29 |   [C=1, H=2, O=0] expected=CH2 | correct=0/1 | composition=0/1 | generated={'CH3': 1}
+10:55:29 |   [C=1, H=1, O=0] expected=CH | correct=0/1 | composition=0/1 | generated={'CH3': 1}
+10:55:29 |   [C=1, H=0, O=0] expected=C | correct=0/1 | composition=0/1 | generated={'CH3': 1}
+10:55:29 |   [C=1, H=3, O=1] expected=CH3O,CH2OH | correct=0/1 | composition=0/1 | generated={'CH3': 1}
+10:55:29 |   [C=1, H=4, O=1] expected=CH3OH | correct=0/1 | composition=0/1 | generated={'CH3': 1}
+10:55:29 |   [C=2, H=6, O=0] expected=C2H6 | correct=0/1 | composition=0/1 | generated={'CH4': 1}
+10:55:29 |   [C=2, H=5, O=0] expected=C2H5 | correct=0/1 | composition=0/1 | generated={'CH3': 1}
+10:55:29 |   [C=2, H=4, O=0] expected=C2H4 | correct=0/1 | composition=0/1 | generated={'CH3': 1}
+10:55:29 |   [C=2, H=3, O=0] expected=C2H3 | correct=0/1 | composition=0/1 | generated={'CH3': 1}
+10:55:29 |   [C=2, H=2, O=0] expected=C2H2 | correct=0/1 | composition=0/1 | generated={'CH3': 1}
+10:55:29 |   [C=2, H=1, O=0] expected=C2H | correct=0/1 | composition=0/1 | generated={'CH3': 1}
+10:55:29 |   [C=2, H=1, O=1] expected=HCCO | correct=0/1 | composition=0/1 | generated={'CH3': 1}
+10:55:29 |   [C=2, H=2, O=1] expected=CH2CO | correct=0/1 | composition=0/1 | generated={'CH3': 1}
+10:55:29 |   [C=2, H=3, O=1] expected=CH2CHO,CH3CO | correct=0/1 | composition=0/1 | generated={'CH3': 1}
+10:55:29 |   [C=2, H=4, O=1] expected=CH3CHO | correct=0/1 | composition=0/1 | generated={'CH3': 1}
+10:55:29 |   SPECIES H2      | correctly generated=0
+10:55:29 |   SPECIES O2      | correctly generated=0
+10:55:29 |   SPECIES H       | correctly generated=0
+10:55:29 |   SPECIES O       | correctly generated=0
+10:55:29 |   SPECIES OH      | correctly generated=0
+10:55:29 |   SPECIES H2O     | correctly generated=0
+10:55:29 |   SPECIES HO2     | correctly generated=0
+10:55:29 |   SPECIES H2O2    | correctly generated=0
+10:55:29 |   SPECIES CO2     | correctly generated=0
+10:55:29 |   SPECIES HCO     | correctly generated=0
+10:55:29 |   SPECIES CH2O    | correctly generated=0
+10:55:29 |   SPECIES CH4     | correctly generated=0
+10:55:29 |   SPECIES CH3     | correctly generated=1
+10:55:29 |   SPECIES CH3O2   | correctly generated=0
+10:55:29 |   SPECIES CH2     | correctly generated=0
+10:55:29 |   SPECIES CH      | correctly generated=0
+10:55:29 |   SPECIES C       | correctly generated=0
+10:55:29 |   SPECIES CH3O    | correctly generated=0
+10:55:29 |   SPECIES CH2OH   | correctly generated=0
+10:55:29 |   SPECIES CH3OH   | correctly generated=0
+10:55:29 |   SPECIES C2H6    | correctly generated=0
+10:55:29 |   SPECIES C2H5    | correctly generated=0
+10:55:29 |   SPECIES C2H4    | correctly generated=0
+10:55:29 |   SPECIES C2H3    | correctly generated=0
+10:55:29 |   SPECIES C2H2    | correctly generated=0
+10:55:29 |   SPECIES C2H     | correctly generated=0
+10:55:29 |   SPECIES HCCO    | correctly generated=0
+10:55:29 |   SPECIES CH2CO   | correctly generated=0
+10:55:29 |   SPECIES CH2CHO  | correctly generated=0
+10:55:29 |   SPECIES CH3CHO  | correctly generated=0
+10:55:29 |   SPECIES CH3CO   | correctly generated=0
+10:55:29 | EPOCH 0051/300 | loss=1.07132 | sampled sequences=102 | teacher-action accuracy=53.2% | mean correct-action probability=0.4290 | grad_norm=0.138 | 0.03s
+10:55:29 | EPOCH 0052/300 | loss=1.05442 | sampled sequences=102 | teacher-action accuracy=53.7% | mean correct-action probability=0.4366 | grad_norm=0.148 | 0.03s
+10:55:29 | EPOCH 0053/300 | loss=1.03783 | sampled sequences=102 | teacher-action accuracy=54.2% | mean correct-action probability=0.4405 | grad_norm=0.194 | 0.03s
+10:55:29 | EPOCH 0054/300 | loss=1.03931 | sampled sequences=102 | teacher-action accuracy=53.2% | mean correct-action probability=0.4430 | grad_norm=0.168 | 0.03s
+10:55:29 | EPOCH 0055/300 | loss=1.04285 | sampled sequences=102 | teacher-action accuracy=55.4% | mean correct-action probability=0.4426 | grad_norm=0.181 | 0.03s
+10:55:29 | EPOCH 0056/300 | loss=1.03949 | sampled sequences=102 | teacher-action accuracy=54.0% | mean correct-action probability=0.4397 | grad_norm=0.140 | 0.03s
+10:55:29 | EPOCH 0057/300 | loss=1.04614 | sampled sequences=102 | teacher-action accuracy=52.0% | mean correct-action probability=0.4367 | grad_norm=0.167 | 0.03s
+10:55:29 | EPOCH 0058/300 | loss=1.05503 | sampled sequences=102 | teacher-action accuracy=51.6% | mean correct-action probability=0.4336 | grad_norm=0.184 | 0.03s
+10:55:29 | EPOCH 0059/300 | loss=1.04705 | sampled sequences=102 | teacher-action accuracy=54.4% | mean correct-action probability=0.4353 | grad_norm=0.182 | 0.03s
+10:55:29 | EPOCH 0060/300 | loss=1.02551 | sampled sequences=102 | teacher-action accuracy=52.4% | mean correct-action probability=0.4473 | grad_norm=0.218 | 0.03s
+10:55:29 | EPOCH 0061/300 | loss=1.04040 | sampled sequences=102 | teacher-action accuracy=55.4% | mean correct-action probability=0.4399 | grad_norm=0.162 | 0.04s
+10:55:29 | EPOCH 0062/300 | loss=1.02191 | sampled sequences=102 | teacher-action accuracy=54.4% | mean correct-action probability=0.4478 | grad_norm=0.118 | 0.03s
+10:55:29 | EPOCH 0063/300 | loss=1.04184 | sampled sequences=102 | teacher-action accuracy=53.6% | mean correct-action probability=0.4398 | grad_norm=0.161 | 0.03s
+10:55:29 | EPOCH 0064/300 | loss=1.01822 | sampled sequences=102 | teacher-action accuracy=56.6% | mean correct-action probability=0.4504 | grad_norm=0.158 | 0.04s
+10:55:29 | EPOCH 0065/300 | loss=1.01327 | sampled sequences=102 | teacher-action accuracy=53.3% | mean correct-action probability=0.4527 | grad_norm=0.167 | 0.03s
+10:55:29 | EPOCH 0066/300 | loss=1.02872 | sampled sequences=102 | teacher-action accuracy=51.7% | mean correct-action probability=0.4426 | grad_norm=0.278 | 0.03s
+10:55:29 | EPOCH 0067/300 | loss=1.01503 | sampled sequences=102 | teacher-action accuracy=54.5% | mean correct-action probability=0.4480 | grad_norm=0.204 | 0.03s
+10:55:29 | EPOCH 0068/300 | loss=1.03696 | sampled sequences=102 | teacher-action accuracy=53.1% | mean correct-action probability=0.4383 | grad_norm=0.180 | 0.03s
+10:55:29 | EPOCH 0069/300 | loss=1.02333 | sampled sequences=102 | teacher-action accuracy=53.8% | mean correct-action probability=0.4478 | grad_norm=0.162 | 0.03s
+10:55:29 | EPOCH 0070/300 | loss=1.02680 | sampled sequences=102 | teacher-action accuracy=57.3% | mean correct-action probability=0.4486 | grad_norm=0.276 | 0.03s
+10:55:29 | EPOCH 0071/300 | loss=1.02844 | sampled sequences=102 | teacher-action accuracy=56.8% | mean correct-action probability=0.4420 | grad_norm=0.219 | 0.03s
+10:55:29 | EPOCH 0072/300 | loss=1.01195 | sampled sequences=102 | teacher-action accuracy=54.4% | mean correct-action probability=0.4532 | grad_norm=0.184 | 0.03s
+10:55:29 | EPOCH 0073/300 | loss=1.01385 | sampled sequences=102 | teacher-action accuracy=57.2% | mean correct-action probability=0.4546 | grad_norm=0.175 | 0.03s
+10:55:30 | EPOCH 0074/300 | loss=1.00851 | sampled sequences=102 | teacher-action accuracy=61.8% | mean correct-action probability=0.4556 | grad_norm=0.141 | 0.03s
+10:55:30 | EPOCH 0075/300 | loss=1.02416 | sampled sequences=102 | teacher-action accuracy=57.5% | mean correct-action probability=0.4490 | grad_norm=0.319 | 0.03s
+10:55:30 | EPOCH 0076/300 | loss=0.99557 | sampled sequences=102 | teacher-action accuracy=59.8% | mean correct-action probability=0.4623 | grad_norm=0.225 | 0.03s
+10:55:30 | EPOCH 0077/300 | loss=1.01273 | sampled sequences=102 | teacher-action accuracy=58.6% | mean correct-action probability=0.4528 | grad_norm=0.183 | 0.03s
+10:55:30 | EPOCH 0078/300 | loss=1.00332 | sampled sequences=102 | teacher-action accuracy=56.9% | mean correct-action probability=0.4585 | grad_norm=0.260 | 0.03s
+10:55:30 | EPOCH 0079/300 | loss=0.99157 | sampled sequences=102 | teacher-action accuracy=59.8% | mean correct-action probability=0.4601 | grad_norm=0.179 | 0.03s
+10:55:30 | EPOCH 0080/300 | loss=0.99948 | sampled sequences=102 | teacher-action accuracy=58.2% | mean correct-action probability=0.4557 | grad_norm=0.298 | 0.03s
+10:55:30 | EPOCH 0081/300 | loss=0.99364 | sampled sequences=102 | teacher-action accuracy=59.4% | mean correct-action probability=0.4549 | grad_norm=0.197 | 0.03s
+10:55:30 | EPOCH 0082/300 | loss=0.98464 | sampled sequences=102 | teacher-action accuracy=60.4% | mean correct-action probability=0.4660 | grad_norm=0.242 | 0.03s
+10:55:30 | EPOCH 0083/300 | loss=0.98048 | sampled sequences=102 | teacher-action accuracy=62.8% | mean correct-action probability=0.4623 | grad_norm=0.147 | 0.03s
+10:55:30 | EPOCH 0084/300 | loss=1.00018 | sampled sequences=102 | teacher-action accuracy=57.8% | mean correct-action probability=0.4479 | grad_norm=0.373 | 0.03s
+10:55:30 | EPOCH 0085/300 | loss=0.98581 | sampled sequences=102 | teacher-action accuracy=62.3% | mean correct-action probability=0.4580 | grad_norm=0.328 | 0.03s
+10:55:30 | EPOCH 0086/300 | loss=0.97364 | sampled sequences=102 | teacher-action accuracy=62.4% | mean correct-action probability=0.4639 | grad_norm=0.220 | 0.03s
+10:55:30 | EPOCH 0087/300 | loss=0.97253 | sampled sequences=102 | teacher-action accuracy=62.2% | mean correct-action probability=0.4641 | grad_norm=0.138 | 0.03s
+10:55:30 | EPOCH 0088/300 | loss=0.96149 | sampled sequences=102 | teacher-action accuracy=61.4% | mean correct-action probability=0.4688 | grad_norm=0.372 | 0.03s
+10:55:30 | EPOCH 0089/300 | loss=0.98009 | sampled sequences=102 | teacher-action accuracy=58.8% | mean correct-action probability=0.4603 | grad_norm=0.180 | 0.03s
+10:55:30 | EPOCH 0090/300 | loss=0.96054 | sampled sequences=102 | teacher-action accuracy=63.3% | mean correct-action probability=0.4739 | grad_norm=0.264 | 0.03s
+10:55:30 | EPOCH 0091/300 | loss=0.97125 | sampled sequences=102 | teacher-action accuracy=60.6% | mean correct-action probability=0.4623 | grad_norm=0.194 | 0.03s
+10:55:30 | EPOCH 0092/300 | loss=0.97427 | sampled sequences=102 | teacher-action accuracy=63.1% | mean correct-action probability=0.4532 | grad_norm=0.316 | 0.03s
+10:55:30 | EPOCH 0093/300 | loss=0.97122 | sampled sequences=102 | teacher-action accuracy=63.1% | mean correct-action probability=0.4612 | grad_norm=0.180 | 0.03s
+10:55:30 | EPOCH 0094/300 | loss=0.96000 | sampled sequences=102 | teacher-action accuracy=63.7% | mean correct-action probability=0.4713 | grad_norm=0.232 | 0.03s
+10:55:30 | EPOCH 0095/300 | loss=0.96504 | sampled sequences=102 | teacher-action accuracy=63.1% | mean correct-action probability=0.4706 | grad_norm=0.189 | 0.03s
+10:55:30 | EPOCH 0096/300 | loss=0.95422 | sampled sequences=102 | teacher-action accuracy=63.3% | mean correct-action probability=0.4779 | grad_norm=0.191 | 0.03s
+10:55:30 | EPOCH 0097/300 | loss=0.95166 | sampled sequences=102 | teacher-action accuracy=65.4% | mean correct-action probability=0.4816 | grad_norm=0.268 | 0.03s
+10:55:30 | EPOCH 0098/300 | loss=0.95994 | sampled sequences=102 | teacher-action accuracy=59.9% | mean correct-action probability=0.4667 | grad_norm=0.247 | 0.03s
+10:55:30 | EPOCH 0099/300 | loss=0.93418 | sampled sequences=102 | teacher-action accuracy=65.8% | mean correct-action probability=0.4778 | grad_norm=0.145 | 0.03s
+10:55:30 | EPOCH 0100/300 | loss=0.93813 | sampled sequences=102 | teacher-action accuracy=67.0% | mean correct-action probability=0.4742 | grad_norm=0.276 | 0.03s
+10:55:30 | EVALUATION epoch=100 mode=greedy | correct structure+composition=20.7% | coverage=6/31 | STOP=29/29
+10:55:30 |   [C=0, H=2, O=0] expected=H2 | correct=0/1 | composition=0/1 | generated={'CH3': 1}
+10:55:30 |   [C=0, H=0, O=2] expected=O2 | correct=0/1 | composition=0/1 | generated={'O': 1}
+10:55:30 |   [C=0, H=1, O=0] expected=H | correct=0/1 | composition=0/1 | generated={'CH2': 1}
+10:55:30 |   [C=0, H=0, O=1] expected=O | correct=1/1 | composition=1/1 | generated={'O': 1}
+10:55:30 |   [C=0, H=1, O=1] expected=OH | correct=1/1 | composition=1/1 | generated={'OH': 1}
+10:55:30 |   [C=0, H=2, O=1] expected=H2O | correct=0/1 | composition=0/1 | generated={'CH2': 1}
+10:55:30 |   [C=0, H=1, O=2] expected=HO2 | correct=0/1 | composition=0/1 | generated={'OH': 1}
+10:55:30 |   [C=0, H=2, O=2] expected=H2O2 | correct=1/1 | composition=1/1 | generated={'H2O2': 1}
+10:55:30 |   [C=1, H=0, O=2] expected=CO2 | correct=0/1 | composition=0/1 | generated={'O': 1}
+10:55:30 |   [C=1, H=1, O=1] expected=HCO | correct=0/1 | composition=0/1 | generated={'CH2': 1}
+10:55:30 |   [C=1, H=2, O=1] expected=CH2O | correct=0/1 | composition=0/1 | generated={'CH2': 1}
+10:55:30 |   [C=1, H=4, O=0] expected=CH4 | correct=1/1 | composition=1/1 | generated={'CH4': 1}
+10:55:30 |   [C=1, H=3, O=0] expected=CH3 | correct=1/1 | composition=1/1 | generated={'CH3': 1}
+10:55:30 |   [C=1, H=3, O=2] expected=CH3O2 | correct=0/1 | composition=0/1 | generated={'CH3': 1}
+10:55:30 |   [C=1, H=2, O=0] expected=CH2 | correct=0/1 | composition=0/1 | generated={'CH3': 1}
+10:55:30 |   [C=1, H=1, O=0] expected=CH | correct=0/1 | composition=0/1 | generated={'CH2': 1}
+10:55:30 |   [C=1, H=0, O=0] expected=C | correct=1/1 | composition=1/1 | generated={'C': 1}
+10:55:30 |   [C=1, H=3, O=1] expected=CH3O,CH2OH | correct=0/1 | composition=0/1 | generated={'CH3': 1}
+10:55:30 |   [C=1, H=4, O=1] expected=CH3OH | correct=0/1 | composition=0/1 | generated={'CH3': 1}
+10:55:30 |   [C=2, H=6, O=0] expected=C2H6 | correct=0/1 | composition=0/1 | generated={'CH4': 1}
+10:55:30 |   [C=2, H=5, O=0] expected=C2H5 | correct=0/1 | composition=0/1 | generated={'CH4': 1}
+10:55:30 |   [C=2, H=4, O=0] expected=C2H4 | correct=0/1 | composition=0/1 | generated={'CH4': 1}
+10:55:30 |   [C=2, H=3, O=0] expected=C2H3 | correct=0/1 | composition=0/1 | generated={'CH3': 1}
+10:55:30 |   [C=2, H=2, O=0] expected=C2H2 | correct=0/1 | composition=0/1 | generated={'CH3': 1}
+10:55:30 |   [C=2, H=1, O=0] expected=C2H | correct=0/1 | composition=0/1 | generated={'CH2': 1}
+10:55:30 |   [C=2, H=1, O=1] expected=HCCO | correct=0/1 | composition=0/1 | generated={'CH2': 1}
+10:55:30 |   [C=2, H=2, O=1] expected=CH2CO | correct=0/1 | composition=0/1 | generated={'CH3': 1}
+10:55:30 |   [C=2, H=3, O=1] expected=CH2CHO,CH3CO | correct=0/1 | composition=0/1 | generated={'CH3': 1}
+10:55:30 |   [C=2, H=4, O=1] expected=CH3CHO | correct=0/1 | composition=0/1 | generated={'CH4': 1}
+10:55:30 |   SPECIES H2      | correctly generated=0
+10:55:30 |   SPECIES O2      | correctly generated=0
+10:55:30 |   SPECIES H       | correctly generated=0
+10:55:30 |   SPECIES O       | correctly generated=1
+10:55:30 |   SPECIES OH      | correctly generated=1
+10:55:30 |   SPECIES H2O     | correctly generated=0
+10:55:30 |   SPECIES HO2     | correctly generated=0
+10:55:30 |   SPECIES H2O2    | correctly generated=1
+10:55:30 |   SPECIES CO2     | correctly generated=0
+10:55:30 |   SPECIES HCO     | correctly generated=0
+10:55:30 |   SPECIES CH2O    | correctly generated=0
+10:55:30 |   SPECIES CH4     | correctly generated=1
+10:55:30 |   SPECIES CH3     | correctly generated=1
+10:55:30 |   SPECIES CH3O2   | correctly generated=0
+10:55:30 |   SPECIES CH2     | correctly generated=0
+10:55:30 |   SPECIES CH      | correctly generated=0
+10:55:30 |   SPECIES C       | correctly generated=1
+10:55:30 |   SPECIES CH3O    | correctly generated=0
+10:55:30 |   SPECIES CH2OH   | correctly generated=0
+10:55:30 |   SPECIES CH3OH   | correctly generated=0
+10:55:30 |   SPECIES C2H6    | correctly generated=0
+10:55:30 |   SPECIES C2H5    | correctly generated=0
+10:55:30 |   SPECIES C2H4    | correctly generated=0
+10:55:30 |   SPECIES C2H3    | correctly generated=0
+10:55:30 |   SPECIES C2H2    | correctly generated=0
+10:55:30 |   SPECIES C2H     | correctly generated=0
+10:55:30 |   SPECIES HCCO    | correctly generated=0
+10:55:30 |   SPECIES CH2CO   | correctly generated=0
+10:55:30 |   SPECIES CH2CHO  | correctly generated=0
+10:55:30 |   SPECIES CH3CHO  | correctly generated=0
+10:55:30 |   SPECIES CH3CO   | correctly generated=0
+10:55:30 | EPOCH 0101/300 | loss=0.93285 | sampled sequences=102 | teacher-action accuracy=70.0% | mean correct-action probability=0.4778 | grad_norm=0.245 | 0.03s
+10:55:30 | EPOCH 0102/300 | loss=0.94245 | sampled sequences=102 | teacher-action accuracy=64.6% | mean correct-action probability=0.4718 | grad_norm=0.246 | 0.03s
+10:55:30 | EPOCH 0103/300 | loss=0.91964 | sampled sequences=102 | teacher-action accuracy=67.6% | mean correct-action probability=0.4786 | grad_norm=0.190 | 0.03s
+10:55:31 | EPOCH 0104/300 | loss=0.91959 | sampled sequences=102 | teacher-action accuracy=69.1% | mean correct-action probability=0.4820 | grad_norm=0.163 | 0.03s
+10:55:31 | EPOCH 0105/300 | loss=0.92420 | sampled sequences=102 | teacher-action accuracy=63.4% | mean correct-action probability=0.4750 | grad_norm=0.171 | 0.03s
+10:55:31 | EPOCH 0106/300 | loss=0.91918 | sampled sequences=102 | teacher-action accuracy=63.5% | mean correct-action probability=0.4802 | grad_norm=0.195 | 0.03s
+10:55:31 | EPOCH 0107/300 | loss=0.92091 | sampled sequences=102 | teacher-action accuracy=63.8% | mean correct-action probability=0.4896 | grad_norm=0.311 | 0.03s
+10:55:31 | EPOCH 0108/300 | loss=0.91341 | sampled sequences=102 | teacher-action accuracy=68.2% | mean correct-action probability=0.4878 | grad_norm=0.198 | 0.03s
+10:55:31 | EPOCH 0109/300 | loss=0.89656 | sampled sequences=102 | teacher-action accuracy=69.7% | mean correct-action probability=0.4976 | grad_norm=0.228 | 0.03s
+10:55:31 | EPOCH 0110/300 | loss=0.88989 | sampled sequences=102 | teacher-action accuracy=71.1% | mean correct-action probability=0.4932 | grad_norm=0.235 | 0.03s
+10:55:31 | EPOCH 0111/300 | loss=0.89420 | sampled sequences=102 | teacher-action accuracy=68.6% | mean correct-action probability=0.4968 | grad_norm=0.299 | 0.03s
+10:55:31 | EPOCH 0112/300 | loss=0.89731 | sampled sequences=102 | teacher-action accuracy=67.5% | mean correct-action probability=0.4835 | grad_norm=0.263 | 0.03s
+10:55:31 | EPOCH 0113/300 | loss=0.88596 | sampled sequences=102 | teacher-action accuracy=64.8% | mean correct-action probability=0.4946 | grad_norm=0.311 | 0.03s
+10:55:31 | EPOCH 0114/300 | loss=0.88018 | sampled sequences=102 | teacher-action accuracy=64.9% | mean correct-action probability=0.4997 | grad_norm=0.197 | 0.03s
+10:55:31 | EPOCH 0115/300 | loss=0.86553 | sampled sequences=102 | teacher-action accuracy=64.7% | mean correct-action probability=0.5054 | grad_norm=0.287 | 0.03s
+10:55:31 | EPOCH 0116/300 | loss=0.88248 | sampled sequences=102 | teacher-action accuracy=65.6% | mean correct-action probability=0.4978 | grad_norm=0.479 | 0.03s
+10:55:31 | EPOCH 0117/300 | loss=0.87534 | sampled sequences=102 | teacher-action accuracy=63.7% | mean correct-action probability=0.5066 | grad_norm=0.342 | 0.03s
+10:55:31 | EPOCH 0118/300 | loss=0.86543 | sampled sequences=102 | teacher-action accuracy=71.4% | mean correct-action probability=0.5079 | grad_norm=0.424 | 0.03s
+10:55:31 | EPOCH 0119/300 | loss=0.88423 | sampled sequences=102 | teacher-action accuracy=67.5% | mean correct-action probability=0.4918 | grad_norm=0.376 | 0.03s
+10:55:31 | EPOCH 0120/300 | loss=0.88615 | sampled sequences=102 | teacher-action accuracy=67.5% | mean correct-action probability=0.4952 | grad_norm=0.522 | 0.03s
+10:55:31 | EPOCH 0121/300 | loss=0.87032 | sampled sequences=102 | teacher-action accuracy=70.2% | mean correct-action probability=0.5013 | grad_norm=0.279 | 0.03s
+10:55:31 | EPOCH 0122/300 | loss=0.87315 | sampled sequences=102 | teacher-action accuracy=66.3% | mean correct-action probability=0.4973 | grad_norm=0.387 | 0.03s
+10:55:31 | EPOCH 0123/300 | loss=0.85841 | sampled sequences=102 | teacher-action accuracy=68.0% | mean correct-action probability=0.5024 | grad_norm=0.259 | 0.03s
+10:55:31 | EPOCH 0124/300 | loss=0.83276 | sampled sequences=102 | teacher-action accuracy=73.6% | mean correct-action probability=0.5193 | grad_norm=0.298 | 0.03s
+10:55:31 | EPOCH 0125/300 | loss=0.85939 | sampled sequences=102 | teacher-action accuracy=66.4% | mean correct-action probability=0.5026 | grad_norm=0.472 | 0.03s
+10:55:31 | EPOCH 0126/300 | loss=0.84248 | sampled sequences=102 | teacher-action accuracy=70.2% | mean correct-action probability=0.5127 | grad_norm=0.350 | 0.03s
+10:55:31 | EPOCH 0127/300 | loss=0.82237 | sampled sequences=102 | teacher-action accuracy=69.9% | mean correct-action probability=0.5284 | grad_norm=0.329 | 0.03s
+10:55:31 | EPOCH 0128/300 | loss=0.82981 | sampled sequences=102 | teacher-action accuracy=70.2% | mean correct-action probability=0.5260 | grad_norm=0.419 | 0.03s
+10:55:31 | EPOCH 0129/300 | loss=0.81773 | sampled sequences=102 | teacher-action accuracy=71.7% | mean correct-action probability=0.5291 | grad_norm=0.317 | 0.03s
+10:55:31 | EPOCH 0130/300 | loss=0.80296 | sampled sequences=102 | teacher-action accuracy=69.4% | mean correct-action probability=0.5299 | grad_norm=0.251 | 0.03s
+10:55:31 | EPOCH 0131/300 | loss=0.81663 | sampled sequences=102 | teacher-action accuracy=71.4% | mean correct-action probability=0.5161 | grad_norm=0.271 | 0.03s
+10:55:31 | EPOCH 0132/300 | loss=0.79631 | sampled sequences=102 | teacher-action accuracy=73.5% | mean correct-action probability=0.5289 | grad_norm=0.336 | 0.03s
+10:55:31 | EPOCH 0133/300 | loss=0.80306 | sampled sequences=102 | teacher-action accuracy=73.0% | mean correct-action probability=0.5241 | grad_norm=0.266 | 0.03s
+10:55:31 | EPOCH 0134/300 | loss=0.80663 | sampled sequences=102 | teacher-action accuracy=74.8% | mean correct-action probability=0.5232 | grad_norm=0.244 | 0.03s
+10:55:32 | EPOCH 0135/300 | loss=0.80854 | sampled sequences=102 | teacher-action accuracy=75.4% | mean correct-action probability=0.5275 | grad_norm=0.321 | 0.03s
+10:55:32 | EPOCH 0136/300 | loss=0.79986 | sampled sequences=102 | teacher-action accuracy=74.1% | mean correct-action probability=0.5283 | grad_norm=0.326 | 0.03s
+10:55:32 | EPOCH 0137/300 | loss=0.80463 | sampled sequences=102 | teacher-action accuracy=74.0% | mean correct-action probability=0.5287 | grad_norm=0.277 | 0.03s
+10:55:32 | EPOCH 0138/300 | loss=0.78876 | sampled sequences=102 | teacher-action accuracy=73.7% | mean correct-action probability=0.5341 | grad_norm=0.336 | 0.03s
+10:55:32 | EPOCH 0139/300 | loss=0.79433 | sampled sequences=102 | teacher-action accuracy=72.3% | mean correct-action probability=0.5284 | grad_norm=0.324 | 0.03s
+10:55:32 | EPOCH 0140/300 | loss=0.77667 | sampled sequences=102 | teacher-action accuracy=76.3% | mean correct-action probability=0.5424 | grad_norm=0.314 | 0.03s
+10:55:32 | EPOCH 0141/300 | loss=0.76543 | sampled sequences=102 | teacher-action accuracy=72.2% | mean correct-action probability=0.5462 | grad_norm=0.386 | 0.03s
+10:55:32 | EPOCH 0142/300 | loss=0.76454 | sampled sequences=102 | teacher-action accuracy=75.3% | mean correct-action probability=0.5480 | grad_norm=0.241 | 0.03s
+10:55:32 | EPOCH 0143/300 | loss=0.77268 | sampled sequences=102 | teacher-action accuracy=71.7% | mean correct-action probability=0.5416 | grad_norm=0.257 | 0.03s
+10:55:32 | EPOCH 0144/300 | loss=0.75919 | sampled sequences=102 | teacher-action accuracy=72.5% | mean correct-action probability=0.5485 | grad_norm=0.305 | 0.03s
+10:55:32 | EPOCH 0145/300 | loss=0.75988 | sampled sequences=102 | teacher-action accuracy=74.0% | mean correct-action probability=0.5430 | grad_norm=0.245 | 0.03s
+10:55:32 | EPOCH 0146/300 | loss=0.75725 | sampled sequences=102 | teacher-action accuracy=76.5% | mean correct-action probability=0.5485 | grad_norm=0.456 | 0.03s
+10:55:32 | EPOCH 0147/300 | loss=0.75581 | sampled sequences=102 | teacher-action accuracy=73.4% | mean correct-action probability=0.5485 | grad_norm=0.374 | 0.03s
+10:55:32 | EPOCH 0148/300 | loss=0.75082 | sampled sequences=102 | teacher-action accuracy=72.6% | mean correct-action probability=0.5501 | grad_norm=0.269 | 0.03s
+10:55:32 | EPOCH 0149/300 | loss=0.75880 | sampled sequences=102 | teacher-action accuracy=74.7% | mean correct-action probability=0.5525 | grad_norm=0.315 | 0.03s
+10:55:32 | EPOCH 0150/300 | loss=0.74666 | sampled sequences=102 | teacher-action accuracy=79.7% | mean correct-action probability=0.5549 | grad_norm=0.359 | 0.03s
+10:55:32 | EVALUATION epoch=150 mode=greedy | correct structure+composition=27.6% | coverage=8/31 | STOP=29/29
+10:55:32 |   [C=0, H=2, O=0] expected=H2 | correct=0/1 | composition=0/1 | generated={'CH2': 1}
+10:55:32 |   [C=0, H=0, O=2] expected=O2 | correct=0/1 | composition=0/1 | generated={'O': 1}
+10:55:32 |   [C=0, H=1, O=0] expected=H | correct=1/1 | composition=1/1 | generated={'H': 1}
+10:55:32 |   [C=0, H=0, O=1] expected=O | correct=1/1 | composition=1/1 | generated={'O': 1}
+10:55:32 |   [C=0, H=1, O=1] expected=OH | correct=1/1 | composition=1/1 | generated={'OH': 1}
+10:55:32 |   [C=0, H=2, O=1] expected=H2O | correct=0/1 | composition=0/1 | generated={'HCO': 1}
+10:55:32 |   [C=0, H=1, O=2] expected=HO2 | correct=0/1 | composition=0/1 | generated={'O': 1}
+10:55:32 |   [C=0, H=2, O=2] expected=H2O2 | correct=0/1 | composition=0/1 | generated={'H2O': 1}
+10:55:32 |   [C=1, H=0, O=2] expected=CO2 | correct=0/1 | composition=0/1 | generated={'O': 1}
+10:55:32 |   [C=1, H=1, O=1] expected=HCO | correct=0/1 | composition=0/1 | generated={'C': 1}
+10:55:32 |   [C=1, H=2, O=1] expected=CH2O | correct=0/1 | composition=0/1 | generated={'CH2': 1}
+10:55:32 |   [C=1, H=4, O=0] expected=CH4 | correct=1/1 | composition=1/1 | generated={'CH4': 1}
+10:55:32 |   [C=1, H=3, O=0] expected=CH3 | correct=1/1 | composition=1/1 | generated={'CH3': 1}
+10:55:32 |   [C=1, H=3, O=2] expected=CH3O2 | correct=0/1 | composition=0/1 | generated={'CH3O': 1}
+10:55:32 |   [C=1, H=2, O=0] expected=CH2 | correct=1/1 | composition=1/1 | generated={'CH2': 1}
+10:55:32 |   [C=1, H=1, O=0] expected=CH | correct=1/1 | composition=1/1 | generated={'CH': 1}
+10:55:32 |   [C=1, H=0, O=0] expected=C | correct=1/1 | composition=1/1 | generated={'C': 1}
+10:55:32 |   [C=1, H=3, O=1] expected=CH3O,CH2OH | correct=0/1 | composition=0/1 | generated={'CH3': 1}
+10:55:32 |   [C=1, H=4, O=1] expected=CH3OH | correct=0/1 | composition=0/1 | generated={'CH4': 1}
+10:55:32 |   [C=2, H=6, O=0] expected=C2H6 | correct=0/1 | composition=0/1 | generated={'CH4': 1}
+10:55:32 |   [C=2, H=5, O=0] expected=C2H5 | correct=0/1 | composition=0/1 | generated={'CH4': 1}
+10:55:32 |   [C=2, H=4, O=0] expected=C2H4 | correct=0/1 | composition=0/1 | generated={'CH4': 1}
+10:55:32 |   [C=2, H=3, O=0] expected=C2H3 | correct=0/1 | composition=0/1 | generated={'CH4': 1}
+10:55:32 |   [C=2, H=2, O=0] expected=C2H2 | correct=0/1 | composition=0/1 | generated={'CH3': 1}
+10:55:32 |   [C=2, H=1, O=0] expected=C2H | correct=0/1 | composition=0/1 | generated={'CH2': 1}
+10:55:32 |   [C=2, H=1, O=1] expected=HCCO | correct=0/1 | composition=0/1 | generated={'CH': 1}
+10:55:32 |   [C=2, H=2, O=1] expected=CH2CO | correct=0/1 | composition=0/1 | generated={'CH2': 1}
+10:55:32 |   [C=2, H=3, O=1] expected=CH2CHO,CH3CO | correct=0/1 | composition=0/1 | generated={'CH3': 1}
+10:55:32 |   [C=2, H=4, O=1] expected=CH3CHO | correct=0/1 | composition=0/1 | generated={'CH4': 1}
+10:55:32 |   SPECIES H2      | correctly generated=0
+10:55:32 |   SPECIES O2      | correctly generated=0
+10:55:32 |   SPECIES H       | correctly generated=1
+10:55:32 |   SPECIES O       | correctly generated=1
+10:55:32 |   SPECIES OH      | correctly generated=1
+10:55:32 |   SPECIES H2O     | correctly generated=0
+10:55:32 |   SPECIES HO2     | correctly generated=0
+10:55:32 |   SPECIES H2O2    | correctly generated=0
+10:55:32 |   SPECIES CO2     | correctly generated=0
+10:55:32 |   SPECIES HCO     | correctly generated=0
+10:55:32 |   SPECIES CH2O    | correctly generated=0
+10:55:32 |   SPECIES CH4     | correctly generated=1
+10:55:32 |   SPECIES CH3     | correctly generated=1
+10:55:32 |   SPECIES CH3O2   | correctly generated=0
+10:55:32 |   SPECIES CH2     | correctly generated=1
+10:55:32 |   SPECIES CH      | correctly generated=1
+10:55:32 |   SPECIES C       | correctly generated=1
+10:55:32 |   SPECIES CH3O    | correctly generated=0
+10:55:32 |   SPECIES CH2OH   | correctly generated=0
+10:55:32 |   SPECIES CH3OH   | correctly generated=0
+10:55:32 |   SPECIES C2H6    | correctly generated=0
+10:55:32 |   SPECIES C2H5    | correctly generated=0
+10:55:32 |   SPECIES C2H4    | correctly generated=0
+10:55:32 |   SPECIES C2H3    | correctly generated=0
+10:55:32 |   SPECIES C2H2    | correctly generated=0
+10:55:32 |   SPECIES C2H     | correctly generated=0
+10:55:32 |   SPECIES HCCO    | correctly generated=0
+10:55:32 |   SPECIES CH2CO   | correctly generated=0
+10:55:32 |   SPECIES CH2CHO  | correctly generated=0
+10:55:32 |   SPECIES CH3CHO  | correctly generated=0
+10:55:32 |   SPECIES CH3CO   | correctly generated=0
+10:55:32 | EPOCH 0151/300 | loss=0.74452 | sampled sequences=102 | teacher-action accuracy=73.7% | mean correct-action probability=0.5581 | grad_norm=0.250 | 0.03s
+10:55:32 | EPOCH 0152/300 | loss=0.73850 | sampled sequences=102 | teacher-action accuracy=73.4% | mean correct-action probability=0.5593 | grad_norm=0.353 | 0.03s
+10:55:32 | EPOCH 0153/300 | loss=0.72312 | sampled sequences=102 | teacher-action accuracy=76.1% | mean correct-action probability=0.5641 | grad_norm=0.302 | 0.03s
+10:55:32 | EPOCH 0154/300 | loss=0.73972 | sampled sequences=102 | teacher-action accuracy=71.0% | mean correct-action probability=0.5588 | grad_norm=0.247 | 0.03s
+10:55:32 | EPOCH 0155/300 | loss=0.72684 | sampled sequences=102 | teacher-action accuracy=72.9% | mean correct-action probability=0.5653 | grad_norm=0.419 | 0.03s
+10:55:32 | EPOCH 0156/300 | loss=0.71861 | sampled sequences=102 | teacher-action accuracy=74.3% | mean correct-action probability=0.5617 | grad_norm=0.231 | 0.03s
+10:55:32 | EPOCH 0157/300 | loss=0.71678 | sampled sequences=102 | teacher-action accuracy=78.5% | mean correct-action probability=0.5635 | grad_norm=0.469 | 0.05s
+10:55:32 | EPOCH 0158/300 | loss=0.73360 | sampled sequences=102 | teacher-action accuracy=74.1% | mean correct-action probability=0.5611 | grad_norm=0.306 | 0.04s
+10:55:32 | EPOCH 0159/300 | loss=0.71882 | sampled sequences=102 | teacher-action accuracy=76.4% | mean correct-action probability=0.5712 | grad_norm=0.348 | 0.04s
+10:55:32 | EPOCH 0160/300 | loss=0.70393 | sampled sequences=102 | teacher-action accuracy=77.6% | mean correct-action probability=0.5823 | grad_norm=0.312 | 0.03s
+10:55:32 | EPOCH 0161/300 | loss=0.73813 | sampled sequences=102 | teacher-action accuracy=73.3% | mean correct-action probability=0.5697 | grad_norm=0.522 | 0.03s
+10:55:32 | EPOCH 0162/300 | loss=0.69168 | sampled sequences=102 | teacher-action accuracy=79.0% | mean correct-action probability=0.5810 | grad_norm=0.330 | 0.03s
+10:55:32 | EPOCH 0163/300 | loss=0.71348 | sampled sequences=102 | teacher-action accuracy=75.7% | mean correct-action probability=0.5711 | grad_norm=0.330 | 0.03s
+10:55:33 | EPOCH 0164/300 | loss=0.71062 | sampled sequences=102 | teacher-action accuracy=76.0% | mean correct-action probability=0.5742 | grad_norm=0.323 | 0.03s
+10:55:33 | EPOCH 0165/300 | loss=0.71370 | sampled sequences=102 | teacher-action accuracy=76.4% | mean correct-action probability=0.5699 | grad_norm=0.346 | 0.03s
+10:55:33 | EPOCH 0166/300 | loss=0.71419 | sampled sequences=102 | teacher-action accuracy=77.6% | mean correct-action probability=0.5748 | grad_norm=0.464 | 0.03s
+10:55:33 | EPOCH 0167/300 | loss=0.69214 | sampled sequences=102 | teacher-action accuracy=78.8% | mean correct-action probability=0.5850 | grad_norm=0.660 | 0.03s
+10:55:33 | EPOCH 0168/300 | loss=0.71261 | sampled sequences=102 | teacher-action accuracy=75.8% | mean correct-action probability=0.5816 | grad_norm=0.256 | 0.03s
+10:55:33 | EPOCH 0169/300 | loss=0.69767 | sampled sequences=102 | teacher-action accuracy=74.4% | mean correct-action probability=0.5788 | grad_norm=0.657 | 0.03s
+10:55:33 | EPOCH 0170/300 | loss=0.70971 | sampled sequences=102 | teacher-action accuracy=77.2% | mean correct-action probability=0.5773 | grad_norm=0.457 | 0.03s
+10:55:33 | EPOCH 0171/300 | loss=0.68745 | sampled sequences=102 | teacher-action accuracy=80.0% | mean correct-action probability=0.5840 | grad_norm=0.543 | 0.03s
+10:55:33 | EPOCH 0172/300 | loss=0.68299 | sampled sequences=102 | teacher-action accuracy=75.0% | mean correct-action probability=0.5847 | grad_norm=0.297 | 0.03s
+10:55:33 | EPOCH 0173/300 | loss=0.69129 | sampled sequences=102 | teacher-action accuracy=75.9% | mean correct-action probability=0.5873 | grad_norm=0.466 | 0.03s
+10:55:33 | EPOCH 0174/300 | loss=0.69317 | sampled sequences=102 | teacher-action accuracy=75.2% | mean correct-action probability=0.5826 | grad_norm=0.400 | 0.03s
+10:55:33 | EPOCH 0175/300 | loss=0.68014 | sampled sequences=102 | teacher-action accuracy=77.3% | mean correct-action probability=0.5878 | grad_norm=0.516 | 0.03s
+10:55:33 | EPOCH 0176/300 | loss=0.65998 | sampled sequences=102 | teacher-action accuracy=78.2% | mean correct-action probability=0.6012 | grad_norm=0.400 | 0.04s
+10:55:33 | EPOCH 0177/300 | loss=0.68270 | sampled sequences=102 | teacher-action accuracy=78.1% | mean correct-action probability=0.5922 | grad_norm=0.459 | 0.04s
+10:55:33 | EPOCH 0178/300 | loss=0.64936 | sampled sequences=102 | teacher-action accuracy=78.7% | mean correct-action probability=0.6042 | grad_norm=0.494 | 0.03s
+10:55:33 | EPOCH 0179/300 | loss=0.66978 | sampled sequences=102 | teacher-action accuracy=77.6% | mean correct-action probability=0.6049 | grad_norm=0.539 | 0.03s
+10:55:33 | EPOCH 0180/300 | loss=0.68691 | sampled sequences=102 | teacher-action accuracy=77.5% | mean correct-action probability=0.5932 | grad_norm=0.469 | 0.03s
+10:55:33 | EPOCH 0181/300 | loss=0.67148 | sampled sequences=102 | teacher-action accuracy=77.2% | mean correct-action probability=0.5906 | grad_norm=0.361 | 0.03s
+10:55:33 | EPOCH 0182/300 | loss=0.66582 | sampled sequences=102 | teacher-action accuracy=78.6% | mean correct-action probability=0.5972 | grad_norm=0.356 | 0.03s
+10:55:33 | EPOCH 0183/300 | loss=0.65563 | sampled sequences=102 | teacher-action accuracy=76.5% | mean correct-action probability=0.5957 | grad_norm=0.239 | 0.03s
+10:55:33 | EPOCH 0184/300 | loss=0.64668 | sampled sequences=102 | teacher-action accuracy=75.3% | mean correct-action probability=0.6063 | grad_norm=0.383 | 0.03s
+10:55:33 | EPOCH 0185/300 | loss=0.65882 | sampled sequences=102 | teacher-action accuracy=75.2% | mean correct-action probability=0.5975 | grad_norm=0.293 | 0.03s
+10:55:33 | EPOCH 0186/300 | loss=0.64745 | sampled sequences=102 | teacher-action accuracy=79.7% | mean correct-action probability=0.6044 | grad_norm=0.269 | 0.03s
+10:55:33 | EPOCH 0187/300 | loss=0.61741 | sampled sequences=102 | teacher-action accuracy=80.2% | mean correct-action probability=0.6118 | grad_norm=0.365 | 0.03s
+10:55:33 | EPOCH 0188/300 | loss=0.64440 | sampled sequences=102 | teacher-action accuracy=77.2% | mean correct-action probability=0.6023 | grad_norm=0.247 | 0.03s
+10:55:33 | EPOCH 0189/300 | loss=0.63656 | sampled sequences=102 | teacher-action accuracy=79.0% | mean correct-action probability=0.6053 | grad_norm=0.348 | 0.03s
+10:55:33 | EPOCH 0190/300 | loss=0.64535 | sampled sequences=102 | teacher-action accuracy=76.6% | mean correct-action probability=0.6085 | grad_norm=0.314 | 0.03s
+10:55:33 | EPOCH 0191/300 | loss=0.63925 | sampled sequences=102 | teacher-action accuracy=78.4% | mean correct-action probability=0.6139 | grad_norm=0.345 | 0.03s
+10:55:33 | EPOCH 0192/300 | loss=0.64061 | sampled sequences=102 | teacher-action accuracy=79.0% | mean correct-action probability=0.6128 | grad_norm=0.385 | 0.03s
+10:55:33 | EPOCH 0193/300 | loss=0.63643 | sampled sequences=102 | teacher-action accuracy=79.7% | mean correct-action probability=0.6132 | grad_norm=0.368 | 0.03s
+10:55:33 | EPOCH 0194/300 | loss=0.62136 | sampled sequences=102 | teacher-action accuracy=81.3% | mean correct-action probability=0.6177 | grad_norm=0.355 | 0.03s
+10:55:34 | EPOCH 0195/300 | loss=0.62761 | sampled sequences=102 | teacher-action accuracy=80.0% | mean correct-action probability=0.6128 | grad_norm=0.371 | 0.03s
+10:55:34 | EPOCH 0196/300 | loss=0.62073 | sampled sequences=102 | teacher-action accuracy=79.2% | mean correct-action probability=0.6170 | grad_norm=0.351 | 0.03s
+10:55:34 | EPOCH 0197/300 | loss=0.61078 | sampled sequences=102 | teacher-action accuracy=82.9% | mean correct-action probability=0.6177 | grad_norm=0.453 | 0.03s
+10:55:34 | EPOCH 0198/300 | loss=0.62224 | sampled sequences=102 | teacher-action accuracy=78.0% | mean correct-action probability=0.6163 | grad_norm=0.217 | 0.03s
+10:55:34 | EPOCH 0199/300 | loss=0.59946 | sampled sequences=102 | teacher-action accuracy=80.0% | mean correct-action probability=0.6284 | grad_norm=0.490 | 0.03s
+10:55:34 | EPOCH 0200/300 | loss=0.59906 | sampled sequences=102 | teacher-action accuracy=79.0% | mean correct-action probability=0.6298 | grad_norm=0.333 | 0.03s
+10:55:34 | EVALUATION epoch=200 mode=greedy | correct structure+composition=51.7% | coverage=15/31 | STOP=29/29
+10:55:34 |   [C=0, H=2, O=0] expected=H2 | correct=1/1 | composition=1/1 | generated={'H2': 1}
+10:55:34 |   [C=0, H=0, O=2] expected=O2 | correct=1/1 | composition=1/1 | generated={'O2': 1}
+10:55:34 |   [C=0, H=1, O=0] expected=H | correct=1/1 | composition=1/1 | generated={'H': 1}
+10:55:34 |   [C=0, H=0, O=1] expected=O | correct=1/1 | composition=1/1 | generated={'O': 1}
+10:55:34 |   [C=0, H=1, O=1] expected=OH | correct=1/1 | composition=1/1 | generated={'OH': 1}
+10:55:34 |   [C=0, H=2, O=1] expected=H2O | correct=1/1 | composition=1/1 | generated={'H2O': 1}
+10:55:34 |   [C=0, H=1, O=2] expected=HO2 | correct=0/1 | composition=0/1 | generated={'O2': 1}
+10:55:34 |   [C=0, H=2, O=2] expected=H2O2 | correct=1/1 | composition=1/1 | generated={'H2O2': 1}
+10:55:34 |   [C=1, H=0, O=2] expected=CO2 | correct=0/1 | composition=0/1 | generated={'O': 1}
+10:55:34 |   [C=1, H=1, O=1] expected=HCO | correct=0/1 | composition=0/1 | generated={'C': 1}
+10:55:34 |   [C=1, H=2, O=1] expected=CH2O | correct=0/1 | composition=0/1 | generated={'CH': 1}
+10:55:34 |   [C=1, H=4, O=0] expected=CH4 | correct=1/1 | composition=1/1 | generated={'CH4': 1}
+10:55:34 |   [C=1, H=3, O=0] expected=CH3 | correct=1/1 | composition=1/1 | generated={'CH3': 1}
+10:55:34 |   [C=1, H=3, O=2] expected=CH3O2 | correct=0/1 | composition=0/1 | generated={'CH3O': 1}
+10:55:34 |   [C=1, H=2, O=0] expected=CH2 | correct=1/1 | composition=1/1 | generated={'CH2': 1}
+10:55:34 |   [C=1, H=1, O=0] expected=CH | correct=1/1 | composition=1/1 | generated={'CH': 1}
+10:55:34 |   [C=1, H=0, O=0] expected=C | correct=1/1 | composition=1/1 | generated={'C': 1}
+10:55:34 |   [C=1, H=3, O=1] expected=CH3O,CH2OH | correct=0/1 | composition=0/1 | generated={'CH3': 1}
+10:55:34 |   [C=1, H=4, O=1] expected=CH3OH | correct=0/1 | composition=0/1 | generated={'CH4': 1}
+10:55:34 |   [C=2, H=6, O=0] expected=C2H6 | correct=1/1 | composition=1/1 | generated={'C2H6': 1}
+10:55:34 |   [C=2, H=5, O=0] expected=C2H5 | correct=1/1 | composition=1/1 | generated={'C2H5': 1}
+10:55:34 |   [C=2, H=4, O=0] expected=C2H4 | correct=0/1 | composition=0/1 | generated={'CH4': 1}
+10:55:34 |   [C=2, H=3, O=0] expected=C2H3 | correct=0/1 | composition=0/1 | generated={'CH4': 1}
+10:55:34 |   [C=2, H=2, O=0] expected=C2H2 | correct=0/1 | composition=0/1 | generated={'CH3': 1}
+10:55:34 |   [C=2, H=1, O=0] expected=C2H | correct=0/1 | composition=0/1 | generated={'CH': 1}
+10:55:34 |   [C=2, H=1, O=1] expected=HCCO | correct=0/1 | composition=0/1 | generated={'CH': 1}
+10:55:34 |   [C=2, H=2, O=1] expected=CH2CO | correct=1/1 | composition=1/1 | generated={'CH2CO': 1}
+10:55:34 |   [C=2, H=3, O=1] expected=CH2CHO,CH3CO | correct=0/1 | composition=0/1 | generated={'CH3O': 1}
+10:55:34 |   [C=2, H=4, O=1] expected=CH3CHO | correct=0/1 | composition=0/1 | generated={'CH3CO': 1}
+10:55:34 |   SPECIES H2      | correctly generated=1
+10:55:34 |   SPECIES O2      | correctly generated=1
+10:55:34 |   SPECIES H       | correctly generated=1
+10:55:34 |   SPECIES O       | correctly generated=1
+10:55:34 |   SPECIES OH      | correctly generated=1
+10:55:34 |   SPECIES H2O     | correctly generated=1
+10:55:34 |   SPECIES HO2     | correctly generated=0
+10:55:34 |   SPECIES H2O2    | correctly generated=1
+10:55:34 |   SPECIES CO2     | correctly generated=0
+10:55:34 |   SPECIES HCO     | correctly generated=0
+10:55:34 |   SPECIES CH2O    | correctly generated=0
+10:55:34 |   SPECIES CH4     | correctly generated=1
+10:55:34 |   SPECIES CH3     | correctly generated=1
+10:55:34 |   SPECIES CH3O2   | correctly generated=0
+10:55:34 |   SPECIES CH2     | correctly generated=1
+10:55:34 |   SPECIES CH      | correctly generated=1
+10:55:34 |   SPECIES C       | correctly generated=1
+10:55:34 |   SPECIES CH3O    | correctly generated=0
+10:55:34 |   SPECIES CH2OH   | correctly generated=0
+10:55:34 |   SPECIES CH3OH   | correctly generated=0
+10:55:34 |   SPECIES C2H6    | correctly generated=1
+10:55:34 |   SPECIES C2H5    | correctly generated=1
+10:55:34 |   SPECIES C2H4    | correctly generated=0
+10:55:34 |   SPECIES C2H3    | correctly generated=0
+10:55:34 |   SPECIES C2H2    | correctly generated=0
+10:55:34 |   SPECIES C2H     | correctly generated=0
+10:55:34 |   SPECIES HCCO    | correctly generated=0
+10:55:34 |   SPECIES CH2CO   | correctly generated=1
+10:55:34 |   SPECIES CH2CHO  | correctly generated=0
+10:55:34 |   SPECIES CH3CHO  | correctly generated=0
+10:55:34 |   SPECIES CH3CO   | correctly generated=0
+10:55:34 | EPOCH 0201/300 | loss=0.62380 | sampled sequences=102 | teacher-action accuracy=79.2% | mean correct-action probability=0.6293 | grad_norm=0.388 | 0.03s
+10:55:34 | EPOCH 0202/300 | loss=0.61220 | sampled sequences=102 | teacher-action accuracy=79.8% | mean correct-action probability=0.6207 | grad_norm=0.407 | 0.03s
+10:55:34 | EPOCH 0203/300 | loss=0.62644 | sampled sequences=102 | teacher-action accuracy=78.5% | mean correct-action probability=0.6234 | grad_norm=0.443 | 0.03s
+10:55:34 | EPOCH 0204/300 | loss=0.60674 | sampled sequences=102 | teacher-action accuracy=80.8% | mean correct-action probability=0.6261 | grad_norm=0.356 | 0.03s
+10:55:34 | EPOCH 0205/300 | loss=0.59544 | sampled sequences=102 | teacher-action accuracy=78.0% | mean correct-action probability=0.6315 | grad_norm=0.350 | 0.03s
+10:55:34 | EPOCH 0206/300 | loss=0.60725 | sampled sequences=102 | teacher-action accuracy=79.8% | mean correct-action probability=0.6352 | grad_norm=0.340 | 0.03s
+10:55:34 | EPOCH 0207/300 | loss=0.59953 | sampled sequences=102 | teacher-action accuracy=79.4% | mean correct-action probability=0.6343 | grad_norm=0.362 | 0.03s
+10:55:34 | EPOCH 0208/300 | loss=0.60173 | sampled sequences=102 | teacher-action accuracy=78.2% | mean correct-action probability=0.6368 | grad_norm=0.539 | 0.03s
+10:55:34 | EPOCH 0209/300 | loss=0.59838 | sampled sequences=102 | teacher-action accuracy=80.1% | mean correct-action probability=0.6309 | grad_norm=0.533 | 0.03s
+10:55:34 | EPOCH 0210/300 | loss=0.59941 | sampled sequences=102 | teacher-action accuracy=81.4% | mean correct-action probability=0.6340 | grad_norm=0.615 | 0.03s
+10:55:34 | EPOCH 0211/300 | loss=0.57824 | sampled sequences=102 | teacher-action accuracy=82.7% | mean correct-action probability=0.6460 | grad_norm=0.324 | 0.03s
+10:55:34 | EPOCH 0212/300 | loss=0.58236 | sampled sequences=102 | teacher-action accuracy=83.0% | mean correct-action probability=0.6412 | grad_norm=0.323 | 0.03s
+10:55:34 | EPOCH 0213/300 | loss=0.55500 | sampled sequences=102 | teacher-action accuracy=83.5% | mean correct-action probability=0.6487 | grad_norm=0.284 | 0.03s
+10:55:34 | EPOCH 0214/300 | loss=0.58604 | sampled sequences=102 | teacher-action accuracy=80.5% | mean correct-action probability=0.6410 | grad_norm=0.400 | 0.03s
+10:55:34 | EPOCH 0215/300 | loss=0.56560 | sampled sequences=102 | teacher-action accuracy=81.9% | mean correct-action probability=0.6507 | grad_norm=0.329 | 0.03s
+10:55:34 | EPOCH 0216/300 | loss=0.58726 | sampled sequences=102 | teacher-action accuracy=82.0% | mean correct-action probability=0.6373 | grad_norm=0.682 | 0.03s
+10:55:34 | EPOCH 0217/300 | loss=0.57873 | sampled sequences=102 | teacher-action accuracy=83.6% | mean correct-action probability=0.6451 | grad_norm=0.423 | 0.03s
+10:55:34 | EPOCH 0218/300 | loss=0.57362 | sampled sequences=102 | teacher-action accuracy=83.5% | mean correct-action probability=0.6468 | grad_norm=0.295 | 0.03s
+10:55:34 | EPOCH 0219/300 | loss=0.57169 | sampled sequences=102 | teacher-action accuracy=77.9% | mean correct-action probability=0.6473 | grad_norm=0.540 | 0.03s
+10:55:34 | EPOCH 0220/300 | loss=0.56552 | sampled sequences=102 | teacher-action accuracy=79.7% | mean correct-action probability=0.6492 | grad_norm=0.412 | 0.03s
+10:55:34 | EPOCH 0221/300 | loss=0.56651 | sampled sequences=102 | teacher-action accuracy=81.2% | mean correct-action probability=0.6451 | grad_norm=0.349 | 0.03s
+10:55:34 | EPOCH 0222/300 | loss=0.58025 | sampled sequences=102 | teacher-action accuracy=79.7% | mean correct-action probability=0.6440 | grad_norm=0.362 | 0.03s
+10:55:34 | EPOCH 0223/300 | loss=0.54790 | sampled sequences=102 | teacher-action accuracy=83.2% | mean correct-action probability=0.6567 | grad_norm=0.386 | 0.03s
+10:55:34 | EPOCH 0224/300 | loss=0.54394 | sampled sequences=102 | teacher-action accuracy=80.4% | mean correct-action probability=0.6618 | grad_norm=0.401 | 0.03s
+10:55:35 | EPOCH 0225/300 | loss=0.56801 | sampled sequences=102 | teacher-action accuracy=82.5% | mean correct-action probability=0.6511 | grad_norm=0.494 | 0.03s
+10:55:35 | EPOCH 0226/300 | loss=0.55112 | sampled sequences=102 | teacher-action accuracy=83.5% | mean correct-action probability=0.6642 | grad_norm=0.348 | 0.03s
+10:55:35 | EPOCH 0227/300 | loss=0.56408 | sampled sequences=102 | teacher-action accuracy=80.0% | mean correct-action probability=0.6537 | grad_norm=0.419 | 0.03s
+10:55:35 | EPOCH 0228/300 | loss=0.56265 | sampled sequences=102 | teacher-action accuracy=78.3% | mean correct-action probability=0.6589 | grad_norm=0.624 | 0.03s
+10:55:35 | EPOCH 0229/300 | loss=0.54476 | sampled sequences=102 | teacher-action accuracy=79.9% | mean correct-action probability=0.6544 | grad_norm=0.376 | 0.03s
+10:55:35 | EPOCH 0230/300 | loss=0.54890 | sampled sequences=102 | teacher-action accuracy=80.7% | mean correct-action probability=0.6612 | grad_norm=0.416 | 0.03s
+10:55:35 | EPOCH 0231/300 | loss=0.54175 | sampled sequences=102 | teacher-action accuracy=81.6% | mean correct-action probability=0.6550 | grad_norm=0.397 | 0.03s
+10:55:35 | EPOCH 0232/300 | loss=0.52967 | sampled sequences=102 | teacher-action accuracy=83.3% | mean correct-action probability=0.6636 | grad_norm=0.557 | 0.03s
+10:55:35 | EPOCH 0233/300 | loss=0.52626 | sampled sequences=102 | teacher-action accuracy=81.1% | mean correct-action probability=0.6672 | grad_norm=0.503 | 0.03s
+10:55:35 | EPOCH 0234/300 | loss=0.53682 | sampled sequences=102 | teacher-action accuracy=78.8% | mean correct-action probability=0.6673 | grad_norm=0.295 | 0.03s
+10:55:35 | EPOCH 0235/300 | loss=0.53250 | sampled sequences=102 | teacher-action accuracy=82.5% | mean correct-action probability=0.6708 | grad_norm=0.302 | 0.03s
+10:55:35 | EPOCH 0236/300 | loss=0.52969 | sampled sequences=102 | teacher-action accuracy=83.0% | mean correct-action probability=0.6682 | grad_norm=0.361 | 0.03s
+10:55:35 | EPOCH 0237/300 | loss=0.52188 | sampled sequences=102 | teacher-action accuracy=82.3% | mean correct-action probability=0.6656 | grad_norm=0.399 | 0.05s
+10:55:35 | EPOCH 0238/300 | loss=0.55693 | sampled sequences=102 | teacher-action accuracy=82.5% | mean correct-action probability=0.6613 | grad_norm=0.262 | 0.04s
+10:55:35 | EPOCH 0239/300 | loss=0.51806 | sampled sequences=102 | teacher-action accuracy=81.5% | mean correct-action probability=0.6771 | grad_norm=0.791 | 0.04s
+10:55:35 | EPOCH 0240/300 | loss=0.54205 | sampled sequences=102 | teacher-action accuracy=79.3% | mean correct-action probability=0.6648 | grad_norm=0.709 | 0.04s
+10:55:35 | EPOCH 0241/300 | loss=0.51221 | sampled sequences=102 | teacher-action accuracy=82.5% | mean correct-action probability=0.6798 | grad_norm=0.261 | 0.04s
+10:55:35 | EPOCH 0242/300 | loss=0.51049 | sampled sequences=102 | teacher-action accuracy=81.2% | mean correct-action probability=0.6813 | grad_norm=0.350 | 0.04s
+10:55:35 | EPOCH 0243/300 | loss=0.53083 | sampled sequences=102 | teacher-action accuracy=80.8% | mean correct-action probability=0.6719 | grad_norm=0.507 | 0.05s
+10:55:35 | EPOCH 0244/300 | loss=0.49188 | sampled sequences=102 | teacher-action accuracy=83.4% | mean correct-action probability=0.6828 | grad_norm=0.424 | 0.04s
+10:55:35 | EPOCH 0245/300 | loss=0.49701 | sampled sequences=102 | teacher-action accuracy=82.6% | mean correct-action probability=0.6826 | grad_norm=0.336 | 0.04s
+10:55:35 | EPOCH 0246/300 | loss=0.50579 | sampled sequences=102 | teacher-action accuracy=81.8% | mean correct-action probability=0.6755 | grad_norm=0.345 | 0.03s
+10:55:35 | EPOCH 0247/300 | loss=0.49984 | sampled sequences=102 | teacher-action accuracy=83.7% | mean correct-action probability=0.6833 | grad_norm=0.428 | 0.04s
+10:55:35 | EPOCH 0248/300 | loss=0.48476 | sampled sequences=102 | teacher-action accuracy=82.3% | mean correct-action probability=0.6877 | grad_norm=0.292 | 0.04s
+10:55:35 | EPOCH 0249/300 | loss=0.48627 | sampled sequences=102 | teacher-action accuracy=83.2% | mean correct-action probability=0.6856 | grad_norm=0.634 | 0.04s
+10:55:35 | EPOCH 0250/300 | loss=0.48475 | sampled sequences=102 | teacher-action accuracy=82.7% | mean correct-action probability=0.6866 | grad_norm=0.397 | 0.03s
+10:55:35 | EVALUATION epoch=250 mode=greedy | correct structure+composition=86.2% | coverage=25/31 | STOP=29/29
+10:55:35 |   [C=0, H=2, O=0] expected=H2 | correct=1/1 | composition=1/1 | generated={'H2': 1}
+10:55:35 |   [C=0, H=0, O=2] expected=O2 | correct=1/1 | composition=1/1 | generated={'O2': 1}
+10:55:35 |   [C=0, H=1, O=0] expected=H | correct=1/1 | composition=1/1 | generated={'H': 1}
+10:55:35 |   [C=0, H=0, O=1] expected=O | correct=1/1 | composition=1/1 | generated={'O': 1}
+10:55:35 |   [C=0, H=1, O=1] expected=OH | correct=1/1 | composition=1/1 | generated={'OH': 1}
+10:55:35 |   [C=0, H=2, O=1] expected=H2O | correct=1/1 | composition=1/1 | generated={'H2O': 1}
+10:55:35 |   [C=0, H=1, O=2] expected=HO2 | correct=1/1 | composition=1/1 | generated={'HO2': 1}
+10:55:35 |   [C=0, H=2, O=2] expected=H2O2 | correct=1/1 | composition=1/1 | generated={'H2O2': 1}
+10:55:35 |   [C=1, H=0, O=2] expected=CO2 | correct=1/1 | composition=1/1 | generated={'CO2': 1}
+10:55:35 |   [C=1, H=1, O=1] expected=HCO | correct=1/1 | composition=1/1 | generated={'HCO': 1}
+10:55:35 |   [C=1, H=2, O=1] expected=CH2O | correct=1/1 | composition=1/1 | generated={'CH2O': 1}
+10:55:35 |   [C=1, H=4, O=0] expected=CH4 | correct=1/1 | composition=1/1 | generated={'CH4': 1}
+10:55:35 |   [C=1, H=3, O=0] expected=CH3 | correct=1/1 | composition=1/1 | generated={'CH3': 1}
+10:55:35 |   [C=1, H=3, O=2] expected=CH3O2 | correct=1/1 | composition=1/1 | generated={'CH3O2': 1}
+10:55:35 |   [C=1, H=2, O=0] expected=CH2 | correct=1/1 | composition=1/1 | generated={'CH2': 1}
+10:55:35 |   [C=1, H=1, O=0] expected=CH | correct=1/1 | composition=1/1 | generated={'CH': 1}
+10:55:35 |   [C=1, H=0, O=0] expected=C | correct=1/1 | composition=1/1 | generated={'C': 1}
+10:55:35 |   [C=1, H=3, O=1] expected=CH3O,CH2OH | correct=1/1 | composition=1/1 | generated={'CH3O': 1}
+10:55:35 |   [C=1, H=4, O=1] expected=CH3OH | correct=1/1 | composition=1/1 | generated={'CH3OH': 1}
+10:55:35 |   [C=2, H=6, O=0] expected=C2H6 | correct=1/1 | composition=1/1 | generated={'C2H6': 1}
+10:55:35 |   [C=2, H=5, O=0] expected=C2H5 | correct=1/1 | composition=1/1 | generated={'C2H5': 1}
+10:55:35 |   [C=2, H=4, O=0] expected=C2H4 | correct=0/1 | composition=0/1 | generated={'C2H5': 1}
+10:55:35 |   [C=2, H=3, O=0] expected=C2H3 | correct=0/1 | composition=0/1 | generated={'CH3': 1}
+10:55:35 |   [C=2, H=2, O=0] expected=C2H2 | correct=0/1 | composition=0/1 | generated={'C2H3': 1}
+10:55:35 |   [C=2, H=1, O=0] expected=C2H | correct=1/1 | composition=1/1 | generated={'C2H': 1}
+10:55:35 |   [C=2, H=1, O=1] expected=HCCO | correct=1/1 | composition=1/1 | generated={'HCCO': 1}
+10:55:35 |   [C=2, H=2, O=1] expected=CH2CO | correct=1/1 | composition=1/1 | generated={'CH2CO': 1}
+10:55:35 |   [C=2, H=3, O=1] expected=CH2CHO,CH3CO | correct=0/1 | composition=0/1 | generated={'C2H3': 1}
+10:55:35 |   [C=2, H=4, O=1] expected=CH3CHO | correct=1/1 | composition=1/1 | generated={'CH3CHO': 1}
+10:55:35 |   SPECIES H2      | correctly generated=1
+10:55:35 |   SPECIES O2      | correctly generated=1
+10:55:35 |   SPECIES H       | correctly generated=1
+10:55:35 |   SPECIES O       | correctly generated=1
+10:55:35 |   SPECIES OH      | correctly generated=1
+10:55:35 |   SPECIES H2O     | correctly generated=1
+10:55:35 |   SPECIES HO2     | correctly generated=1
+10:55:35 |   SPECIES H2O2    | correctly generated=1
+10:55:35 |   SPECIES CO2     | correctly generated=1
+10:55:35 |   SPECIES HCO     | correctly generated=1
+10:55:35 |   SPECIES CH2O    | correctly generated=1
+10:55:35 |   SPECIES CH4     | correctly generated=1
+10:55:35 |   SPECIES CH3     | correctly generated=1
+10:55:35 |   SPECIES CH3O2   | correctly generated=1
+10:55:35 |   SPECIES CH2     | correctly generated=1
+10:55:35 |   SPECIES CH      | correctly generated=1
+10:55:35 |   SPECIES C       | correctly generated=1
+10:55:35 |   SPECIES CH3O    | correctly generated=1
+10:55:35 |   SPECIES CH2OH   | correctly generated=0
+10:55:35 |   SPECIES CH3OH   | correctly generated=1
+10:55:35 |   SPECIES C2H6    | correctly generated=1
+10:55:35 |   SPECIES C2H5    | correctly generated=1
+10:55:35 |   SPECIES C2H4    | correctly generated=0
+10:55:35 |   SPECIES C2H3    | correctly generated=0
+10:55:35 |   SPECIES C2H2    | correctly generated=0
+10:55:35 |   SPECIES C2H     | correctly generated=1
+10:55:35 |   SPECIES HCCO    | correctly generated=1
+10:55:35 |   SPECIES CH2CO   | correctly generated=1
+10:55:35 |   SPECIES CH2CHO  | correctly generated=0
+10:55:35 |   SPECIES CH3CHO  | correctly generated=1
+10:55:35 |   SPECIES CH3CO   | correctly generated=0
+10:55:35 | EPOCH 0251/300 | loss=0.52146 | sampled sequences=102 | teacher-action accuracy=83.1% | mean correct-action probability=0.6848 | grad_norm=0.473 | 0.03s
+10:55:36 | EPOCH 0252/300 | loss=0.51081 | sampled sequences=102 | teacher-action accuracy=82.3% | mean correct-action probability=0.6857 | grad_norm=0.360 | 0.03s
+10:55:36 | EPOCH 0253/300 | loss=0.47279 | sampled sequences=102 | teacher-action accuracy=82.8% | mean correct-action probability=0.6995 | grad_norm=0.418 | 0.04s
+10:55:36 | EPOCH 0254/300 | loss=0.49475 | sampled sequences=102 | teacher-action accuracy=82.1% | mean correct-action probability=0.6873 | grad_norm=0.316 | 0.04s
+10:55:36 | EPOCH 0255/300 | loss=0.53547 | sampled sequences=102 | teacher-action accuracy=77.7% | mean correct-action probability=0.6752 | grad_norm=0.470 | 0.04s
+10:55:36 | EPOCH 0256/300 | loss=0.52741 | sampled sequences=102 | teacher-action accuracy=80.5% | mean correct-action probability=0.6800 | grad_norm=0.379 | 0.04s
+10:55:36 | EPOCH 0257/300 | loss=0.48598 | sampled sequences=102 | teacher-action accuracy=82.8% | mean correct-action probability=0.7007 | grad_norm=0.594 | 0.04s
+10:55:36 | EPOCH 0258/300 | loss=0.49635 | sampled sequences=102 | teacher-action accuracy=83.9% | mean correct-action probability=0.6941 | grad_norm=0.235 | 0.04s
+10:55:36 | EPOCH 0259/300 | loss=0.49080 | sampled sequences=102 | teacher-action accuracy=82.8% | mean correct-action probability=0.6905 | grad_norm=0.537 | 0.04s
+10:55:36 | EPOCH 0260/300 | loss=0.50009 | sampled sequences=102 | teacher-action accuracy=83.2% | mean correct-action probability=0.6915 | grad_norm=0.703 | 0.03s
+10:55:36 | EPOCH 0261/300 | loss=0.48055 | sampled sequences=102 | teacher-action accuracy=81.4% | mean correct-action probability=0.6980 | grad_norm=0.603 | 0.04s
+10:55:36 | EPOCH 0262/300 | loss=0.48856 | sampled sequences=102 | teacher-action accuracy=79.9% | mean correct-action probability=0.6918 | grad_norm=0.272 | 0.04s
+10:55:36 | EPOCH 0263/300 | loss=0.47829 | sampled sequences=102 | teacher-action accuracy=83.5% | mean correct-action probability=0.6942 | grad_norm=0.341 | 0.03s
+10:55:36 | EPOCH 0264/300 | loss=0.51579 | sampled sequences=102 | teacher-action accuracy=81.8% | mean correct-action probability=0.6815 | grad_norm=0.753 | 0.03s
+10:55:36 | EPOCH 0265/300 | loss=0.47496 | sampled sequences=102 | teacher-action accuracy=86.1% | mean correct-action probability=0.7000 | grad_norm=0.620 | 0.03s
+10:55:36 | EPOCH 0266/300 | loss=0.46052 | sampled sequences=102 | teacher-action accuracy=85.8% | mean correct-action probability=0.7127 | grad_norm=0.453 | 0.03s
+10:55:36 | EPOCH 0267/300 | loss=0.47845 | sampled sequences=102 | teacher-action accuracy=82.5% | mean correct-action probability=0.7018 | grad_norm=0.462 | 0.03s
+10:55:36 | EPOCH 0268/300 | loss=0.47576 | sampled sequences=102 | teacher-action accuracy=83.6% | mean correct-action probability=0.7064 | grad_norm=0.232 | 0.03s
+10:55:36 | EPOCH 0269/300 | loss=0.48501 | sampled sequences=102 | teacher-action accuracy=81.5% | mean correct-action probability=0.7045 | grad_norm=0.413 | 0.03s
+10:55:36 | EPOCH 0270/300 | loss=0.47899 | sampled sequences=102 | teacher-action accuracy=82.4% | mean correct-action probability=0.6984 | grad_norm=0.299 | 0.03s
+10:55:36 | EPOCH 0271/300 | loss=0.47317 | sampled sequences=102 | teacher-action accuracy=83.0% | mean correct-action probability=0.7037 | grad_norm=0.435 | 0.03s
+10:55:36 | EPOCH 0272/300 | loss=0.45577 | sampled sequences=102 | teacher-action accuracy=83.5% | mean correct-action probability=0.7110 | grad_norm=0.369 | 0.03s
+10:55:36 | EPOCH 0273/300 | loss=0.46084 | sampled sequences=102 | teacher-action accuracy=82.9% | mean correct-action probability=0.7106 | grad_norm=0.355 | 0.03s
+10:55:36 | EPOCH 0274/300 | loss=0.49255 | sampled sequences=102 | teacher-action accuracy=81.0% | mean correct-action probability=0.7006 | grad_norm=0.531 | 0.03s
+10:55:36 | EPOCH 0275/300 | loss=0.49403 | sampled sequences=102 | teacher-action accuracy=84.2% | mean correct-action probability=0.6983 | grad_norm=0.477 | 0.04s
+10:55:36 | EPOCH 0276/300 | loss=0.47239 | sampled sequences=102 | teacher-action accuracy=83.6% | mean correct-action probability=0.7039 | grad_norm=0.440 | 0.03s
+10:55:36 | EPOCH 0277/300 | loss=0.46019 | sampled sequences=102 | teacher-action accuracy=82.8% | mean correct-action probability=0.7147 | grad_norm=0.882 | 0.04s
+10:55:36 | EPOCH 0278/300 | loss=0.46739 | sampled sequences=102 | teacher-action accuracy=83.4% | mean correct-action probability=0.7099 | grad_norm=0.444 | 0.04s
+10:55:36 | EPOCH 0279/300 | loss=0.49886 | sampled sequences=102 | teacher-action accuracy=82.3% | mean correct-action probability=0.7016 | grad_norm=0.721 | 0.04s
+10:55:36 | EPOCH 0280/300 | loss=0.47675 | sampled sequences=102 | teacher-action accuracy=80.4% | mean correct-action probability=0.7072 | grad_norm=0.577 | 0.03s
+10:55:37 | EPOCH 0281/300 | loss=0.43634 | sampled sequences=102 | teacher-action accuracy=85.4% | mean correct-action probability=0.7183 | grad_norm=0.464 | 0.03s
+10:55:37 | EPOCH 0282/300 | loss=0.47093 | sampled sequences=102 | teacher-action accuracy=83.1% | mean correct-action probability=0.7066 | grad_norm=0.522 | 0.03s
+10:55:37 | EPOCH 0283/300 | loss=0.46660 | sampled sequences=102 | teacher-action accuracy=82.3% | mean correct-action probability=0.7104 | grad_norm=0.600 | 0.03s
+10:55:37 | EPOCH 0284/300 | loss=0.44464 | sampled sequences=102 | teacher-action accuracy=83.1% | mean correct-action probability=0.7177 | grad_norm=0.542 | 0.04s
+10:55:37 | EPOCH 0285/300 | loss=0.46270 | sampled sequences=102 | teacher-action accuracy=83.6% | mean correct-action probability=0.7109 | grad_norm=0.738 | 0.03s
+10:55:37 | EPOCH 0286/300 | loss=0.43978 | sampled sequences=102 | teacher-action accuracy=85.9% | mean correct-action probability=0.7215 | grad_norm=0.218 | 0.04s
+10:55:37 | EPOCH 0287/300 | loss=0.45794 | sampled sequences=102 | teacher-action accuracy=83.8% | mean correct-action probability=0.7108 | grad_norm=0.453 | 0.03s
+10:55:37 | EPOCH 0288/300 | loss=0.47598 | sampled sequences=102 | teacher-action accuracy=81.4% | mean correct-action probability=0.7092 | grad_norm=0.372 | 0.04s
+10:55:37 | EPOCH 0289/300 | loss=0.47765 | sampled sequences=102 | teacher-action accuracy=81.7% | mean correct-action probability=0.7087 | grad_norm=0.511 | 0.03s
+10:55:37 | EPOCH 0290/300 | loss=0.42076 | sampled sequences=102 | teacher-action accuracy=83.9% | mean correct-action probability=0.7264 | grad_norm=0.494 | 0.04s
+10:55:37 | EPOCH 0291/300 | loss=0.43407 | sampled sequences=102 | teacher-action accuracy=83.2% | mean correct-action probability=0.7203 | grad_norm=0.322 | 0.03s
+10:55:37 | EPOCH 0292/300 | loss=0.45710 | sampled sequences=102 | teacher-action accuracy=82.6% | mean correct-action probability=0.7137 | grad_norm=0.568 | 0.04s
+10:55:37 | EPOCH 0293/300 | loss=0.45007 | sampled sequences=102 | teacher-action accuracy=82.1% | mean correct-action probability=0.7205 | grad_norm=0.468 | 0.04s
+10:55:37 | EPOCH 0294/300 | loss=0.44800 | sampled sequences=102 | teacher-action accuracy=82.7% | mean correct-action probability=0.7242 | grad_norm=0.881 | 0.03s
+10:55:37 | EPOCH 0295/300 | loss=0.46826 | sampled sequences=102 | teacher-action accuracy=81.5% | mean correct-action probability=0.7179 | grad_norm=0.354 | 0.03s
+10:55:37 | EPOCH 0296/300 | loss=0.44857 | sampled sequences=102 | teacher-action accuracy=82.6% | mean correct-action probability=0.7263 | grad_norm=0.285 | 0.03s
+10:55:37 | EPOCH 0297/300 | loss=0.43097 | sampled sequences=102 | teacher-action accuracy=82.9% | mean correct-action probability=0.7246 | grad_norm=0.614 | 0.03s
+10:55:37 | EPOCH 0298/300 | loss=0.42410 | sampled sequences=102 | teacher-action accuracy=84.7% | mean correct-action probability=0.7289 | grad_norm=0.529 | 0.03s
+10:55:37 | EPOCH 0299/300 | loss=0.45259 | sampled sequences=102 | teacher-action accuracy=81.6% | mean correct-action probability=0.7161 | grad_norm=0.543 | 0.03s
+10:55:37 | EPOCH 0300/300 | loss=0.45432 | sampled sequences=102 | teacher-action accuracy=81.4% | mean correct-action probability=0.7228 | grad_norm=0.809 | 0.03s
+10:55:37 | EVALUATION epoch=300 mode=greedy | correct structure+composition=89.7% | coverage=26/31 | STOP=29/29
+10:55:37 |   [C=0, H=2, O=0] expected=H2 | correct=1/1 | composition=1/1 | generated={'H2': 1}
+10:55:37 |   [C=0, H=0, O=2] expected=O2 | correct=1/1 | composition=1/1 | generated={'O2': 1}
+10:55:37 |   [C=0, H=1, O=0] expected=H | correct=1/1 | composition=1/1 | generated={'H': 1}
+10:55:37 |   [C=0, H=0, O=1] expected=O | correct=1/1 | composition=1/1 | generated={'O': 1}
+10:55:37 |   [C=0, H=1, O=1] expected=OH | correct=1/1 | composition=1/1 | generated={'OH': 1}
+10:55:37 |   [C=0, H=2, O=1] expected=H2O | correct=1/1 | composition=1/1 | generated={'H2O': 1}
+10:55:37 |   [C=0, H=1, O=2] expected=HO2 | correct=1/1 | composition=1/1 | generated={'HO2': 1}
+10:55:37 |   [C=0, H=2, O=2] expected=H2O2 | correct=1/1 | composition=1/1 | generated={'H2O2': 1}
+10:55:37 |   [C=1, H=0, O=2] expected=CO2 | correct=1/1 | composition=1/1 | generated={'CO2': 1}
+10:55:37 |   [C=1, H=1, O=1] expected=HCO | correct=1/1 | composition=1/1 | generated={'HCO': 1}
+10:55:37 |   [C=1, H=2, O=1] expected=CH2O | correct=1/1 | composition=1/1 | generated={'CH2O': 1}
+10:55:37 |   [C=1, H=4, O=0] expected=CH4 | correct=1/1 | composition=1/1 | generated={'CH4': 1}
+10:55:37 |   [C=1, H=3, O=0] expected=CH3 | correct=1/1 | composition=1/1 | generated={'CH3': 1}
+10:55:37 |   [C=1, H=3, O=2] expected=CH3O2 | correct=1/1 | composition=1/1 | generated={'CH3O2': 1}
+10:55:37 |   [C=1, H=2, O=0] expected=CH2 | correct=1/1 | composition=1/1 | generated={'CH2': 1}
+10:55:37 |   [C=1, H=1, O=0] expected=CH | correct=1/1 | composition=1/1 | generated={'CH': 1}
+10:55:37 |   [C=1, H=0, O=0] expected=C | correct=1/1 | composition=1/1 | generated={'C': 1}
+10:55:37 |   [C=1, H=3, O=1] expected=CH3O,CH2OH | correct=1/1 | composition=1/1 | generated={'CH3O': 1}
+10:55:37 |   [C=1, H=4, O=1] expected=CH3OH | correct=1/1 | composition=1/1 | generated={'CH3OH': 1}
+10:55:37 |   [C=2, H=6, O=0] expected=C2H6 | correct=1/1 | composition=1/1 | generated={'C2H6': 1}
+10:55:37 |   [C=2, H=5, O=0] expected=C2H5 | correct=1/1 | composition=1/1 | generated={'C2H5': 1}
+10:55:37 |   [C=2, H=4, O=0] expected=C2H4 | correct=0/1 | composition=0/1 | generated={'C2H5': 1}
+10:55:37 |   [C=2, H=3, O=0] expected=C2H3 | correct=1/1 | composition=1/1 | generated={'C2H3': 1}
+10:55:37 |   [C=2, H=2, O=0] expected=C2H2 | correct=0/1 | composition=0/1 | generated={'C2H3': 1}
+10:55:37 |   [C=2, H=1, O=0] expected=C2H | correct=1/1 | composition=1/1 | generated={'C2H': 1}
+10:55:37 |   [C=2, H=1, O=1] expected=HCCO | correct=1/1 | composition=1/1 | generated={'HCCO': 1}
+10:55:37 |   [C=2, H=2, O=1] expected=CH2CO | correct=1/1 | composition=1/1 | generated={'CH2CO': 1}
+10:55:37 |   [C=2, H=3, O=1] expected=CH2CHO,CH3CO | correct=1/1 | composition=1/1 | generated={'CH3CO': 1}
+10:55:37 |   [C=2, H=4, O=1] expected=CH3CHO | correct=0/1 | composition=0/1 | generated={'C2H5': 1}
+10:55:37 |   SPECIES H2      | correctly generated=1
+10:55:37 |   SPECIES O2      | correctly generated=1
+10:55:37 |   SPECIES H       | correctly generated=1
+10:55:37 |   SPECIES O       | correctly generated=1
+10:55:37 |   SPECIES OH      | correctly generated=1
+10:55:37 |   SPECIES H2O     | correctly generated=1
+10:55:37 |   SPECIES HO2     | correctly generated=1
+10:55:37 |   SPECIES H2O2    | correctly generated=1
+10:55:37 |   SPECIES CO2     | correctly generated=1
+10:55:37 |   SPECIES HCO     | correctly generated=1
+10:55:37 |   SPECIES CH2O    | correctly generated=1
+10:55:37 |   SPECIES CH4     | correctly generated=1
+10:55:37 |   SPECIES CH3     | correctly generated=1
+10:55:37 |   SPECIES CH3O2   | correctly generated=1
+10:55:37 |   SPECIES CH2     | correctly generated=1
+10:55:37 |   SPECIES CH      | correctly generated=1
+10:55:37 |   SPECIES C       | correctly generated=1
+10:55:37 |   SPECIES CH3O    | correctly generated=1
+10:55:37 |   SPECIES CH2OH   | correctly generated=0
+10:55:37 |   SPECIES CH3OH   | correctly generated=1
+10:55:37 |   SPECIES C2H6    | correctly generated=1
+10:55:37 |   SPECIES C2H5    | correctly generated=1
+10:55:37 |   SPECIES C2H4    | correctly generated=0
+10:55:37 |   SPECIES C2H3    | correctly generated=1
+10:55:37 |   SPECIES C2H2    | correctly generated=0
+10:55:37 |   SPECIES C2H     | correctly generated=1
+10:55:37 |   SPECIES HCCO    | correctly generated=1
+10:55:37 |   SPECIES CH2CO   | correctly generated=1
+10:55:37 |   SPECIES CH2CHO  | correctly generated=0
+10:55:37 |   SPECIES CH3CHO  | correctly generated=0
+10:55:37 |   SPECIES CH3CO   | correctly generated=1
+10:55:37 | ROLLOUT [C=0, H=1, O=1] -> OH (STOP)
+10:55:37 |   step 01 | atoms=[empty] bonds=[none] | START O | p=0.5807
+10:55:37 |   step 02 | atoms=[0:O] bonds=[none] | ADD H to node 0, bond order 1 | p=0.7984
+10:55:37 |   step 03 | atoms=[0:O, 1:H] bonds=[(0,1,1)] | STOP | p=0.7816
+10:55:37 | ROLLOUT [C=0, H=2, O=1] -> H2O (STOP)
+10:55:37 |   step 01 | atoms=[empty] bonds=[none] | START H | p=0.5156
+10:55:37 |   step 02 | atoms=[0:H] bonds=[none] | ADD O to node 0, bond order 1 | p=0.7808
+10:55:37 |   step 03 | atoms=[0:H, 1:O] bonds=[(0,1,1)] | ADD H to node 1, bond order 1 | p=0.8526
+10:55:37 |   step 04 | atoms=[0:H, 1:O, 2:H] bonds=[(0,1,1), (1,2,1)] | STOP | p=1.0000
+10:55:37 | ROLLOUT [C=1, H=4, O=0] -> CH4 (STOP)
+10:55:37 |   step 01 | atoms=[empty] bonds=[none] | START H | p=0.6666
+10:55:37 |   step 02 | atoms=[0:H] bonds=[none] | ADD C to node 0, bond order 1 | p=0.9906
+10:55:37 |   step 03 | atoms=[0:H, 1:C] bonds=[(0,1,1)] | ADD H to node 1, bond order 1 | p=0.9795
+10:55:37 |   step 04 | atoms=[0:H, 1:C, 2:H] bonds=[(0,1,1), (1,2,1)] | ADD H to node 1, bond order 1 | p=0.9697
+10:55:37 |   step 05 | atoms=[0:H, 1:C, 2:H, 3:H] bonds=[(0,1,1), (1,2,1), (1,3,1)] | ADD H to node 1, bond order 1 | p=0.8727
+10:55:37 |   step 06 | atoms=[0:H, 1:C, 2:H, 3:H, 4:H] bonds=[(0,1,1), (1,2,1), (1,3,1), (1,4,1)] | STOP | p=1.0000
+10:55:38 | EVALUATION epoch=300 mode=sampled | correct structure+composition=56.8% | coverage=31/31 | STOP=2900/2900
+10:55:38 |   [C=0, H=2, O=0] expected=H2 | correct=60/100 | composition=60/100 | generated={'H2O': 11, 'H2': 60, 'CH': 3, 'CH2': 13, 'CH2O': 4, 'H': 5, 'HCO': 2, 'C': 2}
+10:55:38 |   [C=0, H=0, O=2] expected=O2 | correct=61/100 | composition=61/100 | generated={'O': 21, 'H': 1, 'O2': 61, 'HO2': 12, 'CO2': 3, 'OH': 2}
+10:55:38 |   [C=0, H=1, O=0] expected=H | correct=49/100 | composition=49/100 | generated={'H': 49, 'HCO': 4, 'H2': 18, 'OH': 11, 'H2O': 7, 'CH': 3, 'C': 7, 'O': 1}
+10:55:38 |   [C=0, H=0, O=1] expected=O | correct=60/100 | composition=60/100 | generated={'H': 13, 'O2': 7, 'O': 60, 'HO2': 1, 'OH': 14, 'HCO': 1, 'CO2': 4}
+10:55:38 |   [C=0, H=1, O=1] expected=OH | correct=61/100 | composition=61/100 | generated={'OH': 61, 'HCO': 10, 'H2O': 12, 'O': 4, 'CO2': 3, 'H': 4, 'unknown': 1, 'H2O2': 2, 'H2': 1, 'CH2O': 1, 'HO2': 1}
+10:55:38 |   [C=0, H=2, O=1] expected=H2O | correct=71/100 | composition=71/100 | generated={'H2O': 71, 'HO2': 1, 'CH2O': 8, 'H2O2': 3, 'HCO': 2, 'OH': 7, 'H2': 4, 'C': 1, 'CH3O': 1, 'H': 2}
+10:55:38 |   [C=0, H=1, O=2] expected=HO2 | correct=44/100 | composition=44/100 | generated={'O': 8, 'H2O2': 17, 'unknown': 1, 'O2': 17, 'HO2': 44, 'OH': 6, 'CO2': 3, 'H2O': 1, 'CH3O2': 1, 'C': 1, 'HCO': 1}
+10:55:38 |   [C=0, H=2, O=2] expected=H2O2 | correct=76/100 | composition=76/100 | generated={'H2O2': 76, 'HO2': 4, 'CH3O2': 2, 'H2O': 7, 'CO2': 2, 'H': 1, 'OH': 3, 'O2': 3, 'HCO': 1, 'unknown': 1}
+10:55:38 |   [C=1, H=0, O=2] expected=CO2 | correct=74/100 | composition=74/100 | generated={'CO2': 74, 'OH': 5, 'O': 12, 'O2': 2, 'unknown': 3, 'HCO': 3, 'HO2': 1}
+10:55:38 |   [C=1, H=1, O=1] expected=HCO | correct=52/100 | composition=52/100 | generated={'C': 11, 'HCO': 52, 'unknown': 6, 'CO2': 4, 'CH2O': 6, 'C2H': 1, 'CH3O': 2, 'CH': 7, 'CH2OH': 2, 'OH': 4, 'HCCO': 4, 'CH3O2': 1}
+10:55:38 |   [C=1, H=2, O=1] expected=CH2O | correct=41/100 | composition=43/100 | generated={'CH2OH': 17, 'HCO': 4, 'CH2O': 41, 'CH3O': 17, 'unknown': 2, 'C': 3, 'CH3O2': 1, 'CH3': 1, 'CH': 8, 'CH2': 3, 'CH2CO': 1, 'CH2CHO': 1, 'C2H': 1}
+10:55:38 |   [C=1, H=4, O=0] expected=CH4 | correct=82/100 | composition=82/100 | generated={'CH4': 82, 'CH3OH': 5, 'CH3': 6, 'C2H3': 1, 'C2H5': 3, 'C2H4': 1, 'CH3CHO': 2}
+10:55:38 |   [C=1, H=3, O=0] expected=CH3 | correct=62/100 | composition=62/100 | generated={'CH4': 25, 'CH3': 62, 'CH2': 5, 'CH2OH': 3, 'CH3OH': 1, 'H2': 1, 'C2H2': 2, 'CH3CO': 1}
+10:55:38 |   [C=1, H=3, O=2] expected=CH3O2 | correct=52/100 | composition=56/100 | generated={'CH3O2': 52, 'CH3O': 8, 'CH2OH': 23, 'unknown': 7, 'H2O2': 2, 'CH2O': 7, 'CH3OH': 1}
+10:55:38 |   [C=1, H=2, O=0] expected=CH2 | correct=57/100 | composition=57/100 | generated={'CH2O': 3, 'CH': 6, 'CH3': 25, 'CH2': 57, 'C2H2': 3, 'C': 1, 'H2O': 1, 'CH2CO': 1, 'C2H3': 2, 'H2': 1}
+10:55:38 |   [C=1, H=1, O=0] expected=CH | correct=44/100 | composition=44/100 | generated={'CH': 44, 'C': 20, 'HCCO': 2, 'HCO': 10, 'CH2': 9, 'C2H': 5, 'CH2O': 2, 'H': 4, 'H2': 3, 'CH2OH': 1}
+10:55:38 |   [C=1, H=0, O=0] expected=C | correct=61/100 | composition=61/100 | generated={'C': 61, 'CH': 3, 'H': 19, 'HCO': 14, 'HCCO': 1, 'O': 1, 'CO2': 1}
+10:55:38 |   [C=1, H=3, O=1] expected=CH3O,CH2OH | correct=56/100 | composition=56/100 | generated={'CH3O': 37, 'CH2O': 11, 'CH3': 10, 'CH3O2': 2, 'CH2OH': 19, 'CH3OH': 13, 'CH2CHO': 3, 'CH2': 2, 'CH': 1, 'CH2CO': 2}
+10:55:38 |   [C=1, H=4, O=1] expected=CH3OH | correct=69/100 | composition=69/100 | generated={'CH3OH': 69, 'CH2OH': 2, 'CH4': 8, 'CH3': 7, 'unknown': 2, 'CH2O': 1, 'CH3CHO': 2, 'CH3O': 4, 'CH2CHO': 1, 'CH3O2': 1, 'C2H5': 1, 'C2H3': 2}
+10:55:38 |   [C=2, H=6, O=0] expected=C2H6 | correct=89/100 | composition=89/100 | generated={'C2H6': 89, 'C2H5': 5, 'CH3OH': 4, 'C2H4': 2}
+10:55:38 |   [C=2, H=5, O=0] expected=C2H5 | correct=74/100 | composition=74/100 | generated={'C2H5': 74, 'C2H4': 12, 'C2H6': 13, 'C2H2': 1}
+10:55:38 |   [C=2, H=4, O=0] expected=C2H4 | correct=24/100 | composition=29/100 | generated={'C2H2': 4, 'C2H5': 63, 'C2H4': 24, 'unknown': 5, 'CH2OH': 1, 'CH3CHO': 1, 'CH3OH': 1, 'C2H3': 1}
+10:55:38 |   [C=2, H=3, O=0] expected=C2H3 | correct=43/100 | composition=43/100 | generated={'C2H4': 8, 'C2H5': 9, 'CH3CHO': 7, 'C2H3': 43, 'CH2CO': 1, 'unknown': 9, 'C2H2': 17, 'CH4': 1, 'CH2CHO': 4, 'CH3': 1}
+10:55:38 |   [C=2, H=2, O=0] expected=C2H2 | correct=41/100 | composition=45/100 | generated={'C2H2': 41, 'C': 1, 'unknown': 4, 'C2H3': 36, 'CH3CO': 4, 'C2H': 2, 'CH2CO': 4, 'CH2CHO': 5, 'CH2': 3}
+10:55:38 |   [C=2, H=1, O=0] expected=C2H | correct=49/100 | composition=49/100 | generated={'C2H': 49, 'CH2CO': 11, 'C2H3': 11, 'HCCO': 4, 'C2H2': 10, 'CH2CHO': 1, 'CH': 6, 'C': 3, 'CH2': 1, 'unknown': 3, 'CH3CO': 1}
+10:55:38 |   [C=2, H=1, O=1] expected=HCCO | correct=56/100 | composition=56/100 | generated={'HCCO': 56, 'CH': 3, 'C': 7, 'C2H': 21, 'CH2CO': 6, 'HCO': 1, 'CH2CHO': 2, 'CH3O': 2, 'CH2': 1, 'C2H2': 1}
+10:55:38 |   [C=2, H=2, O=1] expected=CH2CO | correct=51/100 | composition=51/100 | generated={'CH2CO': 51, 'CH2CHO': 5, 'C2H': 8, 'CH3CO': 9, 'CH2OH': 2, 'HCCO': 4, 'C2H3': 7, 'C2H2': 10, 'CH3O': 3, 'CH2': 1}
+10:55:38 |   [C=2, H=3, O=1] expected=CH2CHO,CH3CO | correct=41/100 | composition=41/100 | generated={'C2H3': 26, 'CH3': 1, 'CH3CO': 20, 'CH2CO': 13, 'unknown': 1, 'CH2CHO': 21, 'C2H2': 4, 'CH3OH': 5, 'CH3O': 3, 'CH2OH': 2, 'CH3O2': 1, 'C2H4': 1, 'CH3CHO': 2}
+10:55:38 |   [C=2, H=4, O=1] expected=CH3CHO | correct=48/100 | composition=48/100 | generated={'C2H5': 28, 'C2H4': 11, 'CH3CHO': 48, 'C2H3': 3, 'CH3OH': 4, 'CH2CO': 1, 'CH2CHO': 2, 'C2H2': 3}
+10:55:38 |   SPECIES H2      | correctly generated=60
+10:55:38 |   SPECIES O2      | correctly generated=61
+10:55:38 |   SPECIES H       | correctly generated=49
+10:55:38 |   SPECIES O       | correctly generated=60
+10:55:38 |   SPECIES OH      | correctly generated=61
+10:55:38 |   SPECIES H2O     | correctly generated=71
+10:55:38 |   SPECIES HO2     | correctly generated=44
+10:55:38 |   SPECIES H2O2    | correctly generated=76
+10:55:38 |   SPECIES CO2     | correctly generated=74
+10:55:38 |   SPECIES HCO     | correctly generated=52
+10:55:38 |   SPECIES CH2O    | correctly generated=41
+10:55:38 |   SPECIES CH4     | correctly generated=82
+10:55:38 |   SPECIES CH3     | correctly generated=62
+10:55:38 |   SPECIES CH3O2   | correctly generated=52
+10:55:38 |   SPECIES CH2     | correctly generated=57
+10:55:38 |   SPECIES CH      | correctly generated=44
+10:55:38 |   SPECIES C       | correctly generated=61
+10:55:38 |   SPECIES CH3O    | correctly generated=37
+10:55:38 |   SPECIES CH2OH   | correctly generated=19
+10:55:38 |   SPECIES CH3OH   | correctly generated=69
+10:55:38 |   SPECIES C2H6    | correctly generated=89
+10:55:38 |   SPECIES C2H5    | correctly generated=74
+10:55:38 |   SPECIES C2H4    | correctly generated=24
+10:55:38 |   SPECIES C2H3    | correctly generated=43
+10:55:38 |   SPECIES C2H2    | correctly generated=41
+10:55:38 |   SPECIES C2H     | correctly generated=49
+10:55:38 |   SPECIES HCCO    | correctly generated=56
+10:55:38 |   SPECIES CH2CO   | correctly generated=51
+10:55:38 |   SPECIES CH2CHO  | correctly generated=21
+10:55:38 |   SPECIES CH3CHO  | correctly generated=48
+10:55:38 |   SPECIES CH3CO   | correctly generated=20
+10:55:38 | FINISHED | elapsed=11.3s | sampled reconstruction=56.8% | sampled coverage=31/31
+10:55:38 | Saved log: output_stage1/20260916_105526_866421/training.log
+10:55:38 | Saved model: output_stage1/20260916_105526_866421/trained_growth_gnn.pt
+10:55:38 | Saved generated inventory: output_stage1/20260916_105526_866421/generated_species_inventory.csv

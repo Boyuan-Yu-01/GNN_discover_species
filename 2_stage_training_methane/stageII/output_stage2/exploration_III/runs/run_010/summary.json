@@ -1,0 +1,298 @@
+{
+  "total_attempts": 2900,
+  "counts": {"failed_composition": 1267, "reference_match": 1628, "new_candidate": 5},
+  "unique_reference_structures": 31,
+  "unique_new_candidates": 5,
+  "per_composition": [
+    {
+      "requested_C_H_O": [0, 2, 0],
+      "seen_composition_in_training": true,
+      "attempts": 100,
+      "reference_match": 59,
+      "new_candidate": 0,
+      "failed_composition": 41,
+      "failed_step_limit": 0,
+      "unique_structures": 1
+    },
+    {
+      "requested_C_H_O": [0, 0, 2],
+      "seen_composition_in_training": true,
+      "attempts": 100,
+      "reference_match": 68,
+      "new_candidate": 0,
+      "failed_composition": 32,
+      "failed_step_limit": 0,
+      "unique_structures": 1
+    },
+    {
+      "requested_C_H_O": [0, 1, 0],
+      "seen_composition_in_training": true,
+      "attempts": 100,
+      "reference_match": 50,
+      "new_candidate": 0,
+      "failed_composition": 50,
+      "failed_step_limit": 0,
+      "unique_structures": 1
+    },
+    {
+      "requested_C_H_O": [0, 0, 1],
+      "seen_composition_in_training": true,
+      "attempts": 100,
+      "reference_match": 66,
+      "new_candidate": 0,
+      "failed_composition": 34,
+      "failed_step_limit": 0,
+      "unique_structures": 1
+    },
+    {
+      "requested_C_H_O": [0, 1, 1],
+      "seen_composition_in_training": true,
+      "attempts": 100,
+      "reference_match": 59,
+      "new_candidate": 0,
+      "failed_composition": 41,
+      "failed_step_limit": 0,
+      "unique_structures": 1
+    },
+    {
+      "requested_C_H_O": [0, 2, 1],
+      "seen_composition_in_training": true,
+      "attempts": 100,
+      "reference_match": 63,
+      "new_candidate": 0,
+      "failed_composition": 37,
+      "failed_step_limit": 0,
+      "unique_structures": 1
+    },
+    {
+      "requested_C_H_O": [0, 1, 2],
+      "seen_composition_in_training": true,
+      "attempts": 100,
+      "reference_match": 52,
+      "new_candidate": 0,
+      "failed_composition": 48,
+      "failed_step_limit": 0,
+      "unique_structures": 1
+    },
+    {
+      "requested_C_H_O": [0, 2, 2],
+      "seen_composition_in_training": true,
+      "attempts": 100,
+      "reference_match": 78,
+      "new_candidate": 0,
+      "failed_composition": 22,
+      "failed_step_limit": 0,
+      "unique_structures": 1
+    },
+    {
+      "requested_C_H_O": [1, 0, 2],
+      "seen_composition_in_training": true,
+      "attempts": 100,
+      "reference_match": 62,
+      "new_candidate": 0,
+      "failed_composition": 38,
+      "failed_step_limit": 0,
+      "unique_structures": 1
+    },
+    {
+      "requested_C_H_O": [1, 1, 1],
+      "seen_composition_in_training": true,
+      "attempts": 100,
+      "reference_match": 60,
+      "new_candidate": 0,
+      "failed_composition": 40,
+      "failed_step_limit": 0,
+      "unique_structures": 1
+    },
+    {
+      "requested_C_H_O": [1, 2, 1],
+      "seen_composition_in_training": true,
+      "attempts": 100,
+      "reference_match": 40,
+      "new_candidate": 1,
+      "failed_composition": 59,
+      "failed_step_limit": 0,
+      "unique_structures": 2
+    },
+    {
+      "requested_C_H_O": [1, 4, 0],
+      "seen_composition_in_training": true,
+      "attempts": 100,
+      "reference_match": 87,
+      "new_candidate": 0,
+      "failed_composition": 13,
+      "failed_step_limit": 0,
+      "unique_structures": 1
+    },
+    {
+      "requested_C_H_O": [1, 3, 0],
+      "seen_composition_in_training": true,
+      "attempts": 100,
+      "reference_match": 74,
+      "new_candidate": 0,
+      "failed_composition": 26,
+      "failed_step_limit": 0,
+      "unique_structures": 1
+    },
+    {
+      "requested_C_H_O": [1, 3, 2],
+      "seen_composition_in_training": true,
+      "attempts": 100,
+      "reference_match": 47,
+      "new_candidate": 1,
+      "failed_composition": 52,
+      "failed_step_limit": 0,
+      "unique_structures": 2
+    },
+    {
+      "requested_C_H_O": [1, 2, 0],
+      "seen_composition_in_training": true,
+      "attempts": 100,
+      "reference_match": 58,
+      "new_candidate": 0,
+      "failed_composition": 42,
+      "failed_step_limit": 0,
+      "unique_structures": 1
+    },
+    {
+      "requested_C_H_O": [1, 1, 0],
+      "seen_composition_in_training": true,
+      "attempts": 100,
+      "reference_match": 41,
+      "new_candidate": 0,
+      "failed_composition": 59,
+      "failed_step_limit": 0,
+      "unique_structures": 1
+    },
+    {
+      "requested_C_H_O": [1, 0, 0],
+      "seen_composition_in_training": true,
+      "attempts": 100,
+      "reference_match": 66,
+      "new_candidate": 0,
+      "failed_composition": 34,
+      "failed_step_limit": 0,
+      "unique_structures": 1
+    },
+    {
+      "requested_C_H_O": [1, 3, 1],
+      "seen_composition_in_training": true,
+      "attempts": 100,
+      "reference_match": 62,
+      "new_candidate": 0,
+      "failed_composition": 38,
+      "failed_step_limit": 0,
+      "unique_structures": 2
+    },
+    {
+      "requested_C_H_O": [1, 4, 1],
+      "seen_composition_in_training": true,
+      "attempts": 100,
+      "reference_match": 67,
+      "new_candidate": 0,
+      "failed_composition": 33,
+      "failed_step_limit": 0,
+      "unique_structures": 1
+    },
+    {
+      "requested_C_H_O": [2, 6, 0],
+      "seen_composition_in_training": true,
+      "attempts": 100,
+      "reference_match": 86,
+      "new_candidate": 0,
+      "failed_composition": 14,
+      "failed_step_limit": 0,
+      "unique_structures": 1
+    },
+    {
+      "requested_C_H_O": [2, 5, 0],
+      "seen_composition_in_training": true,
+      "attempts": 100,
+      "reference_match": 63,
+      "new_candidate": 0,
+      "failed_composition": 37,
+      "failed_step_limit": 0,
+      "unique_structures": 1
+    },
+    {
+      "requested_C_H_O": [2, 4, 0],
+      "seen_composition_in_training": true,
+      "attempts": 100,
+      "reference_match": 18,
+      "new_candidate": 0,
+      "failed_composition": 82,
+      "failed_step_limit": 0,
+      "unique_structures": 1
+    },
+    {
+      "requested_C_H_O": [2, 3, 0],
+      "seen_composition_in_training": true,
+      "attempts": 100,
+      "reference_match": 35,
+      "new_candidate": 0,
+      "failed_composition": 65,
+      "failed_step_limit": 0,
+      "unique_structures": 1
+    },
+    {
+      "requested_C_H_O": [2, 2, 0],
+      "seen_composition_in_training": true,
+      "attempts": 100,
+      "reference_match": 50,
+      "new_candidate": 2,
+      "failed_composition": 48,
+      "failed_step_limit": 0,
+      "unique_structures": 3
+    },
+    {
+      "requested_C_H_O": [2, 1, 0],
+      "seen_composition_in_training": true,
+      "attempts": 100,
+      "reference_match": 50,
+      "new_candidate": 0,
+      "failed_composition": 50,
+      "failed_step_limit": 0,
+      "unique_structures": 1
+    },
+    {
+      "requested_C_H_O": [2, 1, 1],
+      "seen_composition_in_training": true,
+      "attempts": 100,
+      "reference_match": 47,
+      "new_candidate": 0,
+      "failed_composition": 53,
+      "failed_step_limit": 0,
+      "unique_structures": 1
+    },
+    {
+      "requested_C_H_O": [2, 2, 1],
+      "seen_composition_in_training": true,
+      "attempts": 100,
+      "reference_match": 41,
+      "new_candidate": 0,
+      "failed_composition": 59,
+      "failed_step_limit": 0,
+      "unique_structures": 1
+    },
+    {
+      "requested_C_H_O": [2, 3, 1],
+      "seen_composition_in_training": true,
+      "attempts": 100,
+      "reference_match": 33,
+      "new_candidate": 1,
+      "failed_composition": 66,
+      "failed_step_limit": 0,
+      "unique_structures": 3
+    },
+    {
+      "requested_C_H_O": [2, 4, 1],
+      "seen_composition_in_training": true,
+      "attempts": 100,
+      "reference_match": 46,
+      "new_candidate": 0,
+      "failed_composition": 54,
+      "failed_step_limit": 0,
+      "unique_structures": 1
+    }
+  ]
+}

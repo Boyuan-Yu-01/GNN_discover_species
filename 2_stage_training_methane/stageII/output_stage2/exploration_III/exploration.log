@@ -1,0 +1,32 @@
+11:23:29 | CAMPAIGN run=1/10 | seed=24680
+11:23:31 | MERGED run=1 | attempts=2900 | distinct reference=31 | distinct candidates=9
+11:23:31 | CAMPAIGN run=2/10 | seed=25680
+11:23:32 | MERGED run=2 | attempts=5800 | distinct reference=31 | distinct candidates=11
+11:23:32 | CAMPAIGN run=3/10 | seed=26680
+11:23:34 | MERGED run=3 | attempts=8700 | distinct reference=31 | distinct candidates=14
+11:23:34 | CAMPAIGN run=4/10 | seed=27680
+11:23:35 | MERGED run=4 | attempts=11600 | distinct reference=31 | distinct candidates=14
+11:23:35 | CAMPAIGN run=5/10 | seed=28680
+11:23:36 | MERGED run=5 | attempts=14500 | distinct reference=31 | distinct candidates=14
+11:23:36 | CAMPAIGN run=6/10 | seed=29680
+11:23:38 | MERGED run=6 | attempts=17400 | distinct reference=31 | distinct candidates=14
+11:23:38 | CAMPAIGN run=7/10 | seed=30680
+11:23:39 | MERGED run=7 | attempts=20300 | distinct reference=31 | distinct candidates=14
+11:23:39 | CAMPAIGN run=8/10 | seed=31680
+11:23:40 | MERGED run=8 | attempts=23200 | distinct reference=31 | distinct candidates=16
+11:23:40 | CAMPAIGN run=9/10 | seed=32680
+11:23:42 | MERGED run=9 | attempts=26100 | distinct reference=31 | distinct candidates=16
+11:23:42 | CAMPAIGN run=10/10 | seed=33680
+11:23:43 | MERGED run=10 | attempts=29000 | distinct reference=31 | distinct candidates=19
+11:23:47 | Saved final structure plot: output_stage2/exploration_III/final_structures.png
+11:23:47 | Rendered video page 1/9
+11:23:48 | Rendered video page 2/9
+11:23:49 | Rendered video page 3/9
+11:23:49 | Rendered video page 4/9
+11:23:50 | Rendered video page 5/9
+11:23:50 | Rendered video page 6/9
+11:23:51 | Rendered video page 7/9
+11:23:52 | Rendered video page 8/9
+11:23:52 | Rendered video page 9/9
+11:23:53 | Saved growth animation: output_stage2/exploration_III/exploration_growth.mp4
+11:23:53 | CAMPAIGN FINISHED | runs=10 | attempts=29000 | reference structures=31 | candidate structures=19

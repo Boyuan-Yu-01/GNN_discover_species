@@ -1,0 +1,30 @@
+﻿epoch,mode,sample,requested_C_H_O,generated_C_H_O,species_key,base_atom_indices,base_bonds,attached_h_per_base_atom,in_species_training_reference,correct_for_condition,termination
+150,greedy,1,"[0, 2, 0]","[1, 2, 0]",CH2,{0: 'C'},[],[2],True,False,STOP
+150,greedy,2,"[0, 0, 2]","[0, 0, 1]",O,{0: 'O'},[],[0],True,False,STOP
+150,greedy,3,"[0, 1, 0]","[0, 1, 0]",H,{0: 'H'},[],[],True,True,STOP
+150,greedy,4,"[0, 0, 1]","[0, 0, 1]",O,{0: 'O'},[],[0],True,True,STOP
+150,greedy,5,"[0, 1, 1]","[0, 1, 1]",OH,{0: 'O'},[],[1],True,True,STOP
+150,greedy,6,"[0, 2, 1]","[1, 1, 1]",HCO,"{0: 'C', 1: 'O'}","[(0, 1, 2)]","[1, 0]",True,False,STOP
+150,greedy,7,"[0, 1, 2]","[0, 0, 1]",O,{0: 'O'},[],[0],True,False,STOP
+150,greedy,8,"[0, 2, 2]","[0, 2, 1]",H2O,{0: 'O'},[],[2],True,False,STOP
+150,greedy,9,"[1, 0, 2]","[0, 0, 1]",O,{0: 'O'},[],[0],True,False,STOP
+150,greedy,10,"[1, 1, 1]","[1, 0, 0]",C,{0: 'C'},[],[0],True,False,STOP
+150,greedy,11,"[1, 2, 1]","[1, 2, 0]",CH2,{0: 'C'},[],[2],True,False,STOP
+150,greedy,12,"[1, 4, 0]","[1, 4, 0]",CH4,{0: 'C'},[],[4],True,True,STOP
+150,greedy,13,"[1, 3, 0]","[1, 3, 0]",CH3,{0: 'C'},[],[3],True,True,STOP
+150,greedy,14,"[1, 3, 2]","[1, 3, 1]",CH3O,"{0: 'C', 1: 'O'}","[(0, 1, 1)]","[3, 0]",True,False,STOP
+150,greedy,15,"[1, 2, 0]","[1, 2, 0]",CH2,{0: 'C'},[],[2],True,True,STOP
+150,greedy,16,"[1, 1, 0]","[1, 1, 0]",CH,{0: 'C'},[],[1],True,True,STOP
+150,greedy,17,"[1, 0, 0]","[1, 0, 0]",C,{0: 'C'},[],[0],True,True,STOP
+150,greedy,18,"[1, 3, 1]","[1, 3, 0]",CH3,{0: 'C'},[],[3],True,False,STOP
+150,greedy,19,"[1, 4, 1]","[1, 4, 0]",CH4,{0: 'C'},[],[4],True,False,STOP
+150,greedy,20,"[2, 6, 0]","[1, 4, 0]",CH4,{0: 'C'},[],[4],True,False,STOP
+150,greedy,21,"[2, 5, 0]","[1, 4, 0]",CH4,{0: 'C'},[],[4],True,False,STOP
+150,greedy,22,"[2, 4, 0]","[1, 4, 0]",CH4,{0: 'C'},[],[4],True,False,STOP
+150,greedy,23,"[2, 3, 0]","[1, 4, 0]",CH4,{0: 'C'},[],[4],True,False,STOP
+150,greedy,24,"[2, 2, 0]","[1, 3, 0]",CH3,{0: 'C'},[],[3],True,False,STOP
+150,greedy,25,"[2, 1, 0]","[1, 2, 0]",CH2,{0: 'C'},[],[2],True,False,STOP
+150,greedy,26,"[2, 1, 1]","[1, 1, 0]",CH,{0: 'C'},[],[1],True,False,STOP
+150,greedy,27,"[2, 2, 1]","[1, 2, 0]",CH2,{0: 'C'},[],[2],True,False,STOP
+150,greedy,28,"[2, 3, 1]","[1, 3, 0]",CH3,{0: 'C'},[],[3],True,False,STOP
+150,greedy,29,"[2, 4, 1]","[1, 4, 0]",CH4,{0: 'C'},[],[4],True,False,STOP
