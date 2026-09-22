@@ -231,7 +231,7 @@ Q(s,a)
 c_{\mathrm{puct}}
 P_\theta(s,a)
 \frac{\sqrt{\sum_bN(s,b)}}{1+N(s,a)}
-\right].
+\right]
 $$
 
 Define

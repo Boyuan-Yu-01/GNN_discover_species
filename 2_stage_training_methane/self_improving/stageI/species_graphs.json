@@ -1,0 +1,406 @@
+{
+  "H2": {
+    "nodes": [
+      {"id": 0, "atom": 0, "symbol": "H"},
+      {"id": 1, "atom": 0, "symbol": "H"}
+    ],
+    "edges": [
+      {"source": 0, "target": 1, "order": 1}
+    ]
+  },
+  "O2": {
+    "nodes": [
+      {"id": 0, "atom": 1, "symbol": "O"},
+      {"id": 1, "atom": 1, "symbol": "O"}
+    ],
+    "edges": [
+      {"source": 0, "target": 1, "order": 2}
+    ]
+  },
+  "H": {
+    "nodes": [
+      {"id": 0, "atom": 0, "symbol": "H"}
+    ],
+    "edges": []
+  },
+  "O": {
+    "nodes": [
+      {"id": 0, "atom": 1, "symbol": "O"}
+    ],
+    "edges": []
+  },
+  "OH": {
+    "nodes": [
+      {"id": 0, "atom": 1, "symbol": "O"},
+      {"id": 1, "atom": 0, "symbol": "H"}
+    ],
+    "edges": [
+      {"source": 0, "target": 1, "order": 1}
+    ]
+  },
+  "H2O": {
+    "nodes": [
+      {"id": 0, "atom": 1, "symbol": "O"},
+      {"id": 1, "atom": 0, "symbol": "H"},
+      {"id": 2, "atom": 0, "symbol": "H"}
+    ],
+    "edges": [
+      {"source": 0, "target": 1, "order": 1},
+      {"source": 0, "target": 2, "order": 1}
+    ]
+  },
+  "HO2": {
+    "nodes": [
+      {"id": 0, "atom": 1, "symbol": "O"},
+      {"id": 1, "atom": 1, "symbol": "O"},
+      {"id": 2, "atom": 0, "symbol": "H"}
+    ],
+    "edges": [
+      {"source": 0, "target": 1, "order": 1},
+      {"source": 0, "target": 2, "order": 1}
+    ]
+  },
+  "H2O2": {
+    "nodes": [
+      {"id": 0, "atom": 1, "symbol": "O"},
+      {"id": 1, "atom": 1, "symbol": "O"},
+      {"id": 2, "atom": 0, "symbol": "H"},
+      {"id": 3, "atom": 0, "symbol": "H"}
+    ],
+    "edges": [
+      {"source": 0, "target": 1, "order": 1},
+      {"source": 0, "target": 2, "order": 1},
+      {"source": 1, "target": 3, "order": 1}
+    ]
+  },
+  "CO2": {
+    "nodes": [
+      {"id": 0, "atom": 2, "symbol": "C"},
+      {"id": 1, "atom": 1, "symbol": "O"},
+      {"id": 2, "atom": 1, "symbol": "O"}
+    ],
+    "edges": [
+      {"source": 0, "target": 1, "order": 2},
+      {"source": 0, "target": 2, "order": 2}
+    ]
+  },
+  "HCO": {
+    "nodes": [
+      {"id": 0, "atom": 2, "symbol": "C"},
+      {"id": 1, "atom": 1, "symbol": "O"},
+      {"id": 2, "atom": 0, "symbol": "H"}
+    ],
+    "edges": [
+      {"source": 0, "target": 1, "order": 2},
+      {"source": 0, "target": 2, "order": 1}
+    ]
+  },
+  "CH2O": {
+    "nodes": [
+      {"id": 0, "atom": 2, "symbol": "C"},
+      {"id": 1, "atom": 1, "symbol": "O"},
+      {"id": 2, "atom": 0, "symbol": "H"},
+      {"id": 3, "atom": 0, "symbol": "H"}
+    ],
+    "edges": [
+      {"source": 0, "target": 1, "order": 2},
+      {"source": 0, "target": 2, "order": 1},
+      {"source": 0, "target": 3, "order": 1}
+    ]
+  },
+  "CH4": {
+    "nodes": [
+      {"id": 0, "atom": 2, "symbol": "C"},
+      {"id": 1, "atom": 0, "symbol": "H"},
+      {"id": 2, "atom": 0, "symbol": "H"},
+      {"id": 3, "atom": 0, "symbol": "H"},
+      {"id": 4, "atom": 0, "symbol": "H"}
+    ],
+    "edges": [
+      {"source": 0, "target": 1, "order": 1},
+      {"source": 0, "target": 2, "order": 1},
+      {"source": 0, "target": 3, "order": 1},
+      {"source": 0, "target": 4, "order": 1}
+    ]
+  },
+  "CH3": {
+    "nodes": [
+      {"id": 0, "atom": 2, "symbol": "C"},
+      {"id": 1, "atom": 0, "symbol": "H"},
+      {"id": 2, "atom": 0, "symbol": "H"},
+      {"id": 3, "atom": 0, "symbol": "H"}
+    ],
+    "edges": [
+      {"source": 0, "target": 1, "order": 1},
+      {"source": 0, "target": 2, "order": 1},
+      {"source": 0, "target": 3, "order": 1}
+    ]
+  },
+  "CH3O2": {
+    "nodes": [
+      {"id": 0, "atom": 2, "symbol": "C"},
+      {"id": 1, "atom": 1, "symbol": "O"},
+      {"id": 2, "atom": 1, "symbol": "O"},
+      {"id": 3, "atom": 0, "symbol": "H"},
+      {"id": 4, "atom": 0, "symbol": "H"},
+      {"id": 5, "atom": 0, "symbol": "H"}
+    ],
+    "edges": [
+      {"source": 0, "target": 1, "order": 1},
+      {"source": 0, "target": 3, "order": 1},
+      {"source": 0, "target": 4, "order": 1},
+      {"source": 0, "target": 5, "order": 1},
+      {"source": 1, "target": 2, "order": 1}
+    ]
+  },
+  "CH2": {
+    "nodes": [
+      {"id": 0, "atom": 2, "symbol": "C"},
+      {"id": 1, "atom": 0, "symbol": "H"},
+      {"id": 2, "atom": 0, "symbol": "H"}
+    ],
+    "edges": [
+      {"source": 0, "target": 1, "order": 1},
+      {"source": 0, "target": 2, "order": 1}
+    ]
+  },
+  "CH": {
+    "nodes": [
+      {"id": 0, "atom": 2, "symbol": "C"},
+      {"id": 1, "atom": 0, "symbol": "H"}
+    ],
+    "edges": [
+      {"source": 0, "target": 1, "order": 1}
+    ]
+  },
+  "C": {
+    "nodes": [
+      {"id": 0, "atom": 2, "symbol": "C"}
+    ],
+    "edges": []
+  },
+  "CH3O": {
+    "nodes": [
+      {"id": 0, "atom": 2, "symbol": "C"},
+      {"id": 1, "atom": 1, "symbol": "O"},
+      {"id": 2, "atom": 0, "symbol": "H"},
+      {"id": 3, "atom": 0, "symbol": "H"},
+      {"id": 4, "atom": 0, "symbol": "H"}
+    ],
+    "edges": [
+      {"source": 0, "target": 1, "order": 1},
+      {"source": 0, "target": 2, "order": 1},
+      {"source": 0, "target": 3, "order": 1},
+      {"source": 0, "target": 4, "order": 1}
+    ]
+  },
+  "CH2OH": {
+    "nodes": [
+      {"id": 0, "atom": 2, "symbol": "C"},
+      {"id": 1, "atom": 1, "symbol": "O"},
+      {"id": 2, "atom": 0, "symbol": "H"},
+      {"id": 3, "atom": 0, "symbol": "H"},
+      {"id": 4, "atom": 0, "symbol": "H"}
+    ],
+    "edges": [
+      {"source": 0, "target": 1, "order": 1},
+      {"source": 0, "target": 2, "order": 1},
+      {"source": 0, "target": 3, "order": 1},
+      {"source": 1, "target": 4, "order": 1}
+    ]
+  },
+  "CH3OH": {
+    "nodes": [
+      {"id": 0, "atom": 2, "symbol": "C"},
+      {"id": 1, "atom": 1, "symbol": "O"},
+      {"id": 2, "atom": 0, "symbol": "H"},
+      {"id": 3, "atom": 0, "symbol": "H"},
+      {"id": 4, "atom": 0, "symbol": "H"},
+      {"id": 5, "atom": 0, "symbol": "H"}
+    ],
+    "edges": [
+      {"source": 0, "target": 1, "order": 1},
+      {"source": 0, "target": 2, "order": 1},
+      {"source": 0, "target": 3, "order": 1},
+      {"source": 0, "target": 4, "order": 1},
+      {"source": 1, "target": 5, "order": 1}
+    ]
+  },
+  "C2H6": {
+    "nodes": [
+      {"id": 0, "atom": 2, "symbol": "C"},
+      {"id": 1, "atom": 2, "symbol": "C"},
+      {"id": 2, "atom": 0, "symbol": "H"},
+      {"id": 3, "atom": 0, "symbol": "H"},
+      {"id": 4, "atom": 0, "symbol": "H"},
+      {"id": 5, "atom": 0, "symbol": "H"},
+      {"id": 6, "atom": 0, "symbol": "H"},
+      {"id": 7, "atom": 0, "symbol": "H"}
+    ],
+    "edges": [
+      {"source": 0, "target": 1, "order": 1},
+      {"source": 0, "target": 2, "order": 1},
+      {"source": 0, "target": 3, "order": 1},
+      {"source": 0, "target": 4, "order": 1},
+      {"source": 1, "target": 5, "order": 1},
+      {"source": 1, "target": 6, "order": 1},
+      {"source": 1, "target": 7, "order": 1}
+    ]
+  },
+  "C2H5": {
+    "nodes": [
+      {"id": 0, "atom": 2, "symbol": "C"},
+      {"id": 1, "atom": 2, "symbol": "C"},
+      {"id": 2, "atom": 0, "symbol": "H"},
+      {"id": 3, "atom": 0, "symbol": "H"},
+      {"id": 4, "atom": 0, "symbol": "H"},
+      {"id": 5, "atom": 0, "symbol": "H"},
+      {"id": 6, "atom": 0, "symbol": "H"}
+    ],
+    "edges": [
+      {"source": 0, "target": 1, "order": 1},
+      {"source": 0, "target": 2, "order": 1},
+      {"source": 0, "target": 3, "order": 1},
+      {"source": 0, "target": 4, "order": 1},
+      {"source": 1, "target": 5, "order": 1},
+      {"source": 1, "target": 6, "order": 1}
+    ]
+  },
+  "C2H4": {
+    "nodes": [
+      {"id": 0, "atom": 2, "symbol": "C"},
+      {"id": 1, "atom": 2, "symbol": "C"},
+      {"id": 2, "atom": 0, "symbol": "H"},
+      {"id": 3, "atom": 0, "symbol": "H"},
+      {"id": 4, "atom": 0, "symbol": "H"},
+      {"id": 5, "atom": 0, "symbol": "H"}
+    ],
+    "edges": [
+      {"source": 0, "target": 1, "order": 2},
+      {"source": 0, "target": 2, "order": 1},
+      {"source": 0, "target": 3, "order": 1},
+      {"source": 1, "target": 4, "order": 1},
+      {"source": 1, "target": 5, "order": 1}
+    ]
+  },
+  "C2H3": {
+    "nodes": [
+      {"id": 0, "atom": 2, "symbol": "C"},
+      {"id": 1, "atom": 2, "symbol": "C"},
+      {"id": 2, "atom": 0, "symbol": "H"},
+      {"id": 3, "atom": 0, "symbol": "H"},
+      {"id": 4, "atom": 0, "symbol": "H"}
+    ],
+    "edges": [
+      {"source": 0, "target": 1, "order": 2},
+      {"source": 0, "target": 2, "order": 1},
+      {"source": 0, "target": 3, "order": 1},
+      {"source": 1, "target": 4, "order": 1}
+    ]
+  },
+  "C2H2": {
+    "nodes": [
+      {"id": 0, "atom": 2, "symbol": "C"},
+      {"id": 1, "atom": 2, "symbol": "C"},
+      {"id": 2, "atom": 0, "symbol": "H"},
+      {"id": 3, "atom": 0, "symbol": "H"}
+    ],
+    "edges": [
+      {"source": 0, "target": 1, "order": 3},
+      {"source": 0, "target": 2, "order": 1},
+      {"source": 1, "target": 3, "order": 1}
+    ]
+  },
+  "C2H": {
+    "nodes": [
+      {"id": 0, "atom": 2, "symbol": "C"},
+      {"id": 1, "atom": 2, "symbol": "C"},
+      {"id": 2, "atom": 0, "symbol": "H"}
+    ],
+    "edges": [
+      {"source": 0, "target": 1, "order": 3},
+      {"source": 0, "target": 2, "order": 1}
+    ]
+  },
+  "HCCO": {
+    "nodes": [
+      {"id": 0, "atom": 2, "symbol": "C"},
+      {"id": 1, "atom": 2, "symbol": "C"},
+      {"id": 2, "atom": 1, "symbol": "O"},
+      {"id": 3, "atom": 0, "symbol": "H"}
+    ],
+    "edges": [
+      {"source": 0, "target": 1, "order": 2},
+      {"source": 0, "target": 3, "order": 1},
+      {"source": 1, "target": 2, "order": 2}
+    ]
+  },
+  "CH2CO": {
+    "nodes": [
+      {"id": 0, "atom": 2, "symbol": "C"},
+      {"id": 1, "atom": 2, "symbol": "C"},
+      {"id": 2, "atom": 1, "symbol": "O"},
+      {"id": 3, "atom": 0, "symbol": "H"},
+      {"id": 4, "atom": 0, "symbol": "H"}
+    ],
+    "edges": [
+      {"source": 0, "target": 1, "order": 2},
+      {"source": 0, "target": 3, "order": 1},
+      {"source": 0, "target": 4, "order": 1},
+      {"source": 1, "target": 2, "order": 2}
+    ]
+  },
+  "CH2CHO": {
+    "nodes": [
+      {"id": 0, "atom": 2, "symbol": "C"},
+      {"id": 1, "atom": 2, "symbol": "C"},
+      {"id": 2, "atom": 1, "symbol": "O"},
+      {"id": 3, "atom": 0, "symbol": "H"},
+      {"id": 4, "atom": 0, "symbol": "H"},
+      {"id": 5, "atom": 0, "symbol": "H"}
+    ],
+    "edges": [
+      {"source": 0, "target": 1, "order": 1},
+      {"source": 0, "target": 3, "order": 1},
+      {"source": 0, "target": 4, "order": 1},
+      {"source": 1, "target": 2, "order": 2},
+      {"source": 1, "target": 5, "order": 1}
+    ]
+  },
+  "CH3CHO": {
+    "nodes": [
+      {"id": 0, "atom": 2, "symbol": "C"},
+      {"id": 1, "atom": 2, "symbol": "C"},
+      {"id": 2, "atom": 1, "symbol": "O"},
+      {"id": 3, "atom": 0, "symbol": "H"},
+      {"id": 4, "atom": 0, "symbol": "H"},
+      {"id": 5, "atom": 0, "symbol": "H"},
+      {"id": 6, "atom": 0, "symbol": "H"}
+    ],
+    "edges": [
+      {"source": 0, "target": 1, "order": 1},
+      {"source": 0, "target": 3, "order": 1},
+      {"source": 0, "target": 4, "order": 1},
+      {"source": 0, "target": 5, "order": 1},
+      {"source": 1, "target": 2, "order": 2},
+      {"source": 1, "target": 6, "order": 1}
+    ]
+  },
+  "CH3CO": {
+    "nodes": [
+      {"id": 0, "atom": 2, "symbol": "C"},
+      {"id": 1, "atom": 2, "symbol": "C"},
+      {"id": 2, "atom": 1, "symbol": "O"},
+      {"id": 3, "atom": 0, "symbol": "H"},
+      {"id": 4, "atom": 0, "symbol": "H"},
+      {"id": 5, "atom": 0, "symbol": "H"}
+    ],
+    "edges": [
+      {"source": 0, "target": 1, "order": 1},
+      {"source": 0, "target": 3, "order": 1},
+      {"source": 0, "target": 4, "order": 1},
+      {"source": 0, "target": 5, "order": 1},
+      {"source": 1, "target": 2, "order": 2}
+    ]
+  }
+}

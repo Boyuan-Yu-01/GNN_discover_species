@@ -730,3 +730,71 @@ $$
 -\log\left( \sum_{a\in A_{s,k,t}} p_\theta(a\mid \text{partial graph},\text{composition}) \right)
 $$
 1. Check the trained neural network works correctly `test_stage1.py`
+
+## Sep 22nd
+![](plot/self_updating.png)
+Ideal process for a self improving neural network predictor/agent
+
+## <span style="color:red">Problem With Previous Result</span>
+- Limit number of explorations: the previous training session has very little percentage of exploration. The exploration employs the random sampling
+	1. Start with an empty graph and a requested composition.
+	2. The neural network assigns probabilities to the possible next actions.
+	3. Randomly choose an action according to those probabilities.
+	4. Apply it and repeat until STOP or the step limit.
+	5. Classify and record the resulting molecule.
+- The network gives action probability, and sampling chooses action according to the probability. Consequently, low probability actions are rarely explored.
+![](../2_stage_training_methane/stageII/output_stage2/exploration_III/final_structures.png)
+<span style="color:green">We introduce PUCT to improve the exploration:</span>
+$$
+a^*
+=
+\underset{a}{\operatorname{argmax}}
+\left[
+Q(s,a)
++
+c_{\mathrm{puct}}
+P_\theta(s,a)
+\frac{\sqrt{\sum_bN(s,b)}}{1+N(s,a)}
+\right]
+$$
+As the result, we improve the exploration.
+
+## <span style="color:red">Do not have a quantum validation yet</span>
+- We use FFCMII as a given validation set: `self_improving/stageIII/output/`
+![](../2_stage_training_methane/self_improving/stageIII/output/final_structures.png)
+
+There are some species validated by FFCMII.
+
+<span style="color:red">Next step:</span>
+- Complete the feedback loop
+- Tide up the current code
+- Use DFT simulation
+- Use RDKit to replace hard coded valence rule (introduce  formal charge to enable species like CO)
+
+## <span style="color:green">Potentially integrate RDKit into the current code:</span> 
+RDKit’s allowed valences depend on the atom’s charge, and sanitization performs additional operations such as aromaticity, conjugation, and hybridization assignment. These remain **rule-based chemical operations**.
+
+| Capability | Current code | With RDKit |
+|---|---|---|
+| Check maximum bond-order sums | Yes: H ≤ 1, O ≤ 2, C ≤ 4 | Yes, using charge-dependent valence rules |
+| Account for formal charge | No | Yes, when charges are provided |
+| Represent radical electrons | Not explicitly | Yes; physical electronic states still require care |
+| Handle aromaticity and related bond representations | No | Yes |
+| Export molecular structures as SMILES | No | Yes |
+| Match structures and remove duplicates | Yes, using NetworkX | Also supported |
+| Represent CO as `[C-]#[O+]` | No; the oxygen valence limit blocks its triple bond | Yes, but our generator would also need changes |
+| Establish physical stability | No | Sanitization alone cannot establish this |
+| Determine combustion importance | No | Requires additional chemical evaluation |
+
+
+Examples are: 
+
+|Type|Example|Atomic formal charges|Total charge|
+|---|---|---|---|
+|Neutral molecule with uncharged atoms|H₂O|All atoms: 0|0|
+|Neutral molecule with nonzero atomic formal charges|CO: `[C-]#[O+]`|C: −1; O: +1|0|
+|Charged species—an ion|H₃O⁺|O: +1; H: 0|+1|
+<span style="color:green">This will not be implement at this time.</span>
+
+Video for Proximal Policy Optimization (PPO): ![Link](https://www.youtube.com/watch?v=TjHH_--7l8g&t=453s)
+![](PPO.png)
