@@ -18,11 +18,11 @@ dist/
 *.egg-info/
 
 # Generated training/exploration runs (including JSON, plots and videos)
-output*/
 checkpoints/
 *.pt
 *.pth
 *.ckpt
+*.json
 events.out.tfevents.*
 wandb/
 
