@@ -26,7 +26,52 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
+from tqdm import tqdm
+
 from compact_json import CompactJSON
+
+
+class TrainingDevice:
+    """Select the requested device explicitly; keep checkpoints portable to CPU."""
+
+    @staticmethod
+    def resolve(name):
+        if name not in ("cpu", "mps"):
+            raise ValueError("TRAINING_DEVICE must be 'cpu' or 'mps'")
+        if name == "mps" and not torch.backends.mps.is_available():
+            raise RuntimeError(
+                "Apple GPU (MPS) is unavailable in this process. Run in your GNN terminal "
+                "with an MPS-enabled PyTorch build, or explicitly set TRAINING_DEVICE = 'cpu'. "
+                "Training has not started; no silent CPU fallback is used.")
+        return torch.device(name)
+
+    @classmethod
+    def cpu_data(cls, value):
+        # Also handles Adam state, nested lists and action tuples.
+        if torch.is_tensor(value):
+            return value.detach().cpu().clone()
+        if isinstance(value, dict):
+            return {key: cls.cpu_data(item) for key, item in value.items()}
+        if isinstance(value, list):
+            return [cls.cpu_data(item) for item in value]
+        if isinstance(value, tuple):
+            return tuple(cls.cpu_data(item) for item in value)
+        return value
+
+    @staticmethod
+    def synchronize(device):
+        if device.type == "mps":
+            torch.mps.synchronize()
+
+
+class ProgressConsoleHandler(logging.StreamHandler):
+    """Print messages above active progress bars; saved logs contain plain text."""
+
+    def emit(self, record):
+        try:
+            tqdm.write(self.format(record), file=self.stream)
+        except Exception:
+            self.handleError(record)
 
 
 # Console/file logging replaces version 4's Tee while keeping the same message content.
@@ -35,9 +80,9 @@ class TrainingLogger:
 
     def __init__(self, path):
         self.logger = logging.Logger("stage1", level=logging.INFO)
-        # The two handlers receive the same timestamped message; handlers flush after emitting.
-        formatter = logging.Formatter("%(asctime)s | %(message)s", datefmt="%H:%M:%S")
-        for handler in (logging.StreamHandler(sys.stdout),
+        # Both handlers write the message without a timestamp and flush after emitting.
+        formatter = logging.Formatter("%(message)s")
+        for handler in (ProgressConsoleHandler(sys.stdout),
                         logging.FileHandler(path, mode="w", encoding="utf-8")):
             handler.setFormatter(formatter)
             self.logger.addHandler(handler)
@@ -567,6 +612,7 @@ class Stage1Trainer:
 
     def __init__(self, config):
         self.config = dict(config)
+        self.device = TrainingDevice.resolve(config.get("device", "cpu"))
         self.output = Path(config["output_folder"])
         # Refuse accidental replacement of a previous run; choose another relative path.
         self.output.mkdir(parents=True, exist_ok=False)
@@ -605,9 +651,9 @@ class Stage1Trainer:
                 # Greedy chooses the largest probability; sampled draws from the same
                 # distribution and can reveal multiple isomers for one condition.
                 if mode == "greedy":
-                    choices = logits.argmax(-1)
+                    choices = logits.argmax(-1).cpu()
                 else:
-                    choices = torch.multinomial(probabilities, 1, generator=generator).squeeze(1)
+                    choices = torch.multinomial(probabilities.cpu(), 1, generator=generator).squeeze(1)
                 for row, index in enumerate(active):
                     action = action_space.actions[int(choices[row])]
                     env = environments[index]
@@ -737,13 +783,14 @@ class Stage1Trainer:
         random.seed(self.seed)
         torch.manual_seed(self.seed)
         torch.set_num_threads(cfg["threads"])
-        torch.use_deterministic_algorithms(True)
+        torch.use_deterministic_algorithms(True, warn_only=self.device.type == "mps")
         # This RNG selects training trajectories independently of demonstration generation.
         rng = random.Random(self.seed + 1)
         references = ReferenceSpecies(cfg["reference_path"], cfg["excluded_species"],
                                       self.atom_symbols, self.max_valency, cfg["max_atoms"])
         action_space = ActionSpace(cfg["max_atoms"], self.atom_symbols)
         self.log.info("STAGE 1 | shared composition-conditioned GNN | supervised imitation")
+        self.log.info(f"DEVICE: {self.device} | MPS uses the Apple GPU; graph preparation stays on CPU.")
         self.log.info(f"Reference={cfg['reference_path']} | SHA256={references.source_hash}")
         self.log.info(f"Active species={len(references.graphs)} | distinct compositions="
                       f"{len(references.conditions)} | excluded={cfg['excluded_species']}")
@@ -765,7 +812,7 @@ class Stage1Trainer:
                           f" | steps={len(example)}")
             self.log.info("  " + " -> ".join(action_space.describe(s["action"], self.atom_symbols)
                                            for s in example))
-        model = GrowthGNN(cfg["hidden_dims"], action_space, self.atom_symbols, self.max_valency)
+        model = GrowthGNN(cfg["hidden_dims"], action_space, self.atom_symbols, self.max_valency).to(self.device)
         optimizer = torch.optim.Adam(model.parameters(), lr=cfg["learning_rate"])
         self.log.info(f"MODEL node_features={model.feature_dim} | hidden_dims={cfg['hidden_dims']}"
                       f" | trainable_parameters={sum(p.numel() for p in model.parameters())}")
@@ -781,14 +828,16 @@ class Stage1Trainer:
                                       [item["condition"] for item in items])
                 # A target row may contain several True entries for symmetry-equivalent
                 # actions. It is separate from the mask of all chemically legal actions.
-                targets = torch.zeros(len(items), len(action_space.actions), dtype=torch.bool)
+                targets = torch.zeros(len(items), len(action_space.actions), dtype=torch.bool, device=self.device)
                 for i, item in enumerate(items):
                     targets[i, item["target_indices"]] = True
                 if not torch.all((targets & inputs[-1]).any(dim=1)):
                     raise ValueError("Demonstration target was masked out")
                 cached[name].append((inputs, targets))
         metrics_path = self.output / "metrics.csv"
-        with metrics_path.open("w", newline="", encoding="utf-8") as metrics_file:
+        with metrics_path.open("w", newline="", encoding="utf-8") as metrics_file, tqdm(
+                total=cfg["epochs"], desc="Stage I epochs", unit="epoch", file=sys.stdout,
+                dynamic_ncols=True, mininterval=0.5) as progress:
             writer = csv.writer(metrics_file)
             writer.writerow(["epoch", "mean_species_nll", "equivalent_action_accuracy",
                              "mean_target_probability", "gradient_norm", "seconds"])
@@ -799,6 +848,7 @@ class Stage1Trainer:
                 # Cached tensors describe teacher-forced states, not model rollouts.
                 selected, weights = self.select_trajectories(
                     cached, cfg["trajectory_sample_fraction"], rng)
+                weights = weights.to(self.device)
                 inputs = tuple(torch.cat([entry[0][i] for entry in selected], dim=0)
                                for i in range(5))
                 targets = torch.cat([entry[1] for entry in selected])
@@ -819,6 +869,7 @@ class Stage1Trainer:
                 loss.backward()
                 gradient_norm = torch.nn.utils.clip_grad_norm_(model.parameters(), cfg["gradient_clip"])
                 optimizer.step()
+                TrainingDevice.synchronize(self.device)
                 # Teacher-action accuracy is measured on these demonstrated states BEFORE
                 # the update; it is not the complete-molecule free-generation success rate.
                 action_correct = targets.gather(1, logits.argmax(1, keepdim=True)).squeeze(1)
@@ -828,6 +879,7 @@ class Stage1Trainer:
                 writer.writerow([epoch, float(loss.detach()), accuracy, probability,
                                  float(gradient_norm), elapsed])
                 metrics_file.flush()
+                progress.set_postfix(loss=f"{float(loss.detach()):.5f}", refresh=False)
                 self.log.info(f"EPOCH {epoch:04d}/{cfg['epochs']} | loss={float(loss.detach()):.5f}"
                               f" | sampled sequences={len(selected)}"
                               f" | teacher-action accuracy={accuracy:.1%}"
@@ -840,11 +892,12 @@ class Stage1Trainer:
                     # Save the latest evaluated weights plus the settings needed to rebuild
                     # the same model/action space. This code does not automatically resume runs.
                     torch.save({
-                        "model_state_dict": model.state_dict(),
-                        "optimizer_state_dict": optimizer.state_dict(), "epoch": epoch,
+                        "model_state_dict": TrainingDevice.cpu_data(model.state_dict()),
+                        "optimizer_state_dict": TrainingDevice.cpu_data(optimizer.state_dict()), "epoch": epoch,
                         "config": cfg, "source_sha256": references.source_hash,
                         "action_space": action_space.actions,
                     }, self.output / "trained_growth_gnn.pt")
+                progress.update(1)
             # Final stochastic evaluation measures isomer diversity beyond one greedy output.
             sampled = self.evaluate(model, references, action_space, cfg["epochs"],
                                     cfg["eval_samples"], "sampled")
@@ -889,6 +942,7 @@ EVALUATE_EVERY = int(os.environ.get("STAGE1_EVAL_EVERY", "50"))
 EVALUATION_SAMPLES_PER_COMPOSITION = int(os.environ.get("STAGE1_EVAL_SAMPLES", "100"))
 # Maximum gradient norm per update; CPU_THREADS controls PyTorch CPU parallelism.
 GRADIENT_CLIP = 5.0
+TRAINING_DEVICE = "mps"  # Apple GPU; set "cpu" explicitly for a CPU run.
 CPU_THREADS = 1
 
 # ==========================================
@@ -904,7 +958,7 @@ training_config = {
     "learning_rate": LEARNING_RATE, "epochs": TOTAL_EPOCHS,
     "trajectory_sample_fraction": TRAJECTORY_SAMPLE_FRACTION,
     "eval_every": EVALUATE_EVERY, "eval_samples": EVALUATION_SAMPLES_PER_COMPOSITION,
-    "gradient_clip": GRADIENT_CLIP, "threads": CPU_THREADS,
+    "gradient_clip": GRADIENT_CLIP, "threads": CPU_THREADS, "device": TRAINING_DEVICE,
 }
 trainer = Stage1Trainer(training_config)
 trainer.run()

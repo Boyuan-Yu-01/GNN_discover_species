@@ -1,0 +1,152 @@
+<mxfile host="app.diagrams.net">
+  <diagram id="reference-guided-cycle" name="Training cycle">
+    <mxGraphModel dx="2054" dy="1150" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1800" pageHeight="1000" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#64748B;fontColor=#172B3A;fontSize=16;spacing=12;arcSize=12;strokeWidth=2;strokeColor=none;fillColor=none;fontSize=26;align=left;" value="&lt;b&gt;Reference-guided self-updating training cycle&lt;/b&gt;" vertex="1">
+          <mxGeometry height="45" width="1720" x="40" y="10" as="geometry" />
+        </mxCell>
+        <mxCell id="initial" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DBEAFE;strokeColor=#2563EB;fontColor=#172B3A;fontSize=16;spacing=12;arcSize=12;strokeWidth=2;" value="&lt;b&gt;Initial given species&lt;/b&gt;&lt;br&gt;Starting positive reference set" vertex="1">
+          <mxGeometry height="80" width="240" x="70" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="positive" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DCFCE7;strokeColor=#25834B;fontColor=#172B3A;fontSize=16;spacing=12;arcSize=12;strokeWidth=2;" value="&lt;b&gt;POSITIVE SPECIES&lt;/b&gt;&lt;br&gt;Retained known structures&lt;br&gt;+ newly reference-matched structures" vertex="1">
+          <mxGeometry height="120" width="250" x="70" y="240" as="geometry" />
+        </mxCell>
+        <mxCell id="negative" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEE2E2;strokeColor=#B83C3C;fontColor=#172B3A;fontSize=16;spacing=12;arcSize=12;strokeWidth=2;" value="&lt;b&gt;NEGATIVE EXAMPLES&lt;/b&gt;&lt;br&gt;Unmatched structures&lt;br&gt;Working labels for this round" vertex="1">
+          <mxGeometry height="120" width="250" x="70" y="470" as="geometry" />
+        </mxCell>
+        <mxCell id="posroutes" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F0FDF4;strokeColor=#25834B;fontColor=#172B3A;fontSize=16;spacing=12;arcSize=12;strokeWidth=2;" value="&lt;b&gt;Positive construction routes&lt;/b&gt;&lt;br&gt;Sample routes; encourage demonstrated / equivalent actions" vertex="1">
+          <mxGeometry height="120" width="230" x="385" y="240" as="geometry" />
+        </mxCell>
+        <mxCell id="negroutes" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF1F2;strokeColor=#B83C3C;fontColor=#172B3A;fontSize=16;spacing=12;arcSize=12;strokeWidth=2;" value="&lt;b&gt;Negative construction routes&lt;/b&gt;&lt;br&gt;Sample species and routes;&lt;br&gt;penalize complete rejected routes" vertex="1">
+          <mxGeometry height="120" width="230" x="385" y="470" as="geometry" />
+        </mxCell>
+        <mxCell id="train" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EDE9FE;strokeColor=#7C3AED;fontColor=#172B3A;fontSize=16;spacing=12;arcSize=12;strokeWidth=2;" value="&lt;b&gt;Train / fine-tune the GNN&lt;/b&gt;&lt;br&gt;Positive loss + λ × negative loss&lt;br&gt;&lt;br&gt;Stage I: positive only&lt;br&gt;Stage IV: continue existing weights" vertex="1">
+          <mxGeometry height="155" width="255" x="675" y="335" as="geometry" />
+        </mxCell>
+        <mxCell id="model" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DBEAFE;strokeColor=#2563EB;fontColor=#172B3A;fontSize=16;spacing=12;arcSize=12;strokeWidth=2;" value="&lt;b&gt;Selected GNN policy&lt;/b&gt;&lt;br&gt;Evaluate against parent;&lt;br&gt;retain parent if criteria fail" vertex="1">
+          <mxGeometry height="155" width="225" x="980" y="335" as="geometry" />
+        </mxCell>
+        <mxCell id="puct" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF7ED;strokeColor=#C76B13;fontColor=#172B3A;fontSize=16;spacing=12;arcSize=12;strokeWidth=2;" value="&lt;b&gt;PUCT exploration&lt;/b&gt;&lt;br&gt;Policy priors + search rewards&lt;br&gt;and visit counts" vertex="1">
+          <mxGeometry height="115" width="220" x="1250" y="230" as="geometry" />
+        </mxCell>
+        <mxCell id="direct" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF7ED;strokeColor=#C76B13;fontColor=#172B3A;fontSize=16;spacing=12;arcSize=12;strokeWidth=2;" value="&lt;b&gt;Direct generation&lt;/b&gt;&lt;br&gt;Sample network probabilities&lt;br&gt;No tree or uniform mixture" vertex="1">
+          <mxGeometry height="115" width="220" x="1250" y="480" as="geometry" />
+        </mxCell>
+        <mxCell id="classify" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F1F5F9;strokeColor=#475569;fontColor=#172B3A;fontSize=16;spacing=12;arcSize=12;strokeWidth=2;" value="&lt;b&gt;Compare generated graphs&lt;br&gt;against FFCM2&lt;/b&gt;&lt;br&gt;Given / matched / unmatched&lt;br&gt;&lt;br&gt;Stages III and VI" vertex="1">
+          <mxGeometry height="150" width="220" x="1530" y="345" as="geometry" />
+        </mxCell>
+        <mxCell id="reference" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F1F5F9;strokeColor=#475569;fontColor=#172B3A;fontSize=16;spacing=12;arcSize=12;strokeWidth=2;" value="&lt;b&gt;External reference&lt;/b&gt;&lt;br&gt;FFCM2 CHO structures" vertex="1">
+          <mxGeometry height="90" width="220" x="1530" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="addpositive" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DCFCE7;strokeColor=#25834B;fontColor=#172B3A;fontSize=16;spacing=12;arcSize=12;strokeWidth=2;" value="&lt;b&gt;Update positive dataset&lt;/b&gt;&lt;br&gt;Add new reference matches; deduplicate.&lt;br&gt;Keep previous positives; recovered known graphs add no duplicates." vertex="1">
+          <mxGeometry height="115" width="470" x="900" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="addnegative" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEE2E2;strokeColor=#B83C3C;fontColor=#172B3A;fontSize=16;spacing=12;arcSize=12;strokeWidth=2;" value="&lt;b&gt;Prepare next-round negative dataset&lt;/b&gt;&lt;br&gt;Deduplicate unmatched structures.&lt;br&gt;Remove overlaps with the positive set." vertex="1">
+          <mxGeometry height="115" width="470" x="900" y="680" as="geometry" />
+        </mxCell>
+        <mxCell id="note" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8FAFC;strokeColor=#94A3B8;fontColor=#172B3A;fontSize=16;spacing=12;arcSize=12;strokeWidth=2;align=left;fontSize=15;" value="&lt;b&gt;Interpretation and current implementation&lt;/b&gt;&lt;br&gt;Reference absence is not proof of chemical invalidity. Matching checks graph structure, not experimental stability or resolved electronic states.&lt;br&gt;Generation uses frozen weights (Stages II / V). Updates occur only during training. The network is not using PPO.&lt;br&gt;Stage VI currently classifies both methods separately. The dashed feedback paths describe next-round dataset preparation; merging both outputs and launching another round are not yet automated." vertex="1">
+          <mxGeometry height="115" width="1680" x="70" y="850" as="geometry" />
+        </mxCell>
+        <mxCell id="a1" edge="1" parent="1" source="initial" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#475569;fontColor=#475569;fontSize=14;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="positive" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a2" edge="1" parent="1" source="positive" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#475569;fontColor=#475569;fontSize=14;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" target="posroutes" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a3" edge="1" parent="1" source="negative" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#475569;fontColor=#475569;fontSize=14;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" target="negroutes" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a4" edge="1" parent="1" source="posroutes" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#475569;fontColor=#475569;fontSize=14;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;entryX=0;entryY=0.25;" target="train" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="645" y="300" />
+              <mxPoint x="645" y="375" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="a5" edge="1" parent="1" source="negroutes" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#475569;fontColor=#475569;fontSize=14;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;entryX=0;entryY=0.75;" target="train" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="645" y="530" />
+              <mxPoint x="645" y="451" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="a6" edge="1" parent="1" source="train" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#475569;fontColor=#475569;fontSize=14;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" target="model" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a7" edge="1" parent="1" source="model" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#475569;fontColor=#475569;fontSize=14;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.25;entryX=0;entryY=0.5;" target="puct" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1225" y="375" />
+              <mxPoint x="1225" y="287" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="a8" edge="1" parent="1" source="model" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#475569;fontColor=#475569;fontSize=14;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.75;entryX=0;entryY=0.5;" target="direct" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1225" y="451" />
+              <mxPoint x="1225" y="537" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="a9" edge="1" parent="1" source="puct" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#475569;fontColor=#475569;fontSize=14;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;entryX=0;entryY=0.25;" target="classify" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1500" y="287" />
+              <mxPoint x="1500" y="383" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="a10" edge="1" parent="1" source="direct" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#475569;fontColor=#475569;fontSize=14;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;entryX=0;entryY=0.75;" target="classify" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1500" y="537" />
+              <mxPoint x="1500" y="457" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="a11" edge="1" parent="1" source="reference" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#475569;fontColor=#475569;fontSize=14;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" target="classify" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a12" edge="1" parent="1" source="classify" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#25834B;fontColor=#25834B;fontSize=14;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.25;entryX=1;entryY=0.5;dashed=1;" target="addpositive" value="Reference-matched">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1775" y="382" />
+              <mxPoint x="1775" y="105" />
+              <mxPoint x="1400" y="105" />
+              <mxPoint x="1400" y="137" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="a13" edge="1" parent="1" source="addpositive" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#25834B;fontColor=#25834B;fontSize=14;labelBackgroundColor=#FFFFFF;exitX=0;exitY=0.5;entryX=0.5;entryY=0;dashed=1;" target="positive" value="Retain and expand">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="800" y="137" />
+              <mxPoint x="800" y="205" />
+              <mxPoint x="195" y="205" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="a14" edge="1" parent="1" source="classify" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#B83C3C;fontColor=#B83C3C;fontSize=14;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.75;entryX=1;entryY=0.5;dashed=1;" target="addnegative" value="Unmatched → working negatives">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1775" y="457" />
+              <mxPoint x="1775" y="738" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="a15" edge="1" parent="1" source="addnegative" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#B83C3C;fontColor=#B83C3C;fontSize=14;labelBackgroundColor=#FFFFFF;exitX=0;exitY=0.5;entryX=0.5;entryY=1;dashed=1;" target="negative" value="Next training round">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="195" y="738" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

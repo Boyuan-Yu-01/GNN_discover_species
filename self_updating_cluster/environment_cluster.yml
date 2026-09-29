@@ -1,0 +1,15 @@
+name: GNN
+channels:
+  - pytorch
+  - nvidia
+  - conda-forge
+dependencies:
+  - python=3.11
+  - pytorch
+  - pytorch-cuda=12.1
+  - rdkit
+  - openpyxl
+  - networkx
+  - matplotlib
+  - pillow
+  - tqdm

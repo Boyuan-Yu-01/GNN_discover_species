@@ -743,7 +743,7 @@ Ideal process for a self improving neural network predictor/agent
 	4. Apply it and repeat until STOP or the step limit.
 	5. Classify and record the resulting molecule.
 - The network gives action probability, and sampling chooses action according to the probability. Consequently, low probability actions are rarely explored.
-![](../2_stage_training_methane/stageII/output_stage2/exploration_III/final_structures.png)
+[](../2_stage_training_methane/stageII/output_stage2/exploration_III/final_structures.png)
 <span style="color:green">We introduce PUCT to improve the exploration:</span>
 $$
 a^*
@@ -761,7 +761,7 @@ As the result, we improve the exploration.
 
 ## <span style="color:red">Do not have a quantum validation yet</span>
 - We use FFCMII as a given validation set: `self_improving/stageIII/output/`
-![](../2_stage_training_methane/self_improving/stageIII/output/final_structures.png)
+[](../2_stage_training_methane/self_improving/stageIII/output/final_structures.png)
 
 There are some species validated by FFCMII.
 
@@ -798,3 +798,99 @@ Examples are:
 
 Video for Proximal Policy Optimization (PPO): ![Link](https://www.youtube.com/watch?v=TjHH_--7l8g&t=453s)
 ![](PPO.png)
+
+## Sep. 29th, 2026
+
+Python code RDKit helps to convert InChi & SMILE to the structure that we defined.
+
+## Correct the FFCMII readout list
+- Direct read out from [FFCM2 website](https://web.stanford.edu/group/haiwanglab/FFCM2/docs/TrialModel/Species/), saved as [FFCM2_InChi.csv](../species_readOut/FFCM2_InChI.csv)
+- <span style="color:green"> Identified difference:</span>
+	- C2H4O
+	- NC4H3
+	- NC4H5
+	- IC4H5
+	- HCCO
+	- CH2CHO
+	- CH3COCH2
+	- C4H5-2
+	- CH2CHCHCHO
+	- CH3CHCHCO
+
+## <span style="color:green"> Current Stage List:</span>
+*A hard limit has been imposed: Hard limits: atoms=10, actions=24*
+1. <span style="color:red">Stage I</span>: Train the neural network with given knowledge
+2. <span style="color:red">Stage II</span>: Exploring using PUCT; rewards: given species `0.5`, unknown structures `1.0`, failed attempts `0.0`; stopping uses the attempt count only.
+	- After the validation, this stage gives <span style="color:green">17 species</span> that has recognized by FFCM2, and <span style="color:red">966 species</span> outside FFCM2, using <span style="color:blue">31 species</span> given.
+	- $C_2H_6$ is not recovered
+3. <span style="color:red">Stage III</span>: Validate against FFCM2, then return the exploration evaluations. Then 
+	1. `ffcmii_matches.json`: <span style="color:green"> validated</span>, <span style="color:red">unvalidated</span>, <span style="color:blue">given</span> species
+	2. `summary.json`: 
+		- Summarize from the FFCM2 perspective: matched, not matched species.
+	3. `config.json`
+		- file for containing the output of the prediction
+		- reference workbook
+		- `compact_json_source`: path for json writer directory
+	Generate two separate species set by running `update_species.py`
+	- **48 known graphs = 31 existing + 17 additions**
+	- **966 unmatched graphs**
+4. <span style="color:red">Stage IV:</span> refine neural network against <span style="color:green">extended positive examples</span> and <span style="color:red">unmatched examples</span>
+	- Loss function for <span style="color:green">extended positive examples</span>: $$\ell_{s,k,t}^+=-\log\left( \sum_{a\in A_{s,k,t}} p_\theta(a\mid G_t,\text{composition}) \right)$$
+	- Loss function for <span style="color:red">unmatched examples</span>:
+	$$
+	\ell^-_{s,k,t}=-\log\left(1-P_\theta(\tau_{s,k})\right)
+	$$where the proposed negative loss applies to an entire formation route $\tau_{s,k}$, including STOP
+	- <span style="color:red">A trick is used to accelerate at stage IV: Compute graph convolutions once per partial graph</span> 
+
+Updating pipeline:
+![](plot/self_updating.png)
+In detail:
+![](plot/self_updating_training_cycle.png)
+
+<span style="color:red">An Observation:</span>
+- vast majority of result generated, either from PUCT or from sampling, has very small counts.
+- <span style="color:red">For low probability molecules:</span>
+	- positive example will generate high loss value, and therefore are very informative.
+	- negative example will generate very low loss value, and therefore are not very informative.
+	- yet the majority of species and time for training are spent on negative example.
+- [evidence 1](../2_stage_training_methane/self_improving/stageVI/output/puct/final_structures.png)
+- [evidence 2](../2_stage_training_methane/self_improving/stageVI/output/direct/final_structures.png)
+
+<span style="color:green">A Solution:</span>
+PUCT exploration + direct sampling
+- merge duplicate molecular graphs
+- validate molecules
+- use all positive species for training
+- select high-appearance validated-negative species for negative training
+
+Using all positive species is appropriate because each positive molecule teaches a desired structure.
+
+Since the PUCT way of discovering negative example may not purely rely on the network assigned probability, introduce a <span style="color:red">combined ranking score</span> for any individual species:
+$$
+\text{hardness}(G) = \text{direct count}(G) + \beta \text{ PUCT count}(G)
+$$
+ where $\beta \in [0,1]$ 
+
+__current output:__
+*round I:*
+
+
+![](../self_updating/output/round_001/validation/final_structures.png)
+
+*round II:*
+![](../self_updating/output/round_002/validation/final_structures.png)
+
+*round III:*
+![](../self_updating/output/round_003/validation/final_structures.png)
+
+*round IV:*
+![](../self_updating/output/round_004/validation/final_structures.png)
+
+<span style="color:red">THESE CAN BE COMPLETELY WRONG</span>
+
+<span style="color:red">An Interesting Discovery: Despite species C2H2O2 is always penalized, it always appears to be the most frequently appeared negative molecule in all arounds.</span>
+![](plot/ethanedial.png)
+
+An observation: New FFCM2 matches decrease: 16 → 9 → 2 → 5 per round, while unvalidated structures grow 1,076 → 2,282 → 3,714 → 4,984. The search is reaching diminishing returns against this reference set.
+
+

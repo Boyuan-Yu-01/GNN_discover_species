@@ -17,7 +17,6 @@ import random
 import sys
 import time
 from collections import Counter
-from datetime import datetime
 from pathlib import Path
 
 # NetworkX stores/checks molecular connectivity; PyTorch learns action probabilities.
@@ -26,7 +25,52 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
+from tqdm import tqdm
+
 from compact_json import CompactJSON
+
+
+class TrainingDevice:
+    """Select the requested device explicitly; keep checkpoints portable to CPU."""
+
+    @staticmethod
+    def resolve(name):
+        if name not in ("cpu", "mps"):
+            raise ValueError("TRAINING_DEVICE must be 'cpu' or 'mps'")
+        if name == "mps" and not torch.backends.mps.is_available():
+            raise RuntimeError(
+                "Apple GPU (MPS) is unavailable in this process. Run in your GNN terminal "
+                "with an MPS-enabled PyTorch build, or explicitly set TRAINING_DEVICE = 'cpu'. "
+                "Training has not started; no silent CPU fallback is used.")
+        return torch.device(name)
+
+    @classmethod
+    def cpu_data(cls, value):
+        # Also handles Adam state, nested lists and action tuples.
+        if torch.is_tensor(value):
+            return value.detach().cpu().clone()
+        if isinstance(value, dict):
+            return {key: cls.cpu_data(item) for key, item in value.items()}
+        if isinstance(value, list):
+            return [cls.cpu_data(item) for item in value]
+        if isinstance(value, tuple):
+            return tuple(cls.cpu_data(item) for item in value)
+        return value
+
+    @staticmethod
+    def synchronize(device):
+        if device.type == "mps":
+            torch.mps.synchronize()
+
+
+class ProgressConsoleHandler(logging.StreamHandler):
+    """Print messages above active progress bars; saved logs contain plain text."""
+
+    def emit(self, record):
+        try:
+            tqdm.write(self.format(record), file=self.stream)
+        except Exception:
+            self.handleError(record)
 
 
 # Console/file logging replaces version 4's Tee while keeping the same message content.
@@ -35,9 +79,9 @@ class TrainingLogger:
 
     def __init__(self, path):
         self.logger = logging.Logger("stage1", level=logging.INFO)
-        # The two handlers receive the same timestamped message; handlers flush after emitting.
-        formatter = logging.Formatter("%(asctime)s | %(message)s", datefmt="%H:%M:%S")
-        for handler in (logging.StreamHandler(sys.stdout),
+        # Both handlers write the message without a timestamp and flush after emitting.
+        formatter = logging.Formatter("%(message)s")
+        for handler in (ProgressConsoleHandler(sys.stdout),
                         logging.FileHandler(path, mode="w", encoding="utf-8")):
             handler.setFormatter(formatter)
             self.logger.addHandler(handler)
@@ -537,13 +581,18 @@ class GrowthGNN(nn.Module):
         device = next(self.parameters()).device
         return tuple(t.to(device) for t in (nodes, adjacency, node_mask, contexts, valid_mask))
 
-    def forward(self, nodes, adjacency, node_mask, contexts, valid_mask):
+    def graph_features(self, nodes, adjacency, node_mask):
+        """Compute features that depend only on the partial graph, not composition."""
         h = nodes
         for conv in self.convs:
             h = conv(h, adjacency, node_mask)
         # Average real-node embeddings into a graph summary. clamp_min(1) also handles
         # the empty graph, whose zero summary is used to predict the START element.
         pooled = h.sum(dim=1) / node_mask.sum(dim=1, keepdim=True).clamp_min(1)
+        return h, pooled
+
+    def action_logits(self, h, pooled, contexts, valid_mask):
+        """Score actions for each requested composition using existing graph features."""
         context = self.context_layer(torch.cat((pooled, contexts), dim=-1))
         # Combine each local atom embedding with the same graph/composition context.
         per_node_context = context.unsqueeze(1).expand(-1, h.size(1), -1)
@@ -561,19 +610,82 @@ class GrowthGNN(nn.Module):
         # Softmax assigns exactly zero probability to -infinity entries (illegal actions).
         return logits.masked_fill(~valid_mask, -torch.inf)
 
+    def forward(self, nodes, adjacency, node_mask, contexts, valid_mask):
+        # Preserve the original Stage I/II interface and all checkpoint parameter names.
+        h, pooled = self.graph_features(nodes, adjacency, node_mask)
+        return self.action_logits(h, pooled, contexts, valid_mask)
+
+    def log_probs_over_contexts(self, environments, conditions, batch_size):
+        """Return [graph, composition, action] log probabilities with shared GNN work.
+
+        Graphs are encoded and convolved once per partial state. Only the action
+        heads repeat across compositions. Features stay attached to autograd so
+        all composition branches contribute to graph-layer gradients. Nothing is
+        cached between calls or weight updates.
+        """
+        if not environments or not conditions or type(batch_size) is not int or batch_size < 1:
+            raise ValueError("Expected nonempty graphs/conditions and a positive batch size")
+        device = next(self.parameters()).device
+        requested = torch.tensor(conditions, dtype=torch.float32, device=device)
+        count = len(conditions)
+        results = []
+        for start in range(0, len(environments), batch_size):
+            graphs = environments[start:start+batch_size]
+            # The first condition is only a placeholder for encode(); its current
+            # count columns are independent of that requested composition.
+            nodes, adjacency, node_mask, context, valid_mask = self.encode(
+                graphs, [conditions[0]] * len(graphs))
+            h, pooled = self.graph_features(nodes, adjacency, node_mask)
+            current = torch.round(context[:, 3:6] * self.action_space.max_atoms)
+            chunks = []
+            for offset in range(0, len(graphs) * count, batch_size):
+                rows = torch.arange(offset, min(offset+batch_size, len(graphs)*count), device=device)
+                graph_ids = rows // count
+                requested_counts = requested[rows % count]
+                current_counts = current[graph_ids]
+                # Subtract integer counts before scaling to retain encode()'s
+                # floating-point convention for the target-minus-current vector.
+                differences = requested_counts - current_counts
+                contexts = torch.cat((requested_counts, current_counts, differences), dim=1) / self.action_space.max_atoms
+                logits = self.action_logits(h[graph_ids], pooled[graph_ids], contexts, valid_mask[graph_ids])
+                chunks.append(logits.log_softmax(-1))
+            results.append(torch.cat(chunks).reshape(len(graphs), count, -1))
+        return torch.cat(results)
+
 
 class Stage1Trainer:
     """Balanced imitation, readable saved logs, and independent free rollouts."""
 
     def __init__(self, config):
         self.config = dict(config)
+        self.device = TrainingDevice.resolve(config.get("device", "cpu"))
         self.output = Path(config["output_folder"])
-        # Refuse accidental replacement of a previous run; choose another relative path.
-        self.output.mkdir(parents=True, exist_ok=False)
+        # Reuse the selected folder; outputs are replaced on each training run.
+        self.output.mkdir(parents=True, exist_ok=True)
         self.log = TrainingLogger(self.output / "training.log")
         self.atom_symbols = config["atom_symbols"]
         self.max_valency = config["max_valency"]
         self.seed = config["seed"]
+
+    def clear_previous_outputs(self):
+        """Remove generated reports/checkpoint so shorter reruns leave no stale results."""
+        names = {
+            "config.json", "formation_sequences.json", "training_examples.json",
+            "metrics.csv", "trained_growth_gnn.pt", "baseline_greedy.json",
+            "baseline_greedy.csv", "generated_species_inventory.json",
+            "generated_species_inventory.csv",
+        }
+        # Delete only known Stage I outputs; preserve inputs, unrelated files,
+        # and timestamped historical folders from earlier script versions.
+        paths = {self.output / name for name in names}
+        for pattern in ("greedy_epoch_*.json", "greedy_epoch_*.csv"):
+            paths.update(self.output.glob(pattern))
+        source = Path(self.config["reference_path"]).resolve()
+        if any(path.resolve() == source for path in paths):
+            raise ValueError("Reference input must not use a generated output filename")
+        for path in paths:
+            if path.is_file() or path.is_symlink():
+                path.unlink()
 
     def condition_text(self, condition):
         return ", ".join(f"{symbol}={count}" for symbol, count in zip(("C", "H", "O"), condition))
@@ -605,9 +717,9 @@ class Stage1Trainer:
                 # Greedy chooses the largest probability; sampled draws from the same
                 # distribution and can reveal multiple isomers for one condition.
                 if mode == "greedy":
-                    choices = logits.argmax(-1)
+                    choices = logits.argmax(-1).cpu()
                 else:
-                    choices = torch.multinomial(probabilities, 1, generator=generator).squeeze(1)
+                    choices = torch.multinomial(probabilities.cpu(), 1, generator=generator).squeeze(1)
                 for row, index in enumerate(active):
                     action = action_space.actions[int(choices[row])]
                     env = environments[index]
@@ -713,6 +825,53 @@ class Stage1Trainer:
             self.log.close()
 
     @staticmethod
+    def cache_demonstrations(model, references, action_space):
+        """Cache static inputs and exact partial-graph IDs, never learned features."""
+        cached, graph_ids = {}, {}
+        device = next(model.parameters()).device
+        for name, trajectories in references.pool.items():
+            cached[name] = []
+            for items in trajectories:
+                inputs = model.encode([item["env"] for item in items],
+                                      [item["condition"] for item in items])
+                targets = torch.zeros(len(items), len(action_space.actions),
+                                      dtype=torch.bool, device=device)
+                route_ids = []
+                for i, item in enumerate(items):
+                    targets[i, item["target_indices"]] = True
+                    env = item["env"]
+                    # Preserve node order: action indices refer to these exact atoms.
+                    # Composition and target actions do not enter graph convolutions.
+                    key = (tuple(env.node_types), tuple(env.current_bonds),
+                           tuple(sorted(env.bonds.items())))
+                    route_ids.append(graph_ids.setdefault(key, len(graph_ids)))
+                if not torch.all((targets & inputs[-1]).any(dim=1)):
+                    raise ValueError("Demonstration target was masked out")
+                cached[name].append((inputs, targets, route_ids))
+        return cached
+
+    @staticmethod
+    def training_logits(model, selected):
+        """Convolve each distinct partial graph once; score every example separately."""
+        inputs = tuple(torch.cat([entry[0][i] for entry in selected]) for i in range(5))
+        targets = torch.cat([entry[1] for entry in selected])
+        unique, first_rows, inverse = {}, [], []
+        for entry in selected:
+            for graph_id in entry[2]:
+                if graph_id not in unique:
+                    unique[graph_id] = len(first_rows)
+                    first_rows.append(len(inverse))
+                inverse.append(unique[graph_id])
+        device = inputs[0].device
+        first_rows = torch.tensor(first_rows, dtype=torch.long, device=device)
+        inverse = torch.tensor(inverse, dtype=torch.long, device=device)
+        h, pooled = model.graph_features(*(value[first_rows] for value in inputs[:3]))
+        # Indexing sums all repeated examples' gradients into the shared features.
+        # Recompute features each epoch after the previous optimizer update.
+        logits = model.action_logits(h[inverse], pooled[inverse], inputs[3], inputs[4])
+        return logits, targets, len(unique)
+
+    @staticmethod
     def select_trajectories(cached, fraction, rng):
         """Sample ceil(N_s * fraction) routes and give each species total weight 1/S."""
         selected, step_weights = [], []
@@ -737,13 +896,17 @@ class Stage1Trainer:
         random.seed(self.seed)
         torch.manual_seed(self.seed)
         torch.set_num_threads(cfg["threads"])
-        torch.use_deterministic_algorithms(True)
+        torch.use_deterministic_algorithms(True, warn_only=self.device.type == "mps")
         # This RNG selects training trajectories independently of demonstration generation.
         rng = random.Random(self.seed + 1)
         references = ReferenceSpecies(cfg["reference_path"], cfg["excluded_species"],
                                       self.atom_symbols, self.max_valency, cfg["max_atoms"])
+        # Validate the input/settings before clearing the previous reports/model.
+        # TrainingLogger has already opened training.log in replacement mode.
+        self.clear_previous_outputs()
         action_space = ActionSpace(cfg["max_atoms"], self.atom_symbols)
         self.log.info("STAGE 1 | shared composition-conditioned GNN | supervised imitation")
+        self.log.info(f"DEVICE: {self.device} | MPS uses the Apple GPU; graph preparation stays on CPU.")
         self.log.info(f"Reference={cfg['reference_path']} | SHA256={references.source_hash}")
         self.log.info(f"Active species={len(references.graphs)} | distinct compositions="
                       f"{len(references.conditions)} | excluded={cfg['excluded_species']}")
@@ -765,30 +928,21 @@ class Stage1Trainer:
                           f" | steps={len(example)}")
             self.log.info("  " + " -> ".join(action_space.describe(s["action"], self.atom_symbols)
                                            for s in example))
-        model = GrowthGNN(cfg["hidden_dims"], action_space, self.atom_symbols, self.max_valency)
+        model = GrowthGNN(cfg["hidden_dims"], action_space, self.atom_symbols, self.max_valency).to(self.device)
         optimizer = torch.optim.Adam(model.parameters(), lr=cfg["learning_rate"])
         self.log.info(f"MODEL node_features={model.feature_dim} | hidden_dims={cfg['hidden_dims']}"
                       f" | trainable_parameters={sum(p.numel() for p in model.parameters())}")
         # Save an untrained baseline to distinguish learning from success due to masks alone.
         baseline = self.evaluate(model, references, action_space, 0, 1, "greedy")
         self.save_evaluation(baseline, "baseline_greedy")
-        # Cache tensors per reference order; no target graph is fed into the network.
-        cached = {}
-        for name, trajectories in references.pool.items():
-            cached[name] = []
-            for items in trajectories:
-                inputs = model.encode([item["env"] for item in items],
-                                      [item["condition"] for item in items])
-                # A target row may contain several True entries for symmetry-equivalent
-                # actions. It is separate from the mask of all chemically legal actions.
-                targets = torch.zeros(len(items), len(action_space.actions), dtype=torch.bool)
-                for i, item in enumerate(items):
-                    targets[i, item["target_indices"]] = True
-                if not torch.all((targets & inputs[-1]).any(dim=1)):
-                    raise ValueError("Demonstration target was masked out")
-                cached[name].append((inputs, targets))
+        # Only teacher-forced partial graphs enter the network, never full targets.
+        cached = self.cache_demonstrations(model, references, action_space)
+        self.log.info("Graph convolutions are shared by identical partial graphs within each epoch; "
+                      "compositions, target actions and example weights remain separate.")
         metrics_path = self.output / "metrics.csv"
-        with metrics_path.open("w", newline="", encoding="utf-8") as metrics_file:
+        with metrics_path.open("w", newline="", encoding="utf-8") as metrics_file, tqdm(
+                total=cfg["epochs"], desc="Stage I epochs", unit="epoch", file=sys.stdout,
+                dynamic_ncols=True, mininterval=0.5) as progress:
             writer = csv.writer(metrics_file)
             writer.writerow(["epoch", "mean_species_nll", "equivalent_action_accuracy",
                              "mean_target_probability", "gradient_norm", "seconds"])
@@ -799,13 +953,11 @@ class Stage1Trainer:
                 # Cached tensors describe teacher-forced states, not model rollouts.
                 selected, weights = self.select_trajectories(
                     cached, cfg["trajectory_sample_fraction"], rng)
-                inputs = tuple(torch.cat([entry[0][i] for entry in selected], dim=0)
-                               for i in range(5))
-                targets = torch.cat([entry[1] for entry in selected])
+                weights = weights.to(self.device)
                 model.train()
                 # Clear previous gradients before the single optimizer update for this epoch.
                 optimizer.zero_grad()
-                logits = model(*inputs)
+                logits, targets, unique_graphs = self.training_logits(model, selected)
                 log_probs = F.log_softmax(logits, dim=-1)
                 # Numerically stable log(sum of probabilities of acceptable actions).
                 # With one target, this is ordinary cross-entropy; equivalent targets
@@ -819,6 +971,7 @@ class Stage1Trainer:
                 loss.backward()
                 gradient_norm = torch.nn.utils.clip_grad_norm_(model.parameters(), cfg["gradient_clip"])
                 optimizer.step()
+                TrainingDevice.synchronize(self.device)
                 # Teacher-action accuracy is measured on these demonstrated states BEFORE
                 # the update; it is not the complete-molecule free-generation success rate.
                 action_correct = targets.gather(1, logits.argmax(1, keepdim=True)).squeeze(1)
@@ -828,8 +981,10 @@ class Stage1Trainer:
                 writer.writerow([epoch, float(loss.detach()), accuracy, probability,
                                  float(gradient_norm), elapsed])
                 metrics_file.flush()
+                progress.set_postfix(loss=f"{float(loss.detach()):.5f}", refresh=False)
                 self.log.info(f"EPOCH {epoch:04d}/{cfg['epochs']} | loss={float(loss.detach()):.5f}"
                               f" | sampled sequences={len(selected)}"
+                              f" | unique partial graphs={unique_graphs}/{len(targets)} steps"
                               f" | teacher-action accuracy={accuracy:.1%}"
                               f" | mean correct-action probability={probability:.4f}"
                               f" | grad_norm={float(gradient_norm):.3f} | {elapsed:.2f}s")
@@ -840,11 +995,12 @@ class Stage1Trainer:
                     # Save the latest evaluated weights plus the settings needed to rebuild
                     # the same model/action space. This code does not automatically resume runs.
                     torch.save({
-                        "model_state_dict": model.state_dict(),
-                        "optimizer_state_dict": optimizer.state_dict(), "epoch": epoch,
+                        "model_state_dict": TrainingDevice.cpu_data(model.state_dict()),
+                        "optimizer_state_dict": TrainingDevice.cpu_data(optimizer.state_dict()), "epoch": epoch,
                         "config": cfg, "source_sha256": references.source_hash,
                         "action_space": action_space.actions,
                     }, self.output / "trained_growth_gnn.pt")
+                progress.update(1)
             # Final stochastic evaluation measures isomer diversity beyond one greedy output.
             sampled = self.evaluate(model, references, action_space, cfg["epochs"],
                                     cfg["eval_samples"], "sampled")
@@ -869,8 +1025,8 @@ EXCLUDED_SPECIES = ["CO"]
 
 REFERENCE_JSON_PATH = "species_graphs.json"
 # Relative paths stay relative to your working directory.
-OUTPUT_FOLDER = os.environ.get(
-    "STAGE1_OUTPUT_FOLDER", "output_stage1/" + datetime.now().strftime("%Y%m%d_%H%M%S_%f"))
+# Each run replaces generated files directly in this folder, without a timestamp.
+OUTPUT_FOLDER = os.environ.get("STAGE1_OUTPUT_FOLDER", "output_stage1")
 # One width per message-passing layer. All species share these same learned layers.
 GNN_HIDDEN_DIMS = [32, 64, 32, 32, 16]
 SEED = 12345
@@ -889,6 +1045,7 @@ EVALUATE_EVERY = int(os.environ.get("STAGE1_EVAL_EVERY", "50"))
 EVALUATION_SAMPLES_PER_COMPOSITION = int(os.environ.get("STAGE1_EVAL_SAMPLES", "100"))
 # Maximum gradient norm per update; CPU_THREADS controls PyTorch CPU parallelism.
 GRADIENT_CLIP = 5.0
+TRAINING_DEVICE = "mps"  # Apple GPU; set "cpu" explicitly for a CPU run.
 CPU_THREADS = 1
 
 # ==========================================
@@ -904,7 +1061,7 @@ training_config = {
     "learning_rate": LEARNING_RATE, "epochs": TOTAL_EPOCHS,
     "trajectory_sample_fraction": TRAJECTORY_SAMPLE_FRACTION,
     "eval_every": EVALUATE_EVERY, "eval_samples": EVALUATION_SAMPLES_PER_COMPOSITION,
-    "gradient_clip": GRADIENT_CLIP, "threads": CPU_THREADS,
+    "gradient_clip": GRADIENT_CLIP, "threads": CPU_THREADS, "device": TRAINING_DEVICE,
 }
 trainer = Stage1Trainer(training_config)
 trainer.run()

@@ -124,12 +124,14 @@ SPECIES_GRAPHS = {
     "C2H3": graph_builder.make_species_graph([ATOM_C, ATOM_C], [(0, 1, 2)], [2, 1]),
     "C2H2": graph_builder.make_species_graph([ATOM_C, ATOM_C], [(0, 1, 3)], [1, 1]),
     "C2H": graph_builder.make_species_graph([ATOM_C, ATOM_C], [(0, 1, 3)], [1, 0]),
+    # Match the bond representation in FFCM2_CHO_reference.xlsx: H-C#C-O.
     "HCCO": graph_builder.make_species_graph([ATOM_C, ATOM_C, ATOM_O],
-                               [(0, 1, 2), (1, 2, 2)], [1, 0, 0]),
+                               [(0, 1, 3), (1, 2, 1)], [1, 0, 0]),
     "CH2CO": graph_builder.make_species_graph([ATOM_C, ATOM_C, ATOM_O],
                                 [(0, 1, 2), (1, 2, 2)], [2, 0, 0]),
+    # Match the FFCM2 representation: CH2=CH-O.
     "CH2CHO": graph_builder.make_species_graph([ATOM_C, ATOM_C, ATOM_O],
-                                 [(0, 1, 1), (1, 2, 2)], [2, 1, 0]),
+                                 [(0, 1, 2), (1, 2, 1)], [2, 1, 0]),
     "CH3CHO": graph_builder.make_species_graph([ATOM_C, ATOM_C, ATOM_O],
                                  [(0, 1, 1), (1, 2, 2)], [3, 1, 0]),
     "CH3CO": graph_builder.make_species_graph([ATOM_C, ATOM_C, ATOM_O],

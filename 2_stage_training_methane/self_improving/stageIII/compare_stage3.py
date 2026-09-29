@@ -11,7 +11,6 @@ import json
 import math
 import posixpath
 import textwrap
-import time
 import zipfile
 from collections import Counter
 from pathlib import Path
@@ -161,10 +160,10 @@ class WorkbookGraphs:
 
 
 class ComparisonPlot:
-    """Draw green FFCMII-only matches, red unmatched, then blue training species."""
+    """Draw green validated, red unvalidated, then blue recovered training species."""
 
     COLORS = {"ffcmii_only": ("#D5F2D8", "#246B35"),
-              "not_in_ffcmii": ("#FADADD", "#A52632"),
+              "unvalidated": ("#FADADD", "#A52632"),
               "training": ("#D9EAFE", "#245B96")}
 
     def __init__(self, config):
@@ -191,7 +190,7 @@ class ComparisonPlot:
         canvas = Image.new("RGB", (self.width, self.height), background)
         draw = ImageDraw.Draw(canvas)
         draw.rectangle((0, 0, self.width - 1, self.height - 1), outline=accent, width=2)
-        names = " / ".join(record["ffcmii_species_keys"]) if matched else "No FFCMII match"
+        names = " / ".join(record["ffcmii_species_keys"]) if matched else "Unvalidated"
         if record["display_group"] == "training":
             names = "Training: " + record.get("species_key", names)
         title = record["structure_id"] + "  " + names
@@ -203,7 +202,26 @@ class ComparisonPlot:
         label = self.formula(graph) + "   count: " + str(record.get("occurrences", 0))
         draw.text((10, y + 2), label, fill="#253B4A", font=self.font)
         y += 29
-        positions = nx.spring_layout(graph, seed=42)
+        # Preserve the exact graph while using chemical 2D coordinates. Spring
+        # layouts can route a bond behind an unrelated atom, creating false edges.
+        from rdkit import Chem
+        from rdkit.Chem import rdDepictor
+        mol = Chem.RWMol()
+        indices = {}
+        for index, data in graph.nodes(data=True):
+            atom = Chem.Atom(data["symbol"])
+            atom.SetNoImplicit(True)
+            indices[index] = mol.AddAtom(atom)
+        orders = {1: Chem.BondType.SINGLE, 2: Chem.BondType.DOUBLE, 3: Chem.BondType.TRIPLE}
+        for u, v, data in graph.edges(data=True):
+            mol.AddBond(indices[u], indices[v], orders[data["order"]])
+        # No sanitization, inferred hydrogens or electronic-state assignment.
+        rdDepictor.Compute2DCoords(mol)
+        xy = np.array([[mol.GetConformer().GetAtomPosition(i).x,
+                        mol.GetConformer().GetAtomPosition(i).y] for i in indices.values()])
+        xy -= (xy.max(axis=0) + xy.min(axis=0)) / 2
+        xy /= max(float(np.abs(xy).max()), 1e-8)
+        positions = dict(zip(indices, xy))
         # Use one equal scale for both axes so the diagram is not distorted.
         top, bottom = y + 14, self.height - 22
         scale = min((self.width - 58) / 2.5, (bottom - top) / 2.5)
@@ -233,10 +251,10 @@ class ComparisonPlot:
         draw.text((12, 10), title, fill="#183C4C", font=self.heading)
         draw.text((12, 43),
                   f"{summary['total_structures']} structures; {summary['display_group_counts']['ffcmii_only']} green; "
-                  f"{summary['display_group_counts']['not_in_ffcmii']} red; "
+                  f"{summary['display_group_counts']['unvalidated']} red; "
                   f"{summary['display_group_counts']['training']} blue.",
                   fill="#183C4C", font=self.font)
-        draw.text((12, 65), "Green: FFCMII, outside training. Red: outside FFCMII. Blue: training set (last).",
+        draw.text((12, 65), "Green: validated. Red: unvalidated. Blue: given / recovered training species (last).",
                   fill="#183C4C", font=self.small)
         draw.text((12, 82), "Charge/electronic state is not inferred; multiple matching reference keys are shown together.",
                   fill="#183C4C", font=self.small)
@@ -249,31 +267,22 @@ class ComparisonPlot:
         overview = Image.new("RGB", (columns * overview_size[0],
                              header_height + max(1, math.ceil(count / columns)) * overview_size[1]), "white")
         self.header(overview, "Stage III: FFCMII structure comparison", summary)
-        per_page = self.config["structures_per_page"]
-        page_columns = self.config["page_columns"]
+        # Remove generated pages left by earlier versions; no new pages are made.
         pages = output / "pages"
-        pages.mkdir(exist_ok=True)
-        for old in pages.glob("structures_*.png"):
-            old.unlink()
-        page = None
+        if pages.is_dir():
+            for old in pages.glob("structures_*.png"):
+                old.unlink()
+            if not any(pages.iterdir()):
+                pages.rmdir()
         for index, record in enumerate(records):
-            if index % per_page == 0:
-                remaining = min(per_page, count-index)
-                page = Image.new("RGB", (page_columns * self.width,
-                       header_height + math.ceil(remaining / page_columns) * self.height), "white")
-                self.header(page, f"Stage III: FFCMII comparison, page {index // per_page + 1}", summary)
             panel = self.panel(record)
             small = panel.resize(overview_size, Image.Resampling.LANCZOS)
             overview.paste(small, ((index % columns) * overview_size[0],
                                   header_height + (index // columns) * overview_size[1]))
-            local = index % per_page
-            page.paste(panel, ((local % page_columns) * self.width,
-                              header_height + (local // page_columns) * self.height))
-            if local == per_page-1 or index == count-1:
-                filename = pages / f"structures_{index // per_page + 1:03d}.png"
-                page.save(filename)
-                log(f"Rendered {index+1}/{count} structures: {filename}")
-                page.close()
+            panel.close()
+            small.close()
+            if (index + 1) % 100 == 0 or index == count - 1:
+                log(f"Rendered {index+1}/{count} structures in final_structures.png")
         overview.save(output / "final_structures.png")
         overview.close()
 
@@ -311,7 +320,7 @@ class StageIIIComparison:
                                      record.get("category") == "reference_match")
             if type(in_training) is not bool:
                 raise ValueError("Training-set membership must be a boolean")
-            group = "training" if in_training else ("ffcmii_only" if matches else "not_in_ffcmii")
+            group = "training" if in_training else ("ffcmii_only" if matches else "unvalidated")
             result.append({
                 **record,
                 "in_training_set": in_training,
@@ -326,12 +335,48 @@ class StageIIIComparison:
                     d.get("formal_charge") is not None for _, d in graph.nodes(data=True)),
             })
         # Stable sorting retains the original order within each group.
-        order = {"ffcmii_only": 0, "not_in_ffcmii": 1, "training": 2}
+        order = {"ffcmii_only": 0, "unvalidated": 1, "training": 2}
         return sorted(result, key=lambda r: order[r["display_group"]])
+
+    @staticmethod
+    def group_species(records):
+        """Group distinct species with their graph definitions, without action traces."""
+        groups = {"validated_species": [], "given_recovered_species": [], "unvalidated_species": []}
+        destinations = {"ffcmii_only": "validated_species", "training": "given_recovered_species",
+                        "unvalidated": "unvalidated_species"}
+        for record in records:
+            graph = WorkbookGraphs.make_graph(record["graph"]["nodes"], record["graph"]["edges"])
+            names = list(record["ffcmii_species_keys"])
+            if record["in_training_set"] and record.get("species_key") not in (None, "", "Unknown"):
+                names = [record["species_key"]]
+            entry = {
+                "structure_id": record["structure_id"], "species_keys": names,
+                "formula": ComparisonPlot.formula(graph), "occurrences": record.get("occurrences", 0),
+                "ffcmii_species_keys": record["ffcmii_species_keys"],
+                "in_ffcmii_reference": record["in_ffcmii_reference"],
+                "base_atom_indices": record.get("base_atom_indices"),
+                "base_bonds": record.get("base_bonds"),
+                "attached_h_per_base_atom": record.get("attached_h_per_base_atom"),
+                "graph": record["graph"],
+                "electronic_state_resolved": record["electronic_state_resolved"],
+                "ffcmii_state_notes": record["ffcmii_state_notes"],
+            }
+            groups[destinations[record["display_group"]]].append(entry)
+        return {
+            "total_structures": len(records),
+            "counts": {name: len(entries) for name, entries in groups.items()},
+            "definitions": {
+                "validated_species": "Green: reference graph match, outside the training set.",
+                "given_recovered_species": "Blue: generated structures labeled as training-set members by Stage II.",
+                "unvalidated_species": "Red: no reference graph match and not in the training set.",
+            },
+            "match_scope": "Elements and bond orders; charges checked only when predicted. Electronic states unresolved.",
+            **groups,
+        }
 
     def run(self):
         cfg = self.config
-        for name in ("overview_columns", "structures_per_page", "page_columns"):
+        for name in ("overview_columns",):
             if type(cfg[name]) is not int or cfg[name] < 1:
                 raise ValueError(f"{name} must be a positive integer")
         reference = WorkbookGraphs(cfg["reference_workbook"], cfg["reference_sheet"])
@@ -354,7 +399,7 @@ class StageIIIComparison:
             "unmatched_structures": len(records)-len(matched),
             "display_group_counts": {group: sum(r["display_group"] == group for r in records)
                                      for group in ComparisonPlot.COLORS},
-            "display_group_order": ["ffcmii_only", "not_in_ffcmii", "training"],
+            "display_group_order": ["ffcmii_only", "unvalidated", "training"],
             "training_membership_source": "Stage II in_species_training_reference; fallback category=reference_match",
             "stageII_new_candidates_matching_ffcmii": sum(r.get("category") == "new_candidate" for r in matched),
             "reference_keys_matched_by_connectivity": sorted(keys),
@@ -366,18 +411,27 @@ class StageIIIComparison:
                       "predictions_sha256": hashlib.sha256(source_bytes).hexdigest()}
         with (output / "comparison.log").open("w") as handle:
             def log(message):
-                line = time.strftime("%H:%M:%S") + " | " + message
-                print(line, flush=True)
-                handle.write(line + "\n")
+                print(message, flush=True)
+                handle.write(message + "\n")
                 handle.flush()
             log(f"Read {len(reference.records)} FFCMII reference entries and {len(records)} generated structures.")
             log(f"FFCMII matches={len(matched)}; unmatched={len(records)-len(matched)}; "
                 f"Stage II new candidates now matched={summary['stageII_new_candidates_matching_ffcmii']}")
             log(f"Plot groups (green, red, blue): {summary['display_group_counts']}")
-            writer.write(output / "config.json", provenance)
-            writer.write(output / "summary.json", summary)
-            writer.write(output / "compared_structures.json", records)
-            writer.write(output / "ffcmii_matches.json", matched)
+            writer.write(output / "config.json", provenance, pack=False)
+            writer.write(output / "summary.json", summary, pack=False)
+            grouped = self.group_species(records)
+            # All generated structures occur once, in the same green/red/blue
+            # groups as the full PNG. Keep the compact molecular definitions.
+            writer.write(output / "ffcmii_matches.json", {
+                "validated": grouped["validated_species"],
+                "unvalidated": grouped["unvalidated_species"],
+                "given": grouped["given_recovered_species"],
+            }, pack=False)
+            # Remove obsolete reports from previous runs after saving their replacement.
+            for obsolete in ("species_classification.json", "compared_structures.json"):
+                (output / obsolete).unlink(missing_ok=True)
+            log(f"Saved ffcmii_matches.json: {grouped['counts']}")
             with (output / "comparison.csv").open("w", newline="") as csv_file:
                 table = csv.writer(csv_file)
                 table.writerow(["plot_order", "structure_id", "formula", "in_ffcmii_reference",
@@ -398,14 +452,12 @@ class StageIIIComparison:
 # PARAMETERS — paths relative to the working directory
 # ==========================================
 PREDICTIONS_PATH = "../stageII/output/unique_structures.json"
-REFERENCE_WORKBOOK = "../FFCMII_species_reference.xlsx"
+REFERENCE_WORKBOOK = "FFCM2_CHO_reference.xlsx"
 REFERENCE_SHEET = "Graph definitions"
 COMPACT_JSON_SOURCE = "../stageI/compact_json.py"
 OUTPUT_FOLDER = "output"
-# The overview contains every structure; pages provide larger, readable panels.
+# The single overview contains every structure.
 OVERVIEW_COLUMNS = 10
-STRUCTURES_PER_PAGE = 50
-PAGE_COLUMNS = 5
 
 # ==========================================
 # RUN COMPARISON — direct calls, no main guard
@@ -414,7 +466,6 @@ comparison_config = {
     "predictions_path": PREDICTIONS_PATH, "reference_workbook": REFERENCE_WORKBOOK,
     "reference_sheet": REFERENCE_SHEET, "compact_json_source": COMPACT_JSON_SOURCE,
     "output_folder": OUTPUT_FOLDER, "overview_columns": OVERVIEW_COLUMNS,
-    "structures_per_page": STRUCTURES_PER_PAGE, "page_columns": PAGE_COLUMNS,
 }
 comparison = StageIIIComparison(comparison_config)
 comparison.run()

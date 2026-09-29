@@ -14,19 +14,40 @@ Use the GNN environment, which contains PyTorch and NetworkX. From this folder:
     conda activate GNN
     python train_stage1.py
 
+The console shows an epoch progress bar with loss, speed, and estimated time
+remaining. Saved logs contain plain messages without timestamp prefixes or bar controls.
+
+`TRAINING_DEVICE = "mps"` selects the Mac's Apple GPU. Use `"cpu"` explicitly
+for CPU training. An unavailable GPU produces an error before creating outputs;
+there is no silent CPU fallback. The startup log prints `DEVICE: mps` when GPU
+training is selected. Graph preparation and seeded evaluation sampling remain on
+CPU; network forward/backward passes use the selected device. Checkpoints contain
+CPU tensors so Stage II can load them. GPU speed depends on the workload and
+batch sizes; MPS permits warnings for operations without deterministic kernels.
+
 All parameters are below the classes in train_stage1.py. It executes directly,
 without a main guard. Consequently, importing that script starts a training run.
 It reads species_graphs.json directly and does not import species_graphs.py.
 
+HCCO and CH2CHO in `species_graphs.py` and `species_graphs.json` now use the
+FFCM2 bond orders, matching the corrected training workbook. Run
+`python species_graphs.py` to regenerate this JSON after changing graph definitions.
+The checkpoint from the completed run before this correction still contains
+weights learned from the earlier definitions; regeneration does not retrain it.
+
 Paths are relative to your current working directory. OUTPUT_FOLDER is editable;
-the default creates a timestamped run directory under output_stage1. An existing
-run directory is rejected rather than overwritten.
+the default saves directly under `output_stage1/`, without a timestamped subfolder.
+Each run replaces the previous generated reports, log, and checkpoint. Stale
+`greedy_epoch_*.json` / `.csv` evaluations are removed even if the new run has
+fewer epochs. Existing historical subfolders and unrelated files are preserved.
+The saved checkpoint is `output_stage1/trained_growth_gnn.pt`.
 
 Optional environment overrides, useful for short runs:
 
     STAGE1_EPOCHS=30 STAGE1_EVAL_EVERY=15 STAGE1_EVAL_SAMPLES=10 python train_stage1.py
 
-STAGE1_OUTPUT_FOLDER may also specify a new relative output directory.
+STAGE1_OUTPUT_FOLDER may also specify another relative output directory, using
+the same replacement behavior.
 
 ## What is learned
 
@@ -164,8 +185,10 @@ discovery model.
 - [Training walkthrough](README_train_stage1.md)
 - [Testing walkthrough](README_test_stage1.md)
 
-All JSON exporters use CompactJSON from compact_json.py. Small atom/bond records
-and short lists stay on one line; nested species, steps and samples remain indented.
+All JSON exporters use CompactJSON from compact_json.py. Short fields and
+atom/bond records share lines up to a target width of 120 characters. Numeric
+arrays stay on one line; larger species, steps and samples remain indented.
+This packed layout is the default for Stage I and Stage II; Stage III opts out.
 Formatting changes do not alter the JSON schema or stored values.
 
 Existing validation_300_epochs results describe the earlier fixed-pool sampling method; they are historical, not measurements of percentage sampling.
@@ -181,3 +204,29 @@ Final sampled reconstruction: 56.8%; reference coverage: 31/31. These are
 reconstruction results on the training reference set, not held-out validation
 or evidence of new molecule quality. Logs, all formation sequences, metrics,
 generated molecules and the trained checkpoint are saved in that run folder.
+
+## Shared graph computation in Stage I and Stage IV
+
+`GrowthGNN.graph_features()` computes composition-independent atom and pooled
+graph features. `action_logits()` scores the actions for a supplied composition.
+The ordinary `forward()` calls both, preserving the inference interface and checkpoint
+parameter names. Stage IV calls `log_probs_over_contexts()` to reuse graph features
+across compositions while preserving gradients through every branch.
+
+- Stage I assigns an ID to each exact partial graph during demonstration preparation.
+  Node order, atom types, bond orders and bond sums must match; composition is separate.
+- Each epoch convolves only the distinct graphs in its sampled routes. Each training
+  example still has its own composition, legal-action mask, targets and loss weight.
+- Gradients from all examples accumulate into the shared graph features. Features
+  are recomputed after every optimizer update; learned features are never cached
+  between epochs. Sampling, loss and checkpoint format remain unchanged.
+- The epoch log reports `unique partial graphs=282/689 steps`, for example.
+  With the current seed and 20% sampling, the first epoch uses 102 routes and
+  convolves 282 distinct graphs instead of 689 repeated states.
+- Local checks on CPU and Apple MPS passed probability, loss and gradient comparisons
+  at 20% and 100% sampling with random and trained weights. Two-epoch temporary
+  runs passed on both devices without changing the existing trained checkpoint.
+- A warm forward/backward benchmark including batch preparation averaged 31.6 →
+  18.3 ms on CPU and 18.0 → 16.0 ms on MPS (10 measurements each). These are small
+  training-computation checks, not full-run timings including evaluation and saving.
+  This is useful but less urgent than Stage IV's repeated composition evaluations.

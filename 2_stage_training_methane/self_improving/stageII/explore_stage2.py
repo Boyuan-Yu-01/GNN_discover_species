@@ -83,10 +83,27 @@ class ExplorationMedia:
         self.max_atoms, self.config = max_atoms, config
 
     def layout(self, record):
-        graph = self.nx.Graph()
-        graph.add_nodes_from(n["id"] for n in record["graph"]["nodes"])
-        graph.add_edges_from((e["source"], e["target"]) for e in record["graph"]["edges"])
-        return self.nx.spring_layout(graph, seed=42)
+        # Chemical coordinates keep chains/bond angles legible. A spring layout
+        # can place an unrelated atom directly on a bond, suggesting false bonds.
+        # Use exactly the saved graph; do not add H, sanitize or infer radicals.
+        from rdkit import Chem
+        from rdkit.Chem import rdDepictor
+        import numpy as np
+        mol = Chem.RWMol()
+        indices = {}
+        for node in record["graph"]["nodes"]:
+            atom = Chem.Atom(node["symbol"])
+            atom.SetNoImplicit(True)
+            indices[node["id"]] = mol.AddAtom(atom)
+        orders = {1: Chem.BondType.SINGLE, 2: Chem.BondType.DOUBLE, 3: Chem.BondType.TRIPLE}
+        for edge in record["graph"]["edges"]:
+            mol.AddBond(indices[edge["source"]], indices[edge["target"]], orders[edge["order"]])
+        rdDepictor.Compute2DCoords(mol)
+        points = np.array([[mol.GetConformer().GetAtomPosition(i).x,
+                            mol.GetConformer().GetAtomPosition(i).y] for i in indices.values()])
+        points -= (points.max(axis=0) + points.min(axis=0)) / 2
+        points /= max(float(np.abs(points).max()), 1e-8)
+        return dict(zip(indices, points))
 
     def draw(self, ax, record, graph_record, positions, caption=""):
         import numpy as np
@@ -153,6 +170,8 @@ class ExplorationMedia:
         finally:
             self.plt.close(fig)
         log.info(f"Saved final structure plot: {output / 'final_structures.png'}")
+        if not self.config.get("save_video", True):
+            return
         # Six structures per page keep individual growth steps readable at 1440x900.
         fig, axes = self.plt.subplots(2, 3, figsize=(14.4, 9), squeeze=False)
         writer = FFMpegWriter(fps=self.config.get("video_fps", 2), codec="libx264",
@@ -209,9 +228,9 @@ class PUCTSearch:
 
     DEFAULTS = {"search_method": "sampling", "puct_c": 2.0,
                 "puct_uniform_fraction": 0.25, "puct_require_composition": True,
-                "puct_reference_reward": 0.1, "puct_candidate_reward": 1.0,
-                "stop_when_all_species_recovered": False, "recovery_species": None,
-                "generation_mode": "formula", "attempts_per_run": 1000}
+                "puct_reference_reward": 0.5, "puct_candidate_reward": 1.0,
+                "generation_mode": "formula", "attempts_per_run": 1000,
+                "exploration_runs": 1}
 
     @classmethod
     def validate(cls, config):
@@ -221,6 +240,8 @@ class PUCTSearch:
             raise ValueError("generation_mode must be free or formula")
         if type(config["attempts_per_run"]) is not int or config["attempts_per_run"] < 1:
             raise ValueError("attempts_per_run must be a positive integer")
+        if type(config["exploration_runs"]) is not int or config["exploration_runs"] < 1:
+            raise ValueError("exploration_runs must be a positive integer")
         for key in ("puct_c", "puct_uniform_fraction", "puct_reference_reward",
                     "puct_candidate_reward"):
             if not math.isfinite(config[key]):
@@ -231,11 +252,6 @@ class PUCTSearch:
             raise ValueError("Rewards must satisfy 0 <= reference < candidate <= 1")
         if type(config["puct_require_composition"]) is not bool:
             raise ValueError("puct_require_composition must be boolean")
-        if type(config["stop_when_all_species_recovered"]) is not bool:
-            raise ValueError("stop_when_all_species_recovered must be boolean")
-        if config["stop_when_all_species_recovered"]:
-            if config["search_method"] != "puct" or config["puct_uniform_fraction"] <= 0:
-                raise ValueError("Full recovery requires PUCT with a positive uniform prior fraction")
 
     def __init__(self, env, condition, model, space, references, config, generator, max_steps):
         self.condition = tuple(condition) if condition is not None else None
@@ -455,68 +471,14 @@ class Stage2Explorer:
                 return record
         return None
 
-    @staticmethod
-    def recovery_targets(config, references, conditions, max_steps):
-        if not config["stop_when_all_species_recovered"]:
-            return set()
-        names = config["recovery_species"]
-        if names is not None and (not isinstance(names, (list, tuple))
-                                  or not names or any(not isinstance(n, str) for n in names)):
-            raise ValueError("recovery_species must be None or a nonempty list of species keys")
-        targets = set(references.graphs if names is None else names)
-        unknown = targets - references.graphs.keys()
-        if unknown:
-            raise ValueError(f"Recovery targets are missing or excluded: {sorted(unknown)}")
-        unavailable = [name for name in sorted(targets)
-                       if None not in conditions and references.composition(references.graphs[name]) not in conditions]
-        if unavailable:
-            raise ValueError(f"COMPOSITIONS omits recovery targets: {unavailable}; "
-                             "use COMPOSITIONS=None or select RECOVERY_SPECIES explicitly")
-        # START + one action per final bond (growth or connect) + STOP is the
-        # shortest possible construction with this connected-graph action space.
-        too_long = [name for name in sorted(targets)
-                    if references.graphs[name].number_of_edges() + 2 > max_steps]
-        if too_long:
-            raise ValueError(f"Checkpoint step limit cannot recover: {too_long}")
-        return targets
-
-    @staticmethod
-    def recovered_names(env, condition, references, targets):
-        if not env.terminated or (condition is not None and env.composition() != tuple(condition)):
-            return set()
-        graph = env.to_graph()
-        return {name for name in references.conditions.get(env.composition(), [])
-                if name in targets and references.isomorphic(graph, references.graphs[name])}
-
-    def search_batches(self, conditions, searches, references, targets, recovered):
-        if not self.config["stop_when_all_species_recovered"]:
-            budget = (self.config["attempts_per_run"] if self.config["generation_mode"] == "free"
-                      else self.config["samples_per_composition"])
-            for condition in conditions:
-                for start in range(0, budget, self.config["batch_size"]):
-                    yield condition, start, min(self.config["batch_size"],
-                          budget - start), searches[condition]
-            return
-        # Round-robin incomplete formulas; retain every tree across rounds.
-        # One simulation per yield lets the caller stop immediately on full coverage.
-        completed = Counter()
-        while targets - recovered:
-            for condition in conditions:
-                pending = ((targets - recovered) if condition is None else
-                           set(references.conditions.get(condition, [])) & (targets - recovered))
-                if pending:
-                    yield condition, completed[condition], 1, searches[condition]
-                    completed[condition] += 1
-
-    def save_recovery_progress(self, targets, recovered, attempts, excluded):
-        progress = {"target_species": sorted(targets), "recovered_species": sorted(recovered),
-                    "missing_species": sorted(targets - recovered), "attempts": attempts,
-                    "recovered_count": len(recovered), "target_count": len(targets),
-                    "all_species_recovered": targets <= recovered,
-                    "excluded_species": list(excluded)}
-        self.json.write(self.output / "recovery_progress.json", progress)
-        self.log.info(f"RECOVERY {len(recovered)}/{len(targets)} | attempts={attempts}"
-                      f" | missing={progress['missing_species']}")
+    def search_batches(self, conditions, searches):
+        """Run exactly the configured attempts for each requested condition."""
+        budget = (self.config["attempts_per_run"] if self.config["generation_mode"] == "free"
+                  else self.config["samples_per_composition"])
+        for condition in conditions:
+            for start in range(0, budget, self.config["batch_size"]):
+                yield condition, start, min(self.config["batch_size"],
+                      budget - start), searches[condition]
 
     def sample_batch(self, size, condition, model, space, generator, max_atoms, max_steps):
         cfg = self.config
@@ -581,8 +543,6 @@ class Stage2Explorer:
             self.log.info("REFERENCE HASH DIFFERS from training; matches use the supplied reference file.")
         conditions = [None] if free_growth else self.validate_conditions(
             list(references.conditions) if cfg["compositions"] is None else cfg["compositions"], max_atoms)
-        targets = self.recovery_targets(cfg, references, conditions, max_steps)
-        recovered = set()
         model = self.api["GrowthGNN"](trained["hidden_dims"], space, self.symbols, self.valency)
         model.load_state_dict(checkpoint["model_state_dict"], strict=True)
         model.eval()
@@ -626,12 +586,8 @@ class Stage2Explorer:
             for condition in conditions}
         condition_counts = {condition: Counter() for condition in conditions}
         generated_counts = {}
-        if targets:
-            self.log.info("STOP CONDITION: recover every target species; sample/run budgets do not stop PUCT."
-                          f" Excluded by checkpoint: {trained['excluded_species']}")
-            self.save_recovery_progress(targets, recovered, 0, trained["excluded_species"])
-        for condition, start, size, search in self.search_batches(
-                conditions, searches, references, targets, recovered):
+        self.log.info(f"STOP CONDITION: complete {budget * len(conditions)} attempts in this run.")
+        for condition, start, size, search in self.search_batches(conditions, searches):
             counts = condition_counts[condition]
             diagnostics = [None] * size
             if search is None:
@@ -647,7 +603,7 @@ class Stage2Explorer:
                     completed = start + offset + 1
                     if completed % 25 == 0:
                         self.log.info(f"PUCT C,H,O={condition} | simulation={completed}"
-                                      f"/{'coverage' if targets else budget}"
+                                      f"/{budget}"
                                       f" | nodes={search.node_count}"
                                       f" | latest reward={diagnostic['terminal_reward']:.2f}")
             for env, trace, diagnostic in zip(environments, traces, diagnostics):
@@ -680,12 +636,6 @@ class Stage2Explorer:
                     found["occurrences"] += 1
                     record["structure_id"] = found["structure_id"]
                 attempts.append(record)
-                if targets:
-                    newly_recovered = self.recovered_names(env, condition, references, targets) - recovered
-                    recovered.update(newly_recovered)
-                    if newly_recovered or len(attempts) % 25 == 0:
-                        self.save_recovery_progress(
-                            targets, recovered, len(attempts), trained["excluded_species"])
         search_statistics = [search.statistics() for search in searches.values() if search is not None]
         for condition, counts in (generated_counts if free_growth else condition_counts).items():
             summary = {("generated_C_H_O" if free_growth else "requested_C_H_O"): list(condition),
@@ -714,11 +664,7 @@ class Stage2Explorer:
             "search_method": cfg["search_method"],
             "generation_mode": cfg["generation_mode"],
             "exploration_seconds": time.monotonic() - started,
-            "termination_reason": "all_species_recovered" if targets else "attempt_budget_complete",
-            **({"target_species": sorted(targets), "recovered_species": sorted(recovered),
-                "missing_species": sorted(targets - recovered),
-                "all_species_recovered": targets <= recovered,
-                "excluded_species": trained["excluded_species"]} if targets else {}),
+            "termination_reason": "attempt_budget_complete",
             "total_attempts": len(attempts),
             "counts": dict(Counter(r["category"] for r in attempts)),
             "unique_reference_structures": len(matches), "unique_new_candidates": len(candidates),
@@ -748,10 +694,6 @@ class ExplorationCampaign:
 
     def run(self):
         cfg = self.config
-        if cfg["stop_when_all_species_recovered"]:
-            # Coverage uses one persistent set of trees, rather than restarting
-            # searches after fixed-size runs. Output stays directly in output/.
-            return Stage2Explorer(cfg).run()
         runs = cfg["exploration_runs"]
         if type(runs) is not int or runs < 1:
             raise ValueError("exploration_runs must be a positive integer")
@@ -840,6 +782,7 @@ class ExplorationCampaign:
             "search_method": cfg["search_method"],
             "generation_mode": cfg["generation_mode"],
             "exploration_runs": cfg["exploration_runs"], "total_attempts": len(attempts),
+            "termination_reason": "attempt_budget_complete",
             "counts": dict(Counter(r["category"] for r in attempts)),
             "unique_reference_structures": len(matches), "unique_new_candidates": len(candidates),
             ("per_generated_composition" if free_growth else "per_composition"): [
@@ -879,7 +822,7 @@ class ExplorationCampaign:
 # PARAMETERS — relative to your working directory
 # ==========================================
 STAGE1_DIRECTORY = "../stageI"
-CHECKPOINT_PATH = "../stageI/output_stage1/20260921_221023_510656/trained_growth_gnn.pt"
+CHECKPOINT_PATH = "../stageI/output_stage1/trained_growth_gnn.pt"
 REFERENCE_JSON_PATH = "../stageI/species_graphs.json"
 # Each execution replaces the previous exploration in this folder.
 OUTPUT_FOLDER = os.environ.get("STAGE2_OUTPUT_FOLDER", "output")
@@ -889,20 +832,17 @@ OUTPUT_FOLDER = os.environ.get("STAGE2_OUTPUT_FOLDER", "output")
 GENERATION_MODE = "free"  # "free": policy chooses counts and STOP; "formula": fixed formula
 COMPOSITIONS = None  # Used only in formula mode.
 ATTEMPTS_PER_RUN = int(os.environ.get("STAGE2_ATTEMPTS", "1000"))
-# Each run uses a different seed; results are deduplicated across all runs.
-# PUCT reuses a tree within each run and composition. More simulations allow
+# Each run uses a different seed and an independent set of PUCT trees.
+# Results are deduplicated across all attempts. More simulations allow
 # Q estimates to guide exploration beyond the initial network probabilities.
 SEARCH_METHOD = os.environ.get("STAGE2_METHOD", "puct")  # "puct" or "sampling"
 PUCT_C = 2.0
 PUCT_UNIFORM_FRACTION = 0.25
 PUCT_REQUIRE_COMPOSITION = GENERATION_MODE == "formula"
-PUCT_REFERENCE_REWARD = 0.1
+PUCT_REFERENCE_REWARD = 0.5
 PUCT_CANDIDATE_REWARD = 1.0
-# False: stop after the configured runs and attempts for the selected mode.
-# Optional True (PUCT only): ignore those budgets and stop at full recovery.
-STOP_WHEN_ALL_SPECIES_RECOVERED = False
-RECOVERY_SPECIES = None
-# Free mode: total attempts = EXPLORATION_RUNS * ATTEMPTS_PER_RUN (default 10,000).
+# Stop after exactly the configured number of attempts, regardless of recovery.
+# Free mode: EXPLORATION_RUNS * ATTEMPTS_PER_RUN (default 100,000).
 # Formula mode: runs * samples per composition * number of compositions.
 EXPLORATION_RUNS = int(os.environ.get("STAGE2_RUNS", "100"))
 SAMPLES_PER_COMPOSITION = int(os.environ.get("STAGE2_SAMPLES", "100"))
@@ -932,8 +872,6 @@ exploration_config = {
     "puct_require_composition": PUCT_REQUIRE_COMPOSITION,
     "puct_reference_reward": PUCT_REFERENCE_REWARD,
     "puct_candidate_reward": PUCT_CANDIDATE_REWARD,
-    "stop_when_all_species_recovered": STOP_WHEN_ALL_SPECIES_RECOVERED,
-    "recovery_species": RECOVERY_SPECIES,
 }
 explorer = ExplorationCampaign(exploration_config)
 explorer.run()

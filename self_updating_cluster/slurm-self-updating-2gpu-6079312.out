@@ -1,0 +1,39 @@
+Sun Sep 27 19:39:19 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 580.159.04             Driver Version: 580.159.04     CUDA Version: 13.0     |
++-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA L40S                    On  |   00000000:41:00.0 Off |                    0 |
+| N/A   33C    P8             33W /  350W |       0MiB /  46068MiB |      0%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+|   1  NVIDIA L40S                    On  |   00000000:A1:00.0 Off |                    0 |
+| N/A   33C    P8             34W /  350W |       0MiB /  46068MiB |      0%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+/home1/boyuanyu/.conda/envs/GNN/lib/python3.11/site-packages/torch/nn/modules/linear.py:125: UserWarning: Attempting to run cuBLAS, but there was no current CUDA context! Attempting to set the primary context... (Triggered internally at /opt/conda/conda-bld/pytorch_1729647348947/work/aten/src/ATen/cuda/CublasHandlePool.cpp:135.)
+  return F.linear(input, self.weight, self.bias)
+/home1/boyuanyu/.conda/envs/GNN/lib/python3.11/site-packages/torch/nn/modules/linear.py:125: UserWarning: Deterministic behavior was enabled with either `torch.use_deterministic_algorithms(True)` or `at::Context::setDeterministicAlgorithms(true)`, but this operation is not deterministic because it uses CuBLAS and you have CUDA >= 10.2. To enable deterministic behavior in this case, you must set an environment variable before running your PyTorch application: CUBLAS_WORKSPACE_CONFIG=:4096:8 or CUBLAS_WORKSPACE_CONFIG=:16:8. For more information, go to https://docs.nvidia.com/cuda/cublas/index.html#results-reproducibility (Triggered internally at /opt/conda/conda-bld/pytorch_1729647348947/work/aten/src/ATen/Context.cpp:208.)
+  return F.linear(input, self.weight, self.bias)
+/project2/rxu13019_1548/boyuan/GNN_species_discovery/self_updating_cluster/codebase/model.py:89: UserWarning: Deterministic behavior was enabled with either `torch.use_deterministic_algorithms(True)` or `at::Context::setDeterministicAlgorithms(true)`, but this operation is not deterministic because it uses CuBLAS and you have CUDA >= 10.2. To enable deterministic behavior in this case, you must set an environment variable before running your PyTorch application: CUBLAS_WORKSPACE_CONFIG=:4096:8 or CUBLAS_WORKSPACE_CONFIG=:16:8. For more information, go to https://docs.nvidia.com/cuda/cublas/index.html#results-reproducibility (Triggered internally at /opt/conda/conda-bld/pytorch_1729647348947/work/aten/src/ATen/Context.cpp:208.)
+  output = output + torch.bmm(adjacency[:, bond_type], layer(features))
+/home1/boyuanyu/.conda/envs/GNN/lib/python3.11/site-packages/torch/autograd/graph.py:825: UserWarning: Deterministic behavior was enabled with either `torch.use_deterministic_algorithms(True)` or `at::Context::setDeterministicAlgorithms(true)`, but this operation is not deterministic because it uses CuBLAS and you have CUDA >= 10.2. To enable deterministic behavior in this case, you must set an environment variable before running your PyTorch application: CUBLAS_WORKSPACE_CONFIG=:4096:8 or CUBLAS_WORKSPACE_CONFIG=:16:8. For more information, go to https://docs.nvidia.com/cuda/cublas/index.html#results-reproducibility (Triggered internally at /opt/conda/conda-bld/pytorch_1729647348947/work/aten/src/ATen/Context.cpp:208.)
+  return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+/home1/boyuanyu/.conda/envs/GNN/lib/python3.11/site-packages/torch/nn/modules/linear.py:125: UserWarning: Deterministic behavior was enabled with either `torch.use_deterministic_algorithms(True)` or `at::Context::setDeterministicAlgorithms(true)`, but this operation is not deterministic because it uses CuBLAS and you have CUDA >= 10.2. To enable deterministic behavior in this case, you must set an environment variable before running your PyTorch application: CUBLAS_WORKSPACE_CONFIG=:4096:8 or CUBLAS_WORKSPACE_CONFIG=:16:8. For more information, go to https://docs.nvidia.com/cuda/cublas/index.html#results-reproducibility (Triggered internally at /opt/conda/conda-bld/pytorch_1729647348947/work/aten/src/ATen/Context.cpp:208.)
+  return F.linear(input, self.weight, self.bias)
+/project2/rxu13019_1548/boyuan/GNN_species_discovery/self_updating_cluster/codebase/model.py:89: UserWarning: Deterministic behavior was enabled with either `torch.use_deterministic_algorithms(True)` or `at::Context::setDeterministicAlgorithms(true)`, but this operation is not deterministic because it uses CuBLAS and you have CUDA >= 10.2. To enable deterministic behavior in this case, you must set an environment variable before running your PyTorch application: CUBLAS_WORKSPACE_CONFIG=:4096:8 or CUBLAS_WORKSPACE_CONFIG=:16:8. For more information, go to https://docs.nvidia.com/cuda/cublas/index.html#results-reproducibility (Triggered internally at /opt/conda/conda-bld/pytorch_1729647348947/work/aten/src/ATen/Context.cpp:208.)
+  output = output + torch.bmm(adjacency[:, bond_type], layer(features))
+/home1/boyuanyu/.conda/envs/GNN/lib/python3.11/site-packages/torch/autograd/graph.py:825: UserWarning: Deterministic behavior was enabled with either `torch.use_deterministic_algorithms(True)` or `at::Context::setDeterministicAlgorithms(true)`, but this operation is not deterministic because it uses CuBLAS and you have CUDA >= 10.2. To enable deterministic behavior in this case, you must set an environment variable before running your PyTorch application: CUBLAS_WORKSPACE_CONFIG=:4096:8 or CUBLAS_WORKSPACE_CONFIG=:16:8. For more information, go to https://docs.nvidia.com/cuda/cublas/index.html#results-reproducibility (Triggered internally at /opt/conda/conda-bld/pytorch_1729647348947/work/aten/src/ATen/Context.cpp:208.)
+  return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+[2026-09-28T19:39:38.039] error: *** JOB 6079312 ON c01-08 CANCELLED AT 2026-09-28T19:39:38 DUE TO TIME LIMIT ***

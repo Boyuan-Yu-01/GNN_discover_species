@@ -9,7 +9,6 @@ From `2_stage_training_methane/self_improving/stageII`:
 
 ```sh
 conda activate GNN
-python test_stage2.py
 python explore_stage2.py
 ```
 
@@ -17,26 +16,29 @@ The default mode lets PUCT choose how many atoms to add and when to STOP:
 
 ```python
 GENERATION_MODE = "free"
-STOP_WHEN_ALL_SPECIES_RECOVERED = False
-EXPLORATION_RUNS = int(os.environ.get("STAGE2_RUNS", "10"))
+EXPLORATION_RUNS = int(os.environ.get("STAGE2_RUNS", "100"))
 ATTEMPTS_PER_RUN = int(os.environ.get("STAGE2_ATTEMPTS", "1000"))
 ```
 
-This produces **10,000 construction attempts** (10 runs × 1,000 attempts).
-The number of attempts is separate from the size of each generated molecule.
+Exploration stops after the configured number of attempts:
 
-For a shorter run:
+- Free mode: `EXPLORATION_RUNS × ATTEMPTS_PER_RUN` (default **100,000**).
+- Formula mode: `EXPLORATION_RUNS × SAMPLES_PER_COMPOSITION × number of compositions`.
+
+Recovery of the given species does not change the stopping point. There is no
+full-recovery setting. Each run uses a different seed and independent PUCT trees.
+The per-molecule action limit still applies to each construction attempt.
+
+For a shorter exploration:
 
 ```sh
 STAGE2_RUNS=1 STAGE2_ATTEMPTS=100 python explore_stage2.py
 ```
 
-To request exact formulas again, set `GENERATION_MODE = "formula"`.
+To request exact formulas, set `GENERATION_MODE = "formula"`.
 Then `COMPOSITIONS` and `SAMPLES_PER_COMPOSITION` apply; the existing defaults
-give 10 × 29 × 100 = 29,000 attempts.
-
-Full-recovery stopping remains optional: set
-`STOP_WHEN_ALL_SPECIES_RECOVERED = True` to enable it for PUCT.
+produce 100 × 29 × 100 = 290,000 attempts. The composition count comes from
+the configured reference file unless `COMPOSITIONS` is explicitly supplied.
 
 ## Free growth and automatic STOP
 
@@ -64,7 +66,8 @@ No minimum molecule size is imposed beyond requiring a first atom.
 
 In free mode:
 - `COMPOSITIONS`, `SAMPLES_PER_COMPOSITION`, and exact-formula masks are inactive.
-- There is one persistent tree per run, shared across generated compositions.
+- Each run uses one tree, which persists across its attempts. The next run
+  starts an independent tree with a different seed.
 - A stopped graph is matched against all compatible reference graphs.
 - `requested_C_H_O` is null; `generated_C_H_O` records the actual composition.
 - Deduplication uses actual composition plus exact graph isomorphism.
@@ -74,7 +77,7 @@ In free mode:
 - Summaries use `per_generated_composition`. No attempt fails merely because
   its formula differs from a target.
 
-To use the previous sampling algorithm in this copy:
+To use the previous sampling algorithm, run:
 
 ```sh
 STAGE2_METHOD=sampling STAGE2_RUNS=1 python explore_stage2.py
@@ -86,11 +89,10 @@ directory. Importing the exploration script directly runs its campaign.
 
 The default checkpoint and active reference JSON are read from the local copy in
 `../stageI` (inside `self_improving`).
-The current checkpoint is the local run `20260921_221023_510656`.
-After training again, edit `CHECKPOINT_PATH` in `explore_stage2.py`.
-Tests read its literal `STAGE1_DIRECTORY`, `CHECKPOINT_PATH`, and
-`REFERENCE_JSON_PATH` settings without starting exploration, so these paths
-only need to be configured in one file. Run the tests from this `stageII` folder.
+The checkpoint path is `../stageI/output_stage1/trained_growth_gnn.pt`.
+Stage I replaces this file on each run, so no path change or file transfer is
+needed after retraining with the default output folder. If you use a custom
+Stage I output folder, update `CHECKPOINT_PATH` in `explore_stage2.py`.
 The FFCMII YAML and Excel workbook in the parent folder are **not** automatically
 converted into a new neural-network checkpoint or active reference set.
 “Unknown” means absent from the configured `REFERENCE_JSON_PATH`, currently
@@ -154,44 +156,16 @@ but finite search budgets do not guarantee every branch will be visited.
 5. Add that same reward to every selected tree edge and increment visits.
 6. Save the entire trajectory, including rollout actions, as one attempt.
 
-### Stop when the reference set is recovered
+### Exploration count
 
-With full recovery enabled in formula mode, a persistent tree is kept for each requested
-composition. The scheduler takes one simulation at a time, cycling through
-formulas that still have missing target species. A formula is skipped after all
-its target isomers are recovered. Search ends immediately after the last target
-is recovered, without finishing a batch or starting another independent run.
+Each run completes exactly `ATTEMPTS_PER_RUN` attempts in free mode, or
+`SAMPLES_PER_COMPOSITION` attempts for each requested composition in formula
+mode. The campaign completes `EXPLORATION_RUNS` independent runs. Failed
+constructions and repeated structures also count as attempts.
 
-In free mode, the single tree continues until all target graphs are recovered.
-
-A species counts as recovered only after STOP, with any requested composition satisfied,
-and an atom- and bond-order-preserving graph-isomorphism match. Formula equality
-alone does not recover both CH3O and CH2OH. Duplicate observations do not increase
-coverage. Unknown candidates found along the way remain in the outputs.
-
-`RECOVERY_SPECIES = None` targets all active keys from the configured reference
-JSON: currently 31 species after the checkpoint's CO exclusion. Excluded species
-are explicitly listed in logs and recovery metadata. To choose a smaller set,
-provide keys, for example `RECOVERY_SPECIES = ["CH3O", "CH2OH"]`.
-
-Requested targets must be active, their compositions must be included in
-`COMPOSITIONS`, and their minimum construction length must fit the checkpoint's
-step limit. Otherwise the script raises an explanatory error. Positive uniform
-prior mixing is required so admissible actions have nonzero search priors.
-These checks do not turn the current model into an all-96-species FFCMII model.
-
-`SAMPLES_PER_COMPOSITION`, `EXPLORATION_RUNS`, and `BATCH_SIZE` do not terminate
-full-recovery search. The per-molecule step limit still ends an individual
-failed attempt; search then continues. There is no global time or attempt cap.
-Manual interruption or an error is not reported as successful recovery.
-If interrupted, the latest `recovery_progress.json` and log retain the recorded
-coverage; full inventories and media are written after normal completion.
-
-In bounded mode (`STOP_WHEN_ALL_SPECIES_RECOVERED = False`), the previous
-behavior remains: one tree per composition per independent run, with
-`SAMPLES_PER_COMPOSITION` simulations. Every simulation is recorded as an
-attempt. In either mode, frequencies use the actual attempt count for each
-requested composition.
+Given species and new candidates are classified and recorded as before.
+Recovering all given species neither stops exploration early nor extends it.
+The network stays frozen throughout exploration.
 
 The tree indexes construction histories. Equivalent partial graphs reached by
 different histories are not merged in the tree. Final outputs are deduplicated
@@ -202,7 +176,7 @@ using atom- and bond-aware graph isomorphism, as in the original Stage II.
 | Outcome | Default reward |
 |---|---:|
 | STOP, exact requested composition, absent from active references | 1.0 |
-| STOP, exact requested composition, matches an active reference | 0.1 |
+| STOP, exact requested composition, matches an active reference | 0.5 |
 | Wrong composition, dead end, or step limit | 0.0 |
 
 Rewards remain fixed throughout a run. Repeated observations of a candidate
@@ -232,15 +206,13 @@ All parameters are below the classes in `explore_stage2.py`.
 | SEARCH_METHOD | "puct" | Choose "puct" or original "sampling" |
 | GENERATION_MODE | "free" | Free growth or formula-constrained growth |
 | ATTEMPTS_PER_RUN | 1000 | Construction attempts per run in free mode |
-| STOP_WHEN_ALL_SPECIES_RECOVERED | False | Use configured counts; True enables full-recovery stopping |
-| RECOVERY_SPECIES | None | All active species keys, or an explicit list |
 | PUCT_C | 2.0 | Exploration strength |
 | PUCT_UNIFORM_FRACTION | 0.25 | Prior mass reserved for uniform exploration |
 | PUCT_REQUIRE_COMPOSITION | True only in formula mode | Apply exact-formula constraints |
-| PUCT_REFERENCE_REWARD | 0.1 | Known, complete graph reward |
+| PUCT_REFERENCE_REWARD | 0.5 | Known, complete graph reward |
 | PUCT_CANDIDATE_REWARD | 1.0 | Unknown, complete graph reward |
-| SAMPLES_PER_COMPOSITION | 100 | Per-composition budget in bounded formula mode only |
-| EXPLORATION_RUNS | 10 | Independent runs in bounded mode only |
+| SAMPLES_PER_COMPOSITION | 100 | Attempts per composition per run in formula mode |
+| EXPLORATION_RUNS | 100 | Number of independent runs |
 | TEMPERATURE | 1.0 | Temperature before prior mixing |
 | COMPOSITIONS | None | All unique active reference compositions |
 | SAVE_MEDIA | True | Save final PNG and growth MP4 |
@@ -249,14 +221,13 @@ Free growth can explore new compositions without listing them. In formula mode, 
 them, e.g. `COMPOSITIONS = [(2, 4, 1), (2, 6, 1)]`. Counts always use C,H,O order
 and must fit the checkpoint's atom limit.
 
-In bounded mode, increasing simulations per run lets each tree accumulate more evidence.
+Increasing simulations per run lets each tree accumulate more evidence.
 Increasing the number of runs restarts the tree more often.
 `BATCH_SIZE` controls batching for ordinary sampling; PUCT is sequential so each
 simulation can use the preceding simulation's reward.
 
-For backward compatibility, programmatic configurations default to sampling and
-`stop_when_all_species_recovered=False`. The script's editable parameters enable
-PUCT with count-controlled stopping by default.
+Programmatic configurations default to sampling. The script's editable
+parameters select PUCT. Both methods stop at the configured attempt count.
 
 ## Outputs
 
@@ -267,14 +238,20 @@ and PUCT statistics are removed even when the new run disables those outputs.
 There is no timestamped parent folder. `STAGE2_OUTPUT_FOLDER` can override the path.
 
 The campaign saves the original compact JSON files, console/file logs,
-`final_structures.png`, and `exploration_growth.mp4`. Full-recovery files are written directly to `output/`.
-Bounded campaigns additionally have per-run files under `runs/run_001/`, etc. Orange panels are unvalidated unknown candidates.
+`final_structures.png`, and `exploration_growth.mp4` directly to `output/`.
+Per-run files are saved under `runs/run_001/`, etc. Orange panels are unvalidated unknown candidates.
+
+JSON outputs use Stage I's shared `CompactJSON` writer with its packed layout:
+short fields and atom/bond records share lines up to a target width of 120
+characters, numeric arrays stay on one line, and larger records remain indented.
+This applies to campaign and per-run reports without changing their stored data.
 
 Additional PUCT diagnostics:
 
-- `recovery_progress.json`: target, recovered, missing, and excluded species;
-  updated on every new recovery and every 25 attempts. Final `summary.json`
-  records `all_species_recovered` and `termination_reason`.
+- `summary.json`: actual attempt counts, reference and candidate counts,
+  per-run summaries, and `termination_reason = "attempt_budget_complete"`.
+  The former `recovery_progress.json` is no longer produced and is cleared
+  when starting a new exploration.
 
 - `search_statistics.json`: simulations, tree nodes, model evaluations, and root
   edge priors, visit counts and mean rewards. Campaign records retain run IDs.
@@ -292,12 +269,13 @@ discovery frequency does not imply a higher probability in the saved network.
 
 ## Verification and initial comparison
 
-All 16 tests in `test_stage2.py` pass. They check rare-prior exploration and
+The earlier test suite checked rare-prior exploration and
 reward backup, composition constraints, dead ends, parameter validation,
 repeatability, trace replay, unchanged checkpoint bytes, campaign merging,
 full-coverage stopping beyond nominal budgets, isomer-specific recovery, and
 rejection of unreachable target settings, probability averaging, free STOP and
-reward behavior, and reproducible free-growth campaign outputs. A separate real-checkpoint validation
+reward behavior, and reproducible free-growth campaign outputs. That test script
+has since been removed. A separate earlier real-checkpoint validation
 recovered all 31 active species with nominal sample/run budgets both set to 1.
 
 The earlier bounded-mode comparison used seed 24680, one run, and 100 attempts for each of
@@ -317,3 +295,36 @@ The comparison is stored under
 This small comparison measures the combined PUCT configuration, including its
 broader prior and composition constraints; it does not isolate the contribution
 of PUCT alone or establish performance across every composition.
+
+## Direct network generation
+
+- Run `python stageII_direct_generate.py` from this directory.
+- The separate class-based runner reuses this Stage II implementation with
+  `search_method="sampling"`, temperature 1.0 and no uniform exploration mixture.
+  It does not run PUCT or update network weights.
+- Default budget: 100 runs × 1,000 attempts, using the same Stage I checkpoint,
+  reference and seed schedule as the PUCT runner. Parameters are below the class.
+- In free mode, probabilities are averaged over the reference composition contexts
+  at every step. The network samples legal actions and STOP without a fixed formula.
+- The direct runner reuses graph features across contexts, as in Stage IV. Its
+  probabilities and legal masks were checked against the original Stage II
+  implementation on 100 partial states; differences stayed within numerical tolerance.
+- Outputs go to `output_direct/`: compact JSON inventories and traces, per-run
+  results, `final_structures.png`, and `exploration_growth.mp4`. The existing PUCT
+  `output/` is separate. Rerunning replaces generated files in `output_direct/`.
+- `DIRECT_RUNS`, `DIRECT_ATTEMPTS` and `DIRECT_OUTPUT_FOLDER` optionally override
+  those settings through environment variables.
+- To use Stage IV, change both the checkpoint path to its selected model and the
+  reference path to the expanded species JSON. Stage III can process this output
+  by pointing its prediction input at `output_direct/unique_structures.json`.
+- Unknown candidates still need Stage III classification; direct sampling alone
+  does not label them validated or invalid. Inference uses CPU, matching Stage II.
+
+### Direct-generation result (100,000 attempts)
+
+- The executed campaign recovered all 31 reference structures and produced 233
+  distinct unknown candidates (264 distinct structures in total).
+- Attempts: 74,773 reference matches and 25,227 unknown candidates; no failed
+  attempts were recorded. Repeated molecules count toward these attempt totals.
+- These results use the Stage I checkpoint and original reference set. Unknown
+  candidates have not yet been classified against FFCM2 by Stage III.

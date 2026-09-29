@@ -198,7 +198,7 @@ Graphs are padded to the same size for batching. A node mask distinguishes real 
 
 ## 7. The shared GNN scores actions
 
-`GrowthGNN.forward()` passes atom features through the configured message-passing layers.
+`GrowthGNN.graph_features()` passes atom features through the configured message-passing layers.
 
 Each `BondMessageLayer` combines:
 
@@ -209,7 +209,7 @@ Each `BondMessageLayer` combines:
 
 The resulting atom embeddings summarize their local structural surroundings.
 
-The model then combines a pooled graph summary with the composition context and produces scores through:
+`GrowthGNN.action_logits()` then combines a pooled graph summary with the composition context and produces scores through:
 
 ```python
 start_head
@@ -221,6 +221,8 @@ termination_layer
 All scores are concatenated into **one action vector**. Illegal actions receive `-inf`, giving them zero probability after softmax.
 
 The same output distribution is used for training and generation.
+The ordinary `forward()` calls both methods for generation. Training shares
+`graph_features()` results between repeated partial graphs, as described below.
 
 ## 8. Train using demonstrated partial graphs
 
@@ -228,10 +230,18 @@ Each epoch selects `K_s = ceil(N_s * TRAJECTORY_SAMPLE_FRACTION)` trajectories f
 
 All their partial-graph examples are processed together, followed by one optimizer update.
 
+`cache_demonstrations()` assigns the same ID to identical partial graphs, retaining
+the exact atom order and bond orders. `training_logits()` convolves each distinct
+graph once, then expands its features back to the original example order before
+scoring actions. For example, the same OH partial graph can share features while
+learning STOP for OH and addition of H for H2O. Their compositions, targets and
+loss weights stay separate. All examples contribute gradients to the shared
+features, which are recomputed each epoch using the updated network weights.
+
 The main calculation is:
 
 ```python
-logits = model(*inputs)
+logits, targets, unique_graphs = self.training_logits(model, selected)
 log_probs = F.log_softmax(logits, dim=-1)
 
 target_log_prob = torch.logsumexp(

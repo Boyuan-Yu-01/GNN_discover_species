@@ -30,7 +30,6 @@ self_improving/
 │   └── output_stage2/                   # Earlier saved comparison
 └── stageIII/
     ├── compare_stage3.py                # FFCMII matching and green/red/blue plots
-    ├── test_stage3.py
     ├── README.md
     └── output/                          # Latest comparison; overwritten each run
 ```
@@ -78,10 +77,10 @@ network supplies an averaged policy across reference formulas; no retraining
 is performed.
 
 Edit `EXPLORATION_RUNS` and `ATTEMPTS_PER_RUN` in `stageII/explore_stage2.py`.
-The defaults produce 10 × 1,000 = 10,000 attempts.
+The defaults produce 100 × 1,000 = 100,000 attempts.
 Set `GENERATION_MODE = "formula"` to restore `COMPOSITIONS` and
-`SAMPLES_PER_COMPOSITION`. Full-reference recovery stopping remains optional
-through `STOP_WHEN_ALL_SPECIES_RECOVERED`.
+`SAMPLES_PER_COMPOSITION`. Exploration stops at the configured attempt count;
+recovering all given species is not required and does not change that count.
 
 Stage II saves new results directly to `stageII/output/` and replaces its previous
 results on every run, including stale media and per-run folders.
@@ -95,7 +94,7 @@ python compare_stage3.py
 
 Stage III saves `stageIII/output/final_structures.png`: FFCMII matches outside
 training appear first in green, unmatched structures follow in red, and training
-species appear last in blue. Larger paginated plots and compact JSON
+species appear last in blue. A single full PNG and compact JSON
 reports are saved alongside it. Matching compares atom elements and bond orders,
 ignoring atom numbering; electronic states remain unresolved.
 
